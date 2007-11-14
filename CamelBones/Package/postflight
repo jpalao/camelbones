@@ -1,0 +1,30 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+# Post-flight script to be run after the basic CB Runtime install.
+
+# Get the output of the sw_vers command, if there is one.
+my $sw_vers = '';
+if (-f '/usr/bin/sw_vers') {
+	open(SW_VERS, '/usr/bin/sw_vers |');
+	while (<SW_VERS>) {
+		next unless (/ProductVersion:\s*(.*)/);
+		$sw_vers = $1;
+		last;
+	}
+}
+
+# Determine the correct target for the symbolic link in /Library/Frameworks
+my $target = '';
+if ($sw_vers =~ /10.3.\d+/) {
+	# Panther
+	$target = '/Library/Frameworks/CamelBones-Panther.framework';
+} else {
+	# Jaguar or older
+	$target = '/Library/Frameworks/CamelBones-Jaguar.framework';
+}
+
+# Create the symlink
+symlink($target, '/Library/Frameworks/CamelBones.framework');
