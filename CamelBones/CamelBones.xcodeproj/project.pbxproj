@@ -1,0 +1,1516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		AA6C32080CCC962000306BD7 /* All */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AA6C32110CCC964F00306BD7 /* Build configuration list for PBXAggregateTarget "All" */;
+			buildPhases = (
+			);
+			dependencies = (
+				AA6C320A0CCC962900306BD7 /* PBXTargetDependency */,
+				AA6C320C0CCC962900306BD7 /* PBXTargetDependency */,
+				AA6C320E0CCC962900306BD7 /* PBXTargetDependency */,
+				AA6C32BD0CCC9DE900306BD7 /* PBXTargetDependency */,
+			);
+			name = All;
+			productName = All;
+		};
+		AA6C32B50CCC9DB000306BD7 /* Perl Module */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AA6C32C20CCC9E2800306BD7 /* Build configuration list for PBXAggregateTarget "Perl Module" */;
+			buildPhases = (
+				AA6C32B40CCC9DB000306BD7 /* ShellScript */,
+			);
+			dependencies = (
+				AA6C32B70CCC9DB900306BD7 /* PBXTargetDependency */,
+			);
+			name = "Perl Module";
+			productName = "Perl Module";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		AA50E4EF0C87705C004DA7BD /* CBPerl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AC0C875DB7004DA7BD /* CBPerl.m */; };
+		AA50E4F00C87705C004DA7BD /* CBPerlArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */; };
+		AA50E4F10C87705C004DA7BD /* CBPerlHash.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */; };
+		AA50E4F20C87705C004DA7BD /* CBPerlObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B40C875DB7004DA7BD /* CBPerlObject.m */; };
+		AA50E4F30C87705C004DA7BD /* CBPerlObjectInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B60C875DB7004DA7BD /* CBPerlObjectInternals.m */; };
+		AA50E4F40C87705C004DA7BD /* CBPerlScalar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B80C875DB7004DA7BD /* CBPerlScalar.m */; };
+		AA50E4F50C87705C004DA7BD /* CBPerlScalarInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */; };
+		AA50E4F60C87705C004DA7BD /* Conversions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BF0C875DB7004DA7BD /* Conversions.m */; };
+		AA50E4F70C87705C004DA7BD /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C40C875DB7004DA7BD /* Globals.m */; };
+		AA50E4F80C87705C004DA7BD /* NativeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C70C875DB7004DA7BD /* NativeMethods.m */; };
+		AA50E4F90C87705C004DA7BD /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */; };
+		AA50E4FA0C87705C004DA7BD /* perlxsi.c in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CC0C875DB7004DA7BD /* perlxsi.c */; };
+		AA50E4FB0C87705C004DA7BD /* Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D00C875DB7004DA7BD /* Runtime.m */; };
+		AA50E4FC0C87705C004DA7BD /* Structs.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D30C875DB7004DA7BD /* Structs.m */; };
+		AA50E4FD0C87705C004DA7BD /* Wrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D90C875DB8004DA7BD /* Wrappers.m */; };
+		AA50E4FE0C877068004DA7BD /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E21E0C8757A7004DA7BD /* libffi.a */; };
+		AA50E50F0C877196004DA7BD /* libperl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E5090C87716B004DA7BD /* libperl.dylib */; };
+		AA50E5170C87723E004DA7BD /* DynaLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E5120C877231004DA7BD /* DynaLoader.a */; };
+		AA50E54C0C877635004DA7BD /* CBPerl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AC0C875DB7004DA7BD /* CBPerl.m */; };
+		AA50E54D0C877635004DA7BD /* CBPerlArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */; };
+		AA50E54E0C877635004DA7BD /* CBPerlHash.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */; };
+		AA50E54F0C877635004DA7BD /* CBPerlObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B40C875DB7004DA7BD /* CBPerlObject.m */; };
+		AA50E5500C877635004DA7BD /* CBPerlObjectInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B60C875DB7004DA7BD /* CBPerlObjectInternals.m */; };
+		AA50E5510C877635004DA7BD /* CBPerlScalar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B80C875DB7004DA7BD /* CBPerlScalar.m */; };
+		AA50E5520C877635004DA7BD /* CBPerlScalarInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */; };
+		AA50E5530C877635004DA7BD /* Conversions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BF0C875DB7004DA7BD /* Conversions.m */; };
+		AA50E5540C877635004DA7BD /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C40C875DB7004DA7BD /* Globals.m */; };
+		AA50E5550C877635004DA7BD /* NativeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C70C875DB7004DA7BD /* NativeMethods.m */; };
+		AA50E5560C877635004DA7BD /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */; };
+		AA50E5570C877635004DA7BD /* perlxsi.c in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CC0C875DB7004DA7BD /* perlxsi.c */; };
+		AA50E5580C877635004DA7BD /* Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D00C875DB7004DA7BD /* Runtime.m */; };
+		AA50E5590C877635004DA7BD /* Structs.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D30C875DB7004DA7BD /* Structs.m */; };
+		AA50E55A0C877635004DA7BD /* Wrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D90C875DB8004DA7BD /* Wrappers.m */; };
+		AA50E55E0C877635004DA7BD /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E21E0C8757A7004DA7BD /* libffi.a */; };
+		AA50E58D0C8778A3004DA7BD /* libperl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E58C0C8778A3004DA7BD /* libperl.dylib */; };
+		AA50E58F0C8778C4004DA7BD /* DynaLoader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E58E0C8778C4004DA7BD /* DynaLoader.a */; };
+		AA6C321C0CCC96F200306BD7 /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9142060CC98CCE0055B0E5 /* CamelBones.framework */; };
+		AA6C323C0CCC96F900306BD7 /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA9142060CC98CCE0055B0E5 /* CamelBones.framework */; };
+		AA83FE1C0CC9EABB00E56F20 /* typemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA83FE0E0CC9E9CF00E56F20 /* typemap */; };
+		AA9141B80CC98CCE0055B0E5 /* AppMain.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3A80C875DB7004DA7BD /* AppMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9141B90CC98CCE0055B0E5 /* CamelBones.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AA0C875DB7004DA7BD /* CamelBones.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9141BA0CC98CCE0055B0E5 /* CBPerl.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AB0C875DB7004DA7BD /* CBPerl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9141BB0CC98CCE0055B0E5 /* CBPerlArray.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AD0C875DB7004DA7BD /* CBPerlArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9141BC0CC98CCE0055B0E5 /* CBPerlHash.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B00C875DB7004DA7BD /* CBPerlHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9141BD0CC98CCE0055B0E5 /* CBPerlObject.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9141BE0CC98CCE0055B0E5 /* CBPerlScalar.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9141C10CC98CCE0055B0E5 /* DylibInit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C10C875DB7004DA7BD /* DylibInit.m */; };
+		AA9141C20CC98CCE0055B0E5 /* AppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3A90C875DB7004DA7BD /* AppMain.m */; };
+		AA9141C30CC98CCE0055B0E5 /* StubInit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D60C875DB7004DA7BD /* StubInit.m */; };
+		AA9141C40CC98CCE0055B0E5 /* StubClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D40C875DB7004DA7BD /* StubClasses.m */; };
+		AA9141C50CC98CCE0055B0E5 /* StubFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D50C875DB7004DA7BD /* StubFunctions.m */; };
+		AA9141C70CC98CCE0055B0E5 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4240C875F90004DA7BD /* AppKit.framework */; };
+		AA9141C80CC98CCE0055B0E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4280C875FA2004DA7BD /* Foundation.framework */; };
+		AA9144820CC9A4570055B0E5 /* CBPerlArrayInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AF0C875DB7004DA7BD /* CBPerlArrayInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144830CC9A4570055B0E5 /* CBPerlHashInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144840CC9A4570055B0E5 /* CBPerlObjectInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144850CC9A4570055B0E5 /* CBPerlScalarInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144870CC9A4570055B0E5 /* Conversions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BE0C875DB7004DA7BD /* Conversions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144880CC9A4570055B0E5 /* Conversions_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144890CC9A4570055B0E5 /* DylibInit.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C00C875DB7004DA7BD /* DylibInit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA91448A0CC9A4570055B0E5 /* Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C30C875DB7004DA7BD /* Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA91448B0CC9A4570055B0E5 /* Globals_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C20C875DB7004DA7BD /* Globals_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA91448C0CC9A4570055B0E5 /* NativeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA91448D0CC9A4570055B0E5 /* NativeMethods_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C50C875DB7004DA7BD /* NativeMethods_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA91448E0CC9A4570055B0E5 /* PerlImports.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C80C875DB7004DA7BD /* PerlImports.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA91448F0CC9A4570055B0E5 /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144900CC9A4570055B0E5 /* PerlMethods_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C90C875DB7004DA7BD /* PerlMethods_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144910CC9A4570055B0E5 /* perlxsi.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CD0C875DB7004DA7BD /* perlxsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144920CC9A4570055B0E5 /* Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CF0C875DB7004DA7BD /* Runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144930CC9A4570055B0E5 /* Runtime_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144940CC9A4570055B0E5 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D20C875DB7004DA7BD /* Structs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144950CC9A4570055B0E5 /* Structs_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D10C875DB7004DA7BD /* Structs_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144960CC9A4570055B0E5 /* Wrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D80C875DB7004DA7BD /* Wrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA9144970CC9A4570055B0E5 /* Wrappers_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA50E21D0C8757A7004DA7BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC046055464E500DB518D;
+			remoteInfo = libffi;
+		};
+		AA50E4FF0C877084004DA7BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = libffi;
+		};
+		AA50E5490C877635004DA7BD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = libffi;
+		};
+		AA6C31F00CCC93C700306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
+			remoteInfo = libffi;
+		};
+		AA6C32040CCC95EA00306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA9141B20CC98CCE0055B0E5;
+			remoteInfo = CamelBones.framework;
+		};
+		AA6C32060CCC960F00306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA9141B20CC98CCE0055B0E5;
+			remoteInfo = CamelBones.framework;
+		};
+		AA6C32090CCC962900306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA9141B20CC98CCE0055B0E5;
+			remoteInfo = CamelBones.framework;
+		};
+		AA6C320B0CCC962900306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA50E4E80C877030004DA7BD;
+			remoteInfo = "darwin-thread-multi-2level-5.8.6";
+		};
+		AA6C320D0CCC962900306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA50E5470C877635004DA7BD;
+			remoteInfo = "darwin-thread-multi-2level-5.8.1";
+		};
+		AA6C32B60CCC9DB900306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA9141B20CC98CCE0055B0E5;
+			remoteInfo = CamelBones.framework;
+		};
+		AA6C32BC0CCC9DE900306BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA6C32B50CCC9DB000306BD7;
+			remoteInfo = "Perl Module";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA83FE180CC9EA7100E56F20 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				AA83FE1C0CC9EABB00E56F20 /* typemap in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libffi.xcodeproj; path = libffi/libffi.xcodeproj; sourceTree = "<group>"; };
+		AA50E3A80C875DB7004DA7BD /* AppMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppMain.h; sourceTree = "<group>"; };
+		AA50E3A90C875DB7004DA7BD /* AppMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppMain.m; sourceTree = "<group>"; };
+		AA50E3AA0C875DB7004DA7BD /* CamelBones.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CamelBones.h; sourceTree = "<group>"; };
+		AA50E3AB0C875DB7004DA7BD /* CBPerl.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerl.h; sourceTree = "<group>"; };
+		AA50E3AC0C875DB7004DA7BD /* CBPerl.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerl.m; sourceTree = "<group>"; };
+		AA50E3AD0C875DB7004DA7BD /* CBPerlArray.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlArray.h; sourceTree = "<group>"; };
+		AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlArray.m; sourceTree = "<group>"; };
+		AA50E3AF0C875DB7004DA7BD /* CBPerlArrayInternals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlArrayInternals.h; sourceTree = "<group>"; };
+		AA50E3B00C875DB7004DA7BD /* CBPerlHash.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlHash.h; sourceTree = "<group>"; };
+		AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlHash.m; sourceTree = "<group>"; };
+		AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlHashInternals.h; sourceTree = "<group>"; };
+		AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlObject.h; sourceTree = "<group>"; };
+		AA50E3B40C875DB7004DA7BD /* CBPerlObject.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlObject.m; sourceTree = "<group>"; };
+		AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlObjectInternals.h; sourceTree = "<group>"; };
+		AA50E3B60C875DB7004DA7BD /* CBPerlObjectInternals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlObjectInternals.m; sourceTree = "<group>"; };
+		AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlScalar.h; sourceTree = "<group>"; };
+		AA50E3B80C875DB7004DA7BD /* CBPerlScalar.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlScalar.m; sourceTree = "<group>"; };
+		AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlScalarInternals.h; sourceTree = "<group>"; };
+		AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlScalarInternals.m; sourceTree = "<group>"; };
+		AA50E3BB0C875DB7004DA7BD /* CBStruct.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBStruct.h; sourceTree = "<group>"; };
+		AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Conversions_real.h; sourceTree = "<group>"; };
+		AA50E3BE0C875DB7004DA7BD /* Conversions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Conversions.h; sourceTree = "<group>"; };
+		AA50E3BF0C875DB7004DA7BD /* Conversions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Conversions.m; sourceTree = "<group>"; };
+		AA50E3C00C875DB7004DA7BD /* DylibInit.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DylibInit.h; sourceTree = "<group>"; };
+		AA50E3C10C875DB7004DA7BD /* DylibInit.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DylibInit.m; sourceTree = "<group>"; };
+		AA50E3C20C875DB7004DA7BD /* Globals_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Globals_real.h; sourceTree = "<group>"; };
+		AA50E3C30C875DB7004DA7BD /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		AA50E3C40C875DB7004DA7BD /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
+		AA50E3C50C875DB7004DA7BD /* NativeMethods_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NativeMethods_real.h; sourceTree = "<group>"; };
+		AA50E3C60C875DB7004DA7BD /* NativeMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NativeMethods.h; sourceTree = "<group>"; };
+		AA50E3C70C875DB7004DA7BD /* NativeMethods.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NativeMethods.m; sourceTree = "<group>"; };
+		AA50E3C80C875DB7004DA7BD /* PerlImports.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlImports.h; sourceTree = "<group>"; };
+		AA50E3C90C875DB7004DA7BD /* PerlMethods_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlMethods_real.h; sourceTree = "<group>"; };
+		AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
+		AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PerlMethods.m; sourceTree = "<group>"; };
+		AA50E3CC0C875DB7004DA7BD /* perlxsi.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = perlxsi.c; sourceTree = "<group>"; };
+		AA50E3CD0C875DB7004DA7BD /* perlxsi.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = perlxsi.h; sourceTree = "<group>"; };
+		AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Runtime_real.h; sourceTree = "<group>"; };
+		AA50E3CF0C875DB7004DA7BD /* Runtime.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Runtime.h; sourceTree = "<group>"; };
+		AA50E3D00C875DB7004DA7BD /* Runtime.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Runtime.m; sourceTree = "<group>"; };
+		AA50E3D10C875DB7004DA7BD /* Structs_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs_real.h; sourceTree = "<group>"; };
+		AA50E3D20C875DB7004DA7BD /* Structs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
+		AA50E3D30C875DB7004DA7BD /* Structs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Structs.m; sourceTree = "<group>"; };
+		AA50E3D40C875DB7004DA7BD /* StubClasses.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = StubClasses.m; sourceTree = "<group>"; };
+		AA50E3D50C875DB7004DA7BD /* StubFunctions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = StubFunctions.m; sourceTree = "<group>"; };
+		AA50E3D60C875DB7004DA7BD /* StubInit.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = StubInit.m; sourceTree = "<group>"; };
+		AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers_real.h; sourceTree = "<group>"; };
+		AA50E3D80C875DB7004DA7BD /* Wrappers.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers.h; sourceTree = "<group>"; };
+		AA50E3D90C875DB8004DA7BD /* Wrappers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Wrappers.m; sourceTree = "<group>"; };
+		AA50E4240C875F90004DA7BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		AA50E4280C875FA2004DA7BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		AA50E4BD0C876E05004DA7BD /* darwin-thread-multi-2level-5.8.6-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "darwin-thread-multi-2level-5.8.6-Info.plist"; sourceTree = "<group>"; };
+		AA50E5090C87716B004DA7BD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE/libperl.dylib"; sourceTree = "<absolute>"; };
+		AA50E5120C877231004DA7BD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
+		AA50E5630C877635004DA7BD /* darwin-thread-multi-2level-5.8.1-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "darwin-thread-multi-2level-5.8.1-Info.plist"; sourceTree = "<group>"; };
+		AA50E58C0C8778A3004DA7BD /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE/libperl.dylib"; sourceTree = "<absolute>"; };
+		AA50E58E0C8778C4004DA7BD /* DynaLoader.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = DynaLoader.a; path = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/auto/DynaLoader/DynaLoader.a"; sourceTree = "<absolute>"; };
+		AA50E9640C879392004DA7BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA68EB130CA9CF1200003ED0 /* AddressBook.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = AddressBook.bridgesupport; path = ../BridgeSupport/Flattened/AddressBook.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB140CA9CF1200003ED0 /* AppKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = AppKit.bridgesupport; path = ../BridgeSupport/Flattened/AppKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB150CA9CF1200003ED0 /* AppleScriptKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = AppleScriptKit.bridgesupport; path = ../BridgeSupport/Flattened/AppleScriptKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB160CA9CF1200003ED0 /* ApplicationServices.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ApplicationServices.bridgesupport; path = ../BridgeSupport/Flattened/ApplicationServices.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB170CA9CF1200003ED0 /* Automator.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Automator.bridgesupport; path = ../BridgeSupport/Flattened/Automator.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB180CA9CF1200003ED0 /* CalendarStore.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = CalendarStore.bridgesupport; path = ../BridgeSupport/Flattened/CalendarStore.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB190CA9CF1200003ED0 /* Cocoa.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Cocoa.bridgesupport; path = ../BridgeSupport/Flattened/Cocoa.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB1A0CA9CF1200003ED0 /* Collaboration.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Collaboration.bridgesupport; path = ../BridgeSupport/Flattened/Collaboration.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB1B0CA9CF1200003ED0 /* CoreAudio.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = CoreAudio.bridgesupport; path = ../BridgeSupport/Flattened/CoreAudio.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB1C0CA9CF1200003ED0 /* CoreAudioKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = CoreAudioKit.bridgesupport; path = ../BridgeSupport/Flattened/CoreAudioKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB1D0CA9CF1200003ED0 /* CoreData.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = CoreData.bridgesupport; path = ../BridgeSupport/Flattened/CoreData.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB1E0CA9CF1200003ED0 /* CoreFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = CoreFoundation.bridgesupport; path = ../BridgeSupport/Flattened/CoreFoundation.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB1F0CA9CF1200003ED0 /* CoreFoundation.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = CoreFoundation.dylib; path = ../BridgeSupport/Flattened/CoreFoundation.dylib; sourceTree = SOURCE_ROOT; };
+		AA68EB200CA9CF1200003ED0 /* CoreGraphics.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = CoreGraphics.bridgesupport; path = ../BridgeSupport/Flattened/CoreGraphics.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB210CA9CF1200003ED0 /* CoreGraphics.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = CoreGraphics.dylib; path = ../BridgeSupport/Flattened/CoreGraphics.dylib; sourceTree = SOURCE_ROOT; };
+		AA68EB220CA9CF1200003ED0 /* CoreVideo.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = CoreVideo.bridgesupport; path = ../BridgeSupport/Flattened/CoreVideo.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB230CA9CF1200003ED0 /* DictionaryServices.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = DictionaryServices.bridgesupport; path = ../BridgeSupport/Flattened/DictionaryServices.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB240CA9CF1200003ED0 /* DirectoryService.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = DirectoryService.bridgesupport; path = ../BridgeSupport/Flattened/DirectoryService.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB250CA9CF1200003ED0 /* DiscRecording.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = DiscRecording.bridgesupport; path = ../BridgeSupport/Flattened/DiscRecording.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB260CA9CF1200003ED0 /* DiscRecordingUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = DiscRecordingUI.bridgesupport; path = ../BridgeSupport/Flattened/DiscRecordingUI.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB270CA9CF1200003ED0 /* DVDPlayback.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = DVDPlayback.bridgesupport; path = ../BridgeSupport/Flattened/DVDPlayback.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB280CA9CF1200003ED0 /* ExceptionHandling.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ExceptionHandling.bridgesupport; path = ../BridgeSupport/Flattened/ExceptionHandling.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB290CA9CF1200003ED0 /* Foundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Foundation.bridgesupport; path = ../BridgeSupport/Flattened/Foundation.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB2A0CA9CF1200003ED0 /* Foundation.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = Foundation.dylib; path = ../BridgeSupport/Flattened/Foundation.dylib; sourceTree = SOURCE_ROOT; };
+		AA68EB2B0CA9CF1200003ED0 /* ICADevices.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ICADevices.bridgesupport; path = ../BridgeSupport/Flattened/ICADevices.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB2C0CA9CF1200003ED0 /* ImageIO.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ImageIO.bridgesupport; path = ../BridgeSupport/Flattened/ImageIO.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB2D0CA9CF1200003ED0 /* ImageKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ImageKit.bridgesupport; path = ../BridgeSupport/Flattened/ImageKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB2E0CA9CF1200003ED0 /* InputMethodKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = InputMethodKit.bridgesupport; path = ../BridgeSupport/Flattened/InputMethodKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB2F0CA9CF1200003ED0 /* InstallerPlugins.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = InstallerPlugins.bridgesupport; path = ../BridgeSupport/Flattened/InstallerPlugins.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB300CA9CF1200003ED0 /* InstantMessage.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = InstantMessage.bridgesupport; path = ../BridgeSupport/Flattened/InstantMessage.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB310CA9CF1200003ED0 /* IOBluetooth.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = IOBluetooth.bridgesupport; path = ../BridgeSupport/Flattened/IOBluetooth.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB320CA9CF1200003ED0 /* IOBluetoothUI.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = IOBluetoothUI.bridgesupport; path = ../BridgeSupport/Flattened/IOBluetoothUI.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB330CA9CF1200003ED0 /* JavaScriptCore.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = JavaScriptCore.bridgesupport; path = ../BridgeSupport/Flattened/JavaScriptCore.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB340CA9CF1200003ED0 /* LatentSemanticMapping.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = LatentSemanticMapping.bridgesupport; path = ../BridgeSupport/Flattened/LatentSemanticMapping.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB350CA9CF1200003ED0 /* OpenGL.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = OpenGL.bridgesupport; path = ../BridgeSupport/Flattened/OpenGL.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB360CA9CF1200003ED0 /* OSAKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = OSAKit.bridgesupport; path = ../BridgeSupport/Flattened/OSAKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB370CA9CF1200003ED0 /* PDFKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = PDFKit.bridgesupport; path = ../BridgeSupport/Flattened/PDFKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB380CA9CF1200003ED0 /* PreferencePanes.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = PreferencePanes.bridgesupport; path = ../BridgeSupport/Flattened/PreferencePanes.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB390CA9CF1200003ED0 /* PubSub.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = PubSub.bridgesupport; path = ../BridgeSupport/Flattened/PubSub.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB3A0CA9CF1200003ED0 /* QTKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = QTKit.bridgesupport; path = ../BridgeSupport/Flattened/QTKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB3B0CA9CF1200003ED0 /* Quartz.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = Quartz.bridgesupport; path = ../BridgeSupport/Flattened/Quartz.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB3C0CA9CF1200003ED0 /* QuartzComposer.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = QuartzComposer.bridgesupport; path = ../BridgeSupport/Flattened/QuartzComposer.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB3D0CA9CF1200003ED0 /* QuartzCore.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = QuartzCore.bridgesupport; path = ../BridgeSupport/Flattened/QuartzCore.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB3E0CA9CF1200003ED0 /* ScreenSaver.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ScreenSaver.bridgesupport; path = ../BridgeSupport/Flattened/ScreenSaver.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB3F0CA9CF1200003ED0 /* ScreenSaver.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ScreenSaver.dylib; path = ../BridgeSupport/Flattened/ScreenSaver.dylib; sourceTree = SOURCE_ROOT; };
+		AA68EB400CA9CF1200003ED0 /* ScriptingBridge.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = ScriptingBridge.bridgesupport; path = ../BridgeSupport/Flattened/ScriptingBridge.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB410CA9CF1200003ED0 /* SecurityFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = SecurityFoundation.bridgesupport; path = ../BridgeSupport/Flattened/SecurityFoundation.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB420CA9CF1200003ED0 /* SecurityInterface.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = SecurityInterface.bridgesupport; path = ../BridgeSupport/Flattened/SecurityInterface.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB430CA9CF1200003ED0 /* SpeechRecognition.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = SpeechRecognition.bridgesupport; path = ../BridgeSupport/Flattened/SpeechRecognition.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB440CA9CF1200003ED0 /* SpeechSynthesis.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = SpeechSynthesis.bridgesupport; path = ../BridgeSupport/Flattened/SpeechSynthesis.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB450CA9CF1200003ED0 /* SyncServices.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = SyncServices.bridgesupport; path = ../BridgeSupport/Flattened/SyncServices.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB460CA9CF1200003ED0 /* SystemConfiguration.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = SystemConfiguration.bridgesupport; path = ../BridgeSupport/Flattened/SystemConfiguration.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB470CA9CF1200003ED0 /* WebKit.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = WebKit.bridgesupport; path = ../BridgeSupport/Flattened/WebKit.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA68EB480CA9CF1200003ED0 /* XgridFoundation.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; name = XgridFoundation.bridgesupport; path = ../BridgeSupport/Flattened/XgridFoundation.bridgesupport; sourceTree = SOURCE_ROOT; };
+		AA6C31C70CCC91E400306BD7 /* darwin-thread-multi-2level-5.8.6.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "darwin-thread-multi-2level-5.8.6.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA6C31C80CCC91E400306BD7 /* darwin-thread-multi-2level-5.8.1.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "darwin-thread-multi-2level-5.8.1.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA83FE0E0CC9E9CF00E56F20 /* typemap */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = typemap; sourceTree = "<group>"; };
+		AA9142060CC98CCE0055B0E5 /* CamelBones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CamelBones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA9143200CC99B2A0055B0E5 /* AppKit.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = AppKit.xs; sourceTree = "<group>"; };
+		AA9143230CC99B2A0055B0E5 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
+		AA9143570CC99B2A0055B0E5 /* CamelBones.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = CamelBones.xs; path = CPAN/CamelBones.xs; sourceTree = "<group>"; };
+		AA9143580CC99B2A0055B0E5 /* cb_common.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = cb_common.pl; path = CPAN/cb_common.pl; sourceTree = "<group>"; };
+		AA91435D0CC99B2A0055B0E5 /* Foundation.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = Foundation.xs; sourceTree = "<group>"; };
+		AA9143600CC99B2A0055B0E5 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
+		AA9143650CC99B2A0055B0E5 /* Constants.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Constants.pm; sourceTree = "<group>"; };
+		AA9143660CC99B2A0055B0E5 /* AppKit.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = AppKit.pm; sourceTree = "<group>"; };
+		AA9143680CC99B2A0055B0E5 /* Constants.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Constants.pm; sourceTree = "<group>"; };
+		AA9143690CC99B2A0055B0E5 /* Foundation.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Foundation.pm; sourceTree = "<group>"; };
+		AA91436A0CC99B2A0055B0E5 /* NSPoint.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = NSPoint.pm; sourceTree = "<group>"; };
+		AA91436B0CC99B2A0055B0E5 /* NSRange.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = NSRange.pm; sourceTree = "<group>"; };
+		AA91436C0CC99B2A0055B0E5 /* NSRect.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = NSRect.pm; sourceTree = "<group>"; };
+		AA91436D0CC99B2A0055B0E5 /* NSSize.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = NSSize.pm; sourceTree = "<group>"; };
+		AA91436F0CC99B2A0055B0E5 /* TiedArray.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = TiedArray.pm; sourceTree = "<group>"; };
+		AA9143700CC99B2A0055B0E5 /* TiedDictionary.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = TiedDictionary.pm; sourceTree = "<group>"; };
+		AA9143710CC99B2A0055B0E5 /* CamelBones.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = CamelBones.pm; sourceTree = "<group>"; };
+		AA9143740CC99B2A0055B0E5 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = Makefile.PL; path = CPAN/Makefile.PL; sourceTree = "<group>"; };
+		AA9143750CC99B2A0055B0E5 /* MANIFEST */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = MANIFEST; path = CPAN/MANIFEST; sourceTree = "<group>"; };
+		AA9143760CC99B2A0055B0E5 /* MANIFEST.SKIP */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = MANIFEST.SKIP; path = CPAN/MANIFEST.SKIP; sourceTree = "<group>"; };
+		AA9143770CC99B2A0055B0E5 /* META.yml */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = META.yml; path = CPAN/META.yml; sourceTree = "<group>"; };
+		AA9143790CC99B2A0055B0E5 /* ppport.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ppport.h; path = CPAN/ppport.h; sourceTree = "<group>"; };
+		AA91437A0CC99B2A0055B0E5 /* README */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = README; path = CPAN/README; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA50E4E70C877030004DA7BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA6C321C0CCC96F200306BD7 /* CamelBones.framework in Frameworks */,
+				AA50E5170C87723E004DA7BD /* DynaLoader.a in Frameworks */,
+				AA50E50F0C877196004DA7BD /* libperl.dylib in Frameworks */,
+				AA50E4FE0C877068004DA7BD /* libffi.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA50E55B0C877635004DA7BD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA6C323C0CCC96F900306BD7 /* CamelBones.framework in Frameworks */,
+				AA50E55E0C877635004DA7BD /* libffi.a in Frameworks */,
+				AA50E58D0C8778A3004DA7BD /* libperl.dylib in Frameworks */,
+				AA50E58F0C8778C4004DA7BD /* DynaLoader.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA9141C60CC98CCE0055B0E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA9141C70CC98CCE0055B0E5 /* AppKit.framework in Frameworks */,
+				AA9141C80CC98CCE0055B0E5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA50E2030C87571F004DA7BD = {
+			isa = PBXGroup;
+			children = (
+				AA50E9640C879392004DA7BD /* Info.plist */,
+				AA50E5CF0C877E37004DA7BD /* Resources */,
+				AA50E3A70C875D23004DA7BD /* CamelBones */,
+				AA50E4130C875E1D004DA7BD /* Libraries */,
+				AA50E2330C87587B004DA7BD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA50E2170C8757A7004DA7BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E21E0C8757A7004DA7BD /* libffi.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA50E2330C87587B004DA7BD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA9142060CC98CCE0055B0E5 /* CamelBones.framework */,
+				AA6C31C70CCC91E400306BD7 /* darwin-thread-multi-2level-5.8.6.bundle */,
+				AA6C31C80CCC91E400306BD7 /* darwin-thread-multi-2level-5.8.1.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA50E3A70C875D23004DA7BD /* CamelBones */ = {
+			isa = PBXGroup;
+			children = (
+				AA91431A0CC99B010055B0E5 /* Perl Module */,
+				AA50E4620C876684004DA7BD /* Private-Include */,
+				AA50E45B0C87664F004DA7BD /* Include */,
+				AA50E40D0C875DD2004DA7BD /* Framework */,
+				AA50E40C0C875DC7004DA7BD /* Plugin */,
+			);
+			name = CamelBones;
+			sourceTree = "<group>";
+		};
+		AA50E40C0C875DC7004DA7BD /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E3AC0C875DB7004DA7BD /* CBPerl.m */,
+				AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */,
+				AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */,
+				AA50E3B40C875DB7004DA7BD /* CBPerlObject.m */,
+				AA50E3B60C875DB7004DA7BD /* CBPerlObjectInternals.m */,
+				AA50E3B80C875DB7004DA7BD /* CBPerlScalar.m */,
+				AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */,
+				AA50E3BF0C875DB7004DA7BD /* Conversions.m */,
+				AA50E3C40C875DB7004DA7BD /* Globals.m */,
+				AA50E3C70C875DB7004DA7BD /* NativeMethods.m */,
+				AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */,
+				AA50E3CC0C875DB7004DA7BD /* perlxsi.c */,
+				AA50E3D00C875DB7004DA7BD /* Runtime.m */,
+				AA50E3D30C875DB7004DA7BD /* Structs.m */,
+				AA50E3D90C875DB8004DA7BD /* Wrappers.m */,
+			);
+			name = Plugin;
+			sourceTree = "<group>";
+		};
+		AA50E40D0C875DD2004DA7BD /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E3C10C875DB7004DA7BD /* DylibInit.m */,
+				AA50E3A90C875DB7004DA7BD /* AppMain.m */,
+				AA50E3D60C875DB7004DA7BD /* StubInit.m */,
+				AA50E3D40C875DB7004DA7BD /* StubClasses.m */,
+				AA50E3D50C875DB7004DA7BD /* StubFunctions.m */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		AA50E4130C875E1D004DA7BD /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */,
+				AA50E58B0C877857004DA7BD /* darwin-thread-multi-2level-5.8.1 */,
+				AA50E50B0C877181004DA7BD /* darwin-thread-multi-2level-5.8.6 */,
+				AA50E4280C875FA2004DA7BD /* Foundation.framework */,
+				AA50E4240C875F90004DA7BD /* AppKit.framework */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		AA50E45B0C87664F004DA7BD /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E3A80C875DB7004DA7BD /* AppMain.h */,
+				AA50E3AA0C875DB7004DA7BD /* CamelBones.h */,
+				AA50E3AB0C875DB7004DA7BD /* CBPerl.h */,
+				AA50E3AD0C875DB7004DA7BD /* CBPerlArray.h */,
+				AA50E3B00C875DB7004DA7BD /* CBPerlHash.h */,
+				AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */,
+				AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */,
+				AA50E3BB0C875DB7004DA7BD /* CBStruct.h */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
+		AA50E4620C876684004DA7BD /* Private-Include */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E3BE0C875DB7004DA7BD /* Conversions.h */,
+				AA50E3C30C875DB7004DA7BD /* Globals.h */,
+				AA50E3C60C875DB7004DA7BD /* NativeMethods.h */,
+				AA50E3C80C875DB7004DA7BD /* PerlImports.h */,
+				AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */,
+				AA50E3CF0C875DB7004DA7BD /* Runtime.h */,
+				AA50E3D20C875DB7004DA7BD /* Structs.h */,
+				AA50E3D80C875DB7004DA7BD /* Wrappers.h */,
+				AA50E3AF0C875DB7004DA7BD /* CBPerlArrayInternals.h */,
+				AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */,
+				AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */,
+				AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */,
+				AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */,
+				AA50E3C00C875DB7004DA7BD /* DylibInit.h */,
+				AA50E3C20C875DB7004DA7BD /* Globals_real.h */,
+				AA50E3C50C875DB7004DA7BD /* NativeMethods_real.h */,
+				AA50E3C90C875DB7004DA7BD /* PerlMethods_real.h */,
+				AA50E3CD0C875DB7004DA7BD /* perlxsi.h */,
+				AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */,
+				AA50E3D10C875DB7004DA7BD /* Structs_real.h */,
+				AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */,
+			);
+			name = "Private-Include";
+			sourceTree = "<group>";
+		};
+		AA50E50B0C877181004DA7BD /* darwin-thread-multi-2level-5.8.6 */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E5120C877231004DA7BD /* DynaLoader.a */,
+				AA50E5090C87716B004DA7BD /* libperl.dylib */,
+				AA50E4BD0C876E05004DA7BD /* darwin-thread-multi-2level-5.8.6-Info.plist */,
+			);
+			name = "darwin-thread-multi-2level-5.8.6";
+			sourceTree = "<group>";
+		};
+		AA50E58B0C877857004DA7BD /* darwin-thread-multi-2level-5.8.1 */ = {
+			isa = PBXGroup;
+			children = (
+				AA50E58E0C8778C4004DA7BD /* DynaLoader.a */,
+				AA50E58C0C8778A3004DA7BD /* libperl.dylib */,
+				AA50E5630C877635004DA7BD /* darwin-thread-multi-2level-5.8.1-Info.plist */,
+			);
+			name = "darwin-thread-multi-2level-5.8.1";
+			sourceTree = "<group>";
+		};
+		AA50E5CF0C877E37004DA7BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AA68EB120CA9CEF000003ED0 /* BridgeSupport */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AA68EB120CA9CEF000003ED0 /* BridgeSupport */ = {
+			isa = PBXGroup;
+			children = (
+				AA68EB130CA9CF1200003ED0 /* AddressBook.bridgesupport */,
+				AA68EB140CA9CF1200003ED0 /* AppKit.bridgesupport */,
+				AA68EB150CA9CF1200003ED0 /* AppleScriptKit.bridgesupport */,
+				AA68EB160CA9CF1200003ED0 /* ApplicationServices.bridgesupport */,
+				AA68EB170CA9CF1200003ED0 /* Automator.bridgesupport */,
+				AA68EB180CA9CF1200003ED0 /* CalendarStore.bridgesupport */,
+				AA68EB190CA9CF1200003ED0 /* Cocoa.bridgesupport */,
+				AA68EB1A0CA9CF1200003ED0 /* Collaboration.bridgesupport */,
+				AA68EB1B0CA9CF1200003ED0 /* CoreAudio.bridgesupport */,
+				AA68EB1C0CA9CF1200003ED0 /* CoreAudioKit.bridgesupport */,
+				AA68EB1D0CA9CF1200003ED0 /* CoreData.bridgesupport */,
+				AA68EB1E0CA9CF1200003ED0 /* CoreFoundation.bridgesupport */,
+				AA68EB1F0CA9CF1200003ED0 /* CoreFoundation.dylib */,
+				AA68EB200CA9CF1200003ED0 /* CoreGraphics.bridgesupport */,
+				AA68EB210CA9CF1200003ED0 /* CoreGraphics.dylib */,
+				AA68EB220CA9CF1200003ED0 /* CoreVideo.bridgesupport */,
+				AA68EB230CA9CF1200003ED0 /* DictionaryServices.bridgesupport */,
+				AA68EB240CA9CF1200003ED0 /* DirectoryService.bridgesupport */,
+				AA68EB250CA9CF1200003ED0 /* DiscRecording.bridgesupport */,
+				AA68EB260CA9CF1200003ED0 /* DiscRecordingUI.bridgesupport */,
+				AA68EB270CA9CF1200003ED0 /* DVDPlayback.bridgesupport */,
+				AA68EB280CA9CF1200003ED0 /* ExceptionHandling.bridgesupport */,
+				AA68EB290CA9CF1200003ED0 /* Foundation.bridgesupport */,
+				AA68EB2A0CA9CF1200003ED0 /* Foundation.dylib */,
+				AA68EB2B0CA9CF1200003ED0 /* ICADevices.bridgesupport */,
+				AA68EB2C0CA9CF1200003ED0 /* ImageIO.bridgesupport */,
+				AA68EB2D0CA9CF1200003ED0 /* ImageKit.bridgesupport */,
+				AA68EB2E0CA9CF1200003ED0 /* InputMethodKit.bridgesupport */,
+				AA68EB2F0CA9CF1200003ED0 /* InstallerPlugins.bridgesupport */,
+				AA68EB300CA9CF1200003ED0 /* InstantMessage.bridgesupport */,
+				AA68EB310CA9CF1200003ED0 /* IOBluetooth.bridgesupport */,
+				AA68EB320CA9CF1200003ED0 /* IOBluetoothUI.bridgesupport */,
+				AA68EB330CA9CF1200003ED0 /* JavaScriptCore.bridgesupport */,
+				AA68EB340CA9CF1200003ED0 /* LatentSemanticMapping.bridgesupport */,
+				AA68EB350CA9CF1200003ED0 /* OpenGL.bridgesupport */,
+				AA68EB360CA9CF1200003ED0 /* OSAKit.bridgesupport */,
+				AA68EB370CA9CF1200003ED0 /* PDFKit.bridgesupport */,
+				AA68EB380CA9CF1200003ED0 /* PreferencePanes.bridgesupport */,
+				AA68EB390CA9CF1200003ED0 /* PubSub.bridgesupport */,
+				AA68EB3A0CA9CF1200003ED0 /* QTKit.bridgesupport */,
+				AA68EB3B0CA9CF1200003ED0 /* Quartz.bridgesupport */,
+				AA68EB3C0CA9CF1200003ED0 /* QuartzComposer.bridgesupport */,
+				AA68EB3D0CA9CF1200003ED0 /* QuartzCore.bridgesupport */,
+				AA68EB3E0CA9CF1200003ED0 /* ScreenSaver.bridgesupport */,
+				AA68EB3F0CA9CF1200003ED0 /* ScreenSaver.dylib */,
+				AA68EB400CA9CF1200003ED0 /* ScriptingBridge.bridgesupport */,
+				AA68EB410CA9CF1200003ED0 /* SecurityFoundation.bridgesupport */,
+				AA68EB420CA9CF1200003ED0 /* SecurityInterface.bridgesupport */,
+				AA68EB430CA9CF1200003ED0 /* SpeechRecognition.bridgesupport */,
+				AA68EB440CA9CF1200003ED0 /* SpeechSynthesis.bridgesupport */,
+				AA68EB450CA9CF1200003ED0 /* SyncServices.bridgesupport */,
+				AA68EB460CA9CF1200003ED0 /* SystemConfiguration.bridgesupport */,
+				AA68EB470CA9CF1200003ED0 /* WebKit.bridgesupport */,
+				AA68EB480CA9CF1200003ED0 /* XgridFoundation.bridgesupport */,
+			);
+			name = BridgeSupport;
+			sourceTree = "<group>";
+		};
+		AA91431A0CC99B010055B0E5 /* Perl Module */ = {
+			isa = PBXGroup;
+			children = (
+				AA83FE0E0CC9E9CF00E56F20 /* typemap */,
+				AA91431C0CC99B2A0055B0E5 /* AppKit */,
+				AA9143570CC99B2A0055B0E5 /* CamelBones.xs */,
+				AA9143580CC99B2A0055B0E5 /* cb_common.pl */,
+				AA9143590CC99B2A0055B0E5 /* Foundation */,
+				AA9143620CC99B2A0055B0E5 /* lib */,
+				AA9143740CC99B2A0055B0E5 /* Makefile.PL */,
+				AA9143750CC99B2A0055B0E5 /* MANIFEST */,
+				AA9143760CC99B2A0055B0E5 /* MANIFEST.SKIP */,
+				AA9143770CC99B2A0055B0E5 /* META.yml */,
+				AA9143790CC99B2A0055B0E5 /* ppport.h */,
+				AA91437A0CC99B2A0055B0E5 /* README */,
+			);
+			name = "Perl Module";
+			sourceTree = "<group>";
+		};
+		AA91431C0CC99B2A0055B0E5 /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				AA9143200CC99B2A0055B0E5 /* AppKit.xs */,
+				AA9143230CC99B2A0055B0E5 /* Makefile.PL */,
+			);
+			name = AppKit;
+			path = CPAN/AppKit;
+			sourceTree = "<group>";
+		};
+		AA9143590CC99B2A0055B0E5 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				AA91435D0CC99B2A0055B0E5 /* Foundation.xs */,
+				AA9143600CC99B2A0055B0E5 /* Makefile.PL */,
+			);
+			name = Foundation;
+			path = CPAN/Foundation;
+			sourceTree = "<group>";
+		};
+		AA9143620CC99B2A0055B0E5 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				AA9143630CC99B2A0055B0E5 /* CamelBones */,
+				AA9143710CC99B2A0055B0E5 /* CamelBones.pm */,
+			);
+			name = lib;
+			path = CPAN/lib;
+			sourceTree = "<group>";
+		};
+		AA9143630CC99B2A0055B0E5 /* CamelBones */ = {
+			isa = PBXGroup;
+			children = (
+				AA9143640CC99B2A0055B0E5 /* AppKit */,
+				AA9143660CC99B2A0055B0E5 /* AppKit.pm */,
+				AA9143670CC99B2A0055B0E5 /* Foundation */,
+				AA9143690CC99B2A0055B0E5 /* Foundation.pm */,
+				AA91436A0CC99B2A0055B0E5 /* NSPoint.pm */,
+				AA91436B0CC99B2A0055B0E5 /* NSRange.pm */,
+				AA91436C0CC99B2A0055B0E5 /* NSRect.pm */,
+				AA91436D0CC99B2A0055B0E5 /* NSSize.pm */,
+				AA91436F0CC99B2A0055B0E5 /* TiedArray.pm */,
+				AA9143700CC99B2A0055B0E5 /* TiedDictionary.pm */,
+			);
+			path = CamelBones;
+			sourceTree = "<group>";
+		};
+		AA9143640CC99B2A0055B0E5 /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				AA9143650CC99B2A0055B0E5 /* Constants.pm */,
+			);
+			path = AppKit;
+			sourceTree = "<group>";
+		};
+		AA9143670CC99B2A0055B0E5 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				AA9143680CC99B2A0055B0E5 /* Constants.pm */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		AA9141B70CC98CCE0055B0E5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA9141B80CC98CCE0055B0E5 /* AppMain.h in Headers */,
+				AA9141B90CC98CCE0055B0E5 /* CamelBones.h in Headers */,
+				AA9141BA0CC98CCE0055B0E5 /* CBPerl.h in Headers */,
+				AA9141BB0CC98CCE0055B0E5 /* CBPerlArray.h in Headers */,
+				AA9141BC0CC98CCE0055B0E5 /* CBPerlHash.h in Headers */,
+				AA9144820CC9A4570055B0E5 /* CBPerlArrayInternals.h in Headers */,
+				AA9144830CC9A4570055B0E5 /* CBPerlHashInternals.h in Headers */,
+				AA9144840CC9A4570055B0E5 /* CBPerlObjectInternals.h in Headers */,
+				AA9144850CC9A4570055B0E5 /* CBPerlScalarInternals.h in Headers */,
+				AA9144870CC9A4570055B0E5 /* Conversions.h in Headers */,
+				AA9144880CC9A4570055B0E5 /* Conversions_real.h in Headers */,
+				AA9144890CC9A4570055B0E5 /* DylibInit.h in Headers */,
+				AA91448A0CC9A4570055B0E5 /* Globals.h in Headers */,
+				AA91448B0CC9A4570055B0E5 /* Globals_real.h in Headers */,
+				AA91448C0CC9A4570055B0E5 /* NativeMethods.h in Headers */,
+				AA91448D0CC9A4570055B0E5 /* NativeMethods_real.h in Headers */,
+				AA91448E0CC9A4570055B0E5 /* PerlImports.h in Headers */,
+				AA91448F0CC9A4570055B0E5 /* PerlMethods.h in Headers */,
+				AA9144900CC9A4570055B0E5 /* PerlMethods_real.h in Headers */,
+				AA9144910CC9A4570055B0E5 /* perlxsi.h in Headers */,
+				AA9144920CC9A4570055B0E5 /* Runtime.h in Headers */,
+				AA9144930CC9A4570055B0E5 /* Runtime_real.h in Headers */,
+				AA9144940CC9A4570055B0E5 /* Structs.h in Headers */,
+				AA9144950CC9A4570055B0E5 /* Structs_real.h in Headers */,
+				AA9144960CC9A4570055B0E5 /* Wrappers.h in Headers */,
+				AA9144970CC9A4570055B0E5 /* Wrappers_real.h in Headers */,
+				AA9141BD0CC98CCE0055B0E5 /* CBPerlObject.h in Headers */,
+				AA9141BE0CC98CCE0055B0E5 /* CBPerlScalar.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		AA50E4E80C877030004DA7BD /* darwin-thread-multi-2level-5.8.6 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA50E4EA0C87704E004DA7BD /* Build configuration list for PBXNativeTarget "darwin-thread-multi-2level-5.8.6" */;
+			buildPhases = (
+				AA50E4E50C877030004DA7BD /* Resources */,
+				AA50E4E60C877030004DA7BD /* Sources */,
+				AA50E4E70C877030004DA7BD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA50E5000C877084004DA7BD /* PBXTargetDependency */,
+				AA6C32050CCC95EA00306BD7 /* PBXTargetDependency */,
+			);
+			name = "darwin-thread-multi-2level-5.8.6";
+			productName = "darwin-thread-multi-2level-5.8.6";
+			productReference = AA6C31C70CCC91E400306BD7 /* darwin-thread-multi-2level-5.8.6.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		AA50E5470C877635004DA7BD /* darwin-thread-multi-2level-5.8.1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA50E55F0C877635004DA7BD /* Build configuration list for PBXNativeTarget "darwin-thread-multi-2level-5.8.1" */;
+			buildPhases = (
+				AA50E54A0C877635004DA7BD /* Resources */,
+				AA50E54B0C877635004DA7BD /* Sources */,
+				AA50E55B0C877635004DA7BD /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA50E5480C877635004DA7BD /* PBXTargetDependency */,
+				AA6C32070CCC960F00306BD7 /* PBXTargetDependency */,
+			);
+			name = "darwin-thread-multi-2level-5.8.1";
+			productName = "darwin-thread-multi-2level-5.8.6";
+			productReference = AA6C31C80CCC91E400306BD7 /* darwin-thread-multi-2level-5.8.1.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+		AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA9142030CC98CCE0055B0E5 /* Build configuration list for PBXNativeTarget "CamelBones.framework" */;
+			buildPhases = (
+				AA9141B70CC98CCE0055B0E5 /* Headers */,
+				AA9141C00CC98CCE0055B0E5 /* Sources */,
+				AA9141C60CC98CCE0055B0E5 /* Frameworks */,
+				AA83FE180CC9EA7100E56F20 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA6C31F10CCC93C700306BD7 /* PBXTargetDependency */,
+			);
+			name = CamelBones.framework;
+			productName = CamelBones.framework;
+			productReference = AA9142060CC98CCE0055B0E5 /* CamelBones.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA50E2050C87571F004DA7BD /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = AA50E2060C87571F004DA7BD /* Build configuration list for PBXProject "CamelBones" */;
+			hasScannedForEncodings = 0;
+			mainGroup = AA50E2030C87571F004DA7BD;
+			productRefGroup = AA50E2330C87587B004DA7BD /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = AA50E2170C8757A7004DA7BD /* Products */;
+					ProjectRef = AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */;
+				},
+			);
+			targets = (
+				AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */,
+				AA50E4E80C877030004DA7BD /* darwin-thread-multi-2level-5.8.6 */,
+				AA50E5470C877635004DA7BD /* darwin-thread-multi-2level-5.8.1 */,
+				AA6C32B50CCC9DB000306BD7 /* Perl Module */,
+				AA6C32080CCC962000306BD7 /* All */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		AA50E21E0C8757A7004DA7BD /* libffi.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libffi.a;
+			remoteRef = AA50E21D0C8757A7004DA7BD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA50E4E50C877030004DA7BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA50E54A0C877635004DA7BD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA6C32B40CCC9DB000306BD7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.6\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexit 0\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA50E4E60C877030004DA7BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA50E4EF0C87705C004DA7BD /* CBPerl.m in Sources */,
+				AA50E4F00C87705C004DA7BD /* CBPerlArray.m in Sources */,
+				AA50E4F10C87705C004DA7BD /* CBPerlHash.m in Sources */,
+				AA50E4F20C87705C004DA7BD /* CBPerlObject.m in Sources */,
+				AA50E4F30C87705C004DA7BD /* CBPerlObjectInternals.m in Sources */,
+				AA50E4F40C87705C004DA7BD /* CBPerlScalar.m in Sources */,
+				AA50E4F50C87705C004DA7BD /* CBPerlScalarInternals.m in Sources */,
+				AA50E4F60C87705C004DA7BD /* Conversions.m in Sources */,
+				AA50E4F70C87705C004DA7BD /* Globals.m in Sources */,
+				AA50E4F80C87705C004DA7BD /* NativeMethods.m in Sources */,
+				AA50E4F90C87705C004DA7BD /* PerlMethods.m in Sources */,
+				AA50E4FA0C87705C004DA7BD /* perlxsi.c in Sources */,
+				AA50E4FB0C87705C004DA7BD /* Runtime.m in Sources */,
+				AA50E4FC0C87705C004DA7BD /* Structs.m in Sources */,
+				AA50E4FD0C87705C004DA7BD /* Wrappers.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA50E54B0C877635004DA7BD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA50E54C0C877635004DA7BD /* CBPerl.m in Sources */,
+				AA50E54D0C877635004DA7BD /* CBPerlArray.m in Sources */,
+				AA50E54E0C877635004DA7BD /* CBPerlHash.m in Sources */,
+				AA50E54F0C877635004DA7BD /* CBPerlObject.m in Sources */,
+				AA50E5500C877635004DA7BD /* CBPerlObjectInternals.m in Sources */,
+				AA50E5510C877635004DA7BD /* CBPerlScalar.m in Sources */,
+				AA50E5520C877635004DA7BD /* CBPerlScalarInternals.m in Sources */,
+				AA50E5530C877635004DA7BD /* Conversions.m in Sources */,
+				AA50E5540C877635004DA7BD /* Globals.m in Sources */,
+				AA50E5550C877635004DA7BD /* NativeMethods.m in Sources */,
+				AA50E5560C877635004DA7BD /* PerlMethods.m in Sources */,
+				AA50E5570C877635004DA7BD /* perlxsi.c in Sources */,
+				AA50E5580C877635004DA7BD /* Runtime.m in Sources */,
+				AA50E5590C877635004DA7BD /* Structs.m in Sources */,
+				AA50E55A0C877635004DA7BD /* Wrappers.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA9141C00CC98CCE0055B0E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA9141C10CC98CCE0055B0E5 /* DylibInit.m in Sources */,
+				AA9141C20CC98CCE0055B0E5 /* AppMain.m in Sources */,
+				AA9141C30CC98CCE0055B0E5 /* StubInit.m in Sources */,
+				AA9141C40CC98CCE0055B0E5 /* StubClasses.m in Sources */,
+				AA9141C50CC98CCE0055B0E5 /* StubFunctions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA50E5000C877084004DA7BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libffi;
+			targetProxy = AA50E4FF0C877084004DA7BD /* PBXContainerItemProxy */;
+		};
+		AA50E5480C877635004DA7BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libffi;
+			targetProxy = AA50E5490C877635004DA7BD /* PBXContainerItemProxy */;
+		};
+		AA6C31F10CCC93C700306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = libffi;
+			targetProxy = AA6C31F00CCC93C700306BD7 /* PBXContainerItemProxy */;
+		};
+		AA6C32050CCC95EA00306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
+			targetProxy = AA6C32040CCC95EA00306BD7 /* PBXContainerItemProxy */;
+		};
+		AA6C32070CCC960F00306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
+			targetProxy = AA6C32060CCC960F00306BD7 /* PBXContainerItemProxy */;
+		};
+		AA6C320A0CCC962900306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
+			targetProxy = AA6C32090CCC962900306BD7 /* PBXContainerItemProxy */;
+		};
+		AA6C320C0CCC962900306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA50E4E80C877030004DA7BD /* darwin-thread-multi-2level-5.8.6 */;
+			targetProxy = AA6C320B0CCC962900306BD7 /* PBXContainerItemProxy */;
+		};
+		AA6C320E0CCC962900306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA50E5470C877635004DA7BD /* darwin-thread-multi-2level-5.8.1 */;
+			targetProxy = AA6C320D0CCC962900306BD7 /* PBXContainerItemProxy */;
+		};
+		AA6C32B70CCC9DB900306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
+			targetProxy = AA6C32B60CCC9DB900306BD7 /* PBXContainerItemProxy */;
+		};
+		AA6C32BD0CCC9DE900306BD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA6C32B50CCC9DB000306BD7 /* Perl Module */;
+			targetProxy = AA6C32BC0CCC9DE900306BD7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA50E2070C87571F004DA7BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/System/Library/Frameworks,
+					/Library/Frameworks,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Debug;
+		};
+		AA50E2080C87571F004DA7BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/System/Library/Frameworks,
+					/Library/Frameworks,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = Release;
+		};
+		AA50E4EB0C87704E004DA7BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.6";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		AA50E4EC0C87704E004DA7BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.6";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		AA50E5600C877635004DA7BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.1";
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk/;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		AA50E5610C877635004DA7BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.1";
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk/;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		AA6C31BA0CCC912D00306BD7 /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@executable_path/../Frameworks";
+				PREBINDING = NO;
+				PRODUCT_NAME = CamelBones;
+			};
+			name = "Release-App-Embedded";
+		};
+		AA6C31BB0CCC912D00306BD7 /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "@loader_path/../Frameworks";
+				PREBINDING = NO;
+				PRODUCT_NAME = CamelBones;
+			};
+			name = "Release-Lib-Embedded";
+		};
+		AA6C31BC0CCC912D00306BD7 /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.6";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = "Release-App-Embedded";
+		};
+		AA6C31BD0CCC912D00306BD7 /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.6";
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = "Release-Lib-Embedded";
+		};
+		AA6C31BE0CCC912D00306BD7 /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.1";
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk/;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = "Release-App-Embedded";
+		};
+		AA6C31BF0CCC912D00306BD7 /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = ppc;
+				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INSTALL_PATH = "$(HOME)/Library/Bundles";
+				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				OTHER_CFLAGS = (
+					"-fno-common",
+					"-DPERL_DARWIN",
+					"-no-cpp-precomp",
+					"-fno-strict-aliasing",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "darwin-thread-multi-2level-5.8.1";
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk/;
+				USER_HEADER_SEARCH_PATHS = "\"$(SRCROOT)/libffi/include\" /System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = "Release-Lib-Embedded";
+		};
+		AA6C31C40CCC912D00306BD7 /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/System/Library/Frameworks,
+					/Library/Frameworks,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = "Release-App-Embedded";
+		};
+		AA6C31C50CCC912D00306BD7 /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					/System/Library/Frameworks,
+					/Library/Frameworks,
+				);
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				WARNING_CFLAGS = "-Wall";
+			};
+			name = "Release-Lib-Embedded";
+		};
+		AA6C32120CCC964F00306BD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = All;
+			};
+			name = Debug;
+		};
+		AA6C32130CCC964F00306BD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = All;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		AA6C32140CCC964F00306BD7 /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = All;
+			};
+			name = "Release-App-Embedded";
+		};
+		AA6C32150CCC964F00306BD7 /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = All;
+			};
+			name = "Release-Lib-Embedded";
+		};
+		AA6C32C30CCC9E2800306BD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Perl Module";
+			};
+			name = Debug;
+		};
+		AA6C32C40CCC9E2800306BD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = "Perl Module";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		AA6C32C50CCC9E2800306BD7 /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Perl Module";
+			};
+			name = "Release-App-Embedded";
+		};
+		AA6C32C60CCC9E2800306BD7 /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Perl Module";
+			};
+			name = "Release-Lib-Embedded";
+		};
+		AA9142040CC98CCE0055B0E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				PREBINDING = NO;
+				PRODUCT_NAME = CamelBones;
+			};
+			name = Debug;
+		};
+		AA9142050CC98CCE0055B0E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = /Library/Frameworks;
+				PREBINDING = NO;
+				PRODUCT_NAME = CamelBones;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA50E2060C87571F004DA7BD /* Build configuration list for PBXProject "CamelBones" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA50E2070C87571F004DA7BD /* Debug */,
+				AA50E2080C87571F004DA7BD /* Release */,
+				AA6C31C40CCC912D00306BD7 /* Release-App-Embedded */,
+				AA6C31C50CCC912D00306BD7 /* Release-Lib-Embedded */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA50E4EA0C87704E004DA7BD /* Build configuration list for PBXNativeTarget "darwin-thread-multi-2level-5.8.6" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA50E4EB0C87704E004DA7BD /* Debug */,
+				AA50E4EC0C87704E004DA7BD /* Release */,
+				AA6C31BC0CCC912D00306BD7 /* Release-App-Embedded */,
+				AA6C31BD0CCC912D00306BD7 /* Release-Lib-Embedded */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA50E55F0C877635004DA7BD /* Build configuration list for PBXNativeTarget "darwin-thread-multi-2level-5.8.1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA50E5600C877635004DA7BD /* Debug */,
+				AA50E5610C877635004DA7BD /* Release */,
+				AA6C31BE0CCC912D00306BD7 /* Release-App-Embedded */,
+				AA6C31BF0CCC912D00306BD7 /* Release-Lib-Embedded */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA6C32110CCC964F00306BD7 /* Build configuration list for PBXAggregateTarget "All" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA6C32120CCC964F00306BD7 /* Debug */,
+				AA6C32130CCC964F00306BD7 /* Release */,
+				AA6C32140CCC964F00306BD7 /* Release-App-Embedded */,
+				AA6C32150CCC964F00306BD7 /* Release-Lib-Embedded */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA6C32C20CCC9E2800306BD7 /* Build configuration list for PBXAggregateTarget "Perl Module" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA6C32C30CCC9E2800306BD7 /* Debug */,
+				AA6C32C40CCC9E2800306BD7 /* Release */,
+				AA6C32C50CCC9E2800306BD7 /* Release-App-Embedded */,
+				AA6C32C60CCC9E2800306BD7 /* Release-Lib-Embedded */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA9142030CC98CCE0055B0E5 /* Build configuration list for PBXNativeTarget "CamelBones.framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA9142040CC98CCE0055B0E5 /* Debug */,
+				AA9142050CC98CCE0055B0E5 /* Release */,
+				AA6C31BA0CCC912D00306BD7 /* Release-App-Embedded */,
+				AA6C31BB0CCC912D00306BD7 /* Release-Lib-Embedded */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA50E2050C87571F004DA7BD /* Project object */;
+}

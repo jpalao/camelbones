@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PerlImports.h"
 
 // Get information about a Perl object
 extern NSString* (*CBGetMethodNameForSelector)(void* sv, SEL selector);

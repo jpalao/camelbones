@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PerlImports.h"
 
 // Create a Perl object that "wraps" an Objective-C object
 extern void* (*CBCreateWrapperObject)(id obj);

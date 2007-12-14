@@ -6,6 +6,7 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 
 #import "CBPerlObjectInternals.h"
+#import "PerlImports.h"
 #import "Conversions_real.h"
 
 @implementation CBPerlObject (Internals)

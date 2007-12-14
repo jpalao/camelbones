@@ -7,6 +7,7 @@ extern "C" {
 #endif
 
 #include <EXTERN.h>
+#undef bool
 #include <perl.h>
 #ifdef PERL_OBJECT
 #define NO_XSLOCKS
