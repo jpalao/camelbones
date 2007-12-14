@@ -6,7 +6,6 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 
 #import "CBPerlObject.h"
-#import "PerlImports.h"
 
 #ifdef GNUSTEP
 #import <objc/objc-api.h>
