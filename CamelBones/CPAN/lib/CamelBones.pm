@@ -20,7 +20,7 @@ use CamelBones::TiedDictionary;
 use Config;
 
 our @ISA = qw(Exporter);
-our $VERSION = '1.0.2';
+our $VERSION = '1.1.0';
 our @EXPORT = qw(class);
 our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::Foundation::Constants::EXPORT,

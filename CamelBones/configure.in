@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 
 AC_PREREQ(2.57)
-AC_INIT(CamelBones, 1.0.2, camelbones@dot-app.org)
+AC_INIT(CamelBones, 1.1.0, camelbones@dot-app.org)
 AC_CONFIG_FILES([GNUmakefile.conf FoundationGlobalStrings.plist AppKitGlobalStrings.plist])
 AC_CONFIG_HEADERS([config.h])
 

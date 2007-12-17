@@ -155,7 +155,9 @@ const char *CBGetPerlArchver() {
 	NSDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:1];
 	NSFileManager *fm = [NSFileManager defaultManager];
     NSString *perlPath;
-    if ([fm fileExistsAtPath:@"/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE/libperl.dylib"]) {
+    if ([fm fileExistsAtPath:@"/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE/libperl.dylib"]) {
+        perlPath = @"/usr/bin/perl5.8.8";
+    } else if ([fm fileExistsAtPath:@"/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE/libperl.dylib"]) {
         perlPath = @"/usr/bin/perl5.8.6";
 	} else if ([fm fileExistsAtPath:@"/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE/libperl.dylib"]) {
 		perlPath = @"/usr/bin/perl5.8.1";
