@@ -116,7 +116,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					280,
-					331,
+					365,
 					20,
 					48,
 					43,
@@ -132,11 +132,10 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 219347156;
-			PBXWorkspaceStateSaveDate = 219347156;
+			PBXPerProjectTemplateStateSaveDate = 222351166;
+			PBXWorkspaceStateSaveDate = 222351166;
 		};
 		perUserProjectItems = {
-			AA6556FF0D12F8F60081E40D /* PBXTextBookmark */ = AA6556FF0D12F8F60081E40D /* PBXTextBookmark */;
 			AAB2D78D0CF1B4AD00A0EE5C /* PBXTextBookmark */ = AAB2D78D0CF1B4AD00A0EE5C /* PBXTextBookmark */;
 			AAB2D7910CF1B4E600A0EE5C /* PBXTextBookmark */ = AAB2D7910CF1B4E600A0EE5C /* PBXTextBookmark */;
 			AAB2D7920CF1B4E600A0EE5C /* PBXTextBookmark */ = AAB2D7920CF1B4E600A0EE5C /* PBXTextBookmark */;
@@ -171,11 +170,6 @@
 			AAB2D8330CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8330CF1BAC600A0EE5C /* PBXTextBookmark */;
 			AAB2D8340CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8340CF1BAC600A0EE5C /* PBXTextBookmark */;
 			AAB2D8350CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8350CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D84C0CF1BC9700A0EE5C /* PBXTextBookmark */ = AAB2D84C0CF1BC9700A0EE5C /* PBXTextBookmark */;
-			AAB2D84D0CF1BC9700A0EE5C /* PBXTextBookmark */ = AAB2D84D0CF1BC9700A0EE5C /* PBXTextBookmark */;
-			AAB2D84E0CF1BC9700A0EE5C /* PBXTextBookmark */ = AAB2D84E0CF1BC9700A0EE5C /* PBXTextBookmark */;
-			AAB2D84F0CF1BC9700A0EE5C /* PBXTextBookmark */ = AAB2D84F0CF1BC9700A0EE5C /* PBXTextBookmark */;
-			AACC935B0D12F7A90044AC1F /* PBXTextBookmark */ = AACC935B0D12F7A90044AC1F /* PBXTextBookmark */;
 		};
 		sourceControlManager = AA50E2090C87571F004DA7BD /* Source Control */;
 		userBuildSettings = {
@@ -507,16 +501,6 @@
 			sepNavSelRange = "{581, 2}";
 			sepNavVisRect = "{{0, 0}, {925, 555}}";
 		};
-	};
-	AA6556FF0D12F8F60081E40D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */;
-		name = "CBPerlObjectInternals.h: 25";
-		rLen = 0;
-		rLoc = 487;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
 	};
 	AA68EB130CA9CF1200003ED0 /* AddressBook.bridgesupport */ = {
 		uiCtxt = {
@@ -1092,54 +1076,10 @@
 		vrLen = 1173;
 		vrLoc = 323;
 	};
-	AAB2D84C0CF1BC9700A0EE5C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */;
-		name = "PerlMethods.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
+	FFBB932F0D15DD58002FE7A4 /* Bundle CPAN Kits */ = {
+		activeExec = 0;
 	};
-	AAB2D84D0CF1BC9700A0EE5C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA50E3C10C875DB7004DA7BD /* DylibInit.m */;
-		name = "DylibInit.m: 7";
-		rLen = 0;
-		rLoc = 153;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	AAB2D84E0CF1BC9700A0EE5C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */;
-		name = "PerlMethods.h: 18";
-		rLen = 0;
-		rLoc = 503;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	AAB2D84F0CF1BC9700A0EE5C /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA50E3C80C875DB7004DA7BD /* PerlImports.h */;
-		name = "PerlImports.h: _CBPerlInterpreter";
-		rLen = 0;
-		rLoc = 360;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	AACC935B0D12F7A90044AC1F /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */;
-		name = "CBPerlObjectInternals.h: 25";
-		rLen = 0;
-		rLoc = 487;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
+	FFE9CE900D13073A00BB5E57 /* darwin-thread-multi-2level-5.8.8 */ = {
+		activeExec = 0;
 	};
 }
