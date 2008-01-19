@@ -8,9 +8,9 @@
 
 
 #import "AppMain.h"
-#import "Conversions_real.h"
-#import "Globals_real.h"
-#import "Runtime_real.h"
+#import "Conversions.h"
+#import "Globals.h"
+#import "Runtime.h"
 
 #import "CBPerl.h"
 #import "CBPerlArray.h"

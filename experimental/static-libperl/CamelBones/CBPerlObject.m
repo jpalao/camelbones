@@ -16,8 +16,8 @@
 #import "CBPerlHashInternals.h"
 #import "CBPerlObject.h"
 #import "CBPerl.h"
-#import "Conversions_real.h"
-#import "PerlMethods_real.h"
+#import "Conversions.h"
+#import "PerlMethods.h"
 
 @interface NSMethodSignature(HiddenStuffInFoundation)
 + signatureWithObjCTypes:(const char *)fp12;

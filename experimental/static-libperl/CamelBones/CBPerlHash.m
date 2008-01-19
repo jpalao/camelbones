@@ -8,7 +8,7 @@
 
 #import "CBPerlHash.h"
 #import "CBPerlHashInternals.h"
-#import "Conversions_real.h"
+#import "Conversions.h"
 
 @implementation CBPerlHash
 
