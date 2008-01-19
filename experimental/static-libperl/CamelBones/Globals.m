@@ -5,9 +5,9 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
-#import "Globals_real.h"
-#import "Wrappers_real.h"
-#import "Conversions_real.h"
+#import "Globals.h"
+#import "Wrappers.h"
+#import "Conversions.h"
 #import "PerlImports.h"
 #import "CBPerlArray.h"
 
@@ -18,7 +18,7 @@
 CFBundleRef b;
 #endif
 
-void REAL_CBWrapAllGlobals(void) {
+void CBWrapAllGlobals(void) {
     NSBundle *thisBundle;
     NSString *plistPath;
 
@@ -50,7 +50,7 @@ void REAL_CBWrapAllGlobals(void) {
     e = [exports objectEnumerator];
     while ((thisExport = [e nextObject])) {
         // Try to make a wrapper
-        if (REAL_CBWrapString([thisExport UTF8String], "CamelBones::Foundation::Globals")) {
+        if (CBWrapString([thisExport UTF8String], "CamelBones::Foundation::Globals")) {
             // If successful, make the wrapper exportable
             [foundationEXPORT addObject:[thisExport substringFromIndex:1]];
         }
@@ -62,14 +62,14 @@ void REAL_CBWrapAllGlobals(void) {
     e = [exports objectEnumerator];
     while ((thisExport = [e nextObject])) {
         // Try to make a wrapper
-        if (REAL_CBWrapString([thisExport UTF8String], "CamelBones::AppKit::Globals")) {
+        if (CBWrapString([thisExport UTF8String], "CamelBones::AppKit::Globals")) {
             // If successful, make the wrapper exportable
             [appkitEXPORT addObject:[thisExport substringFromIndex:1]];
         }
     }
 }
 
-BOOL REAL_CBWrapString(const char *varName, const char *pkgName) {
+BOOL CBWrapString(const char *varName, const char *pkgName) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -85,7 +85,7 @@ BOOL REAL_CBWrapString(const char *varName, const char *pkgName) {
 #endif
 
     if (address) {
-        mySV = REAL_CBDerefIDtoSV(*(NSString**)address);
+        mySV = CBDerefIDtoSV(*(NSString**)address);
         newCONSTSUB(gv_stashpv(pkgName, 0), (char *)varName+1, mySV);
       
         return TRUE;

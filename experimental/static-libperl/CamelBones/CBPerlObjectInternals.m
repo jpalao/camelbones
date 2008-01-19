@@ -7,7 +7,6 @@
 
 #import "CBPerlObjectInternals.h"
 #import "PerlImports.h"
-#import "Conversions_real.h"
 
 @implementation CBPerlObject (Internals)
 

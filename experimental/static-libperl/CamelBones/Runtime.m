@@ -15,22 +15,22 @@
 #import <Foundation/Foundation.h>
 
 #import "CBPerl.h"
-#import "Runtime_real.h"
+#import "Runtime.h"
 #import "PerlImports.h"
-#import "PerlMethods_real.h"
+#import "PerlMethods.h"
 
 // Private function
 struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class);
 
 // Create Perl wrappers for all registered ObjC classes
-void REAL_CBWrapRegisteredClasses(void) {
+void CBWrapRegisteredClasses(void) {
 #ifdef GNUSTEP
 	void *enum_state;
 	Class thisClass;
 	
 	enum_state = NULL;
 	while ((thisClass = objc_next_class(&enum_state))) {
-		REAL_CBWrapObjectiveCClass(thisClass);
+		CBWrapObjectiveCClass(thisClass);
 	}
 #else
 	int numClasses;
@@ -43,25 +43,25 @@ void REAL_CBWrapRegisteredClasses(void) {
         classes = malloc(sizeof(Class) * numClasses);
         objc_getClassList(classes, numClasses);
         for(i=0; i < numClasses; i++) {
-            REAL_CBWrapObjectiveCClass(classes[i]);
+            CBWrapObjectiveCClass(classes[i]);
         }
         free(classes);
     }
 #endif
 }
 
-void REAL_CBWrapNamedClasses(NSArray *names) {
+void CBWrapNamedClasses(NSArray *names) {
 	if (nil == names) return;
 	NSEnumerator *e = [names objectEnumerator];
     NSString *s;
 	while ((s = [e nextObject])) {
 		Class c = objc_getClass([s UTF8String]);
-		REAL_CBWrapObjectiveCClass(c);
+		CBWrapObjectiveCClass(c);
 	}
 }
 
 // Create a Perl wrapper for a single ObjC class
-void REAL_CBWrapObjectiveCClass(Class aClass) {
+void CBWrapObjectiveCClass(Class aClass) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -93,12 +93,12 @@ void REAL_CBWrapObjectiveCClass(Class aClass) {
 }
 
 // Query class registration
-BOOL REAL_CBIsClassRegistered(const char *className) {
+BOOL CBIsClassRegistered(const char *className) {
     return (nil != objc_getClass(className)) ? YES : NO;
 }
 
 // Register a Perl class with the runtime
-void REAL_CBRegisterClassWithSuperClass(const char *className, const char *superName) {
+void CBRegisterClassWithSuperClass(const char *className, const char *superName) {
 #ifdef GNUSTEP
     NSDictionary *ivars = [NSDictionary dictionaryWithObject:@"v" forKey:@"_sv"];
     NSValue *theClass = GSObjCMakeClass([NSString stringWithUTF8String:className],
@@ -161,7 +161,7 @@ void REAL_CBRegisterClassWithSuperClass(const char *className, const char *super
 }
 
 // Query method registration
-BOOL REAL_CBIsObjectMethodRegisteredForClass(SEL selector, Class class) {
+BOOL CBIsObjectMethodRegisteredForClass(SEL selector, Class class) {
 #ifdef GNUSTEP
     return (NULL != GSGetMethod(class, selector, YES, NO)) ? YES : NO;
 #else
@@ -169,7 +169,7 @@ BOOL REAL_CBIsObjectMethodRegisteredForClass(SEL selector, Class class) {
 #endif
 }
 
-BOOL REAL_CBIsClassMethodRegisteredForClass(SEL selector, Class class) {
+BOOL CBIsClassMethodRegisteredForClass(SEL selector, Class class) {
 #ifdef GNUSTEP
     return (NULL != GSGetMethod(class, selector, NO, NO)) ? YES : NO;
 #else
@@ -178,7 +178,7 @@ BOOL REAL_CBIsClassMethodRegisteredForClass(SEL selector, Class class) {
 }
 
 // Perform method registration
-void REAL_CBRegisterObjectMethodsForClass(const char *package, NSArray *methods, Class class) {
+void CBRegisterObjectMethodsForClass(const char *package, NSArray *methods, Class class) {
     struct objc_method_list *list;
 
     list = CBAllocateMethodList(methods, class);
@@ -192,7 +192,7 @@ void REAL_CBRegisterObjectMethodsForClass(const char *package, NSArray *methods,
 #endif
 }
 
-void REAL_CBRegisterClassMethodsForClass(const char *package, NSArray *methods, Class class) {
+void CBRegisterClassMethodsForClass(const char *package, NSArray *methods, Class class) {
     struct objc_method_list *list;
 
     list = CBAllocateMethodList(methods, class);
@@ -238,7 +238,7 @@ __CB_classHandler(const char* className) {
 #endif
 }
 
-void REAL_CBRegisterClassHandler(void) {
+void CBRegisterClassHandler(void) {
 #ifdef GNUSTEP
     _objc_lookup_class = __CB_classHandler;
 #else
@@ -285,7 +285,7 @@ struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class) {
         GSAppendMethodToList(list,
                              GSSelectorFromName(selName),
                              perlSig,
-                             REAL_CBPerlIMP,
+                             CBPerlIMP,
                              YES);
 #else
         this_method = &list->method_list[i];
@@ -294,7 +294,7 @@ struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class) {
         this_method->method_types = malloc(strlen(perlSig)+1);
         strcpy((char*)this_method->method_types, perlSig);
         
-        this_method->method_imp = REAL_CBPerlIMP;
+        this_method->method_imp = CBPerlIMP;
 #endif
     }
 

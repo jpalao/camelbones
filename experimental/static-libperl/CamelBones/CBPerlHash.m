@@ -210,7 +210,7 @@
 
 
 // Key enumerator public methods
-@implementation CBPerlHashKeyEnumerator (Overrides)
+@implementation CBPerlHashKeyEnumerator
 
 - (NSArray *)allObjects {
     NSMutableArray *objects;

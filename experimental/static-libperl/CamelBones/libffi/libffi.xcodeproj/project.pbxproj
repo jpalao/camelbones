@@ -218,6 +218,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INSTALL_PATH = /usr/lib;
 				PRODUCT_NAME = ffi;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include;
 				ZERO_LINK = YES;
 			};
 			name = Debug;
@@ -229,8 +230,8 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/lib;
-				PRIVATE_HEADERS_FOLDER_PATH = /usr/include;
 				PRODUCT_NAME = ffi;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include;
 			};
 			name = Release;
 		};
@@ -266,9 +267,72 @@
 					ppc64,
 				);
 				PREBINDING = NO;
-				PUBLIC_HEADERS_FOLDER_PATH = ../include/ffi;
 			};
 			name = Release;
+		};
+		AA1E09840D42A9AC00AF4A3A /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/lib;
+				PRODUCT_NAME = ffi;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include;
+			};
+			name = "Release-App-Embedded";
+		};
+		AA1E09850D42A9AC00AF4A3A /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/lib;
+				PRODUCT_NAME = ffi;
+				PUBLIC_HEADERS_FOLDER_PATH = /usr/local/include;
+			};
+			name = "Release-Lib-Embedded";
+		};
+		AA1E09860D42A9AC00AF4A3A /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc64,
+					ppc,
+				);
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = (
+					"-DMACOSX",
+					"-arch",
+					ppc64,
+				);
+				PREBINDING = NO;
+			};
+			name = "Release-App-Embedded";
+		};
+		AA1E09870D42A9AC00AF4A3A /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc64,
+					ppc,
+				);
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = (
+					"-DMACOSX",
+					"-arch",
+					ppc64,
+				);
+				PREBINDING = NO;
+			};
+			name = "Release-Lib-Embedded";
 		};
 /* End XCBuildConfiguration section */
 
@@ -278,6 +342,8 @@
 			buildConfigurations = (
 				1DEB91EC08733DB70010E9CD /* Debug */,
 				1DEB91ED08733DB70010E9CD /* Release */,
+				AA1E09840D42A9AC00AF4A3A /* Release-App-Embedded */,
+				AA1E09850D42A9AC00AF4A3A /* Release-Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -287,6 +353,8 @@
 			buildConfigurations = (
 				1DEB91F008733DB70010E9CD /* Debug */,
 				1DEB91F108733DB70010E9CD /* Release */,
+				AA1E09860D42A9AC00AF4A3A /* Release-App-Embedded */,
+				AA1E09870D42A9AC00AF4A3A /* Release-Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

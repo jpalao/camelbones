@@ -38,9 +38,6 @@ PerlInterpreter *_CBPerlInterpreter;
     } else {
         // No
         
-        // Detect platform type and initialize CBPerl
-        [CBPerl stubInit];
-        
         // Now create a shared Perl and autorelease it
         _sharedPerl = [[[CBPerl alloc] init] autorelease];
         return _sharedPerl;
