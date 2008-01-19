@@ -8,9 +8,9 @@
 #import <Foundation/Foundation.h>
 
 // Create a Perl object that "wraps" an Objective-C object
-extern void* (*CBCreateWrapperObject)(id obj);
-extern void* (*CBCreateWrapperObjectWithClassName)(id obj, NSString* className);
+void* CBCreateWrapperObject(id obj);
+void* CBCreateWrapperObjectWithClassName(id obj, NSString* className);
 
 // Create a new Perl object blessed into the specified package
-extern void* (*CBCreateObjectOfClass)(NSString *className);
+void* CBCreateObjectOfClass(NSString *className);
 

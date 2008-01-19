@@ -12,7 +12,7 @@
 #endif
 
 // Create Perl wrappers for all global variables
-extern void (*CBWrapAllGlobals)(void);
+void CBWrapAllGlobals(void);
 
 // Create Perl wrappers for one global variable of a specific type
-extern BOOL (*CBWrapString)(const char *varName, const char *pkgName);
+BOOL CBWrapString(const char *varName, const char *pkgName);

@@ -10,7 +10,7 @@
 #import "CBPerlHashInternals.h"
 #import "Conversions_real.h"
 
-@implementation CBPerlHash (Overrides)
+@implementation CBPerlHash
 
 // Required primitive methods
 - (unsigned)count {
@@ -39,7 +39,7 @@
         theValue = HeVAL(theEntry);
 
         if (NULL != theValue) {
-            return REAL_CBDerefSVtoID(theValue);
+            return CBDerefSVtoID(theValue);
         }
     }
     
@@ -82,7 +82,7 @@
 
     // Create the key and object SVs
     theKey = [self keyWithId:aKey];
-    theObject = REAL_CBDerefIDtoSV(anObject);
+    theObject = CBDerefIDtoSV(anObject);
 
     // If it gets wrapped as a Cocoa object, retain it
     if (sv_isobject(theObject) && sv_derived_from(theObject, "NSObject")) {
@@ -235,7 +235,7 @@
     nextEntry = hv_iternext((HV*)_myHash);
     if (NULL != nextEntry) {
         nextKey = HeSVKEY_force(nextEntry);
-        return REAL_CBDerefSVtoID(nextKey);
+        return CBDerefSVtoID(nextKey);
     } else {
         return nil;
     }

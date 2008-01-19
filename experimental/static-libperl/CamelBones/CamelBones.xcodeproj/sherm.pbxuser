@@ -2,7 +2,7 @@
 {
 	AA50E2050C87571F004DA7BD /* Project object */ = {
 		activeBuildConfigurationName = "Release-Lib-Embedded";
-		activeTarget = AA6C32080CCC962000306BD7 /* All */;
+		activeTarget = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
 		addToTargets = (
 		);
 		breakpoints = (
@@ -132,44 +132,44 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 222351166;
-			PBXWorkspaceStateSaveDate = 222351166;
+			PBXPerProjectTemplateStateSaveDate = 222462979;
+			PBXWorkspaceStateSaveDate = 222462979;
 		};
 		perUserProjectItems = {
-			AAB2D78D0CF1B4AD00A0EE5C /* PBXTextBookmark */ = AAB2D78D0CF1B4AD00A0EE5C /* PBXTextBookmark */;
-			AAB2D7910CF1B4E600A0EE5C /* PBXTextBookmark */ = AAB2D7910CF1B4E600A0EE5C /* PBXTextBookmark */;
-			AAB2D7920CF1B4E600A0EE5C /* PBXTextBookmark */ = AAB2D7920CF1B4E600A0EE5C /* PBXTextBookmark */;
-			AAB2D7B40CF1B61500A0EE5C /* PBXTextBookmark */ = AAB2D7B40CF1B61500A0EE5C /* PBXTextBookmark */;
-			AAB2D80F0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D80F0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8100CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8100CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8110CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8110CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8120CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8120CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8130CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8130CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8140CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8140CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8160CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8160CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8170CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8170CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8180CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8180CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8190CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8190CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D81A0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D81A0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D81B0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D81B0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D81C0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D81C0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D81D0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D81D0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D81E0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D81E0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8210CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8210CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8220CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8220CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8230CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8230CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8240CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8240CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8250CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8250CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8260CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8260CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8270CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8270CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8280CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8280CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8290CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8290CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D82A0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D82A0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D82C0CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D82C0CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8320CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8320CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8330CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8330CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8340CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8340CF1BAC600A0EE5C /* PBXTextBookmark */;
-			AAB2D8350CF1BAC600A0EE5C /* PBXTextBookmark */ = AAB2D8350CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D78D0CF1B4AD00A0EE5C = AAB2D78D0CF1B4AD00A0EE5C /* PBXTextBookmark */;
+			AAB2D7910CF1B4E600A0EE5C = AAB2D7910CF1B4E600A0EE5C /* PBXTextBookmark */;
+			AAB2D7920CF1B4E600A0EE5C = AAB2D7920CF1B4E600A0EE5C /* PBXTextBookmark */;
+			AAB2D7B40CF1B61500A0EE5C = AAB2D7B40CF1B61500A0EE5C /* PBXTextBookmark */;
+			AAB2D80F0CF1BAC600A0EE5C = AAB2D80F0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8100CF1BAC600A0EE5C = AAB2D8100CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8110CF1BAC600A0EE5C = AAB2D8110CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8120CF1BAC600A0EE5C = AAB2D8120CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8130CF1BAC600A0EE5C = AAB2D8130CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8140CF1BAC600A0EE5C = AAB2D8140CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8160CF1BAC600A0EE5C = AAB2D8160CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8170CF1BAC600A0EE5C = AAB2D8170CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8180CF1BAC600A0EE5C = AAB2D8180CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8190CF1BAC600A0EE5C = AAB2D8190CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D81A0CF1BAC600A0EE5C = AAB2D81A0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D81B0CF1BAC600A0EE5C = AAB2D81B0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D81C0CF1BAC600A0EE5C = AAB2D81C0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D81D0CF1BAC600A0EE5C = AAB2D81D0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D81E0CF1BAC600A0EE5C = AAB2D81E0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8210CF1BAC600A0EE5C = AAB2D8210CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8220CF1BAC600A0EE5C = AAB2D8220CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8230CF1BAC600A0EE5C = AAB2D8230CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8240CF1BAC600A0EE5C = AAB2D8240CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8250CF1BAC600A0EE5C = AAB2D8250CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8260CF1BAC600A0EE5C = AAB2D8260CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8270CF1BAC600A0EE5C = AAB2D8270CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8280CF1BAC600A0EE5C = AAB2D8280CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8290CF1BAC600A0EE5C = AAB2D8290CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D82A0CF1BAC600A0EE5C = AAB2D82A0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D82C0CF1BAC600A0EE5C = AAB2D82C0CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8320CF1BAC600A0EE5C = AAB2D8320CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8330CF1BAC600A0EE5C = AAB2D8330CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8340CF1BAC600A0EE5C = AAB2D8340CF1BAC600A0EE5C /* PBXTextBookmark */;
+			AAB2D8350CF1BAC600A0EE5C = AAB2D8350CF1BAC600A0EE5C /* PBXTextBookmark */;
 		};
 		sourceControlManager = AA50E2090C87571F004DA7BD /* Source Control */;
 		userBuildSettings = {
@@ -195,44 +195,44 @@
 	};
 	AA50E3A80C875DB7004DA7BD /* AppMain.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3A90C875DB7004DA7BD /* AppMain.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 555}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{814, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3AA0C875DB7004DA7BD /* CamelBones.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3AB0C875DB7004DA7BD /* CBPerl.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 1484}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 1084}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 1386}}";
+			sepNavSelRange = "{3469, 0}";
+			sepNavVisRect = "{{0, 815}, {817, 571}}";
 		};
 	};
 	AA50E3AC0C875DB7004DA7BD /* CBPerl.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {974, 6230}}";
+			sepNavIntBoundsRect = "{{0, 0}, {974, 6146}}";
 			sepNavSelRange = "{13387, 0}";
-			sepNavVisRect = "{{0, 3827}, {925, 555}}";
+			sepNavVisRect = "{{0, 251}, {817, 571}}";
 		};
 	};
 	AA50E3AD0C875DB7004DA7BD /* CBPerlArray.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 686}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 686}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
+			sepNavVisRect = "{{0, 107}, {817, 571}}";
 		};
 	};
 	AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */ = {
@@ -244,30 +244,37 @@
 	};
 	AA50E3AF0C875DB7004DA7BD /* CBPerlArrayInternals.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 555}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
+		};
+	};
+	AA50E3B00C875DB7004DA7BD /* CBPerlHash.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {817, 728}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 555}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 630}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 630}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 230}, {783, 400}}";
+			sepNavVisRect = "{{0, 59}, {817, 571}}";
 		};
 	};
 	AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {935, 644}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 644}}";
 			sepNavSelRange = "{487, 0}";
-			sepNavVisRect = "{{0, 0}, {0, 0}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 			sepNavWindowFrame = "{{38, 46}, {908, 956}}";
 		};
 	};
@@ -279,22 +286,28 @@
 			sepNavWindowFrame = "{{84, 4}, {908, 956}}";
 		};
 	};
+	AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {817, 1526}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 947}, {817, 571}}";
+		};
+	};
 	AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {863, 827}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{210, 0}";
-			sepNavVisRect = "{{0, 0}, {863, 827}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 			sepNavWindowFrame = "{{61, 25}, {908, 956}}";
 		};
 	};
-	AA50E3BB0C875DB7004DA7BD /* CBStruct.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 555}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
-		};
-	};
 	AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = Conversions_real.h;
+		path = "/Users/sherm/Projects/CamelBones-Static/CamelBones/Conversions_real.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
 			sepNavSelRange = "{535, 0}";
@@ -303,9 +316,9 @@
 	};
 	AA50E3BE0C875DB7004DA7BD /* Conversions.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
+			sepNavSelRange = "{386, 0}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3BF0C875DB7004DA7BD /* Conversions.m */ = {
@@ -315,33 +328,25 @@
 			sepNavVisRect = "{{0, 2700}, {925, 555}}";
 		};
 	};
-	AA50E3C00C875DB7004DA7BD /* DylibInit.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 994}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
-		};
-	};
 	AA50E3C10C875DB7004DA7BD /* DylibInit.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.objc;
+		name = DylibInit.m;
+		path = "/Users/sherm/Projects/CamelBones-Static/CamelBones/DylibInit.m";
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {901, 1946}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 1946}}";
 			sepNavSelRange = "{129, 0}";
-			sepNavVisRect = "{{0, 0}, {0, 0}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 			sepNavWindowFrame = "{{15, 67}, {908, 956}}";
-		};
-	};
-	AA50E3C20C875DB7004DA7BD /* Globals_real.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 555}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
 		};
 	};
 	AA50E3C30C875DB7004DA7BD /* Globals.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
+			sepNavSelRange = "{331, 0}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3C40C875DB7004DA7BD /* Globals.m */ = {
@@ -352,17 +357,23 @@
 		};
 	};
 	AA50E3C50C875DB7004DA7BD /* NativeMethods_real.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = NativeMethods_real.h;
+		path = "/Users/sherm/Projects/CamelBones-Static/CamelBones/NativeMethods_real.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{266, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3C60C875DB7004DA7BD /* NativeMethods.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
-			sepNavSelRange = "{264, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
+			sepNavSelRange = "{254, 0}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3C70C875DB7004DA7BD /* NativeMethods.m */ = {
@@ -375,32 +386,38 @@
 	};
 	AA50E3C80C875DB7004DA7BD /* PerlImports.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {901, 364}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{360, 0}";
-			sepNavVisRect = "{{0, 0}, {0, 0}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 			sepNavWindowFrame = "{{61, 25}, {908, 956}}";
 		};
 	};
 	AA50E3C90C875DB7004DA7BD /* PerlMethods_real.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = PerlMethods_real.h;
+		path = "/Users/sherm/Projects/CamelBones-Static/CamelBones/PerlMethods_real.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
-			sepNavSelRange = "{503, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
+			sepNavSelRange = "{462, 0}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 			sepNavWindowFrame = "{{38, 46}, {908, 956}}";
 		};
 	};
 	AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {901, 6846}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 6846}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {0, 0}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3CC0C875DB7004DA7BD /* perlxsi.c */ = {
@@ -412,13 +429,19 @@
 	};
 	AA50E3CD0C875DB7004DA7BD /* perlxsi.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {863, 827}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
 			sepNavSelRange = "{151, 0}";
-			sepNavVisRect = "{{0, 0}, {863, 827}}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 			sepNavWindowFrame = "{{61, 25}, {908, 956}}";
 		};
 	};
 	AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = Runtime_real.h;
+		path = "/Users/sherm/Projects/CamelBones-Static/CamelBones/Runtime_real.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {783, 518}}";
 			sepNavSelRange = "{0, 0}";
@@ -427,12 +450,18 @@
 	};
 	AA50E3CF0C875DB7004DA7BD /* Runtime.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 555}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
+			sepNavSelRange = "{1098, 0}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 		};
 	};
 	AA50E3D10C875DB7004DA7BD /* Structs_real.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = Structs_real.h;
+		path = "/Users/sherm/Projects/CamelBones-Static/CamelBones/Structs_real.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {783, 784}}";
 			sepNavSelRange = "{0, 0}";
@@ -441,9 +470,9 @@
 	};
 	AA50E3D20C875DB7004DA7BD /* Structs.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 700}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 300}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 700}}";
+			sepNavSelRange = "{1216, 0}";
+			sepNavVisRect = "{{0, 129}, {817, 571}}";
 		};
 	};
 	AA50E3D30C875DB7004DA7BD /* Structs.m */ = {
@@ -453,21 +482,13 @@
 			sepNavVisRect = "{{0, 956}, {925, 555}}";
 		};
 	};
-	AA50E3D40C875DB7004DA7BD /* StubClasses.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 1400}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
-		};
-	};
-	AA50E3D50C875DB7004DA7BD /* StubFunctions.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 2898}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
-		};
-	};
 	AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = Wrappers_real.h;
+		path = "/Users/sherm/Projects/CamelBones-Static/CamelBones/Wrappers_real.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
 			sepNavSelRange = "{0, 0}";
@@ -476,9 +497,9 @@
 	};
 	AA50E3D80C875DB7004DA7BD /* Wrappers.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {783, 400}}";
-			sepNavSelRange = "{133, 0}";
-			sepNavVisRect = "{{0, 0}, {783, 400}}";
+			sepNavIntBoundsRect = "{{0, 0}, {817, 571}}";
+			sepNavSelRange = "{416, 0}";
+			sepNavVisRect = "{{0, 0}, {817, 571}}";
 			sepNavWindowFrame = "{{15, 67}, {908, 956}}";
 		};
 	};
@@ -488,12 +509,6 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 0}, {925, 555}}";
 		};
-	};
-	AA50E4E80C877030004DA7BD /* darwin-thread-multi-2level-5.8.6 */ = {
-		activeExec = 0;
-	};
-	AA50E5470C877635004DA7BD /* darwin-thread-multi-2level-5.8.1 */ = {
-		activeExec = 0;
 	};
 	AA50E9640C879392004DA7BD /* Info.plist */ = {
 		uiCtxt = {
@@ -599,9 +614,6 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 0}, {925, 555}}";
 		};
-	};
-	AA6C32080CCC962000306BD7 /* All */ = {
-		activeExec = 0;
 	};
 	AA6C32B50CCC9DB000306BD7 /* Perl Module */ = {
 		activeExec = 0;
@@ -763,7 +775,7 @@
 		rLen = 0;
 		rLoc = 0;
 		rType = 0;
-		vrLen = 527;
+		vrLen = 503;
 		vrLoc = 0;
 	};
 	AAB2D7B40CF1B61500A0EE5C /* PBXTextBookmark */ = {
@@ -821,7 +833,7 @@
 		fRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */;
 		name = "NativeMethods.h: 13";
 		rLen = 0;
-		rLoc = 264;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 264;
 		vrLoc = 0;
@@ -1011,7 +1023,7 @@
 		fRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */;
 		name = "NativeMethods.h: 13";
 		rLen = 0;
-		rLoc = 264;
+		rLoc = 254;
 		rType = 0;
 		vrLen = 264;
 		vrLoc = 0;
@@ -1077,9 +1089,6 @@
 		vrLoc = 323;
 	};
 	FFBB932F0D15DD58002FE7A4 /* Bundle CPAN Kits */ = {
-		activeExec = 0;
-	};
-	FFE9CE900D13073A00BB5E57 /* darwin-thread-multi-2level-5.8.8 */ = {
 		activeExec = 0;
 	};
 }

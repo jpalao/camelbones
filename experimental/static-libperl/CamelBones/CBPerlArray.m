@@ -11,7 +11,7 @@
 #import "PerlImports.h"
 #import "Conversions_real.h"
 
-@implementation CBPerlArray (Overrides)
+@implementation CBPerlArray
 
 #ifdef GNUSTEP
 - (id) initWithCapacity: (unsigned int) anInt
@@ -51,7 +51,7 @@
 
     SV **svp;
     svp = av_fetch((AV*)_myArray, index, 0);
-    return svp ? REAL_CBDerefSVtoID(*svp) : nil;
+    return svp ? CBDerefSVtoID(*svp) : nil;
 }
 
 - (void)addObject:(id)anObject {
@@ -59,7 +59,7 @@
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
-    SV *obj = REAL_CBDerefIDtoSV(anObject);
+    SV *obj = CBDerefIDtoSV(anObject);
     av_push((AV*)_myArray, obj);
 
     // Retain the original if a wrapper was stored
@@ -84,7 +84,7 @@
             av_store((AV*)_myArray, i+1, *svp);
         }
     }
-    svp = av_store((AV*)_myArray, index, REAL_CBDerefIDtoSV(anObject));
+    svp = av_store((AV*)_myArray, index, CBDerefIDtoSV(anObject));
 
     if (svp && sv_isobject(*svp) && sv_derived_from(*svp, "NSObject")) {
         [anObject retain];
@@ -97,7 +97,7 @@
 
     SV *obj = av_pop((AV*)_myArray);
     if (sv_isobject(obj) && sv_derived_from(obj, "NSObject")) {
-        id anObject = REAL_CBDerefSVtoID(obj);
+        id anObject = CBDerefSVtoID(obj);
         [anObject autorelease];
     }
 }
@@ -112,7 +112,7 @@
     
     svp = av_fetch((AV*)_myArray, index, 0);
     if (svp && sv_isobject(*svp) && sv_derived_from(*svp, "NSObject")) {
-        id anObject = REAL_CBDerefSVtoID(*svp);
+        id anObject = CBDerefSVtoID(*svp);
         [anObject autorelease];
     }
 
@@ -135,13 +135,13 @@
     
     svp = av_fetch((AV*)_myArray, index, 0);
     if (svp && sv_isobject(*svp) && sv_derived_from(*svp, "NSObject")) {
-        id oldObject = REAL_CBDerefSVtoID(*svp);
+        id oldObject = CBDerefSVtoID(*svp);
         if ([oldObject respondsToSelector:@selector(autorelease)]) {
             [oldObject autorelease];
         }
     }
 
-    obj = REAL_CBDerefIDtoSV(anObject);
+    obj = CBDerefIDtoSV(anObject);
     av_store((AV*)_myArray, index, obj);
 
     if (sv_isobject(obj) && sv_derived_from(obj, "NSObject")) {

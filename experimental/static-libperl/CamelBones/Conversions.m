@@ -29,7 +29,7 @@
 
 #endif /* GNUSTEP */
 
-id REAL_CBDerefSVtoID(void* sv) {
+id CBDerefSVtoID(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -92,7 +92,7 @@ id REAL_CBDerefSVtoID(void* sv) {
 
         // Get the value referred to, and dereference it
         target = SvRV((SV*)sv);
-        return REAL_CBDerefSVtoID(target);
+        return CBDerefSVtoID(target);
 
 	// It's not a reference - check for floats
     } else if (SvNOK((SV*)sv)) {
@@ -127,7 +127,7 @@ id REAL_CBDerefSVtoID(void* sv) {
     return nil;
 }
 
-void* REAL_CBDerefIDtoSV(id target) {
+void* CBDerefIDtoSV(id target) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -157,7 +157,7 @@ void* REAL_CBDerefIDtoSV(id target) {
         if (!thisNewSV) {
 	    // No Perl object yet, so create one
 	    NSString *stringObj = [NSString stringWithUTF8String: target->class_pointer->name];
-	    thisNewSV = REAL_CBCreateWrapperObjectWithClassName(target, stringObj);
+	    thisNewSV = CBCreateWrapperObjectWithClassName(target, stringObj);
 	    GSObjCSetVariable(target, svOffset, svSize, (const void*)&thisNewSV);
         }
 
@@ -178,7 +178,7 @@ void* REAL_CBDerefIDtoSV(id target) {
         if (!thisNewSV) {
 	    // No Perl object yet, so create one
 	    NSString *stringObj = [NSString stringWithUTF8String: target->isa->name];
-	    thisNewSV = REAL_CBCreateWrapperObjectWithClassName(target, stringObj);
+	    thisNewSV = CBCreateWrapperObjectWithClassName(target, stringObj);
 	    object_setInstanceVariable(target, "_sv", thisNewSV);
         }
 
@@ -199,7 +199,7 @@ void* REAL_CBDerefIDtoSV(id target) {
 
     // If it's a descendant of NSObject, create and return a wrapper
     else if ([target isKindOfClass: [NSObject class]]) {
-        return REAL_CBCreateWrapperObject(target);
+        return CBCreateWrapperObject(target);
     }
 
     // WTF?
@@ -210,23 +210,23 @@ void* REAL_CBDerefIDtoSV(id target) {
     return (void*)&PL_sv_undef;
 }
 
-Class REAL_CBClassFromSV(void* sv) {
-    return(NSClassFromString(REAL_CBDerefSVtoID(sv)));
+Class CBClassFromSV(void* sv) {
+    return(NSClassFromString(CBDerefSVtoID(sv)));
 }
 
-void* REAL_CBSVFromClass(Class c) {
-    return(REAL_CBDerefIDtoSV(NSStringFromClass(c)));
+void* CBSVFromClass(Class c) {
+    return(CBDerefIDtoSV(NSStringFromClass(c)));
 }
 
-SEL REAL_CBSelectorFromSV(void* sv) {
-    return(NSSelectorFromString(REAL_CBDerefSVtoID(sv)));
+SEL CBSelectorFromSV(void* sv) {
+    return(NSSelectorFromString(CBDerefSVtoID(sv)));
 }
 
-void* REAL_CBSVFromSelector(SEL aSel) {
-    return(REAL_CBDerefIDtoSV(NSStringFromSelector(aSel)));
+void* CBSVFromSelector(SEL aSel) {
+    return(CBDerefIDtoSV(NSStringFromSelector(aSel)));
 }
 
-void REAL_CBPoke(void *address, void *object, unsigned length) {
+void CBPoke(void *address, void *object, unsigned length) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;

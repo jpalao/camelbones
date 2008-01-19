@@ -23,7 +23,7 @@
 + signatureWithObjCTypes:(const char *)fp12;
 @end
 
-@implementation CBPerlObject (Overrides)
+@implementation CBPerlObject
 
 // Returns an autoreleased handle to a Perl object named varName.
 // Returns nil of no such object exists.
@@ -121,7 +121,7 @@
 
     propPointer = hv_fetch((HV*)_myHV, [propName UTF8String], [propName length], 0);
     if (propPointer) {
-        return REAL_CBDerefSVtoID((SV*) *propPointer);
+        return CBDerefSVtoID((SV*) *propPointer);
     } else {
         return nil;
     }
@@ -138,7 +138,7 @@
         return;
     }
 
-    propSV = REAL_CBDerefIDtoSV(propValue);
+    propSV = CBDerefIDtoSV(propValue);
     hv_store((HV*)_myHV, [propName UTF8String], [propName length], propSV, 0);
 }
 
@@ -158,7 +158,7 @@
 }
 
 - (BOOL) respondsToSelector: (SEL)aSelector {
-    NSString *perlSelector = REAL_CBGetMethodNameForSelector(_mySV, aSelector);
+    NSString *perlSelector = CBGetMethodNameForSelector(_mySV, aSelector);
     NSString *selString = NSStringFromSelector(aSelector);
 
     // If there's a real Perl method, return TRUE
@@ -218,9 +218,9 @@
     } else {
 
         selectorString = NSStringFromSelector(aSelector);
-        if (REAL_CBGetMethodNameForSelector(_mySV, aSelector)) {
-            argEncoding = REAL_CBGetMethodArgumentSignatureForSelector(_mySV, aSelector);
-            returnEncoding = REAL_CBGetMethodReturnSignatureForSelector(_mySV, aSelector);
+        if (CBGetMethodNameForSelector(_mySV, aSelector)) {
+            argEncoding = CBGetMethodArgumentSignatureForSelector(_mySV, aSelector);
+            returnEncoding = CBGetMethodReturnSignatureForSelector(_mySV, aSelector);
         } else {
             if ([selectorString hasPrefix: @"set"] && [selectorString hasSuffix: @":"]) {
                 argEncoding = @"@";
@@ -254,20 +254,20 @@
 
 	// First look for a public accessor method of the form getKey or key
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"get%@%@", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", lcfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 	
 	// Next look for private accessor methods of the form _getKey or _key
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"_get%@%@", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"_%@%@", lcfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 
 	// Now look for an iVar
@@ -291,7 +291,7 @@
 
 	// Look for public accessor method first
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector)) {
+	if (CBGetMethodNameForSelector(_mySV, aSelector)) {
 		[self performSelector:aSelector withObject:value];
 		if (doesKVO) [super didChangeValueForKey:key];
 		return;
@@ -299,7 +299,7 @@
 
 	// Failing that, look for a private accessor
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"_set%@%@:", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector)) {
+	if (CBGetMethodNameForSelector(_mySV, aSelector)) {
 		[self performSelector:aSelector withObject:value];
 		if (doesKVO) [super didChangeValueForKey:key];
 		return;
