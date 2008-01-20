@@ -1,0 +1,5 @@
+#!/Users/sherm/Projects/CamelBones-Static/CamelBones/Perl/perl -w
+
+eval 'exec /Users/sherm/Projects/CamelBones-Static/CamelBones/Perl/perl -w -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+print "Hello, World!\n";
