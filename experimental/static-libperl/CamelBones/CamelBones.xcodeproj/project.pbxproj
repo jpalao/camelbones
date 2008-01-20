@@ -15,9 +15,21 @@
 			);
 			dependencies = (
 				AA6C32B70CCC9DB900306BD7 /* PBXTargetDependency */,
+				AAA042260D42E28D0078B4AE /* PBXTargetDependency */,
 			);
 			name = "Perl Module";
 			productName = "Perl Module";
+		};
+		AAA042220D42E2610078B4AE /* Perl */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = AAA042270D42E2AC0078B4AE /* Build configuration list for PBXAggregateTarget "Perl" */;
+			buildPhases = (
+				AAA0422C0D42E2CC0078B4AE /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Perl;
+			productName = Perl;
 		};
 		FFBB932F0D15DD58002FE7A4 /* Bundle CPAN Kits */ = {
 			isa = PBXAggregateTarget;
@@ -83,7 +95,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = AA96A4F20D429964009068BA /* libffi.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC045055464E500DB518D /* libffi */;
+			remoteGlobalIDString = D2AAC045055464E500DB518D;
 			remoteInfo = libffi;
 		};
 		AA6C32B60CCC9DB900306BD7 /* PBXContainerItemProxy */ = {
@@ -99,6 +111,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = D2AAC046055464E500DB518D;
 			remoteInfo = libffi;
+		};
+		AAA042230D42E27A0078B4AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAA042220D42E2610078B4AE;
+			remoteInfo = Perl;
+		};
+		AAA042250D42E28D0078B4AE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AAA042220D42E2610078B4AE;
+			remoteInfo = Perl;
 		};
 		FFBB93370D15DDC6002FE7A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -566,6 +592,7 @@
 			);
 			dependencies = (
 				AA1E07EE0D429D2300AF4A3A /* PBXTargetDependency */,
+				AAA042240D42E27A0078B4AE /* PBXTargetDependency */,
 			);
 			name = CamelBones.framework;
 			productName = CamelBones.framework;
@@ -590,6 +617,7 @@
 			);
 			projectRoot = "";
 			targets = (
+				AAA042220D42E2610078B4AE /* Perl */,
 				AA6C32B50CCC9DB000306BD7 /* Perl Module */,
 				FFBB932F0D15DD58002FE7A4 /* Bundle CPAN Kits */,
 				AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */,
@@ -619,7 +647,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -Rf ${SRCROOT}/../CamelBones.framework\ncp -R ${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework ${SRCROOT}/../\n\nexport PERL=/usr/bin/perl5.8.8\nexport SDK=/Developer/SDKs/MacOSX10.5.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -DPERL_LEOPARD -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework/Resources/5.8.8\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.6\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexit 0\n";
+			shellScript = "export PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -DPERL_LEOPARD\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\n\ncd ${SRCROOT}/CPAN;\n\nexport LIBDIR=\"/Library/CamelBones.framework/Resources\"\n$PERL Makefile.PL LIB=$LIBDIR\nmake\nmake test\n\nif [ \"${CONFIGURATION}\" == \"Release\" ] ; then\n\tmake install\nfi\n\nexit 0\n";
+		};
+		AAA0422C0D42E2CC0078B4AE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/Perl/libperl.a",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export CFLAGS=\"-arch i386 -arch ppc -isysroot$SDKROOT -DPERL_LEOPARD\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDKROOT\"\n\ncd Perl\n\nsh Configure -Dprefix=/usr/local/camelbones/perl -Dusethreads -Dusemultiplicity \\\n             -Duserelocatableinc -Accflags=\"$CFLAGS\" -Aldflags=\"$LDFLAGS\" -des\n\nmake -j 4\nmake test\n\nexit 0\n";
 		};
 		FFBB932E0D15DD58002FE7A4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -672,6 +714,16 @@
 			isa = PBXTargetDependency;
 			target = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
 			targetProxy = AA6C32B60CCC9DB900306BD7 /* PBXContainerItemProxy */;
+		};
+		AAA042240D42E27A0078B4AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAA042220D42E2610078B4AE /* Perl */;
+			targetProxy = AAA042230D42E27A0078B4AE /* PBXContainerItemProxy */;
+		};
+		AAA042260D42E28D0078B4AE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AAA042220D42E2610078B4AE /* Perl */;
+			targetProxy = AAA042250D42E28D0078B4AE /* PBXContainerItemProxy */;
 		};
 		FFBB93380D15DDC6002FE7A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -869,6 +921,8 @@
 		AA9142050CC98CCE0055B0E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
@@ -889,6 +943,42 @@
 				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include /System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE $(inherited)";
 			};
 			name = Release;
+		};
+		AAA042280D42E2AC0078B4AE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Perl;
+			};
+			name = Debug;
+		};
+		AAA042290D42E2AC0078B4AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				PRODUCT_NAME = Perl;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		AAA0422A0D42E2AC0078B4AE /* Release-App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Perl;
+			};
+			name = "Release-App-Embedded";
+		};
+		AAA0422B0D42E2AC0078B4AE /* Release-Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Perl;
+			};
+			name = "Release-Lib-Embedded";
 		};
 		FFBB93300D15DD58002FE7A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -957,6 +1047,17 @@
 				AA9142050CC98CCE0055B0E5 /* Release */,
 				AA6C31BA0CCC912D00306BD7 /* Release-App-Embedded */,
 				AA6C31BB0CCC912D00306BD7 /* Release-Lib-Embedded */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAA042270D42E2AC0078B4AE /* Build configuration list for PBXAggregateTarget "Perl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAA042280D42E2AC0078B4AE /* Debug */,
+				AAA042290D42E2AC0078B4AE /* Release */,
+				AAA0422A0D42E2AC0078B4AE /* Release-App-Embedded */,
+				AAA0422B0D42E2AC0078B4AE /* Release-Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
