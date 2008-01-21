@@ -661,7 +661,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export CFLAGS=\"-arch i386 -arch ppc -isysroot$SDKROOT -DPERL_LEOPARD\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDKROOT\"\n\ncd Perl\n\nsh Configure -Dprefix=/usr/local/camelbones -Dusethreads -Dusemultiplicity \\\n             -Duserelocatableinc -Accflags=\"$CFLAGS\" -Aldflags=\"$LDFLAGS\" \\\n             -Dprivlib=\"../Resources/Perl\" -Dsiteprefix=\"../Resources/Site\" \\\n             -Dvendorprefix=\"../Resources/Vendor\"  \\\n             -des\n\nmake -j 4\nmake test\n\nmake install DESTDIR=$BUILD_ROOT/Perl\n\nexit 1\n";
+			shellScript = "export CFLAGS=\"-arch i386 -arch ppc -isysroot$SDKROOT -DPERL_LEOPARD\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDKROOT\"\n\ncd Perl\n\nsh Configure -Dprefix=/usr/local/camelbones -Dusethreads -Dusemultiplicity \\\n             -Duserelocatableinc -Accflags=\"$CFLAGS\" -Aldflags=\"$LDFLAGS\" \\\n             -Dprivlib=\".../../Perl\" -Dsiteprefix=\".../../Resources\" \\\n             -des\n\nmake -j 4\nmake test\n\nmake install DESTDIR=$BUILD_ROOT/Perl\n\nexit 0\n";
 		};
 		FFBB932E0D15DD58002FE7A4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
