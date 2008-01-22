@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ActivePerspectiveName</key>
-	<string>Build</string>
+	<string>Project</string>
 	<key>AllowedModules</key>
 	<array>
 		<dict>
@@ -240,6 +240,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -282,7 +284,8 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>0</integer>
+									<integer>6</integer>
+									<integer>5</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
@@ -302,6 +305,8 @@
 							<string>MainColumn</string>
 							<real>185</real>
 						</array>
+						<key>RubberWindowFrame</key>
+						<string>64 89 1154 851 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -339,6 +344,8 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {947, 0}}</string>
+								<key>RubberWindowFrame</key>
+								<string>64 89 1154 851 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -362,6 +369,8 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {947, 778}}</string>
+										<key>RubberWindowFrame</key>
+										<string>64 89 1154 851 0 0 1680 1028 </string>
 									</dict>
 									<key>Module</key>
 									<string>XCDetailModule</string>
@@ -420,11 +429,11 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>AA1E09810D42A9AC00AF4A3A</string>
+				<string>AA5D75630D44BA09009EDAD5</string>
 				<string>1CA23ED40692098700951B8B</string>
-				<string>AA1E09820D42A9AC00AF4A3A</string>
+				<string>AA5D75640D44BA09009EDAD5</string>
 				<string>AA24BBF20C8750F3004DB6CB</string>
-				<string>AA1E09830D42A9AC00AF4A3A</string>
+				<string>AA5D75650D44BA09009EDAD5</string>
 				<string>1CA23EDF0692099D00951B8B</string>
 				<string>1CA23EE00692099D00951B8B</string>
 				<string>1CA23EE10692099D00951B8B</string>
@@ -506,8 +515,6 @@
 							<string>MainColumn</string>
 							<real>184</real>
 						</array>
-						<key>RubberWindowFrame</key>
-						<string>64 89 1154 851 0 0 1680 1028 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -545,8 +552,6 @@
 							<dict>
 								<key>Frame</key>
 								<string>{{0, 0}, {948, 0}}</string>
-								<key>RubberWindowFrame</key>
-								<string>64 89 1154 851 0 0 1680 1028 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -559,12 +564,10 @@
 							<key>Tabs</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXBuildLogShowsTranscriptDefaultKey</key>
-										<string>{{0, 279}, {948, 499}}</string>
+										<string>{{0, 122}, {948, 656}}</string>
 										<key>PBXProjectModuleGUID</key>
 										<string>XCMainBuildResultsModuleGUID</string>
 										<key>PBXProjectModuleLabel</key>
@@ -578,8 +581,6 @@
 									<dict>
 										<key>Frame</key>
 										<string>{{10, 27}, {948, 778}}</string>
-										<key>RubberWindowFrame</key>
-										<string>64 89 1154 851 0 0 1680 1028 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXBuildResultsModule</string>
@@ -659,14 +660,14 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>AA1E098A0D42A9C000AF4A3A</string>
+				<string>AA5D75660D44BA09009EDAD5</string>
 				<string>1CA23EE50692099D00951B8B</string>
-				<string>AA1E098B0D42A9C000AF4A3A</string>
+				<string>AA5D75670D44BA09009EDAD5</string>
 				<string>AA24BBF70C8750F3004DB6CB</string>
-				<string>AA1E098C0D42A9C000AF4A3A</string>
+				<string>AA5D75680D44BA09009EDAD5</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 				<string>1CA23EE80692099D00951B8B</string>
-				<string>AA1E098D0D42A9C000AF4A3A</string>
+				<string>AA5D75690D44BA09009EDAD5</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.buildAndRun</string>
@@ -812,7 +813,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>222472686.682428</real>
+	<real>222607881.094026</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>1</integer>
 	<key>ToolbarIsVisible</key>
