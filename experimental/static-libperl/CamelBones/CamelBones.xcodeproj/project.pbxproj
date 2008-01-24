@@ -67,6 +67,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		AA19E5330D49223C006EBFCA /* libperl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA19E5320D49223C006EBFCA /* libperl.dylib */; };
 		AA83FE1C0CC9EABB00E56F20 /* typemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA83FE0E0CC9E9CF00E56F20 /* typemap */; };
 		AA9141B80CC98CCE0055B0E5 /* AppMain.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3A80C875DB7004DA7BD /* AppMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA9141B90CC98CCE0055B0E5 /* CamelBones.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AA0C875DB7004DA7BD /* CamelBones.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,6 +154,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AA19E5320D49223C006EBFCA /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = "build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE/libperl.dylib"; sourceTree = "<group>"; };
 		AA1E7CDA0D48F87D0093ABC4 /* in.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = in.h; sourceTree = "<group>"; };
 		AA1E7CDB0D48F87D0093ABC4 /* Artistic */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = Artistic; path = Perl/Artistic; sourceTree = "<group>"; };
 		AA1E7CDC0D48F87D0093ABC4 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = AUTHORS; path = Perl/AUTHORS; sourceTree = "<group>"; };
@@ -4479,6 +4481,7 @@
 				AA96A5100D429996009068BA /* libffi.a in Frameworks */,
 				AA9141C70CC98CCE0055B0E5 /* AppKit.framework in Frameworks */,
 				AA9141C80CC98CCE0055B0E5 /* Foundation.framework in Frameworks */,
+				AA19E5330D49223C006EBFCA /* libperl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13969,6 +13972,7 @@
 		AA50E4130C875E1D004DA7BD /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				AA19E5320D49223C006EBFCA /* libperl.dylib */,
 				AA96A4F20D429964009068BA /* libffi.xcodeproj */,
 				AA50E4280C875FA2004DA7BD /* Foundation.framework */,
 				AA50E4240C875F90004DA7BD /* AppKit.framework */,
@@ -14430,6 +14434,7 @@
 		AA6C31BA0CCC912D00306BD7 /* Release-App-Embedded */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
@@ -14440,19 +14445,20 @@
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 			};
 			name = "Release-App-Embedded";
 		};
 		AA6C31BB0CCC912D00306BD7 /* Release-Lib-Embedded */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
@@ -14463,13 +14469,13 @@
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 			};
 			name = "Release-Lib-Embedded";
 		};
@@ -14552,8 +14558,7 @@
 		AA9142040CC98CCE0055B0E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEPLOYMENT_LOCATION = YES;
-				DSTROOT = /;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -14563,22 +14568,22 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 			};
 			name = Debug;
 		};
 		AA9142050CC98CCE0055B0E5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEPLOYMENT_LOCATION = YES;
 				DSTROOT = /;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -14591,13 +14596,13 @@
 				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
-				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SYSTEM_APPS_DIR)/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
 			};
 			name = Release;
 		};

@@ -6,17 +6,17 @@
 extern "C" {
 #endif
 
-#include <EXTERN.h>
+#include "EXTERN.h"
 #ifndef PERL_LEOPARD
 #undef bool
 #endif
-#include <perl.h>
+#include "perl.h"
 #ifdef PERL_OBJECT
 #define NO_XSLOCKS
-#include <XSUB.h>
+#include "XSUB.h"
 #include "win32iop.h"
 #include <fcntl.h>
-#include <perlhost.h>
+#include "perlhost.h"
 #endif
 #ifdef is_cplusplus
 }

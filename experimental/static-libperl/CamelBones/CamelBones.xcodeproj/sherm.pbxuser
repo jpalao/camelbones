@@ -8,6 +8,14 @@
 			sepNavWindowFrame = "{{104, 86}, {1221, 892}}";
 		};
 	};
+	AA1E8A200D48F8820093ABC4 /* time.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1176, 763}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {1176, 763}}";
+			sepNavWindowFrame = "{{15, 131}, {1221, 892}}";
+		};
+	};
 	AA26E6FF0D47DB4D00CAB762 /* 04-Pointers.t */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1176, 763}}";
@@ -18,8 +26,9 @@
 	};
 	AA50E2050C87571F004DA7BD /* Project object */ = {
 		activeBuildConfigurationName = Debug;
-		activeTarget = AAA042220D42E2610078B4AE /* Perl */;
+		activeTarget = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
 		addToTargets = (
+			AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */,
 		);
 		breakpoints = (
 		);
@@ -403,7 +412,7 @@
 	AA50E3CD0C875DB7004DA7BD /* perlxsi.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {863, 827}}";
-			sepNavSelRange = "{476, 0}";
+			sepNavSelRange = "{324, 0}";
 			sepNavVisRect = "{{0, 0}, {863, 827}}";
 			sepNavWindowFrame = "{{61, 25}, {908, 956}}";
 		};
@@ -681,7 +690,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1176, 5124}}";
 			sepNavSelRange = "{1571, 0}";
-			sepNavVisRect = "{{0, 419}, {1176, 763}}";
+			sepNavVisRect = "{{0, 1810}, {1176, 763}}";
 			sepNavWindowFrame = "{{38, 110}, {1221, 892}}";
 		};
 	};
