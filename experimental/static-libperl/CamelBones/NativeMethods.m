@@ -86,10 +86,6 @@ void init_ffi_types() {
 
 // Call a native class or object method
 void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
 	if (0 == ffi_type_structs_init) {
 		init_ffi_types();
 	}

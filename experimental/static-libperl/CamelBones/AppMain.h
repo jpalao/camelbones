@@ -13,4 +13,3 @@ extern int CBApplicationMain2(const char *scriptName, int argc, const char *argv
 
 // Examine the system to determine Perl arch/version to use
 extern const char *CBGetPerlArchver();
-extern void CBSetPerlArchver(const char *archVer);

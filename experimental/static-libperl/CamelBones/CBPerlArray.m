@@ -16,7 +16,6 @@
 #ifdef GNUSTEP
 - (id) initWithCapacity: (unsigned int) anInt
 {
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     _myArray = newAV();
@@ -38,15 +37,11 @@
 
 // Required primitive methods
 - (unsigned)count {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     return av_len((AV*)_myArray)+1;
 }
 - (id)objectAtIndex:(unsigned)index {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     SV **svp;
@@ -55,8 +50,6 @@
 }
 
 - (void)addObject:(id)anObject {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     SV *obj = CBDerefIDtoSV(anObject);
@@ -68,8 +61,6 @@
 	}
 }
 - (void)insertObject:(id)anObject atIndex:(unsigned)index {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     unsigned i;
@@ -91,8 +82,6 @@
     }
 }
 - (void)removeLastObject {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     SV *obj = av_pop((AV*)_myArray);
@@ -102,8 +91,6 @@
     }
 }
 - (void)removeObjectAtIndex:(unsigned)index {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     SV **svp;
@@ -126,8 +113,6 @@
 }
 
 - (void)replaceObjectAtIndex:(unsigned)index withObject:(id)anObject {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     SV **svp;
@@ -151,8 +136,6 @@
 
 // Destructor
 - (void) dealloc {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     if (NULL != _myArray) {
@@ -188,8 +171,6 @@
 
 // Designated initializer
 - (id) initArrayNamed: (NSString *)varName isReference: (BOOL)isRef create: (BOOL)shouldCreate {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     self = [super init];

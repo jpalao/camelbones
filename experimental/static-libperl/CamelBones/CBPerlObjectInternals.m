@@ -15,10 +15,6 @@
 }
 
 - (CBPerlObject *) initObjectWithSV: (void *)newSV {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     self = [super init];
 
     // Is it an object reference?

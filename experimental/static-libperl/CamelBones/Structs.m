@@ -36,10 +36,6 @@ NSPoint CBPointFromHV(void* hv) {
 }
 
 NSPoint CBPointFromSV(void* sv) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSPoint newPoint;
     SV *target;
     char *pv;
@@ -62,10 +58,6 @@ NSPoint CBPointFromSV(void* sv) {
 
 // Converting NSPoint structs to blessed scalar references
 void* CBPointToSV(NSPoint point) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *thing;
     SV *thingRef;
     thing = newSVpvn((char*)&point, sizeof(NSPoint));
@@ -102,10 +94,6 @@ NSRect CBRectFromHV(void* hv) {
 }
 
 NSRect CBRectFromSV(void* sv) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSRect newRect;
     SV *target;
     char *pv;
@@ -129,10 +117,6 @@ NSRect CBRectFromSV(void* sv) {
 // Converting NSRange structs to blessed scalar references
 
 void* CBRectToSV(NSRect rect) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *thing;
     SV *thingRef;
     thing = newSVpvn((char*)&rect, sizeof(NSRect));
@@ -165,10 +149,6 @@ NSRange CBRangeFromHV(void* hv) {
 }
 
 NSRange CBRangeFromSV(void* sv) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSRange newRange;
     SV *target;
     char *pv;
@@ -191,10 +171,6 @@ NSRange CBRangeFromSV(void* sv) {
 
 // Converting NSRange structs to blessed scalar references
 void* CBRangeToSV(NSRange range) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *thing;
     SV *thingRef;
     thing = newSVpvn((char*)&range, sizeof(NSRange));
@@ -225,10 +201,6 @@ NSSize CBSizeFromHV(void* hv) {
     return newSize;
 }
 NSSize CBSizeFromSV(void* sv) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSSize newSize;
     SV *target;
     char *pv;
@@ -251,10 +223,6 @@ NSSize CBSizeFromSV(void* sv) {
 
 // Converting NSSize structs to blessed scalar references
 void* CBSizeToSV(NSSize size) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *thing;
     SV *thingRef;
     thing = newSVpvn((char*)&size, sizeof(NSSize));
@@ -266,10 +234,6 @@ void* CBSizeToSV(NSSize size) {
 #ifndef GNUSTEP
 // Creating OSType structs
 OSType CBOSTypeFromSV(void* sv) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     OSType newType;
     SV *target;
     char *pv;
@@ -288,10 +252,6 @@ OSType CBOSTypeFromSV(void* sv) {
 
 // Converting OSType structs to blessed scalar references
 void* CBOSTypeToSV(OSType type) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *thing;
     SV *thingRef;
     thing = newSVpvn((char*)&type, sizeof(OSType));

@@ -62,10 +62,6 @@ void CBWrapNamedClasses(NSArray *names) {
 
 // Create a Perl wrapper for a single ObjC class
 void CBWrapObjectiveCClass(Class aClass) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     // Create the @ClassName::ISA = qw(SuperClass);
     const char *className = aClass->name;
     const char *ISAName;
@@ -73,13 +69,21 @@ void CBWrapObjectiveCClass(Class aClass) {
     AV *newIsaAV = NULL;
     SV *newParentSV = NULL;
 
+    // If this *is* NSObject, don't give it another Perl-side superclass;
+    // the actual bridge AUTOLOAD function is in the NSObject package.
+    // Moving the bridge function to a neutral "ObjectiveCRootClasses"
+    // package might be a good idea at some point.
+    if (strncmp(className,"NSObject",sizeof("NSObject")) == 0) {
+        return;
+    }
+    
     // Get the super class name; default to "NSObject" for root classes
     if (aClass->super_class != NULL) {
         SuperName = aClass->super_class->name;
     } else {
         SuperName = "NSObject";
     }
-
+    
     // Build up the PackageName::ISA array name and create the array
     ISAName = [[NSString stringWithFormat:@"%s::ISA", className] UTF8String];
     newIsaAV = get_av(ISAName, TRUE);
@@ -213,10 +217,6 @@ Class
 int
 #endif
 __CB_classHandler(const char* className) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
 	// Try to load it
 	NSString *useCommand = [NSString stringWithFormat:@"eval 'use %s'", className];
 	[[CBPerl sharedPerl] eval:useCommand];

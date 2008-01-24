@@ -18,10 +18,6 @@
 
 // Get information about a Perl object
 NSString* CBGetMethodNameForSelector(void* sv, SEL selector) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     HV* hash = (HV*)SvRV((SV*)sv);
     HV* stash = SvSTASH(hash);
     char *package = HvNAME(stash);
@@ -55,10 +51,6 @@ NSString* CBGetMethodNameForSelector(void* sv, SEL selector) {
 }
 
 NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     HV* hash = (HV*)SvRV((SV*)sv);
     HV* stash = SvSTASH(hash);
     char *package = HvNAME(stash);
@@ -95,10 +87,6 @@ NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
 }
 
 NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     HV* hash = (HV*)SvRV((SV*)sv);
     HV* stash = SvSTASH(hash);
     char *package = HvNAME(stash);
@@ -137,10 +125,6 @@ NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
 }
 
 id CBPerlIMP(id self, SEL _cmd, ...) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     dSP;
 
     NSMethodSignature *methodSig;

@@ -49,10 +49,6 @@
 // Returns a handle to a Perl object named varName.
 // Returns nil of no such object exists.
 - (CBPerlObject *) initNamedObject: (NSString *)varName {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
 
     // Get the named SV
     SV *obj = get_sv([varName UTF8String], FALSE);
@@ -93,10 +89,6 @@
 
 // Check for named properties, and get/set their values
 - (BOOL) hasProperty: (NSString *)propName {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     if (SvTYPE((SV*)_myHV) == SVt_PVAV) {
         return FALSE;
     }
@@ -110,10 +102,6 @@
 
 - (id) getProperty: (NSString *)propName {
 	SV** propPointer;
-
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
 
     if (SvTYPE((SV*)_myHV) == SVt_PVAV) {
         return nil;
@@ -130,10 +118,6 @@
 - (void) setProperty: (NSString *)propName toObject: (id)propValue {
 	SV *propSV;
 
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     if (SvTYPE((SV*)_myHV) == SVt_PVAV) {
         return;
     }
@@ -143,10 +127,6 @@
 }
 
 - (void) dealloc {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     [className release];
     if (_mySV)
         SvREFCNT_dec((SV *)_mySV);

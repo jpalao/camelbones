@@ -14,16 +14,15 @@
 
 // Required primitive methods
 - (unsigned)count {
+    // Define a Perl context
+    dTHX;
+    
     return HvKEYS((HV *)_myHash);
 }
 - (NSEnumerator *)keyEnumerator {
     return [CBPerlHashKeyEnumerator enumeratorWithHV:(HV *)_myHash];
 }
 - (id)objectForKey:(id)aKey {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *theKey;
     HE *theEntry;
     SV *theValue;
@@ -47,10 +46,6 @@
 }
 
 - (void)removeObjectForKey:(id)aKey {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *theKey;
     HE *theEntry;
     SV *theValue;
@@ -70,10 +65,6 @@
 }
 
 - (void)setObject:(id)anObject forKey:(id)aKey {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *theKey;
     SV *theObject;
     
@@ -95,10 +86,6 @@
 
 // Destructor
 - (void) dealloc {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     if (NULL != _myHash) {
         if (SvREFCNT((SV *)_myHash) > 0) {
             SvREFCNT_dec((SV *)_myHash);
@@ -131,10 +118,6 @@
 
 // Designated initializer
 - (id) initDictionaryNamed: (NSString *)varName isReference: (BOOL)isRef create: (BOOL)shouldCreate {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     self = [super init];
     if (nil != self) {
         if (isRef) {
@@ -187,10 +170,6 @@
 }
 
 - (SV *) keyWithId: (id)theId {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *theKey;
 
     // Create the key SV
@@ -225,10 +204,6 @@
 }
 
 - (id)nextObject {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     HE *nextEntry;
     SV *nextKey;
     
@@ -243,10 +218,6 @@
 
 // Destructor
 - (void) dealloc {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     if (NULL != _myHash) {
         if (SvREFCNT((SV *)_myHash) > 0) {
             SvREFCNT_dec((SV *)_myHash);
@@ -265,10 +236,6 @@
     return [[[CBPerlHashKeyEnumerator alloc] initEnumeratorWithHV:theHV] autorelease];
 }
 - (id) initEnumeratorWithHV:(HV*)theHV {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     self = [super init];
     if (nil != self) {
         _myHash = (void*)theHV;

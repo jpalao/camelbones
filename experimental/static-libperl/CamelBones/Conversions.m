@@ -30,10 +30,6 @@
 #endif /* GNUSTEP */
 
 id CBDerefSVtoID(void* sv) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
 #ifdef GNUSTEP
     const char *svType;
     unsigned int svSize;
@@ -128,10 +124,6 @@ id CBDerefSVtoID(void* sv) {
 }
 
 void* CBDerefIDtoSV(id target) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
 #ifdef GNUSTEP
     const char *svType;
     unsigned int svSize;
@@ -227,10 +219,6 @@ void* CBSVFromSelector(SEL aSel) {
 }
 
 void CBPoke(void *address, void *object, unsigned length) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
 	// Check if object is blessed
 	if (sv_isobject((SV*)object)) {
 		void *src = NULL;

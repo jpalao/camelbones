@@ -70,10 +70,6 @@ void CBWrapAllGlobals(void) {
 }
 
 BOOL CBWrapString(const char *varName, const char *pkgName) {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     void *address;
     SV *mySV;
 

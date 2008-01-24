@@ -22,7 +22,6 @@
 #include "perlxsi.h"
 
 static id _sharedPerl = nil;
-PerlInterpreter *_CBPerlInterpreter;
 
 @interface CBPerl (DummyThread)
 - (void) dummyThread: (id)dummy;
@@ -73,9 +72,9 @@ PerlInterpreter *_CBPerlInterpreter;
             NSString *perlArchname;
             NSString *perlVersion;
 
-            _CBPerlInterpreter = perl_alloc();
+            PerlInterpreter* _CBPerlInterpreter = perl_alloc();
             perl_construct(_CBPerlInterpreter);
-            perl_parse(_CBPerlInterpreter, xs_init, 3, emb, (char **)NULL);
+            perl_parse(_CBPerlInterpreter, NULL, 3, emb, (char **)NULL);
             perl_run(_CBPerlInterpreter);
             _sharedPerl = self;
 
@@ -121,7 +120,7 @@ PerlInterpreter *_CBPerlInterpreter;
 			// Register the class handler
 			CBRegisterClassHandler();
 
-            return [_sharedPerl retain];
+            return self;
 
         } else {
             // Wonder what happened here?
@@ -151,7 +150,6 @@ PerlInterpreter *_CBPerlInterpreter;
             // Set up housekeeping
             p = [[NSAutoreleasePool alloc] init];
             _sharedPerl = self;
-            _CBPerlInterpreter = PERL_GET_CONTEXT;
 
 			// Get Perl's archname and version
 			[self useModule: @"Config"];
@@ -195,7 +193,7 @@ PerlInterpreter *_CBPerlInterpreter;
 			// Register the class handler
 			CBRegisterClassHandler();
 
-            return [_sharedPerl retain];
+            return self;
 
         } else {
             // Wonder what happened here?
@@ -227,10 +225,6 @@ PerlInterpreter *_CBPerlInterpreter;
 }
 
 - (id) eval: (NSString *)perlCode {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     SV *result = eval_pv([perlCode UTF8String], FALSE);
 
     // Check for an error
@@ -249,7 +243,6 @@ PerlInterpreter *_CBPerlInterpreter;
 // Standard KVC methods
 - (id) valueForKey:(NSString*)key {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
     SV* sv;
     if ([key hasPrefix:@"@"]) {
@@ -264,7 +257,6 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (void) setValue:(id)value forKey:(NSString*)key {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
     SV* newVal = CBDerefIDtoSV(value);
     SV* sv = get_sv([key UTF8String], TRUE);
@@ -273,7 +265,6 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (long) varAsInt: (NSString *)perlVar {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
     
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
@@ -282,40 +273,24 @@ PerlInterpreter *_CBPerlInterpreter;
 }
 
 - (void) setVar: (NSString *)perlVar toInt: (long)newValue {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
 
     sv_setiv_mg(get_sv([perlVar UTF8String], TRUE), newValue);
 }
 
 - (double) varAsFloat: (NSString *)perlVar {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
 
     return SvNV(get_sv([perlVar UTF8String], TRUE));
 }
 
 - (void) setVar: (NSString *)perlVar toFloat: (double)newValue {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
 
     sv_setnv_mg(get_sv([perlVar UTF8String], TRUE), newValue);
 }
 
 - (NSString *) varAsString: (NSString *)perlVar {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
 
     STRLEN n_a;
@@ -323,10 +298,6 @@ PerlInterpreter *_CBPerlInterpreter;
 }
 
 - (void) setVar: (NSString *)perlVar toString: (NSString *)newValue {
-    // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
-
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
 
     sv_setpv_mg(get_sv([perlVar UTF8String], TRUE), [newValue UTF8String]);
@@ -338,20 +309,20 @@ PerlInterpreter *_CBPerlInterpreter;
 
 	manager = [NSFileManager defaultManager];
 	if ([manager fileExistsAtPath:libPath isDirectory:&isDir] && isDir) {
-	    [_sharedPerl eval: [NSString stringWithFormat: @"use lib '%@';", libPath]];
+	    [self eval: [NSString stringWithFormat: @"use lib '%@';", libPath]];
 	}
 }
 
 - (void) useModule: (NSString *)moduleName {
-    [_sharedPerl eval: [NSString stringWithFormat: @"use %@;", moduleName]];
+    [self eval: [NSString stringWithFormat: @"use %@;", moduleName]];
 }
 
 - (void) useWarnings {
-    [_sharedPerl eval: @"use warnings;"];
+    [self eval: @"use warnings;"];
 }
 
 - (void) noWarnings {
-    [_sharedPerl eval: @"no warnings;"];
+    [self eval: @"no warnings;"];
 }
 
 - (void) useStrict {
@@ -360,9 +331,9 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (void) useStrict: (NSString *)options {
     if (options) {
-        [_sharedPerl eval: [NSString stringWithFormat: @"use strict '%@';", options]];
+        [self eval: [NSString stringWithFormat: @"use strict '%@';", options]];
     } else {
-        [_sharedPerl eval: @"use strict;"];
+        [self eval: @"use strict;"];
     }
 }
 
@@ -372,9 +343,9 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (void) noStrict: (NSString *)options {
     if (options) {
-        [_sharedPerl eval: [NSString stringWithFormat: @"no strict '%@';", options]];
+        [self eval: [NSString stringWithFormat: @"no strict '%@';", options]];
     } else {
-        [_sharedPerl eval: @"no strict;"];
+        [self eval: @"no strict;"];
     }
 }
 

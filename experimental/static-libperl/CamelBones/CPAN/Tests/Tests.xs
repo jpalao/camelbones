@@ -9,6 +9,7 @@
 #import <CamelBones/PerlImports.h>
 #import <CamelBones/Conversions.h>
 #import <CamelBones/Structs.h>
+#import "XSUB.h"
 
 @class CBSuper;
 

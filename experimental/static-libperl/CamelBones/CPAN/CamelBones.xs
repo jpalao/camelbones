@@ -3,8 +3,8 @@
 #import <CamelBones/NativeMethods.h>
 #import <CamelBones/Conversions.h>
 #import <CamelBones/Runtime.h>
-#import <CamelBones/DylibInit.h>
 #import <CamelBones/PerlImports.h>
+#import "XSUB.h"
 
 #ifdef GNUSTEP
 #include <objc/objc.h>
@@ -12,8 +12,6 @@
 #import <objc/objc-runtime.h>
 #import <Carbon/Carbon.h>
 #endif
-
-#import <XSUB.h>
 
 MODULE = CamelBones	PACKAGE = CamelBones
 
@@ -30,7 +28,6 @@ CBInit(archver)
     char *archver
     CODE:
     NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
-    CBSetPerlArchver(archver);
     [[CBPerl alloc] initXS];
 
 SV*
