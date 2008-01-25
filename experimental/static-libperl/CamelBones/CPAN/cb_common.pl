@@ -15,12 +15,12 @@ our %opts = (
     LIBS              => [ '-lobjc' ],
     INC               => ($ENV{'GNUSTEP_ROOT'} ne '') ?
              "-xobjective-c -Wno-import -I$ENV{'GNUSTEP_SYSTEM_ROOT'}/Library/Headers -I$ENV{'GNUSTEP_LOCAL_ROOT'}/Library/Headers -DGNUSTEP -fconstant-string-class=NSConstantString " :
-             "-I/Applications/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE -ObjC ",
+             "-ObjC ",
     dynamic_lib         => {
                         'OTHERLDFLAGS' =>
                             ($ENV{'GNUSTEP_ROOT'} ne '') ?
                             " -L$ENV{'GNUSTEP_SYSTEM_ROOT'}/Library/Libraries -L$ENV{'GNUSTEP_LOCAL_ROOT'}/Library/Libraries -lgnustep-base -lgnustep-gui -lCamelBones " :
-                            " -L/Applications/CamelBones/Perl/lib/perl5/5.10.0/darwin-thread-multi-2level/CORE -lperl -framework Foundation -framework AppKit -framework CamelBones -lobjc "
+                            " -framework Foundation -framework AppKit -framework CamelBones -lobjc "
                         },
 );
 

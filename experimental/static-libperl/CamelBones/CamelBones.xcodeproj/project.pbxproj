@@ -67,7 +67,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		AA19E5330D49223C006EBFCA /* libperl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AA19E5320D49223C006EBFCA /* libperl.dylib */; };
 		AA83FE1C0CC9EABB00E56F20 /* typemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA83FE0E0CC9E9CF00E56F20 /* typemap */; };
 		AA9141B80CC98CCE0055B0E5 /* AppMain.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3A80C875DB7004DA7BD /* AppMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AA9141B90CC98CCE0055B0E5 /* CamelBones.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AA0C875DB7004DA7BD /* CamelBones.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -154,7 +153,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA19E5320D49223C006EBFCA /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = "build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE/libperl.dylib"; sourceTree = "<group>"; };
 		AA1E7CDA0D48F87D0093ABC4 /* in.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = in.h; sourceTree = "<group>"; };
 		AA1E7CDB0D48F87D0093ABC4 /* Artistic */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = Artistic; path = Perl/Artistic; sourceTree = "<group>"; };
 		AA1E7CDC0D48F87D0093ABC4 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = AUTHORS; path = Perl/AUTHORS; sourceTree = "<group>"; };
@@ -4481,7 +4479,6 @@
 				AA96A5100D429996009068BA /* libffi.a in Frameworks */,
 				AA9141C70CC98CCE0055B0E5 /* AppKit.framework in Frameworks */,
 				AA9141C80CC98CCE0055B0E5 /* Foundation.framework in Frameworks */,
-				AA19E5330D49223C006EBFCA /* libperl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -13972,7 +13969,6 @@
 		AA50E4130C875E1D004DA7BD /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				AA19E5320D49223C006EBFCA /* libperl.dylib */,
 				AA96A4F20D429964009068BA /* libffi.xcodeproj */,
 				AA50E4280C875FA2004DA7BD /* Foundation.framework */,
 				AA50E4240C875F90004DA7BD /* AppKit.framework */,
@@ -14292,7 +14288,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PERL=${BUILD_ROOT}/Perl/Applications/CamelBones/Perl/bin/perl\nexport CFLAGS=\"-F${BUILD_ROOT}/${CONFIGURATION}\"\nexport LDFLAGS=\"-F${BUILD_DIR}/${CONFIGURATION}\"\n\ncd ${SRCROOT}/CPAN;\n\nCFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} \\\n    ${PERL} Makefile.PL XSOPT=\"-typemap ${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework/Resources/typemap\"\n\nmake\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ] ; then\n\tmake test\nfi\n\nmake install\n\nexit 0\n";
+			shellScript = "export PERL=${BUILD_ROOT}/Perl/Applications/CamelBones/Perl/bin/perl\nexport CFLAGS=\"-F${BUILD_ROOT}/${CONFIGURATION}\"\nexport LDFLAGS=\"-F${BUILD_DIR}/${CONFIGURATION}\"\n\ncd ${SRCROOT}/CPAN;\n\nCFLAGS=${CFLAGS} LDFLAGS=${LDFLAGS} \\\n    ${PERL} Makefile.PL XSOPT=\"-typemap ${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework/Resources/typemap\"\n\nmake\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ] ; then\n\tmake test\nfi\n\nif [ \"${CONFIGURATION}\" != \"Debug\" ] ; then\n\tmake install DESTDIR=${BUILD_ROOT}/Perl\nfi\n\nexit 0\n";
 		};
 		AAA0422C0D42E2CC0078B4AE /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -14446,12 +14442,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
 					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
 			};
 			name = "Release-App-Embedded";
 		};
@@ -14470,12 +14469,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
 					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
 			};
 			name = "Release-Lib-Embedded";
 		};
@@ -14568,15 +14570,19 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
 					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
 			};
 			name = Debug;
 		};
@@ -14597,12 +14603,15 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)",
 					"$(inherited)",
-					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\"";
+				USER_HEADER_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)/../../libffi/build/$(CONFIGURATION)/usr/local/include \"$(SRCROOT)/build/Perl/Applications/CamelBones/Perl/CoreModules/5.10.0/darwin-thread-multi-2level/CORE\" $(inherited)";
 			};
 			name = Release;
 		};

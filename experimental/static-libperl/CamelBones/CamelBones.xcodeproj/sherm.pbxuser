@@ -26,7 +26,7 @@
 	};
 	AA50E2050C87571F004DA7BD /* Project object */ = {
 		activeBuildConfigurationName = Debug;
-		activeTarget = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
+		activeTarget = AA6C32B50CCC9DB000306BD7 /* Perl Module */;
 		addToTargets = (
 			AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */,
 		);
@@ -171,8 +171,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 222889153;
-			PBXWorkspaceStateSaveDate = 222889153;
+			PBXPerProjectTemplateStateSaveDate = 222927334;
+			PBXWorkspaceStateSaveDate = 222927334;
 		};
 		sourceControlManager = AA50E2090C87571F004DA7BD /* Source Control */;
 		userBuildSettings = {
@@ -630,7 +630,7 @@
 	AA9143580CC99B2A0055B0E5 /* cb_common.pl */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1176, 763}}";
-			sepNavSelRange = "{598, 0}";
+			sepNavSelRange = "{508, 0}";
 			sepNavVisRect = "{{0, 0}, {1176, 763}}";
 			sepNavWindowFrame = "{{84, 68}, {1221, 892}}";
 		};
