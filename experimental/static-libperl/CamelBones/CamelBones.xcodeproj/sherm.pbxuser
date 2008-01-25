@@ -16,12 +16,19 @@
 			sepNavWindowFrame = "{{15, 131}, {1221, 892}}";
 		};
 	};
+	AA1E8B980D48F8830093ABC4 /* proto.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1652, 66108}}";
+			sepNavSelRange = "{7931, 0}";
+			sepNavVisRect = "{{0, 2897}, {812, 801}}";
+		};
+	};
 	AA26E6FF0D47DB4D00CAB762 /* 04-Pointers.t */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {915, 698}}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 801}}";
 			sepNavSelRange = "{310, 0}";
-			sepNavVisRect = "{{0, 0}, {915, 698}}";
-			sepNavWindowFrame = "{{247, 187}, {960, 827}}";
+			sepNavVisRect = "{{0, 0}, {812, 801}}";
+			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
 		};
 	};
 	AA26E7020D47DB4D00CAB762 /* 12-NSNumber.t */ = {
@@ -29,15 +36,15 @@
 			sepNavIntBoundsRect = "{{0, 0}, {812, 801}}";
 			sepNavSelRange = "{433, 0}";
 			sepNavVisRect = "{{0, 0}, {812, 801}}";
-			sepNavWindowFrame = "{{94, 63}, {857, 930}}";
+			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
 		};
 	};
 	AA26E7030D47DB4D00CAB762 /* 13-Exceptions.t */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {812, 801}}";
-			sepNavSelRange = "{453, 0}";
+			sepNavSelRange = "{610, 0}";
 			sepNavVisRect = "{{0, 0}, {812, 801}}";
-			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
+			sepNavWindowFrame = "{{100, 89}, {857, 930}}";
 		};
 	};
 	AA26E7050D47DB4D00CAB762 /* 15-Subclassing.t */ = {
@@ -46,6 +53,14 @@
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRect = "{{0, 142}, {915, 698}}";
 			sepNavWindowFrame = "{{15, 196}, {960, 827}}";
+		};
+	};
+	AA26E7070D47DB4D00CAB762 /* 30-BundleLoader.t */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {915, 698}}";
+			sepNavSelRange = "{88, 0}";
+			sepNavVisRect = "{{0, 0}, {915, 698}}";
+			sepNavWindowFrame = "{{38, 175}, {960, 827}}";
 		};
 	};
 	AA50E2050C87571F004DA7BD /* Project object */ = {
@@ -253,10 +268,10 @@
 	};
 	AA50E3AC0C875DB7004DA7BD /* CBPerl.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1176, 5698}}";
-			sepNavSelRange = "{4878, 0}";
-			sepNavVisRect = "{{0, 1766}, {1176, 763}}";
-			sepNavWindowFrame = "{{408, 106}, {1221, 892}}";
+			sepNavIntBoundsRect = "{{0, 0}, {974, 5698}}";
+			sepNavSelRange = "{12333, 0}";
+			sepNavVisRect = "{{0, 4897}, {812, 801}}";
+			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
 		};
 	};
 	AA50E3AD0C875DB7004DA7BD /* CBPerlArray.h */ = {
@@ -373,10 +388,10 @@
 	};
 	AA50E3BF0C875DB7004DA7BD /* Conversions.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {867, 3836}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1176, 3836}}";
 			sepNavSelRange = "{6032, 0}";
-			sepNavVisRect = "{{0, 253}, {867, 419}}";
-			sepNavWindowFrame = "{{153, 5}, {1221, 892}}";
+			sepNavVisRect = "{{0, 2651}, {1176, 763}}";
+			sepNavWindowFrame = "{{162, 75}, {1221, 892}}";
 		};
 	};
 	AA50E3C30C875DB7004DA7BD /* Globals.h */ = {
@@ -403,9 +418,9 @@
 	};
 	AA50E3C70C875DB7004DA7BD /* NativeMethods.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 8246}}";
-			sepNavSelRange = "{10850, 0}";
-			sepNavVisRect = "{{0, 5984}, {812, 801}}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 8204}}";
+			sepNavSelRange = "{10606, 0}";
+			sepNavVisRect = "{{0, 5711}, {812, 801}}";
 			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
 		};
 	};
@@ -620,9 +635,10 @@
 	};
 	AA83FE0E0CC9E9CF00E56F20 /* typemap */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {925, 1036}}";
+			sepNavIntBoundsRect = "{{0, 0}, {915, 1036}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {925, 555}}";
+			sepNavVisRect = "{{0, 338}, {915, 698}}";
+			sepNavWindowFrame = "{{15, 196}, {960, 827}}";
 		};
 	};
 	AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */ = {
@@ -645,10 +661,10 @@
 	};
 	AA9143570CC99B2A0055B0E5 /* CamelBones.xs */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1176, 1050}}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 1050}}";
 			sepNavSelRange = "{580, 0}";
-			sepNavVisRect = "{{0, 0}, {1176, 763}}";
-			sepNavWindowFrame = "{{481, 57}, {1221, 892}}";
+			sepNavVisRect = "{{0, 37}, {812, 801}}";
+			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
 		};
 	};
 	AA9143580CC99B2A0055B0E5 /* cb_common.pl */ = {
@@ -713,8 +729,8 @@
 	AA9143710CC99B2A0055B0E5 /* CamelBones.pm */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1176, 5124}}";
-			sepNavSelRange = "{1571, 0}";
-			sepNavVisRect = "{{0, 1810}, {1176, 763}}";
+			sepNavSelRange = "{8721, 0}";
+			sepNavVisRect = "{{0, 921}, {1176, 763}}";
 			sepNavWindowFrame = "{{38, 110}, {1221, 892}}";
 		};
 	};

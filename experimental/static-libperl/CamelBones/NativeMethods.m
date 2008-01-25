@@ -2,7 +2,7 @@
 //  NativeMethods.m
 //  CamelBones
 //
-//  Copyright (c) 2004 Sherm Pendley. All rights reserved.
+//  Copyright (c) 2004-2008 Sherm Pendley. All rights reserved.
 //
 
 #import "Conversions.h"
@@ -100,7 +100,12 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	
 	// Get the Method signature
     NSMethodSignature *methodSig = [targetID methodSignatureForSelector:sel];
-	
+    
+    // Unknown method
+    if (!methodSig) {
+        croak("Call to unknown method: %s", [NSStringFromSelector(sel) UTF8String]);
+    }
+    
     // Get argument count
     int num_args = methodSig ? [methodSig numberOfArguments] : 0;
 	
@@ -259,10 +264,6 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
         SV **sv = av_fetch(av, i-2, 0);
         SV *argSV = sv ? *sv : NULL;
 		
-        if (!argSV) {
-            break;
-        }
-
         const char *arg_type = [methodSig getArgumentTypeAtIndex:i];
 		
         // Call the av_* that's appropriate for this argument type
@@ -336,7 +337,7 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			case '@':
 				// id
 				arg_ffi_types[i] = &ffi_type_pointer;
-				arg_values[i].voidp = CBDerefSVtoID(argSV);
+                arg_values[i].voidp = argSV ? CBDerefSVtoID(argSV) : NULL;
 				break;
 			
 			case '^':
@@ -452,7 +453,7 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     NS_HANDLER
         SV *errsv = get_sv("@", TRUE);
         sv_setsv(errsv, CBDerefIDtoSV(localException));
-        croak(Nullch);
+        croak("Died.");
 
 	NS_ENDHANDLER
     

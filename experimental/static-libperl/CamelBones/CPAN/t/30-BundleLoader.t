@@ -5,7 +5,7 @@ BEGIN { plan tests => 3; }
 use CamelBones qw(:All);
 ok(1);
 
-use InterfaceBuilder;
+use CoreServices;
 ok(2);
 
 eval "use NoSuchModuleExists";

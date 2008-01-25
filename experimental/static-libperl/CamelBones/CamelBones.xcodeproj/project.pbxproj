@@ -106,6 +106,7 @@
 		AA96A3E70D42849B009068BA /* Structs.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D30C875DB7004DA7BD /* Structs.m */; };
 		AA96A3E80D42849B009068BA /* Wrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D90C875DB8004DA7BD /* Wrappers.m */; };
 		AA96A5100D429996009068BA /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA96A4FA0D429964009068BA /* libffi.a */; };
+		AAC313F80D49C78200145C37 /* CBDummyModule.pm in CopyFiles */ = {isa = PBXBuildFile; fileRef = AAC313F70D49C78200145C37 /* CBDummyModule.pm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 			dstSubfolderSpec = 7;
 			files = (
 				AA83FE1C0CC9EABB00E56F20 /* typemap in CopyFiles */,
+				AAC313F80D49C78200145C37 /* CBDummyModule.pm in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4469,6 +4471,7 @@
 		AA9143790CC99B2A0055B0E5 /* ppport.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ppport.h; path = CPAN/ppport.h; sourceTree = "<group>"; };
 		AA91437A0CC99B2A0055B0E5 /* README */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = README; path = CPAN/README; sourceTree = "<group>"; };
 		AA96A4F20D429964009068BA /* libffi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libffi.xcodeproj; path = libffi/libffi.xcodeproj; sourceTree = "<group>"; };
+		AAC313F70D49C78200145C37 /* CBDummyModule.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = CBDummyModule.pm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -13947,6 +13950,7 @@
 		AA50E40D0C875DD2004DA7BD /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AAC313F60D49C76500145C37 /* Resources */,
 				AA50E3AC0C875DB7004DA7BD /* CBPerl.m */,
 				AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */,
 				AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */,
@@ -14184,6 +14188,14 @@
 				AA96A4FA0D429964009068BA /* libffi.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		AAC313F60D49C76500145C37 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AAC313F70D49C78200145C37 /* CBDummyModule.pm */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
