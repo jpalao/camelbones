@@ -11,7 +11,7 @@
 #import <CamelBones/Structs.h>
 #import "XSUB.h"
 
-@class CBSuper;
+#import "CBSuper.h"
 
 MODULE = CamelBones::Tests		PACKAGE = CamelBones::Tests
 
