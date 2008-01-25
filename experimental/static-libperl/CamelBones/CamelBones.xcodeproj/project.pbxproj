@@ -155,6 +155,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8425741D0D4A8B4D00A4700F /* CBSuper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBSuper.h; sourceTree = "<group>"; };
 		AA1E7CDA0D48F87D0093ABC4 /* in.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = in.h; sourceTree = "<group>"; };
 		AA1E7CDB0D48F87D0093ABC4 /* Artistic */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = Artistic; path = Perl/Artistic; sourceTree = "<group>"; };
 		AA1E7CDC0D48F87D0093ABC4 /* AUTHORS */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = AUTHORS; path = Perl/AUTHORS; sourceTree = "<group>"; };
@@ -14031,6 +14032,7 @@
 				AA5D753B0D44B491009EDAD5 /* Makefile.PL */,
 				AA5D753E0D44B491009EDAD5 /* Tests.c */,
 				AA5D75400D44B491009EDAD5 /* Tests.xs */,
+				8425741D0D4A8B4D00A4700F /* CBSuper.h */,
 			);
 			name = Tests;
 			path = CPAN/Tests;
@@ -14256,6 +14258,7 @@
 		AA50E2050C87571F004DA7BD /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = AA50E2060C87571F004DA7BD /* Build configuration list for PBXProject "CamelBones" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 0;
 			mainGroup = AA50E2030C87571F004DA7BD;
 			productRefGroup = AA50E2330C87587B004DA7BD /* Products */;
@@ -14414,7 +14417,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
@@ -14434,7 +14437,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
@@ -14508,7 +14511,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = "Release-App-Embedded";
@@ -14528,7 +14531,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = "Release-Lib-Embedded";
