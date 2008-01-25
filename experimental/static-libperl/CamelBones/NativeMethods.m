@@ -160,6 +160,7 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			
 		case 'f':   // float
 			return_type = &ffi_type_float;
+            break;
 			
 		case 'd':   // double
 			return_type = &ffi_type_double;
@@ -340,9 +341,13 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			
 			case '^':
 				// Pointer to id?
-				if (*(arg_type+1) == '@' && argSV != &PL_sv_undef) {
+				if (*(arg_type+1) == '@') {
 					arg_ffi_types[i] = &ffi_type_pointer;
-					arg_values[i].voidp = &output_values[i];
+                    if (argSV) {
+                        arg_values[i].voidp = &(output_values[i].voidp);
+                    } else {
+                        arg_values[i].voidp = NULL;
+                    }
 				} else {
 					arg_ffi_types[i] = &ffi_type_pointer;
 					arg_values[i].voidp = (void*)SvIV(argSV);
@@ -432,8 +437,10 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 
 		} else {
 #ifdef __i386__
-			if (return_type == &ffi_type_float || return_type == &ffi_type_double) {
-				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.voidp, arg_value_ptrs);
+			if (return_type == &ffi_type_float) {
+				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.ffloat, arg_value_ptrs);
+            } else if (return_type == &ffi_type_double) {
+				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.fdouble, arg_value_ptrs);
 			} else {
 				ffi_call(&cif, (void*)objc_msgSend, &return_value.voidp, arg_value_ptrs);
 			}
@@ -456,7 +463,7 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
         SV *argSV = sv ? *sv : NULL;
 		
         if (!argSV) {
-            break;
+            continue;
         }
 		
         const char *arg_type = [methodSig getArgumentTypeAtIndex:i];
@@ -465,7 +472,7 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			
             case '^':   // Pointer
 						// Pointer to id?
-				if (*(arg_type+1) == '@' && argSV != &PL_sv_undef) {
+				if (*(arg_type+1) == '@') {
 					sv_setsv(argSV, CBDerefIDtoSV(output_values[i].voidp));
 				}
                 break;

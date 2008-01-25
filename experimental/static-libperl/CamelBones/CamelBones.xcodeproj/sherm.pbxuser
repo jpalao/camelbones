@@ -18,10 +18,34 @@
 	};
 	AA26E6FF0D47DB4D00CAB762 /* 04-Pointers.t */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1176, 763}}";
+			sepNavIntBoundsRect = "{{0, 0}, {915, 698}}";
+			sepNavSelRange = "{310, 0}";
+			sepNavVisRect = "{{0, 0}, {915, 698}}";
+			sepNavWindowFrame = "{{247, 187}, {960, 827}}";
+		};
+	};
+	AA26E7020D47DB4D00CAB762 /* 12-NSNumber.t */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {812, 801}}";
+			sepNavSelRange = "{433, 0}";
+			sepNavVisRect = "{{0, 0}, {812, 801}}";
+			sepNavWindowFrame = "{{94, 63}, {857, 930}}";
+		};
+	};
+	AA26E7030D47DB4D00CAB762 /* 13-Exceptions.t */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {812, 801}}";
+			sepNavSelRange = "{453, 0}";
+			sepNavVisRect = "{{0, 0}, {812, 801}}";
+			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
+		};
+	};
+	AA26E7050D47DB4D00CAB762 /* 15-Subclassing.t */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {915, 840}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRect = "{{0, 0}, {1176, 763}}";
-			sepNavWindowFrame = "{{38, 110}, {1221, 892}}";
+			sepNavVisRect = "{{0, 142}, {915, 698}}";
+			sepNavWindowFrame = "{{15, 196}, {960, 827}}";
 		};
 	};
 	AA50E2050C87571F004DA7BD /* Project object */ = {
@@ -171,8 +195,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 222927334;
-			PBXWorkspaceStateSaveDate = 222927334;
+			PBXPerProjectTemplateStateSaveDate = 222934975;
+			PBXWorkspaceStateSaveDate = 222934975;
 		};
 		sourceControlManager = AA50E2090C87571F004DA7BD /* Source Control */;
 		userBuildSettings = {
@@ -379,10 +403,10 @@
 	};
 	AA50E3C70C875DB7004DA7BD /* NativeMethods.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {863, 8162}}";
-			sepNavSelRange = "{2247, 0}";
-			sepNavVisRect = "{{0, 840}, {863, 827}}";
-			sepNavWindowFrame = "{{15, 67}, {908, 956}}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 8246}}";
+			sepNavSelRange = "{10850, 0}";
+			sepNavVisRect = "{{0, 5984}, {812, 801}}";
+			sepNavWindowFrame = "{{247, 84}, {857, 930}}";
 		};
 	};
 	AA50E3C80C875DB7004DA7BD /* PerlImports.h */ = {
