@@ -104,7 +104,12 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	
 	// Get the Method signature
     NSMethodSignature *methodSig = [targetID methodSignatureForSelector:sel];
-	
+    
+    // Unknown method
+    if (!methodSig) {
+        croak("Call to unknown method: %s", [NSStringFromSelector(sel) UTF8String]);
+    }
+    
     // Get argument count
     int num_args = methodSig ? [methodSig numberOfArguments] : 0;
 	
@@ -164,6 +169,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			
 		case 'f':   // float
 			return_type = &ffi_type_float;
+            break;
 			
 		case 'd':   // double
 			return_type = &ffi_type_double;
@@ -262,10 +268,6 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
         SV **sv = av_fetch(av, i-2, 0);
         SV *argSV = sv ? *sv : NULL;
 		
-        if (!argSV) {
-            break;
-        }
-
         const char *arg_type = [methodSig getArgumentTypeAtIndex:i];
 		
         // Call the av_* that's appropriate for this argument type
@@ -339,14 +341,18 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			case '@':
 				// id
 				arg_ffi_types[i] = &ffi_type_pointer;
-				arg_values[i].voidp = REAL_CBDerefSVtoID(argSV);
+                arg_values[i].voidp = argSV ? CBDerefSVtoID(argSV) : NULL;
 				break;
 			
 			case '^':
 				// Pointer to id?
-				if (*(arg_type+1) == '@' && argSV != &PL_sv_undef) {
+				if (*(arg_type+1) == '@') {
 					arg_ffi_types[i] = &ffi_type_pointer;
-					arg_values[i].voidp = &output_values[i];
+                    if (argSV) {
+                        arg_values[i].voidp = &(output_values[i].voidp);
+                    } else {
+                        arg_values[i].voidp = NULL;
+                    }
 				} else {
 					arg_ffi_types[i] = &ffi_type_pointer;
 					arg_values[i].voidp = (void*)SvIV(argSV);
@@ -436,8 +442,10 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 
 		} else {
 #ifdef __i386__
-			if (return_type == &ffi_type_float || return_type == &ffi_type_double) {
-				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.voidp, arg_value_ptrs);
+			if (return_type == &ffi_type_float) {
+				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.ffloat, arg_value_ptrs);
+            } else if (return_type == &ffi_type_double) {
+				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.fdouble, arg_value_ptrs);
 			} else {
 				ffi_call(&cif, (void*)objc_msgSend, &return_value.voidp, arg_value_ptrs);
 			}
@@ -448,8 +456,8 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	
     NS_HANDLER
         SV *errsv = get_sv("@", TRUE);
-        sv_setsv(errsv, REAL_CBDerefIDtoSV(localException));
-        croak(Nullch);
+        sv_setsv(errsv, CBDerefIDtoSV(localException));
+        croak("Died.");
 
 	NS_ENDHANDLER
     
@@ -460,7 +468,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
         SV *argSV = sv ? *sv : NULL;
 		
         if (!argSV) {
-            break;
+            continue;
         }
 		
         const char *arg_type = [methodSig getArgumentTypeAtIndex:i];
