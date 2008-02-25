@@ -177,6 +177,7 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 1DEB91EF08733DB70010E9CD /* Build configuration list for PBXProject "libffi" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 08FB7794FE84155DC02AAC07 /* libffi */;
 			projectDirPath = "";
@@ -237,15 +238,18 @@
 		1DEB91F008733DB70010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				OTHER_CFLAGS = (
-					"-DMACOSX",
-					"-arch",
-					ppc64,
-				);
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				OTHER_CFLAGS = "-DMACOSX";
 				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
@@ -254,21 +258,81 @@
 			buildSettings = {
 				ARCHS = (
 					i386,
-					ppc64,
 					ppc,
 				);
+				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				OTHER_CFLAGS = (
-					"-DMACOSX",
-					"-arch",
-					ppc64,
-				);
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				OTHER_CFLAGS = "-DMACOSX";
 				PREBINDING = NO;
 				PUBLIC_HEADERS_FOLDER_PATH = ../include/ffi;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
+		};
+		84AC1B7D0D737C0400C751F7 /* Release App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				GCC_FAST_OBJC_DISPATCH = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				OTHER_CFLAGS = "-DMACOSX";
+				PREBINDING = NO;
+				PUBLIC_HEADERS_FOLDER_PATH = ../include/ffi;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = "Release App-Embedded";
+		};
+		84AC1B7E0D737C0400C751F7 /* Release App-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/lib;
+				PRIVATE_HEADERS_FOLDER_PATH = /usr/include;
+				PRODUCT_NAME = ffi;
+			};
+			name = "Release App-Embedded";
+		};
+		84AC1B7F0D737C0500C751F7 /* Release Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					i386,
+					ppc,
+				);
+				GCC_FAST_OBJC_DISPATCH = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				OTHER_CFLAGS = "-DMACOSX";
+				PREBINDING = NO;
+				PUBLIC_HEADERS_FOLDER_PATH = ../include/ffi;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = "Release Lib-Embedded";
+		};
+		84AC1B800D737C0500C751F7 /* Release Lib-Embedded */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/lib;
+				PRIVATE_HEADERS_FOLDER_PATH = /usr/include;
+				PRODUCT_NAME = ffi;
+			};
+			name = "Release Lib-Embedded";
 		};
 /* End XCBuildConfiguration section */
 
@@ -278,6 +342,8 @@
 			buildConfigurations = (
 				1DEB91EC08733DB70010E9CD /* Debug */,
 				1DEB91ED08733DB70010E9CD /* Release */,
+				84AC1B7E0D737C0400C751F7 /* Release App-Embedded */,
+				84AC1B800D737C0500C751F7 /* Release Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -287,6 +353,8 @@
 			buildConfigurations = (
 				1DEB91F008733DB70010E9CD /* Debug */,
 				1DEB91F108733DB70010E9CD /* Release */,
+				84AC1B7D0D737C0400C751F7 /* Release App-Embedded */,
+				84AC1B7F0D737C0500C751F7 /* Release Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
