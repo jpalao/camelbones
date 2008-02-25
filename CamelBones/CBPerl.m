@@ -42,7 +42,7 @@ PerlInterpreter *_CBPerlInterpreter;
         [CBPerl stubInit];
         
         // Now create a shared Perl and autorelease it
-        _sharedPerl = [[[CBPerl alloc] init] autorelease];
+        _sharedPerl = [[CBPerl alloc] init];
         return _sharedPerl;
     }
 }
@@ -54,7 +54,7 @@ PerlInterpreter *_CBPerlInterpreter;
         return _sharedPerl;
     } else {
         // No, create one and autorelease it
-        _sharedPerl = [[[CBPerl alloc] initXS] autorelease];
+        _sharedPerl = [[CBPerl alloc] initXS];
         return _sharedPerl;
     }
 }
