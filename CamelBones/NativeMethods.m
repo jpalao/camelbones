@@ -183,7 +183,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			return_type = &ffi_type_pointer;
 			break;
 			
-		case '@':
+		case '@': // id
 			return_type = &ffi_type_pointer;
 			break;
 
