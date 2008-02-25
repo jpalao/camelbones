@@ -5,13 +5,8 @@ package CBCommon;
 use Config;
 use Cwd 'abs_path';
 
-my $CamelBonesPath = '.';
+my $CamelBonesPath = $ENV{'CAMELBONES_PATH'};
 
-# Look up to four levels above
-for (1..4) {
-    last if (-d "$CamelBonesPath/CamelBones.framework");
-    $CamelBonesPath = "../$CamelBonesPath";
-}
 my $CamelBones = "$CamelBonesPath/CamelBones.framework";
 
 $CamelBones = abs_path($CamelBones);
