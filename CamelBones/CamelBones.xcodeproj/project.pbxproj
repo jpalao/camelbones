@@ -14,11 +14,10 @@
 			);
 			dependencies = (
 				FFE9CF480D135B8400BB5E57 /* PBXTargetDependency */,
-				FFE9CF440D135B7200BB5E57 /* PBXTargetDependency */,
+				849691FE0D72A87600A81045 /* PBXTargetDependency */,
 				AA6C320C0CCC962900306BD7 /* PBXTargetDependency */,
 				AA6C320E0CCC962900306BD7 /* PBXTargetDependency */,
 				AA6C32BD0CCC9DE900306BD7 /* PBXTargetDependency */,
-				FFBB93350D15DD70002FE7A4 /* PBXTargetDependency */,
 			);
 			name = All;
 			productName = All;
@@ -146,6 +145,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		849691FD0D72A87600A81045 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FFE9CE900D13073A00BB5E57;
+			remoteInfo = "darwin-thread-multi-2level-5.8.8";
+		};
 		AA50E21D0C8757A7004DA7BD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */;
@@ -216,13 +222,6 @@
 			remoteGlobalIDString = AA6C32B50CCC9DB000306BD7;
 			remoteInfo = "Perl Module";
 		};
-		FFBB93340D15DD70002FE7A4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FFBB932F0D15DD58002FE7A4;
-			remoteInfo = "Bundle CPAN Kits";
-		};
 		FFBB93370D15DDC6002FE7A4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
@@ -243,13 +242,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = AA9141B20CC98CCE0055B0E5;
 			remoteInfo = CamelBones.framework;
-		};
-		FFE9CF430D135B7200BB5E57 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FFE9CE900D13073A00BB5E57;
-			remoteInfo = "darwin-thread-multi-2level-5.8.8";
 		};
 		FFE9CF470D135B8400BB5E57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -274,6 +266,25 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		84AC1B9F0D73805000C751F7 /* Tests.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Tests.pm; sourceTree = "<group>"; };
+		84AC1BA90D73807100C751F7 /* 00-CamelBones.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00-CamelBones.t"; sourceTree = "<group>"; };
+		84AC1BAA0D73807100C751F7 /* 01-Functions.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "01-Functions.t"; sourceTree = "<group>"; };
+		84AC1BAB0D73807100C751F7 /* 02-Conversions.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "02-Conversions.t"; sourceTree = "<group>"; };
+		84AC1BAC0D73807100C751F7 /* 03-Memory.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "03-Memory.t"; sourceTree = "<group>"; };
+		84AC1BAD0D73807100C751F7 /* 04-Pointers.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "04-Pointers.t"; sourceTree = "<group>"; };
+		84AC1BAE0D73807100C751F7 /* 10-NSString.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "10-NSString.t"; sourceTree = "<group>"; };
+		84AC1BAF0D73807100C751F7 /* 11-NSArray.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "11-NSArray.t"; sourceTree = "<group>"; };
+		84AC1BB00D73807100C751F7 /* 12-NSNumber.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "12-NSNumber.t"; sourceTree = "<group>"; };
+		84AC1BB10D73807100C751F7 /* 13-Exceptions.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "13-Exceptions.t"; sourceTree = "<group>"; };
+		84AC1BB20D73807100C751F7 /* 14-Threads.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "14-Threads.t"; sourceTree = "<group>"; };
+		84AC1BB30D73807100C751F7 /* 15-Subclassing.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "15-Subclassing.t"; sourceTree = "<group>"; };
+		84AC1BB40D73807100C751F7 /* 20-PerlObject.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "20-PerlObject.t"; sourceTree = "<group>"; };
+		84AC1BB50D73807100C751F7 /* 30-BundleLoader.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "30-BundleLoader.t"; sourceTree = "<group>"; };
+		84AC1BB70D73808C00C751F7 /* CBExceptionTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CBExceptionTests.c; sourceTree = "<group>"; };
+		84AC1BB80D73808C00C751F7 /* CBSuper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CBSuper.c; sourceTree = "<group>"; };
+		84AC1BB90D73808C00C751F7 /* CBThreadTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CBThreadTests.c; sourceTree = "<group>"; };
+		84AC1BBA0D73808C00C751F7 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
+		84AC1BBB0D73808C00C751F7 /* Tests.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tests.xs; sourceTree = "<group>"; };
 		AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libffi.xcodeproj; path = libffi/libffi.xcodeproj; sourceTree = "<group>"; };
 		AA50E3A80C875DB7004DA7BD /* AppMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppMain.h; sourceTree = "<group>"; };
 		AA50E3A90C875DB7004DA7BD /* AppMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppMain.m; sourceTree = "<group>"; };
@@ -465,6 +476,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84AC1BA80D73807100C751F7 /* t */ = {
+			isa = PBXGroup;
+			children = (
+				84AC1BA90D73807100C751F7 /* 00-CamelBones.t */,
+				84AC1BAA0D73807100C751F7 /* 01-Functions.t */,
+				84AC1BAB0D73807100C751F7 /* 02-Conversions.t */,
+				84AC1BAC0D73807100C751F7 /* 03-Memory.t */,
+				84AC1BAD0D73807100C751F7 /* 04-Pointers.t */,
+				84AC1BAE0D73807100C751F7 /* 10-NSString.t */,
+				84AC1BAF0D73807100C751F7 /* 11-NSArray.t */,
+				84AC1BB00D73807100C751F7 /* 12-NSNumber.t */,
+				84AC1BB10D73807100C751F7 /* 13-Exceptions.t */,
+				84AC1BB20D73807100C751F7 /* 14-Threads.t */,
+				84AC1BB30D73807100C751F7 /* 15-Subclassing.t */,
+				84AC1BB40D73807100C751F7 /* 20-PerlObject.t */,
+				84AC1BB50D73807100C751F7 /* 30-BundleLoader.t */,
+			);
+			name = t;
+			path = CPAN/t;
+			sourceTree = "<group>";
+		};
+		84AC1BB60D73808C00C751F7 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				84AC1BB70D73808C00C751F7 /* CBExceptionTests.c */,
+				84AC1BB80D73808C00C751F7 /* CBSuper.c */,
+				84AC1BB90D73808C00C751F7 /* CBThreadTests.c */,
+				84AC1BBA0D73808C00C751F7 /* Makefile.PL */,
+				84AC1BBB0D73808C00C751F7 /* Tests.xs */,
+			);
+			name = Tests;
+			path = CPAN/Tests;
+			sourceTree = "<group>";
+		};
 		AA50E2030C87571F004DA7BD = {
 			isa = PBXGroup;
 			children = (
@@ -701,6 +746,8 @@
 				AA9143770CC99B2A0055B0E5 /* META.yml */,
 				AA9143790CC99B2A0055B0E5 /* ppport.h */,
 				AA91437A0CC99B2A0055B0E5 /* README */,
+				84AC1BA80D73807100C751F7 /* t */,
+				84AC1BB60D73808C00C751F7 /* Tests */,
 			);
 			name = "Perl Module";
 			sourceTree = "<group>";
@@ -738,6 +785,7 @@
 		AA9143630CC99B2A0055B0E5 /* CamelBones */ = {
 			isa = PBXGroup;
 			children = (
+				84AC1B9F0D73805000C751F7 /* Tests.pm */,
 				AA9143640CC99B2A0055B0E5 /* AppKit */,
 				AA9143660CC99B2A0055B0E5 /* AppKit.pm */,
 				AA9143670CC99B2A0055B0E5 /* Foundation */,
@@ -900,6 +948,7 @@
 		AA50E2050C87571F004DA7BD /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = AA50E2060C87571F004DA7BD /* Build configuration list for PBXProject "CamelBones" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 0;
 			mainGroup = AA50E2030C87571F004DA7BD;
 			productRefGroup = AA50E2330C87587B004DA7BD /* Products */;
@@ -969,7 +1018,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rm -Rf ${SRCROOT}/../CamelBones.framework\ncp -R ${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework ${SRCROOT}/../\n\nexport PERL=/usr/bin/perl5.8.8\nexport SDK=/Developer/SDKs/MacOSX10.5.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -DPERL_LEOPARD -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework/Resources/5.8.8\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.6\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexit 0\n";
+			shellScript = "export PERL=/usr/bin/perl5.8.8\nexport SDK=/Developer/SDKs/MacOSX10.5.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -DPERL_LEOPARD -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework/Resources/5.8.8\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.6\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexit 0\n";
 		};
 		FFBB932E0D15DD58002FE7A4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1068,6 +1117,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		849691FE0D72A87600A81045 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FFE9CE900D13073A00BB5E57 /* darwin-thread-multi-2level-5.8.8 */;
+			targetProxy = 849691FD0D72A87600A81045 /* PBXContainerItemProxy */;
+		};
 		AA50E5000C877084004DA7BD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = libffi;
@@ -1113,11 +1167,6 @@
 			target = AA6C32B50CCC9DB000306BD7 /* Perl Module */;
 			targetProxy = AA6C32BC0CCC9DE900306BD7 /* PBXContainerItemProxy */;
 		};
-		FFBB93350D15DD70002FE7A4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FFBB932F0D15DD58002FE7A4 /* Bundle CPAN Kits */;
-			targetProxy = FFBB93340D15DD70002FE7A4 /* PBXContainerItemProxy */;
-		};
 		FFBB93380D15DDC6002FE7A4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA6C32B50CCC9DB000306BD7 /* Perl Module */;
@@ -1132,11 +1181,6 @@
 			isa = PBXTargetDependency;
 			target = AA9141B20CC98CCE0055B0E5 /* CamelBones.framework */;
 			targetProxy = FFE9CE940D13073A00BB5E57 /* PBXContainerItemProxy */;
-		};
-		FFE9CF440D135B7200BB5E57 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = FFE9CE900D13073A00BB5E57 /* darwin-thread-multi-2level-5.8.8 */;
-			targetProxy = FFE9CF430D135B7200BB5E57 /* PBXContainerItemProxy */;
 		};
 		FFE9CF480D135B8400BB5E57 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1158,6 +1202,7 @@
 					/System/Library/Frameworks,
 					/Library/Frameworks,
 				);
+				GCC_FAST_OBJC_DISPATCH = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = "-Wall";
@@ -1176,6 +1221,7 @@
 					/System/Library/Frameworks,
 					/Library/Frameworks,
 				);
+				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
@@ -1323,15 +1369,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = "Release-App-Embedded";
 		};
@@ -1339,15 +1387,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "@loader_path/../Frameworks";
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = "Release-Lib-Embedded";
 		};
@@ -1495,6 +1545,7 @@
 					/System/Library/Frameworks,
 					/Library/Frameworks,
 				);
+				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
@@ -1514,6 +1565,7 @@
 					/System/Library/Frameworks,
 					/Library/Frameworks,
 				);
+				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
@@ -1598,9 +1650,10 @@
 			buildSettings = {
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
@@ -1608,6 +1661,7 @@
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Debug;
 		};
@@ -1615,15 +1669,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = /Library/Frameworks;
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 			};
 			name = Release;
 		};
