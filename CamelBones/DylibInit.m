@@ -8,17 +8,10 @@
 #import "Globals.h"
 #import "Wrappers.h"
 
-#ifdef GNUSTEP
 #include <dlfcn.h>
 #define CBResolve(name)                         \
     name = dlsym(b, "REAL_" #name);             \
     if (!name) NSLog(fmt, #name);
-
-#else
-#define CBResolve(name)                                                 \
-    name = CFBundleGetFunctionPointerForName(b, (CFStringRef)@"REAL_" #name); \
-	if (!name) NSLog(fmt, #name);
-#endif
 
 @implementation CBPerl (DylibInit)
 + (void) dylibInit: (const char*) archver {
@@ -34,32 +27,12 @@
     // Resolve the path to the dylib, and load it
     NSString *bundlePath = [NSString stringWithFormat:@"%@/Libraries/%s.bundle", [theBundle bundlePath], archver];
 
-#ifdef GNUSTEP
-    NSString *bundleBinPath = [NSString stringWithFormat:@"%@/%s", bundlePath, archver];
+    NSString *bundleBinPath = [NSString stringWithFormat:@"%@/Contents/MacOS/%s", bundlePath, archver];
     const char *bundleBinCPath = [bundleBinPath UTF8String];
     void *b = dlopen(bundleBinCPath, RTLD_NOW | RTLD_GLOBAL);
     if (!b) {
         NSLog(@"Error loading support bundle at %s: %s", bundleBinCPath, dlerror());
     }
-#else
-	NSURL *bundleURL = [NSURL fileURLWithPath: bundlePath];
-	CFBundleRef b = CFBundleCreate(NULL, (CFURLRef)bundleURL);
-	if (!b) {
-
-		// No joy, try looking for a shared bundle
-		bundlePath = [NSString stringWithFormat:@"/Library/Frameworks/CamelBones.framework/Libraries/%s.bundle", archver];
-		bundleURL = [NSURL fileURLWithPath: bundlePath];
-		b = CFBundleCreate(NULL, (CFURLRef)bundleURL);
-
-		if (!b) {
-
-			// Give up
-			NSLog(@"Error creating CFBundle from support bundle at URL %@", bundleURL);
-			return;
-		}
-	}
-	CFBundleLoadExecutable(b);
-#endif
 
     // Conversions.m
 	NSString *fmt = @"Could not load function: %s";
@@ -129,10 +102,6 @@
 	CBResolve(CBCreateWrapperObject)
 	CBResolve(CBCreateWrapperObjectWithClassName)
 	CBResolve(CBCreateObjectOfClass)
-
-#ifndef GNUSTEP
-	CFRelease(b);
-#endif
 }
 
 @end
