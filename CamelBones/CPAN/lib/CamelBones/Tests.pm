@@ -10,7 +10,7 @@ use CamelBones;
 
 require Exporter;
 our @ISA = qw(Exporter);
-our $VERSION = '1.0.2';
+our $VERSION = $CamelBones::VERSION;
 our @EXPORT = qw(
 				 cbt_isNil
 				 cbt_char2string
