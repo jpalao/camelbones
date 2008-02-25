@@ -341,7 +341,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			case '@':
 				// id
 				arg_ffi_types[i] = &ffi_type_pointer;
-                arg_values[i].voidp = argSV ? CBDerefSVtoID(argSV) : NULL;
+                arg_values[i].voidp = argSV ? REAL_CBDerefSVtoID(argSV) : NULL;
 				break;
 			
 			case '^':
@@ -456,7 +456,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	
     NS_HANDLER
         SV *errsv = get_sv("@", TRUE);
-        sv_setsv(errsv, CBDerefIDtoSV(localException));
+        sv_setsv(errsv, REAL_CBDerefIDtoSV(localException));
         croak("Died.");
 
 	NS_ENDHANDLER
