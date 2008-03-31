@@ -285,6 +285,9 @@
 		84AC1BB90D73808C00C751F7 /* CBThreadTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CBThreadTests.c; sourceTree = "<group>"; };
 		84AC1BBA0D73808C00C751F7 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
 		84AC1BBB0D73808C00C751F7 /* Tests.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tests.xs; sourceTree = "<group>"; };
+		84B5405D0DA178BD00C351C3 /* PluginInfo-5.8.1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.1.plist"; sourceTree = SOURCE_ROOT; };
+		84B5405E0DA178BD00C351C3 /* PluginInfo-5.8.6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.6.plist"; sourceTree = SOURCE_ROOT; };
+		84B5405F0DA178BD00C351C3 /* PluginInfo-5.8.8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.8.plist"; sourceTree = SOURCE_ROOT; };
 		AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libffi.xcodeproj; path = libffi/libffi.xcodeproj; sourceTree = "<group>"; };
 		AA50E3A80C875DB7004DA7BD /* AppMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppMain.h; sourceTree = "<group>"; };
 		AA50E3A90C875DB7004DA7BD /* AppMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppMain.m; sourceTree = "<group>"; };
@@ -513,6 +516,9 @@
 		AA50E2030C87571F004DA7BD = {
 			isa = PBXGroup;
 			children = (
+				84B5405D0DA178BD00C351C3 /* PluginInfo-5.8.1.plist */,
+				84B5405E0DA178BD00C351C3 /* PluginInfo-5.8.6.plist */,
+				84B5405F0DA178BD00C351C3 /* PluginInfo-5.8.8.plist */,
 				AA50E9640C879392004DA7BD /* Info.plist */,
 				AA50E5CF0C877E37004DA7BD /* Resources */,
 				AA50E3A70C875D23004DA7BD /* CamelBones */,
@@ -1242,6 +1248,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.6.plist";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1274,6 +1281,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.6.plist";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1309,6 +1317,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
@@ -1343,6 +1352,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
@@ -1412,6 +1422,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.6.plist";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1444,6 +1455,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.6.plist";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.6/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1477,6 +1489,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
@@ -1511,6 +1524,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
 				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
@@ -1731,6 +1745,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.8.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
@@ -1768,6 +1783,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.8.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
@@ -1805,6 +1821,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.8.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
@@ -1842,6 +1859,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.8.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"/System/Library/Perl/5.8.8/darwin-thread-multi-2level/CORE",
 					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
