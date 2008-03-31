@@ -23,6 +23,8 @@
 #include "ffi.h"
 
 typedef union {
+    ffi_arg uarg;
+    ffi_sarg sarg;
 	unsigned char schar;
 	char uchar;
 	unsigned short sshort;
@@ -84,12 +86,35 @@ void init_ffi_types() {
 	ffi_type_structs_init++;
 }
 
+// Given an ffi_type describing the return value, and a BOOL indicating
+// whether a call to super is to be made, return a pointer to the correct
+// objc_msgSend() variant to use
+//
+// This assumes the ffi_type has been properly initialized with its size
+// and alignment info - call ffi_prep_cif before calling this.
+void* REAL_CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
+    // On Intel, floats and doubles call objc_msgSend_fpret()
+#ifdef __i386__
+    if (theType == &ffi_type_float || theType == &ffi_type_double)
+        // There is no objc_msgSendSuper_fpret() - why not?
+        return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend_fpret;
+#endif
+
+    // If this is a struct, whether to call _stret() depends on the
+    // structure size - if it won't fit in a single register, call _stret()
+    if (theType->type == FFI_TYPE_STRUCT && theType->size > sizeof(void*))
+        return isSuper ? (void*)&objc_msgSendSuper_stret : (void*)&objc_msgSend_stret;
+
+    // Otherwise, use vanilla
+    return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend;
+}
+
 // Call a native class or object method
 void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
-
+    
 	if (0 == ffi_type_structs_init) {
 		init_ffi_types();
 	}
@@ -135,38 +160,22 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 
 	// Set up the return type
 	switch ( return_type_string[0] ) {
+            // Return all integral types as longs
 		case 'c':   // char
-			return_type = &ffi_type_schar;
-			break;
-
 		case 'i':   // int
-			return_type = &ffi_type_sint;
-			break;
-		
 		case 's':   // short
-			return_type = &ffi_type_sshort;
-			break;
-		
 		case 'l':   // long
 			return_type = &ffi_type_slong;
-			break;
-		
+            break;
+
+            // PPC Return all integral types as longs
 		case 'C':   // unsigned char
-			return_type = &ffi_type_uchar;
-			break;
-		
 		case 'I':   // unsigned int
-			return_type = &ffi_type_uint32;
-			break;
-		
 		case 'S':   // unsigned short
-			return_type = &ffi_type_ushort;
-			break;
-			
 		case 'L':   // unsigned long
 			return_type = &ffi_type_ulong;
-			break;
-			
+            break;
+
 		case 'f':   // float
 			return_type = &ffi_type_float;
             break;
@@ -174,7 +183,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 		case 'd':   // double
 			return_type = &ffi_type_double;
 			break;
-			
+
 		case 'v':   // void
 			return_type = &ffi_type_void;
 			break;
@@ -273,7 +282,6 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
         // Call the av_* that's appropriate for this argument type
         switch (*arg_type) {
             case 'c':
-				// char
 				arg_ffi_types[i] = &ffi_type_schar;
 				arg_values[i].schar = SvIV(argSV);
 				break;
@@ -295,9 +303,8 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 				arg_ffi_types[i] = &ffi_type_slong;
 				arg_values[i].slong = SvIV(argSV);
 				break;
-				
+
 			case 'C':
-				// unsigned char
 				arg_ffi_types[i] = &ffi_type_uchar;
 				arg_values[i].uchar = SvUV(argSV);
 				break;
@@ -319,7 +326,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 				arg_ffi_types[i] = &ffi_type_ulong;
 				arg_values[i].ulong = SvUV(argSV);
 				break;
-				
+
 			case 'f':
 				// float
 				arg_ffi_types[i] = &ffi_type_float;
@@ -434,31 +441,15 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 		return nil;
 	}
 
+    void* messenger_func = REAL_CBMessengerFunctionForFFIType(return_type, isSuper);
+
     // Finished processing arguments, call the method!
     NS_DURING
-
-		if (isSuper) {
-			ffi_call(&cif, (void*)objc_msgSendSuper, &return_value.voidp, arg_value_ptrs);
-
-		} else {
-#ifdef __i386__
-			if (return_type == &ffi_type_float) {
-				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.ffloat, arg_value_ptrs);
-            } else if (return_type == &ffi_type_double) {
-				ffi_call(&cif, (void*)objc_msgSend_fpret, &return_value.fdouble, arg_value_ptrs);
-			} else {
-				ffi_call(&cif, (void*)objc_msgSend, &return_value.voidp, arg_value_ptrs);
-			}
-#else
-			ffi_call(&cif, (void*)objc_msgSend, &return_value.voidp, arg_value_ptrs);
-#endif
-		}
-	
+        ffi_call(&cif, messenger_func, &return_value.voidp, arg_value_ptrs);
     NS_HANDLER
         SV *errsv = get_sv("@", TRUE);
         sv_setsv(errsv, REAL_CBDerefIDtoSV(localException));
         croak("Died.");
-
 	NS_ENDHANDLER
     
 	// Process output arguments
@@ -487,46 +478,23 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	// Handle return value
 	SV *ret = newSV(0);
     switch (*return_type_string) {
+            // Promote all integral types
         case 'c':
-			// char
-            sv_setiv(ret, return_value.schar);
-            break;
-			
         case 'i':
-			// int
-            sv_setiv(ret, return_value.sint);
-            break;
-
         case 's':
-			// short
-            sv_setiv(ret, return_value.sshort);
-            break;
-        
 		case 'l':
-			// long
+			// char
             sv_setiv(ret, return_value.slong);
             break;
-			
+
+            // Promote all integral types
         case 'C':
-			// unsigned char
-            sv_setuv(ret, return_value.uchar);
-            break;
-        
-		case 'I':
-			// unsigned int
-            sv_setuv(ret, return_value.uint);
-            break;
-        
 		case 'S':
-			// unsigned short
-            sv_setuv(ret, return_value.ushort);
-            break;
-			
+		case 'I':
 		case 'L':
-			// unsigned long
             sv_setuv(ret, return_value.ulong);
             break;
-			
+
         case 'f':
 			// float
             sv_setnv(ret, return_value.ffloat);
@@ -536,7 +504,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			// double
             sv_setnv(ret, return_value.fdouble);
             break;
-			
+
         case 'v':   // void
             sv_setsv(ret, &PL_sv_undef);
             break;
