@@ -49,6 +49,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		84B5407B0DA17E9300C351C3 /* CBDummyModule.pm in Resources */ = {isa = PBXBuildFile; fileRef = 84B5406F0DA17D3800C351C3 /* CBDummyModule.pm */; };
 		AA50E4EF0C87705C004DA7BD /* CBPerl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AC0C875DB7004DA7BD /* CBPerl.m */; };
 		AA50E4F00C87705C004DA7BD /* CBPerlArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */; };
 		AA50E4F10C87705C004DA7BD /* CBPerlHash.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */; };
@@ -288,6 +289,7 @@
 		84B5405D0DA178BD00C351C3 /* PluginInfo-5.8.1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.1.plist"; sourceTree = SOURCE_ROOT; };
 		84B5405E0DA178BD00C351C3 /* PluginInfo-5.8.6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.6.plist"; sourceTree = SOURCE_ROOT; };
 		84B5405F0DA178BD00C351C3 /* PluginInfo-5.8.8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.8.plist"; sourceTree = SOURCE_ROOT; };
+		84B5406F0DA17D3800C351C3 /* CBDummyModule.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = CBDummyModule.pm; sourceTree = "<group>"; };
 		AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libffi.xcodeproj; path = libffi/libffi.xcodeproj; sourceTree = "<group>"; };
 		AA50E3A80C875DB7004DA7BD /* AppMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppMain.h; sourceTree = "<group>"; };
 		AA50E3A90C875DB7004DA7BD /* AppMain.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AppMain.m; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 		AA91431A0CC99B010055B0E5 /* Perl Module */ = {
 			isa = PBXGroup;
 			children = (
+				84B5406F0DA17D3800C351C3 /* CBDummyModule.pm */,
 				AA83FE0E0CC9E9CF00E56F20 /* typemap */,
 				AA91431C0CC99B2A0055B0E5 /* AppKit */,
 				AA9143570CC99B2A0055B0E5 /* CamelBones.xs */,
@@ -914,6 +917,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA9142030CC98CCE0055B0E5 /* Build configuration list for PBXNativeTarget "CamelBones.framework" */;
 			buildPhases = (
+				84B5407D0DA17EB100C351C3 /* Resources */,
 				AA9141B70CC98CCE0055B0E5 /* Headers */,
 				AA9141C00CC98CCE0055B0E5 /* Sources */,
 				AA9141C60CC98CCE0055B0E5 /* Frameworks */,
@@ -989,6 +993,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		84B5407D0DA17EB100C351C3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				84B5407B0DA17E9300C351C3 /* CBDummyModule.pm in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA50E4E50C877030004DA7BD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
