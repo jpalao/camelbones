@@ -286,9 +286,9 @@
 		84AC1BB90D73808C00C751F7 /* CBThreadTests.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CBThreadTests.c; sourceTree = "<group>"; };
 		84AC1BBA0D73808C00C751F7 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
 		84AC1BBB0D73808C00C751F7 /* Tests.xs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Tests.xs; sourceTree = "<group>"; };
-		84B5405D0DA178BD00C351C3 /* PluginInfo-5.8.1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.1.plist"; sourceTree = SOURCE_ROOT; };
-		84B5405E0DA178BD00C351C3 /* PluginInfo-5.8.6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.6.plist"; sourceTree = SOURCE_ROOT; };
-		84B5405F0DA178BD00C351C3 /* PluginInfo-5.8.8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "PluginInfo-5.8.8.plist"; sourceTree = SOURCE_ROOT; };
+		84B5405D0DA178BD00C351C3 /* PluginInfo-5.8.1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "PluginInfo-5.8.1.plist"; sourceTree = SOURCE_ROOT; };
+		84B5405E0DA178BD00C351C3 /* PluginInfo-5.8.6.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "PluginInfo-5.8.6.plist"; sourceTree = SOURCE_ROOT; };
+		84B5405F0DA178BD00C351C3 /* PluginInfo-5.8.8.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "PluginInfo-5.8.8.plist"; sourceTree = SOURCE_ROOT; };
 		84B5406F0DA17D3800C351C3 /* CBDummyModule.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = CBDummyModule.pm; sourceTree = "<group>"; };
 		AA50E2160C8757A7004DA7BD /* libffi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libffi.xcodeproj; path = libffi/libffi.xcodeproj; sourceTree = "<group>"; };
 		AA50E3A80C875DB7004DA7BD /* AppMain.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AppMain.h; sourceTree = "<group>"; };
@@ -1221,6 +1221,7 @@
 					/Library/Frameworks,
 				);
 				GCC_FAST_OBJC_DISPATCH = NO;
+				GCC_MODEL_TUNING = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = "-Wall";
@@ -1241,6 +1242,7 @@
 				);
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = "-Wall";
@@ -1252,11 +1254,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
@@ -1287,10 +1290,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.6.plist";
@@ -1321,16 +1325,16 @@
 				ARCHS = ppc;
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1358,14 +1362,14 @@
 				ARCHS = ppc;
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1393,7 +1397,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
@@ -1411,7 +1415,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
@@ -1428,10 +1432,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.6.plist";
@@ -1461,10 +1466,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.6.plist";
@@ -1495,14 +1501,14 @@
 				ARCHS = ppc;
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1530,14 +1536,14 @@
 				ARCHS = ppc;
 				BUNDLE_LOADER = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/CamelBones";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)/CamelBones.framework/Libraries";
+				DEBUG_INFORMATION_FORMAT = stabs;
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.1.plist";
-				INSTALL_PATH = "$(HOME)/Library/Bundles";
 				LIBRARY_SEARCH_PATHS = "/System/Library/Perl/5.8.1/darwin-thread-multi-2level/CORE";
 				OTHER_CFLAGS = (
 					"-fno-common",
@@ -1573,6 +1579,7 @@
 				);
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = "-Wall";
@@ -1593,6 +1600,7 @@
 				);
 				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 				WARNING_CFLAGS = "-Wall";
@@ -1678,7 +1686,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1697,7 +1705,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
@@ -1753,7 +1761,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
@@ -1792,7 +1800,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.8.plist";
@@ -1830,7 +1838,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.8.plist";
@@ -1868,7 +1876,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(BUILD_DIR)/$(CONFIGURATION)";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = G5;
+				GCC_MODEL_TUNING = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				INFOPLIST_FILE = "$(PROJECT_DIR)/PluginInfo-5.8.8.plist";
