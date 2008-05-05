@@ -279,21 +279,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = FFE9CE900D13073A00BB5E57 /* darwin-thread-multi-2level-5.8.8 */;
+			remoteGlobalIDString = FFE9CE900D13073A00BB5E57;
 			remoteInfo = "darwin-thread-multi-2level-5.8.8";
 		};
 		AA7F61320DCCFAE700D20E5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AA50E4E80C877030004DA7BD /* darwin-thread-multi-2level-5.8.6 */;
+			remoteGlobalIDString = AA50E4E80C877030004DA7BD;
 			remoteInfo = "darwin-thread-multi-2level-5.8.6";
 		};
 		AA7F61340DCCFAEB00D20E5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AA50E5470C877635004DA7BD /* darwin-thread-multi-2level-5.8.1 */;
+			remoteGlobalIDString = AA50E5470C877635004DA7BD;
 			remoteInfo = "darwin-thread-multi-2level-5.8.1";
 		};
 		AA7F613C0DCCFBA300D20E5E /* PBXContainerItemProxy */ = {
@@ -342,21 +342,21 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AA7F614E0DCCFBA600D20E5E /* Panther */;
+			remoteGlobalIDString = AA7F614E0DCCFBA600D20E5E;
 			remoteInfo = Panther;
 		};
 		AA7F617A0DCCFBF100D20E5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AA7F613A0DCCFBA300D20E5E /* Tiger */;
+			remoteGlobalIDString = AA7F613A0DCCFBA300D20E5E;
 			remoteInfo = Tiger;
 		};
 		AA7F61810DCD028500D20E5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA50E2050C87571F004DA7BD /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = AA6C32080CCC962000306BD7 /* Leopard */;
+			remoteGlobalIDString = AA6C32080CCC962000306BD7;
 			remoteInfo = Leopard;
 		};
 		FFE9CE920D13073A00BB5E57 /* PBXContainerItemProxy */ = {
@@ -1169,7 +1169,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PERL=/usr/bin/perl5.8.8\nexport SDK=/Developer/SDKs/MacOSX10.5.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -DPERL_LEOPARD -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework/Resources/5.8.8\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.6\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexit 0\n";
+			shellScript = "export PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\n\nif [ \"${CONFIGURATION}\" == \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/Library/Perl/5.8.6\" ;\nelse\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.6\" ;\nfi\n\n$PERL Makefile.PL LIB=$LIBDIR\nmake\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ] ; then\n\tmake test\nelse\n\tmake install\nfi\n\nmake distclean\n\nexit 0\n";
 		};
 		84893C080DCCF7A400B48051 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1182,7 +1182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexit 0\n";
+			shellScript = "export PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\n\nif [ \"${CONFIGURATION}\" == \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/Library/Perl/5.8.1\" ;\nelse\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\nfi\n\n$PERL Makefile.PL LIB=$LIBDIR\nmake\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ] ; then\n\tmake test\nelse\n\tmake install\nfi\n\nmake distclean\n\nexit 0\n";
 		};
 		AA6C32B40CCC9DB000306BD7 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1195,7 +1195,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PERL=/usr/bin/perl5.8.8\nexport SDK=/Developer/SDKs/MacOSX10.5.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -DPERL_LEOPARD -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"${BUILD_DIR}/${CONFIGURATION}/CamelBones.framework/Resources/5.8.8\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.6\nexport SDK=/Developer/SDKs/MacOSX10.4u.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.6\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexport PERL=/usr/bin/perl5.8.1\nexport SDK=/Developer/SDKs/MacOSX10.3.9.sdk\nexport CFLAGS=\"-arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\nif [ \"${CONFIGURATION}\" != \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.1\" ;\n\t$PERL Makefile.PL LIB=$LIBDIR\n\tmake\n\tmake test\n\tmake install\n\tmake distclean\nfi\n\nexit 0\n";
+			shellScript = "export PERL=/usr/bin/perl5.8.8\nexport SDK=/Developer/SDKs/MacOSX10.5.sdk\nexport CFLAGS=\"-arch i386 -arch ppc -isysroot$SDK -ObjC -F$BUILD_DIR/$CONFIGURATION\"\nexport LDFLAGS=\"-arch i386 -arch ppc -Wl,-syslibroot,$SDK\"\nexport CAMELBONES_PATH=\"$BUILD_DIR/$CONFIGURATION\"\n\ncd ${SRCROOT}/CPAN;\n\n\nif [ \"${CONFIGURATION}\" == \"Release\" ] ; then\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/Library/Perl/5.8.8\" ;\nelse\n\texport LIBDIR=\"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Resources/5.8.8\" ;\nfi\n\n$PERL Makefile.PL LIB=$LIBDIR\nmake\n\nif [ \"${CONFIGURATION}\" == \"Debug\" ] ; then\n\tmake test\nelse\n\tmake install\nfi\n\nmake distclean\n\nexit 0\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

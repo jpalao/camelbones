@@ -5,12 +5,6 @@
 //  Copyright (c) 2004 Sherm Pendley. All rights reserved.
 //
 
-#ifndef PERL_LEOPARD
-#ifdef bool
-#undef bool
-#endif
-#endif
-
 #ifdef STRINGIFY
 #undef STRINGIFY
 #endif
