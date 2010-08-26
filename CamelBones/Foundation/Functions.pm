@@ -1,1 +1,0 @@
-package Foundation::Functions;use CamelBones qw(:Foundation);our @EXPORT = @CamelBones::Foundation::EXPORT_OK;our @ISA = qw(Exporter);1;
