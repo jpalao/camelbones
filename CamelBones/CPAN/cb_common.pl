@@ -14,18 +14,18 @@ $CamelBonesPath = abs_path($CamelBonesPath);
 
 our %opts = (
     VERSION           => '1.1.2',
-
+    CCFLAGS 		  => "-arch i386 -arch x86_64",
     PREREQ_PM         => {},
 
-    AUTHOR         => 'Sherm Pendley <sherm.pendley@gmail.com>',
+    AUTHOR         	  => 'Sherm Pendley <sherm.pendley@gmail.com>',
 
-    XSOPT           => "-typemap $CamelBones/Resources/typemap",
+    XSOPT             => "-typemap $CamelBones/Resources/typemap",
 
-    LIBS              => [ '-lobjc' ],
+    LIBS              => [ '-lobjc', '-arch i386', '-arch x86_64' ],
     INC               => "-F$CamelBonesPath ",
     dynamic_lib         => {
                         'OTHERLDFLAGS' =>
-                            " -framework Foundation -framework AppKit -framework CamelBones -F$CamelBonesPath "
+                            "-arch i386 -arch x86_64  -framework Foundation -framework AppKit -framework CamelBones -F/System/Library/Frameworks -F$CamelBonesPath "
                         },
 );
 
