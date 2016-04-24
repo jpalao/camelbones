@@ -28,8 +28,8 @@ typedef union {
 	char uchar;
 	unsigned short sshort;
 	short ushort;
-    unsigned int uint;
-    int sint;
+    unsigned long uint;
+    long sint;
     unsigned long ulong;
     long slong;
 	float ffloat;
@@ -61,8 +61,14 @@ void init_ffi_types() {
 	nspoint_type.size = nspoint_type.alignment = 0;
 	nspoint_type.elements = (ffi_type**)&nspoint_elements;
     nspoint_type.type = FFI_TYPE_STRUCT;
+#ifdef __i386__
 	nspoint_elements[0] = &ffi_type_float;
 	nspoint_elements[1] = &ffi_type_float;
+#endif
+#ifdef __x86_64__
+	nspoint_elements[0] = &ffi_type_double;
+	nspoint_elements[1] = &ffi_type_double;
+#endif
 	nspoint_elements[2] = NULL;
 	
 	nssize_type.size = nssize_type.alignment = 0;
@@ -82,8 +88,14 @@ void init_ffi_types() {
 	nsrange_type.size = nsrange_type.alignment = 0;
 	nsrange_type.elements = (ffi_type**)&nsrange_elements;
     nsrange_type.type = FFI_TYPE_STRUCT;
+#ifdef __i386__
 	nsrange_elements[0] = &ffi_type_uint32;
 	nsrange_elements[1] = &ffi_type_uint32;
+#endif
+#ifdef __x86_64__
+	nsrange_elements[0] = &ffi_type_uint64;
+	nsrange_elements[1] = &ffi_type_uint64;
+#endif
 	nsrange_elements[2] = NULL;
 	
 	ffi_type_structs_init++;
@@ -102,11 +114,20 @@ void* REAL_CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
         // There is no objc_msgSendSuper_fpret() - why not?
         return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend_fpret;
 #endif
+#ifdef __x86_64__
+    if (theType == &ffi_type_longdouble)
+        // There is no objc_msgSendSuper_fpret() - why not?
+        return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend_fpret;
+#endif
 
     // If this is a struct, whether to call _stret() depends on the
     // structure size and platform
 #ifdef __i386__
     if (theType->type == FFI_TYPE_STRUCT && theType->size > 8)
+        return isSuper ? (void*)&objc_msgSendSuper_stret : (void*)&objc_msgSend_stret;
+#endif
+#ifdef __x86_64__
+    if (theType->type == FFI_TYPE_STRUCT && theType->size > 16)
         return isSuper ? (void*)&objc_msgSendSuper_stret : (void*)&objc_msgSend_stret;
 #endif
 #ifdef __ppc__
@@ -145,7 +166,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     }
     
     // Get argument count
-    int num_args = methodSig ? [methodSig numberOfArguments] : 0;
+    unsigned long num_args = methodSig ? [methodSig numberOfArguments] : 0;
 	
     // Get the return type
     const char *return_type_string = methodSig ? [methodSig methodReturnType] : "@";
@@ -253,13 +274,17 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 				
 			break;
 			
+		case 'q':   // long long
+            return_type = &ffi_type_sint64;
+			break;
+		case 'Q':   // unsigned long long
+            return_type = &ffi_type_uint64;
+			break;
+
 		// Unknown types
 		case '(':   // union
 		case 'b':   // bit field
 		case '?':   // Unknown
-			
-		case 'q':   // long long
-		case 'Q':   // unsigned long long
 			
 		default:
 			NSLog(@"Unknown return type %s", return_type_string);
@@ -274,15 +299,26 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	arg_value arg_values[16];
 	void *arg_value_ptrs[16];
 	arg_value output_values[16];
-	
+
+#ifndef OBJC2_UNAVAILABLE
 	struct objc_super context;
+#endif
 
 	// First arg is either super context or self
 	if (isSuper) {
+#ifdef OBJC2_UNAVAILABLE
+        Class parentClass = object_getClass(targetID);
+        object_setClass(targetID, parentClass);
+#else
 		context.receiver = targetID;
 		context.class = targetID->isa->super_class;
-		arg_ffi_types[0] = &ffi_type_pointer;
-		arg_values[0].voidp = &context;
+#endif
+        arg_ffi_types[0] = &ffi_type_pointer;
+#ifdef OBJC2_UNAVAILABLE        
+		arg_values[0].voidp = parentClass;
+#else
+		arg_values[0].voidp = (void*)targetID;
+#endif
 
 	} else {
 		arg_ffi_types[0] = &ffi_type_pointer;
@@ -433,6 +469,17 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 				
 				break;
 				
+            case 'q':
+				// unsigned quad
+				arg_ffi_types[i] = &ffi_type_sint64;
+				arg_values[i].slong = SvUV(argSV);
+				break;
+            case 'Q':
+                // unsigned quad
+				arg_ffi_types[i] = &ffi_type_uint64;
+				arg_values[i].ulong = SvUV(argSV);
+				break;
+
             case '(':
 				// union
 
@@ -441,12 +488,6 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             
 			case '?':
 				// Unknown
-				
-            case 'q':
-				// long long
-				
-            case 'Q':
-				// unsigned long long
 				
             default:
                 NSLog(@"Unknown argument type %s in position %d", arg_type, i);
@@ -461,7 +502,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	// Try to create the interface
 	if (ffi_prep_cif(&cif,
 					 FFI_DEFAULT_ABI,
-					 num_args,
+					 (unsigned int)num_args,
 					 return_type,
 					 arg_ffi_types)
 		!= FFI_OK ) {
@@ -477,6 +518,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
         ffi_call(&cif, messenger_func, &return_value.voidp, arg_value_ptrs);
     NS_HANDLER
         SV *errsv = get_sv("@", TRUE);
+        NSLog(@"NSException raised: %@. %@", [localException name], [localException reason]);
         sv_setsv(errsv, REAL_CBDerefIDtoSV(localException));
         croak("Died.");
 	NS_ENDHANDLER
@@ -592,11 +634,17 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             }
             break;
 			
+        case 'q':   // long long
+            sv_setnv(ret, return_value.slong);
+            break;
+        case 'Q':   // unsigned long long
+            sv_setnv(ret, return_value.ulong);
+            break;
+
         case '(':   // union
         case 'b':   // bit field
         case '?':   // Unknown
-        case 'q':   // long long
-        case 'Q':   // unsigned long long
+
         default:
             NSLog(@"Unknown return type %s", return_type_string);
             ret = nil;
