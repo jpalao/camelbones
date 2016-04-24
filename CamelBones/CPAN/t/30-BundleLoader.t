@@ -10,3 +10,5 @@ ok(2);
 
 eval "use NoSuchModuleExists";
 ok(3);
+
+1;
