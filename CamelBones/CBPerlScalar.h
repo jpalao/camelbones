@@ -25,7 +25,7 @@
 // created scalar will be initialized to Perl's undef.
 // Returns nil if the named object does not exist, and could not be created
 + (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultString: (NSString *)def;
-+ (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultInteger: (long)def;
++ (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultInteger: (int)def;
 + (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultDouble: (double)def;
 
 // Returns an autoreleased handle to a Perl scalar named varName, creating a
@@ -46,7 +46,7 @@
 // created scalar will be initialized to Perl's undef.
 // Returns nil if the named object does not exist, and could not be created
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultString: (NSString *)def;
-- (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultInteger: (long)def;
+- (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultInteger: (int)def;
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultDouble: (double)def;
 
 // Returns a handle to a Perl scalar named varName, creating a
