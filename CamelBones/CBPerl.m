@@ -21,6 +21,17 @@
 #import "PerlImports.h"
 #include "perlxsi.h"
 
+typedef enum
+{
+    INTERP_NONE,
+    INTERP_HELD,
+    INTERP_TRUSTED,
+    INTERP_UNTRUSTED,
+    INTERP_BOTH
+} InterpState;
+
+static InterpState interp_state = INTERP_NONE;
+
 static id _sharedPerl = nil;
 PerlInterpreter *_CBPerlInterpreter;
 
@@ -75,6 +86,14 @@ PerlInterpreter *_CBPerlInterpreter;
             NSBundle *obj;
             NSString *perlArchname;
             NSString *perlVersion;
+            
+            char *dummy_perl_env[1] = { NULL };
+            int nargs = 3;
+#if defined(PERL_SYS_INIT3) && !defined(MYMALLOC)
+            /* only call this the first time through, as per perlembed man page */
+            if (interp_state == INTERP_NONE)
+                PERL_SYS_INIT3(&nargs, (char ***) &emb, (char***)&dummy_perl_env);
+#endif
 
             _CBPerlInterpreter = perl_alloc();
             perl_construct(_CBPerlInterpreter);
@@ -122,7 +141,10 @@ PerlInterpreter *_CBPerlInterpreter;
 												  name:NSBundleDidLoadNotification object:nil];
 
 			// Register the class handler
+#ifndef OBJC2_UNAVAILABLE
+            //http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg02484.html
 			REAL_CBRegisterClassHandler();
+#endif
 
             return [_sharedPerl retain];
 
@@ -196,7 +218,10 @@ PerlInterpreter *_CBPerlInterpreter;
             [p release];
 
 			// Register the class handler
+#ifndef OBJC2_UNAVAILABLE
+            //http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg02484.html
 			REAL_CBRegisterClassHandler();
+#endif
 
             return [_sharedPerl retain];
 
