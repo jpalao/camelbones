@@ -144,7 +144,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     dSP;
 
     NSMethodSignature *methodSig;
-    int numArgs;
+    unsigned long numArgs;
     va_list argptr;
 
     CB_ObjCType typeBuf;
@@ -184,13 +184,25 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
             // It does - get the value
             GSObjCGetVariable(self, ivarOffset, ivarSize, (void*)&sv);
 #else
+#ifdef OBJC2_UNAVAILABLE
+        Class c = object_getClass(self);
+        if (class_getInstanceVariable(c, "_sv")) {
+#else
 		if (class_getInstanceVariable(self->isa, "_sv")) {
+#endif
 			// It does - get the value
 			object_getInstanceVariable(self, "_sv", (void*)&sv);
-		
+
+#ifdef OBJC2_UNAVAILABLE
+		} else if (class_isMetaClass(c)) {
+            const char * class_name = class_getName(c);
+            // Class method, self is the class name as a string
+            sv = sv_2mortal(newSVpv(class_name, strlen(class_name)));
+#else
 		} else if (self->isa->info & CLS_META) {
             // Class method, self is the class name as a string
             sv = sv_2mortal(newSVpv(((struct objc_class*)self)->name, strlen(((struct objc_class*)self)->name)));
+#endif
 #endif
         } else {
 			NSLog(@"Error: CBPerlIMP called with invalid self");
@@ -310,6 +322,18 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                     }
                     break;
 
+                case 'q':
+                    // signed quad
+                    typeBuf.slong = va_arg(argptr, int);
+                    XPUSHs(sv_2mortal(newSVnv(typeBuf.slong)));
+                    break;
+
+                case 'Q':
+                    // unsigned quad
+                    typeBuf.ulong = va_arg(argptr, unsigned int);
+                    XPUSHs(sv_2mortal(newSVnv(typeBuf.ulong)));
+                    break;
+
                 case '(':
                     // union
 
@@ -319,8 +343,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                 case '?':
                     // unknown
 
-                case 'q':
-                case 'Q':
+
                 default:
                     NSLog(@"Unknown type %s in position %d", argType, i);
             }
@@ -367,9 +390,14 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     
             case 'q':
                 // long long
-                NSLog(@"Long long return value not implemented");
+                returnValue.slong = POPl;
                 break;
-    
+
+            case 'Q':
+                // long long
+                returnValue.ulong = POPul;
+                break;
+
             case 'C':
                 // unsigned char
                 returnValue.uint = POPi;
@@ -388,11 +416,6 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
             case 'L':
                 // unsigned long
                 returnValue.ulong = POPi;
-                break;
-                
-            case 'Q':
-                // unsigned long long
-                NSLog(@"Unsigned long long return value not implemented");
                 break;
     
             case 'f':
