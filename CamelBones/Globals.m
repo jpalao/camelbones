@@ -81,7 +81,7 @@ BOOL REAL_CBWrapString(const char *varName, const char *pkgName) {
     address = dlsym( NULL, varName );
 #else
 	if (NULL == b) { b = CFBundleGetMainBundle(); }
-	address = CFBundleGetDataPointerForName(b, (CFStringRef)[NSString stringWithFormat:@"%c", varName]);
+	address = CFBundleGetDataPointerForName(b, (CFStringRef)[NSString stringWithFormat:@"%c", (int)varName]);
 #endif
 
     if (address) {
