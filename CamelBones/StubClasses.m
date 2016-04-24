@@ -39,7 +39,7 @@
 - (void) exportObject: (id)object toPerlObject: (NSString *)objectName { return; }
 
 + (void) stubInit { return; }
-+ (void) dylibInit: (char*)archver { NSLog(@"%@", @"Using stub dylibInit!"); }
++ (void) dylibInit: (const char*)archver { NSLog(@"%@", @"Using stub dylibInit!"); }
 
 - (void) bundleDidLoad:(NSNotification *)notification { return; }
 @end
@@ -130,7 +130,7 @@
 @implementation CBPerlScalar
 + (CBPerlScalar *) namedScalar: (NSString *)varName { return nil; }
 + (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultString: (NSString *)def { return nil; }
-+ (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultInteger: (long)def { return nil; }
++ (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultInteger: (int)def { return nil; }
 + (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultDouble: (double)def { return nil; }
 + (CBPerlScalar *) namedReference: (NSString *)varName toArray: (CBPerlArray *)target { return nil; }
 + (CBPerlScalar *) namedReference: (NSString *)varName toHash: (CBPerlHash *)target { return nil; }
@@ -138,7 +138,7 @@
 + (CBPerlScalar *) namedReference: (NSString *)varName toNativeObject: (NSObject *)target { return nil; }
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName { return nil; }
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultString: (NSString *)def { return nil; }
-- (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultInteger: (long)def { return nil; }
+- (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultInteger: (int)def { return nil; }
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultDouble: (double)def { return nil; }
 - (CBPerlScalar *) initNamedReference: (NSString *)varName toArray: (NSArray *)target { return nil; }
 - (CBPerlScalar *) initNamedReference: (NSString *)varName toHash: (NSDictionary *)target { return nil; }
