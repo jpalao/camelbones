@@ -10,7 +10,7 @@
 @interface CBPerlObject : NSObject {
     NSString *className;
 
-    @private
+    //@private
     void *_mySV;
     void *_myHV;
 }
