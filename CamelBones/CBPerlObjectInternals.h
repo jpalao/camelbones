@@ -15,8 +15,8 @@
 #endif
 
 union _CB_OBJC_T {
-    unsigned int uint;
-    int sint;
+    unsigned long uint;
+    long sint;
     unsigned long ulong;
     long slong;
     float sfloat;
