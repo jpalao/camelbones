@@ -13,6 +13,8 @@ As of April 2016, this project had been unmaintained for about 5 years, I decide
 
 # TODO
 
+- The applications in the Example directories requiring a PAR kit are not working
+
 These TODO items are from the the original author. https://sourceforge.net/p/camelbones/mailman/message/26651559/
 
 - Support for  .bridgesupport files.
@@ -42,6 +44,8 @@ perl Makefile.PL
 make
 make test
 
-5. All tests should pass. You should also be able to build and use all the native applications in the Examples directory of the distribution. Please report any problems so they can be corrected or better yet contribute your patches. Pull requests are welcome
+All tests should pass. You should also be able to build and use all the native applications in the Examples directory of the distribution, except for those requiring a PAR kit. I haven't looked into that yet
+
+Please report any problems so they can be corrected or better yet contribute your patches. Pull requests are welcome
 
 
