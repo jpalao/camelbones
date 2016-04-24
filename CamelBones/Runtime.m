@@ -226,6 +226,7 @@ void REAL_CBRegisterObjectMethodsForClass(const char *package, NSArray *methods,
     struct objc_method_list *list;
 
     list = CBAllocateMethodList(methods, class);
+    if (list) class_addMethods(class, list);
 #endif
 #ifdef GNUSTEP
     if (list) {
@@ -233,9 +234,7 @@ void REAL_CBRegisterObjectMethodsForClass(const char *package, NSArray *methods,
         GSFlushMethodCacheForClass(class);
     }
 #else
-#ifndef OBJC2_UNAVAILABLE
-    if (list) class_addMethods(class, list);
-#else
+#ifdef OBJC2_UNAVAILABLE
     NSUInteger num_methods = 0, i = 0;
 
     // Basic sanity checking, for an empty list
