@@ -32,7 +32,7 @@ SV *_sv;
 + (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultString: (NSString *)def {
     return [[[CBPerlScalar alloc] initNamedScalar: varName withDefaultString: def] autorelease];
 }
-+ (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultInteger: (long)def {
++ (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultInteger: (int)def {
     return [[[CBPerlScalar alloc] initNamedScalar: varName withDefaultInteger: def] autorelease];
 }
 + (CBPerlScalar *) namedScalar: (NSString *)varName withDefaultDouble: (double)def {
@@ -101,7 +101,7 @@ SV *_sv;
         }
     }
 }
-- (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultInteger: (long)def {
+- (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultInteger: (int)def {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
