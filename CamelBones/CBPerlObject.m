@@ -46,6 +46,49 @@
     return newObject;
 }
 
+#ifdef OBJC2_UNAVAILABLE
+struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) {
+	NSCParameterAssert(cls);
+
+	struct objc_method_description desc;
+
+	// Try the class hierarchy.
+	Class class = cls;
+	do {
+		unsigned int count = 0;
+		Protocol * __unsafe_unretained * list = class_copyProtocolList(class, &count);
+		for (NSUInteger i = 0; i < count; i++) {
+
+			// Matches among required methods.
+			desc = protocol_getMethodDescription(list[i], sel, YES, !class_isMetaClass(class));
+			if (desc.name != NULL) {
+				return desc;
+			}
+
+			// Matches among optional methods.
+			desc = protocol_getMethodDescription(list[i], sel, NO, !class_isMetaClass(class));
+			if (desc.name != NULL) {
+				return desc;
+			}
+		}
+		free(list);
+	} while ((class = [class superclass]));
+
+	// Fallback: The instance method may still exist in the class even if the object doesn't declare
+	// conformance or the runtime doesn't believe us.
+	Method meth = class_getInstanceMethod(cls, sel);
+	if (meth != NULL) {
+		return *method_getDescription(meth);
+	}
+
+	// Otherwise bad things.
+	desc.name = NULL;
+	desc.types = (char *)NULL;
+	return desc;
+}
+#endif
+
+
 // Returns a handle to a Perl object named varName.
 // Returns nil of no such object exists.
 - (CBPerlObject *) initNamedObject: (NSString *)varName {
@@ -101,7 +144,7 @@
         return FALSE;
     }
 
-    if (hv_exists((HV*)_myHV, [propName UTF8String], [propName length])) {
+    if (hv_exists((HV*)_myHV, [propName UTF8String], (I32)[propName length])) {
         return TRUE;
     } else {
         return FALSE;
@@ -119,7 +162,7 @@
         return nil;
     }
 
-    propPointer = hv_fetch((HV*)_myHV, [propName UTF8String], [propName length], 0);
+    propPointer = hv_fetch((HV*)_myHV, [propName UTF8String], (I32)[propName length], 0);
     if (propPointer) {
         return REAL_CBDerefSVtoID((SV*) *propPointer);
     } else {
@@ -139,7 +182,7 @@
     }
 
     propSV = REAL_CBDerefIDtoSV(propValue);
-    hv_store((HV*)_myHV, [propName UTF8String], [propName length], propSV, 0);
+    hv_store((HV*)_myHV, [propName UTF8String], (I32)[propName length], propSV, 0);
 }
 
 - (void) dealloc {
@@ -209,12 +252,21 @@
 #ifdef GNUSTEP
     m = class_get_instance_method(self->isa, aSelector);
 #else
+#ifdef OBJC2_UNAVAILABLE
+    m = class_getInstanceMethod(object_getClass(self), aSelector);
+#else
     m = class_getInstanceMethod(self->isa, aSelector);
 #endif
+#endif
     if (m) {
+#ifdef OBJC2_UNAVAILABLE
+        struct objc_method_description methodDesc = methodDescriptionForSelector(object_getClass(self), aSelector);
+        cEncoding = methodDesc.types;
+        encoding = [NSMutableString stringWithUTF8String: cEncoding];
+#else
         cEncoding = m->method_types;
         encoding = [NSString stringWithUTF8String: cEncoding];
-
+#endif
     } else {
 
         selectorString = NSStringFromSelector(aSelector);
