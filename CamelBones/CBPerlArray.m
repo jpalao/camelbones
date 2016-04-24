@@ -37,7 +37,7 @@
 
 
 // Required primitive methods
-- (unsigned)count {
+- (unsigned long)count {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -67,13 +67,13 @@
 		[anObject retain];
 	}
 }
-- (void)insertObject:(id)anObject atIndex:(unsigned)index {
+- (void)insertObject:(id)anObject atIndex:(unsigned long)index {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
-    unsigned i;
-    unsigned lastIndex;
+    unsigned long i;
+    unsigned long lastIndex;
     SV **svp;
 
     lastIndex = av_len((AV*)_myArray);
@@ -101,14 +101,14 @@
         [anObject autorelease];
     }
 }
-- (void)removeObjectAtIndex:(unsigned)index {
+- (void)removeObjectAtIndex:(unsigned long)index {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
     SV **svp;
-    int i;
-    int lastIndex;
+    unsigned long i;
+    unsigned long lastIndex;
     
     svp = av_fetch((AV*)_myArray, index, 0);
     if (svp && sv_isobject(*svp) && sv_derived_from(*svp, "NSObject")) {
