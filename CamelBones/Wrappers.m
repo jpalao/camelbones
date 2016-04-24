@@ -23,7 +23,7 @@ void* REAL_CBCreateWrapperObjectWithClassName(id obj, NSString* className) {
 
     SV *sv = REAL_CBCreateObjectOfClass(className);
     const char *key = "NATIVE_OBJ";
-    hv_store((HV*)SvRV(sv), key, strlen(key), newSViv((int)obj), 0);
+    hv_store((HV*)SvRV(sv), key, (I32)strlen(key), newSViv((IV)obj), (U32)0);
     return (void*)sv;
 }
 
