@@ -49,23 +49,25 @@ id REAL_CBDerefSVtoID(void* sv) {
     // Check to see if it's an object reference
     if (sv_isobject((SV*)sv)) {
 
-		HV *hv = (HV *)SvRV((SV*)sv);
-
+        HV *hv = nil;
+        if(SvROK((SV*)sv))
+            hv = (HV *)SvRV((SV*)sv);
+        
         // If this is a registered NSObject subclass, or a placeholder,
 		// pass the native object
         if (sv_derived_from(sv, "NSObject")
 			|| sv_derived_from(sv, "CamelBones::PlaceHolder")
 			) {
-            SV **nativeSvp = hv_fetch(hv, "NATIVE_OBJ", strlen("NATIVE_OBJ"), 0);
+            SV **nativeSvp = hv_fetch(hv, "NATIVE_OBJ", (U32)strlen("NATIVE_OBJ"), (I32)0);
             SV *nativeSV = nativeSvp ? *nativeSvp : NULL;
 
             if (nativeSV) {
-                return (id) SvIV(nativeSV);
+                return (id) SvIVX(nativeSV);
             }
 		}
 
 		// Otherwise create a new native object to pass
-		char *className = sv_reftype(SvRV((SV*)sv), 1);
+		const char *className = sv_reftype(SvRV((SV*)sv), 1);
 
 		// The class callback should register the class if needed
 		Class thisClass = objc_getClass(className);
@@ -154,20 +156,23 @@ void* REAL_CBDerefIDtoSV(id target) {
         // It's a Perl class - check to see if the Perl object has been created yet
 	GSObjCGetVariable(target, svOffset, svSize, (void*)&thisNewSV);
 
-        if (!thisNewSV) {
+    if (!thisNewSV) {
 	    // No Perl object yet, so create one
 	    NSString *stringObj = [NSString stringWithUTF8String: target->class_pointer->name];
 	    thisNewSV = REAL_CBCreateWrapperObjectWithClassName(target, stringObj);
 	    GSObjCSetVariable(target, svOffset, svSize, (const void*)&thisNewSV);
-        }
+    }
 
 	SvREFCNT_inc(thisNewSV);
 	return thisNewSV;
 
 #else
     // Check first for a wrapped Perl object or variable
+#ifdef OBJC2_UNAVAILABLE
+    Ivar i = class_getInstanceVariable(object_getClass(target), "_sv");
+#else
     struct objc_ivar *i = class_getInstanceVariable(target->isa, "_sv");
-    
+#endif
     // Check first for a bridged Perl class
     if (i) {
         SV *thisNewSV;
@@ -177,13 +182,18 @@ void* REAL_CBDerefIDtoSV(id target) {
 
         if (!thisNewSV) {
 	    // No Perl object yet, so create one
-	    NSString *stringObj = [NSString stringWithUTF8String: target->isa->name];
-	    thisNewSV = REAL_CBCreateWrapperObjectWithClassName(target, stringObj);
+#ifdef OBJC2_UNAVAILABLE
+        Class c = object_getClass(target);
+	    NSString *stringObj = [NSString stringWithUTF8String: class_getName(c)];
+#else
+        NSString *stringObj = [NSString stringWithUTF8String: target->isa->name];
+#endif
+        thisNewSV = REAL_CBCreateWrapperObjectWithClassName(target, stringObj);
 	    object_setInstanceVariable(target, "_sv", thisNewSV);
         }
 
-	SvREFCNT_inc(thisNewSV);
-	return thisNewSV;
+        SvREFCNT_inc(thisNewSV);
+        return thisNewSV;
 #endif
 
 	// Some types of objects may get special handling
@@ -191,7 +201,7 @@ void* REAL_CBDerefIDtoSV(id target) {
 	       && [[[CBPerl sharedPerl] valueForKey: @"CamelBones::ReturnStringsAsObjects"]
 	               intValue] == 0) {
     	const char *u = [(NSString *)target UTF8String];
-    	int len = strlen(u);
+    	unsigned long len = strlen(u);
         SV *newSV = newSVpv(u, len);
         SvUTF8_on(newSV);
         return (void*)newSV;
