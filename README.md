@@ -36,13 +36,13 @@ To build and test:
 2. Change to the directory containing the Camelbones Perl Module:
 % cd CPAN-camelbones   
 
-3. Export the location of the directory containing the newly built Camelbones.framework
-export CAMELBONES_PATH=/Your/Location/Build/Products/Debug
+3. Export the location of the directory containing the newly built Camelbones.framework:
+% export CAMELBONES_PATH=/Your/Location/Build/Products/Debug
 
-4. Build the Camelbones Perl Module
-perl Makefile.PL
-make
-make test
+4. Build the Camelbones Perl Module:
+% perl Makefile.PL
+% make
+% make test
 
 All tests should pass. You should also be able to build and use all the native applications in the Examples directory of the distribution, except for those requiring a PAR kit. I haven't looked into that yet
 
