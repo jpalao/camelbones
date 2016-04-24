@@ -5,6 +5,7 @@ BEGIN {
     require "./cb_common.pl";
     %local_opts = (
         'NAME' => 'CamelBones',
+		'CCFLAGS' => "-arch i386 -arch x86_64",
         'DIR' => [ 'AppKit', 'Foundation', 'Tests' ],
         'XS' => { 'CamelBones.xs' => 'CamelBones.m' },
     );
