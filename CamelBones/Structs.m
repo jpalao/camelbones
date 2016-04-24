@@ -18,8 +18,15 @@ NSPoint REAL_CBPointFromAV(void* av) {
     CBPerlArray *arr;
     
     arr = [CBPerlArray arrayWithAV:av];
+#ifdef __i386__
     newPoint.x = [[arr objectAtIndex:0] floatValue];
     newPoint.y = [[arr objectAtIndex:1] floatValue];
+#endif
+#ifdef __x86_64__
+    newPoint.x = [[arr objectAtIndex:0] doubleValue];
+    newPoint.y = [[arr objectAtIndex:1] doubleValue];
+#endif
+
 
     return newPoint;
 }
@@ -27,10 +34,16 @@ NSPoint REAL_CBPointFromAV(void* av) {
 NSPoint REAL_CBPointFromHV(void* hv) {
     NSPoint newPoint;
     CBPerlHash *dict;
-    
+
     dict = [CBPerlHash dictionaryWithHV:hv];
+#ifdef __i386__
     newPoint.x = [[dict objectForKey:@"x"] floatValue];
     newPoint.y = [[dict objectForKey:@"y"] floatValue];
+#endif
+#ifdef __x86_64__
+    newPoint.x = [[dict objectForKey:@"x"] doubleValue];
+    newPoint.y = [[dict objectForKey:@"y"] doubleValue];
+#endif
 
     return newPoint;
 }
@@ -80,10 +93,18 @@ NSRect REAL_CBRectFromAV(void* av) {
     CBPerlArray *arr;
     
     arr = [CBPerlArray arrayWithAV:av];
+#ifdef __i386__
     newRect.origin.x = [[arr objectAtIndex:0] floatValue];
     newRect.origin.y = [[arr objectAtIndex:1] floatValue];
     newRect.size.width = [[arr objectAtIndex:2] floatValue];
     newRect.size.height = [[arr objectAtIndex:3] floatValue];
+#endif
+#ifdef __x86_64__
+    newRect.origin.x = [[arr objectAtIndex:0] doubleValue];
+    newRect.origin.y = [[arr objectAtIndex:1] doubleValue];
+    newRect.size.width = [[arr objectAtIndex:2] doubleValue];
+    newRect.size.height = [[arr objectAtIndex:3] doubleValue];
+#endif
 
     return newRect;
 }
@@ -93,10 +114,18 @@ NSRect REAL_CBRectFromHV(void* hv) {
     CBPerlHash *dict;
     
     dict = [CBPerlHash dictionaryWithHV:hv];
+#ifdef __i386__
     newRect.origin.x = [[dict objectForKey:@"x"] floatValue];
     newRect.origin.y = [[dict objectForKey:@"y"] floatValue];
     newRect.size.width = [[dict objectForKey:@"width"] floatValue];
     newRect.size.height = [[dict objectForKey:@"height"] floatValue];
+#endif
+#ifdef __x86_64__
+    newRect.origin.x = [[dict objectForKey:@"x"] doubleValue];
+    newRect.origin.y = [[dict objectForKey:@"y"] doubleValue];
+    newRect.size.width = [[dict objectForKey:@"width"] doubleValue];
+    newRect.size.height = [[dict objectForKey:@"height"] doubleValue];
+#endif
 
     return newRect;
 }
@@ -209,8 +238,14 @@ NSSize REAL_CBSizeFromAV(void* av) {
     CBPerlArray *arr;
     
     arr = [CBPerlArray arrayWithAV:av];
+#ifdef __i386__
     newSize.width = [[arr objectAtIndex:0] floatValue];
     newSize.height = [[arr objectAtIndex:1] floatValue];
+#endif
+#ifdef __x86_64__
+    newSize.width = [[arr objectAtIndex:0] doubleValue];
+    newSize.height = [[arr objectAtIndex:1] doubleValue];
+#endif
 
     return newSize;
 }
@@ -219,8 +254,15 @@ NSSize REAL_CBSizeFromHV(void* hv) {
     CBPerlHash *dict;
     
     dict = [CBPerlHash dictionaryWithHV:hv];
+#ifdef __i386__
     newSize.width = [[dict objectForKey:@"width"] floatValue];
     newSize.height = [[dict objectForKey:@"height"] floatValue];
+#endif
+#ifdef __x86_64__
+    newSize.width = [[dict objectForKey:@"width"] doubleValue];
+    newSize.height = [[dict objectForKey:@"height"] doubleValue];
+#endif
+
 
     return newSize;
 }
@@ -270,7 +312,7 @@ OSType REAL_CBOSTypeFromSV(void* sv) {
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
-    OSType newType;
+    OSType newType = 0;
     SV *target;
     char *pv;
 
