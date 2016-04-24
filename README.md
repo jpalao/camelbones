@@ -35,7 +35,7 @@ To build and test:
 
 2. Change to the directory containing the Camelbones Perl Module:
 % cd CPAN-camelbones  
-You may need to edit the CCFLAGS and OTHERLDFLAGS for your target architecture in cb_common.pl if you do not wish to build a universal i386/x86_64 module.
+You may need to edit the CCFLAGS and OTHERLDFLAGS for your target architecture in cb_common.pl and/or Makefile.PL if you do not wish to build a universal i386/x86_64 module.
 
 3. Export the location of the directory containing the newly built Camelbones.framework:
 % export CAMELBONES_PATH=/Your/Location/Build/Products/Debug
