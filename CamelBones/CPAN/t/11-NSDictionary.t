@@ -12,7 +12,8 @@ if (defined $testDictionary) {
 }
 
 # Can we join() them?
-if ($testDictionary->allValues()->componentsJoinedByString('') eq 'foobar') {
+my $ts = $testDictionary->allValues()->componentsJoinedByString('');
+if ($ts eq 'foobar' || $ts eq 'barfoo') {
     ok(2);
 } else {
     ok (0);
