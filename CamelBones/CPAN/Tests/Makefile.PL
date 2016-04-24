@@ -6,7 +6,7 @@ BEGIN {
     %local_opts = (
         'NAME' => 'CamelBones::Tests',
         'XS' => { 'Tests.xs' => 'Tests.m' },
-        'OBJECT' => 'Tests.o CBThreadTests.o CBSuper.o CBExceptionTests.o CBStructureTests.o',
+        'OBJECT' => 'Tests.o CBThreadTests.o CBSuper.o CBExceptionTests.o CBStructureTests.o CBPropertyTests.o',
     );
     for (keys %CBCommon::opts) {
         $local_opts{$_} = $CBCommon::opts{$_};
