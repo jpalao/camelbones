@@ -9,7 +9,7 @@ As of April 2016, this project had been unmaintained for about 5 years, I decide
 - Added x86_64 support
 - Objective-C 2.0 support
 - Updated to libffi-3.2.1
-- Eliminate dependency of OS X system Perl
+- Remove dependency of OS X system Perl
 
 # TODO
 
