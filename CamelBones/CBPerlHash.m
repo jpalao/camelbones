@@ -13,7 +13,7 @@
 @implementation CBPerlHash (Overrides)
 
 // Required primitive methods
-- (unsigned)count {
+- (unsigned long)count {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -259,7 +259,7 @@
             long i;
             for (i=0; i<hashSize; ++i) {
                 HE *nextEntry = hv_iternext(theHV);
-                long keyLen = 0;
+                I32 keyLen = 0;
                 [mKeys addObject:[NSString stringWithFormat:@"%s", hv_iterkey(nextEntry, &keyLen)]];
             }
             keys = mKeys;
