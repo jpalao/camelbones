@@ -1,7 +1,7 @@
 # -*- Mode: cperl -*-
 
 use Test;
-BEGIN { plan tests => 11; }
+BEGIN { plan tests => 13; }
 
 package PerlObject;
 use CamelBones qw(:All);
@@ -46,14 +46,14 @@ my $perlObject = PerlObject->alloc()->initNewPerlObject();
 $perlObject->sayOK(1);
 
 # Check that Perl method is correctly registered
-if ($perlObject->respondsToSelector('sayOK:')) {
+if ($perlObject->can('sayOK')) {
     $perlObject->sayOK(2);
 } else {
     $perlObject->sayOK(0);
 }
 
 # Verify that bogus method returns false
-if ($perlObject->respondsToSelector('bogus:')) {
+if ($perlObject->can('bogus')) {
     $perlObject->sayOK(0);
 } else {
     $perlObject->sayOK(3);
@@ -72,12 +72,12 @@ $perlObject->sayOK(5);
 
 
 # Do accessors exist?
-if ($perlObject->respondsToSelector('foo')) {
+if ($perlObject->can('foo')) {
     $perlObject->sayOK(6);
 } else {
     $perlObject->sayOK(0);
 }
-if ($perlObject->respondsToSelector('setBar:')) {
+if ($perlObject->can('setBar')) {
     $perlObject->sayOK(7);
 } else {
     $perlObject->sayOK(0);
@@ -90,24 +90,49 @@ $perlObject->sayOK(8);
 
 
 # Do accessors exist?
-if ($perlObject->respondsToSelector('foo')) {
+if ($perlObject->can('foo')) {
     $perlObject->sayOK(9);
 } else {
     $perlObject->sayOK(0);
 }
-if ($perlObject->respondsToSelector('setBar:')) {
+if ($perlObject->can('setBar')) {
     $perlObject->sayOK(10);
 } else {
     $perlObject->sayOK(0);
 }
 
+# this one should not exist
+$perlObject = PerlObject->alloc()->initNewPerlObject();
+if ($perlObject->can('foo')) {
+    $perlObject->sayOK(0);
+} else {
+    $perlObject->sayOK(11);
+}
+
+# test using accessors
+$perlObject = PerlObjectFour->alloc()->initNewPerlObject();
+
+$perlObject->setBar("testA");
+if ($perlObject->bar eq "testA") {
+    $perlObject->sayOK(12);
+} else {
+    $perlObject->sayOK(0);
+}
+
+$perlObject->setBar(undef);
+if (!defined $perlObject->bar) {
+    $perlObject->sayOK(13);
+} else {
+    $perlObject->sayOK(0);
+}
 
 # Try to set/get a property
-$perlObject->setValue_forKey('Hello', 'foo');
-if ($perlObject->valueForKey('foo') eq 'Hello') {
-	$perlObject->sayOK(11);
-} else {
-	$perlObject->sayOK(0);
-}
+
+# $perlObject->setValue_forKey('Hello', 'foo');
+# if ($perlObject->valueForKey('Hello') eq 'value') {
+# 	$perlObject->sayOK(11);
+# } else {
+# 	$perlObject->sayOK(0);
+# }
 
 1;
