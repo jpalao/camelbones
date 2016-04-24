@@ -19,8 +19,10 @@
 #import "PerlImports.h"
 #import "PerlMethods_real.h"
 
+#ifndef OBJC2_UNAVAILABLE
 // Private function
 struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class);
+#endif
 
 // Create Perl wrappers for all registered ObjC classes
 void REAL_CBWrapRegisteredClasses(void) {
@@ -67,7 +69,11 @@ void REAL_CBWrapObjectiveCClass(Class aClass) {
     dTHX;
 
     // Create the @ClassName::ISA = qw(SuperClass);
+#ifdef OBJC2_UNAVAILABLE
+    const char *className = class_getName(aClass);
+#else
     const char *className = aClass->name;
+#endif
     const char *ISAName;
     const char *SuperName = NULL;
     AV *newIsaAV = NULL;
@@ -79,8 +85,14 @@ void REAL_CBWrapObjectiveCClass(Class aClass) {
     }
 
     // Get the super class name; default to "NSObject" for root classes
+#ifdef OBJC2_UNAVAILABLE
+    Class superClass = class_getSuperclass(aClass);
+    if (superClass != NULL) {
+        SuperName = class_getName(superClass);
+#else
     if (aClass->super_class != NULL) {
         SuperName = aClass->super_class->name;
+#endif
     } else {
         SuperName = "NSObject";
     }
@@ -111,24 +123,49 @@ void REAL_CBRegisterClassWithSuperClass(const char *className, const char *super
                                         ivars);
     GSObjCAddClasses([NSArray arrayWithObjects: theClass, nil]);
 #else
+#ifdef OBJC2_UNAVAILABLE
+    Class meta_class;
+    Class super_class;
+    Class new_class;
+    Class root_class;
+#else
     struct objc_class *meta_class;
     struct objc_class *super_class;
     struct objc_class *new_class;
     struct objc_class *root_class;
     struct objc_ivar_list *ivars;
+#endif
 
     // Bail out of superName is already registered, or if className is not.
+#ifdef OBJC2_UNAVAILABLE
+    super_class = objc_lookUpClass(superName);
+#else
     super_class = (struct objc_class *)objc_lookUpClass(superName);
+#endif
     if (nil == super_class) return;
     if (nil != objc_lookUpClass(className)) return;
     
     // Find the root class
     root_class = super_class;
+#ifdef OBJC2_UNAVAILABLE
+    while ( nil != class_getSuperclass(root_class) ) {
+        root_class = class_getSuperclass(root_class);
+#else
     while ( nil != root_class->super_class ) {
         root_class = root_class->super_class;
+#endif
     }
-    
+
     // Make room, make room
+#ifdef OBJC2_UNAVAILABLE
+    new_class = objc_allocateClassPair(super_class, className, 0);
+    meta_class = object_getClass(new_class);
+    // One instance variable, _sv
+    class_addIvar(new_class, "_sv", 1, log2(sizeof(pointer_t)), "^v");
+
+    // Register the class
+    objc_registerClassPair(new_class);
+#else
     new_class = calloc( 2, sizeof(struct objc_class) );
     meta_class = &new_class[1];
     
@@ -163,6 +200,7 @@ void REAL_CBRegisterClassWithSuperClass(const char *className, const char *super
     // Register the class
     objc_addClass(new_class);
 #endif
+#endif
 }
 
 // Query method registration
@@ -184,30 +222,75 @@ BOOL REAL_CBIsClassMethodRegisteredForClass(SEL selector, Class class) {
 
 // Perform method registration
 void REAL_CBRegisterObjectMethodsForClass(const char *package, NSArray *methods, Class class) {
+#ifndef OBJC2_UNAVAILABLE
     struct objc_method_list *list;
 
     list = CBAllocateMethodList(methods, class);
+#endif
 #ifdef GNUSTEP
     if (list) {
         GSAddMethodList(class, list, YES);
         GSFlushMethodCacheForClass(class);
     }
 #else
+#ifndef OBJC2_UNAVAILABLE
     if (list) class_addMethods(class, list);
+#else
+    NSUInteger num_methods = 0, i = 0;
+
+    // Basic sanity checking, for an empty list
+    num_methods = [methods count];
+    if (num_methods <= 0) return;
+
+    // Add each method in methods to the C struct
+    for (i=0; i < num_methods; i++) {
+
+        const char *perlSig;
+		const char *selName;
+
+		selName = [[[methods objectAtIndex: i] objectForKey:@"name"] UTF8String];
+        perlSig = [[[methods objectAtIndex:i] objectForKey:@"signature"] UTF8String];
+
+        class_addMethod(class, sel_registerName(selName), REAL_CBPerlIMP, perlSig);
+    }
+#endif
 #endif
 }
 
 void REAL_CBRegisterClassMethodsForClass(const char *package, NSArray *methods, Class class) {
+#ifndef OBJC2_UNAVAILABLE
     struct objc_method_list *list;
 
     list = CBAllocateMethodList(methods, class);
+#endif
 #ifdef GNUSTEP
     if (list) {
         GSAddMethodList(class, list, NO);
         GSFlushMethodCacheForClass(class);
     }
 #else
-    if (list) class_addMethods(class->isa, list);
+#ifdef OBJC2_UNAVAILABLE
+
+    NSUInteger num_methods;
+    NSUInteger i;
+
+    // Basic sanity checking, for an empty list
+    num_methods = [methods count];
+    if (num_methods <= 0) return;
+    for (i=0; i < num_methods; i++) {
+
+        const char *perlSig;
+		const char *selName;
+
+		selName = [[[methods objectAtIndex: i] objectForKey:@"name"] UTF8String];
+        perlSig = [[[methods objectAtIndex:i] objectForKey:@"signature"] UTF8String];
+
+        class_addMethod(class, sel_registerName(selName), REAL_CBPerlIMP, perlSig);
+    }
+#else
+
+	if (list) class_addMethods(class->isa, list);
+#endif
 #endif
 }
 
@@ -247,10 +330,13 @@ void REAL_CBRegisterClassHandler(void) {
 #ifdef GNUSTEP
     _objc_lookup_class = __CB_classHandler;
 #else
+#ifndef OBJC2_UNAVAILABLE
 	objc_setClassHandler(__CB_classHandler);
+#endif
 #endif
 }
 
+#ifndef OBJC2_UNAVAILABLE
 // Private method
 struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class) {
     struct objc_method_list *list;
@@ -305,3 +391,4 @@ struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class) {
 
     return list;
 }
+#endif
