@@ -28,9 +28,12 @@ union _CB_OBJC_T {
     Class class_p;
     SEL sel_p;
     NSPoint point_s;
+    CGPoint cgpoint_s;
     NSRange range_s;
     NSRect rect_s;
+    CGRect cgrect_s;
     NSSize size_s;
+    CGSize cgsize_s;
 };
 typedef union _CB_OBJC_T CB_ObjCType;
 
