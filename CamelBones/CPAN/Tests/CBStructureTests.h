@@ -7,32 +7,37 @@
 //
 
 @interface CBStructureTests : NSObject {
-    NSPoint point;
+    CGPoint point;
     NSRange range;
-    NSRect rect;
-    NSSize size;
+    CGRect rect;
+    CGSize size;
 }
-- (NSPoint)point;
-- (float)pointX;
-- (float)pointY;
-- (void)setPoint:(NSPoint)value;
+
+- (CGPoint)point;
+- (CGFloat)pointX;
+- (CGFloat)pointY;
+- (void)setPoint:(CGPoint)value;
 
 - (NSRange)range;
 - (unsigned int) rangeLocation;
 - (unsigned int) rangeLength;
 - (void)setRange:(NSRange)value;
 
-- (NSRect)rect;
-- (float)rectX;
-- (float)rectY;
-- (float)rectWidth;
-- (float)rectHeight;
-- (void)setRect:(NSRect)value;
+- (CGRect)rect;
 
-- (NSSize)size;
-- (float)sizeWidth;
-- (float)sizeHeight;
-- (void)setSize:(NSSize)value;
+- (CGFloat)rectX;
+- (CGFloat)rectY;
+
+- (CGFloat)rectWidth;
+- (CGFloat)rectHeight;
+
+- (void)setRect:(CGRect)value;
+
+- (CGSize)size;
+
+- (CGFloat)sizeWidth;
+- (CGFloat)sizeHeight;
+- (void)setSize:(CGSize)value;
 
 @end
 
