@@ -305,7 +305,7 @@
 			name = "libffi-Mac-static";
 			productName = ffi;
 			productReference = 82610AF51CDF8A8000E94E11 /* libffi.a */;
-			productType = "com.apple.product-type.library.dynamic";
+			productType = "com.apple.product-type.library.static";
 		};
 		DB13B1651849DF1E0010F42D /* libffi-iOS */ = {
 			isa = PBXNativeTarget;
