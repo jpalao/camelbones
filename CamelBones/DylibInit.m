@@ -50,18 +50,37 @@
 	CBResolve(CBPointFromHV)
 	CBResolve(CBPointFromSV)
 	CBResolve(CBPointToSV)
+
+	CBResolve(CBCGPointFromAV)
+	CBResolve(CBCGPointFromHV)
+	CBResolve(CBCGPointFromSV)
+	CBResolve(CBCGPointToSV)
+	
 	CBResolve(CBRectFromAV)
 	CBResolve(CBRectFromHV)
 	CBResolve(CBRectFromSV)
 	CBResolve(CBRectToSV)
+	
+	CBResolve(CBCGRectFromAV)
+	CBResolve(CBCGRectFromHV)
+	CBResolve(CBCGRectFromSV)
+	CBResolve(CBCGRectToSV)
+	
 	CBResolve(CBRangeFromAV)
 	CBResolve(CBRangeFromHV)
 	CBResolve(CBRangeFromSV)
 	CBResolve(CBRangeToSV)
+
 	CBResolve(CBSizeFromAV)
 	CBResolve(CBSizeFromHV)
 	CBResolve(CBSizeFromSV)
 	CBResolve(CBSizeToSV)
+
+	CBResolve(CBCGSizeFromAV)
+	CBResolve(CBCGSizeFromHV)
+	CBResolve(CBCGSizeFromSV)
+	CBResolve(CBCGSizeToSV)
+
 #ifndef GNUSTEP
 	CBResolve(CBOSTypeFromSV)
 	CBResolve(CBOSTypeToSV)

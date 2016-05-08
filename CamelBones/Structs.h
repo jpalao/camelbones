@@ -19,14 +19,20 @@ extern CGPoint (*CBCGPointFromSV)(void* sv);
 
 // Converting NSPoint structs to blessed scalar references
 extern void* (*CBPointToSV)(NSPoint point);
+extern void* (*CBCGPointToSV)(CGPoint point);
 
 // Creating NSRect structs
 extern NSRect (*CBRectFromAV)(void* av);
 extern NSRect (*CBRectFromHV)(void* hv);
 extern NSRect (*CBRectFromSV)(void* sv);
 
+extern CGRect (*CBCGRectFromAV)(void* av);
+extern CGRect (*CBCGRectFromHV)(void* hv);
+extern CGRect (*CBCGRectFromSV)(void* sv);
+
 // Converting NSRect structs to blessed scalar references
 extern void* (*CBRectToSV)(NSRect rect);
+extern void* (*CBCGRectToSV)(CGRect rect);
 
 // Creating NSRange structs
 extern NSRange (*CBRangeFromAV)(void* av);
@@ -41,8 +47,13 @@ extern NSSize (*CBSizeFromAV)(void* av);
 extern NSSize (*CBSizeFromHV)(void* hv);
 extern NSSize (*CBSizeFromSV)(void* sv);
 
+extern CGSize (*CBCGSizeFromAV)(void* av);
+extern CGSize (*CBCGSizeFromHV)(void* hv);
+extern CGSize (*CBCGSizeFromSV)(void* sv);
+
 // Converting NSSize structs to blessed scalar references
 extern void* (*CBSizeToSV)(NSSize size);
+extern void* (*CBCGSizeToSV)(CGSize size);
 
 // The following aren't needed on GNUStep
 #ifndef GNUSTEP
