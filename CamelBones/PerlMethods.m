@@ -316,6 +316,15 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                     } else if (0 == strncmp(argType, "{NSSize", strlen("{NSSize"))) {
                         typeBuf.size_s = va_arg(argptr, NSSize);
                         XPUSHs(sv_2mortal(REAL_CBSizeToSV(typeBuf.size_s)));
+                    } else if (0 == strncmp(argType, "{CGPoint", strlen("{CGPoint"))) {
+                        typeBuf.cgpoint_s = va_arg(argptr, CGPoint);
+                        XPUSHs(sv_2mortal(REAL_CBCGPointToSV(typeBuf.cgpoint_s)));
+                    } else if (0 == strncmp(argType, "{CGRect", strlen("{CGRect"))) {
+                        typeBuf.cgrect_s = va_arg(argptr,CGRect);
+                        XPUSHs(sv_2mortal(REAL_CBCGRectToSV(typeBuf.cgrect_s)));
+                    } else if (0 == strncmp(argType, "{CGSize", strlen("{CGSize"))) {
+                        typeBuf.cgsize_s = va_arg(argptr, CGSize);
+                        XPUSHs(sv_2mortal(REAL_CBCGSizeToSV(typeBuf.cgsize_s)));
                     } else {
                         NSLog(@"Unknown struct type %s in position %d", argType, i);
                         XPUSHs(&PL_sv_undef);
@@ -467,12 +476,18 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                 // struct
                 if (0 == strncmp(returnType, "{NSPoint", strlen("{NSPoint"))) {
                     returnValue.point_s = REAL_CBPointFromSV(POPs);
+                } else if (0 == strncmp(returnType, "{CGPoint", strlen("{CGPoint"))) {
+                    returnValue.cgpoint_s = REAL_CBCGPointFromSV(POPs);
                 } else if (0 == strncmp(returnType, "{NSRange", strlen("{NSRange"))) {
                     returnValue.range_s = REAL_CBRangeFromSV(POPs);
                 } else if (0 == strncmp(returnType, "{NSRect", strlen("{NSRect"))) {
                     returnValue.rect_s = REAL_CBRectFromSV(POPs);
+                } else if (0 == strncmp(returnType, "{CGRect", strlen("{CGRect"))) {
+                    returnValue.cgrect_s = REAL_CBCGRectFromSV(POPs);
                 } else if (0 == strncmp(returnType, "{NSSize", strlen("{NSSize"))) {
                     returnValue.size_s = REAL_CBSizeFromSV(POPs);
+                } else if (0 == strncmp(returnType, "{CGSize", strlen("{CGSize"))) {
+                    returnValue.cgsize_s = REAL_CBCGSizeFromSV(POPs);
                 } else {
                     NSLog(@"Unknown struct type %s in return", returnType);
                     returnValue.ulong = 0;

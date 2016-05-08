@@ -12,6 +12,11 @@ extern NSPoint (*CBPointFromAV)(void* av);
 extern NSPoint (*CBPointFromHV)(void* hv);
 extern NSPoint (*CBPointFromSV)(void* sv);
 
+extern CGPoint (*CBCGPointFromAV)(void* av);
+extern CGPoint (*CBCGPointFromHV)(void* hv);
+extern CGPoint (*CBCGPointFromSV)(void* sv);
+
+
 // Converting NSPoint structs to blessed scalar references
 extern void* (*CBPointToSV)(NSPoint point);
 
