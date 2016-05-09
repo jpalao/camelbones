@@ -23,10 +23,11 @@ require_ok( 'CamelBones::Tests' );
 my $tester = CBStructureTests->alloc()->init();
 ok(defined $tester, "Init OK");
 
-ok(ref $tester->point() eq 'CamelBones::CGPoint', "CamelBones::CGPoint");
+#The NS and CG geometry types are the same structures
+ok(ref $tester->point() eq 'CamelBones::NSPoint' || ref $tester->point() eq 'CamelBones::CGPoint', "CamelBones::NSPoint");
 ok(ref $tester->range() eq 'CamelBones::NSRange', "CamelBones::NSRange");
-ok(ref $tester->rect() eq 'CamelBones::CGRect', "CamelBones::CGRect");
-ok(ref $tester->size() eq 'CamelBones::CGSize', "'CamelBones::CGSize'");
+ok(ref $tester->rect() eq 'CamelBones::NSRect' || ref $tester->rect() eq 'CamelBones::CGRect', "CamelBones::NSRect");
+ok(ref $tester->size() eq 'CamelBones::NSSize' || ref $tester->size() eq 'CamelBones::CGSize', "'CamelBones::NSSize'");
 
 ok(fpeq($tester->pointX(), 0.0), "tester->pointX() == 0.0");
 ok(fpeq($tester->pointY(), 0.0), "tester->pointY() == 0.0");
