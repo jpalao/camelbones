@@ -1,10 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
-#ifndef GNUSTEP
-#include <Carbon/Carbon.h>
-#endif
-
 #import <CamelBones/PerlImports.h>
 #import <CamelBones/Conversions.h>
 #import <CamelBones/Structs.h>
@@ -43,37 +39,37 @@ NSRectFill (aRect)
 void
 NSRectFillList(rects, count)
     NSRect *rects;
-    int count;
+    NSInteger count;
 
 void
 NSRectFillListWithGrays(rects, grays, num)
     NSRect *rects;
-    float *grays;
-    int num;
+    CGFloat *grays;
+    NSInteger num;
 
 void
 NSRectFillListWithColors(rects, colors, num)
     NSRect *rects;
     NSColor **colors;
-    int num;
+    NSInteger num;
     
 void
 NSRectFillUsingOperation (aRect, op)
     NSRect aRect;
-    int op;
+    NSInteger op;
 
 void
 NSRectFillListUsingOperation(rects, count, op)
     NSRect *rects;
-    int count;
-    int op;
+    NSInteger count;
+    NSInteger op;
     
 void
 NSRectFillListWithColorsUsingOperation(rects, colors, num, op)
     NSRect *rects;
     NSColor **colors;
-    int num;
-    int op;
+    NSInteger num;
+    NSInteger op;
 
 void
 NSFrameRect (aRect)
@@ -82,14 +78,14 @@ NSFrameRect (aRect)
 void
 NSFrameRectWithWidth (aRect, frameWidth)
     NSRect aRect;
-    float frameWidth;
+    CGFloat frameWidth;
 
 #ifndef GNUSTEP
 void
 NSFrameRectWithWidthUsingOperation (aRect, frameWidth, op)
     NSRect aRect;
-    float frameWidth;
-    int op;
+    CGFloat frameWidth;
+    NSInteger op;
 
 #endif
 
@@ -100,15 +96,15 @@ NSRectClip (aRect)
 void
 NSRectClipList(rects, count)
     NSRect *rects;
-    int count;
+    NSInteger count;
 
 NSRect
 NSDrawTiledRects(boundsRect, clipRect, sides, grays, count)
     NSRect boundsRect;
     NSRect clipRect;
     NSRectEdge *sides;
-    float *grays;
-    int count;
+    CGFloat *grays;
+    NSInteger count;
 
 void
 NSDrawGrayBezel (boundsRect, clipRect)
@@ -141,12 +137,12 @@ NSReadPixel (aPoint)
 void
 NSDrawBitmap (rect, width, height, bps, spp, bpp, bpr, isPlanar, hasAlpha, colorSpaceName, data)
     NSRect rect;
-    int width;
-    int height;
-    int bps;
-    int spp;
-    int bpp;
-    int bpr;
+    NSInteger width;
+    NSInteger height;
+    NSInteger bps;
+    NSInteger spp;
+    NSInteger bpp;
+    NSInteger bpr;
     BOOL isPlanar;
     BOOL hasAlpha;
     id colorSpaceName;
@@ -157,7 +153,7 @@ NSDrawBitmap (rect, width, height, bps, spp, bpp, bpr, isPlanar, hasAlpha, color
 
 void
 NSCopyBits (srcGState, srcRect, destPoint)
-    int srcGState;
+    NSInteger srcGState;
     NSRect srcRect;
     NSPoint destPoint;
 
@@ -170,27 +166,27 @@ NSBeep ()
 
 void
 NSCountWindows (count)
-    int &count;
+    NSInteger &count;
     OUTPUT:
     count
 
 void
 NSWindowList ( size, list )
-    int size;
-    int *list;
+    NSInteger size;
+    NSInteger *list;
 
 void
 NSCountWindowsForContext(context, count)
-    int context;
-    int &count;
+    NSInteger context;
+    NSInteger &count;
     OUTPUT:
         count
 
 void
 NSWindowListForContext(context, size, list)
-    int context;
-    int size;
-    int *list;
+    NSInteger context;
+    NSInteger size;
+    NSInteger *list;
     
 
 NSRect
@@ -199,7 +195,7 @@ NSDrawColorTiledRects(boundsRect, clipRect, sides, colors, count)
     NSRect clipRect;
     NSRectEdge *sides;
     NSColor **colors;
-    int count;
+    NSInteger count;
 
 void
 NSDrawDarkBezel (boundsRect, clipRect)
@@ -222,7 +218,7 @@ NSDrawWindowBackground (aRect)
 #ifndef GNUSTEP
 void
 NSSetFocusRingStyle (style)
-    int style;
+    NSInteger style;
 
 #endif
 
