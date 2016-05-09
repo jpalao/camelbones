@@ -12,7 +12,7 @@
     NSLock *theLock;
 }
 
-- (id) initWithDictionary: (NSDictionary*)dict;
+- (id) initWithDictionary: (NSMutableDictionary*)dict;
 - (void) runTests;
 - (void) runFoo: (id)foo;
 - (void) runBar: (id)bar;
@@ -21,7 +21,7 @@
 
 @implementation CBThreadTests
 
-- (id) initWithDictionary: (NSDictionary*)dict {
+- (id) initWithDictionary: (NSMutableDictionary*)dict {
 
     if (nil != (self = [super init])) {
         d = [dict retain];
