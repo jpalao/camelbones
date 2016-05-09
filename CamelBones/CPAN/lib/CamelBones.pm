@@ -14,6 +14,10 @@ use CamelBones::NSRange;
 use CamelBones::NSRect;
 use CamelBones::NSSize;
 
+use CamelBones::CGPoint;
+use CamelBones::CGRect;
+use CamelBones::CGSize;
+
 use CamelBones::TiedArray;
 use CamelBones::TiedDictionary;
 
