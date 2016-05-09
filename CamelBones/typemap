@@ -18,12 +18,16 @@ NSPoint     T_NSPOINT
 NSRange     T_NSRANGE
 NSRect      T_NSRECT
 NSSize      T_NSSIZE
+CGFloat		T_CGFLOAT
+NSInteger	T_NSINTEGER
 
 OSType*     T_PTR
 NSPoint*    T_PTR
 NSRange*    T_PTR
 NSRect*     T_PTR
 NSSize*     T_PTR
+CGFloat*	T_PTR
+NSInteger*	T_PTR
 
 float*      T_PTR
 int*        T_PTR
@@ -45,7 +49,11 @@ T_NSRECT
     $var = CBRectFromSV($arg);
 T_NSSIZE
     $var = CBSizeFromSV($arg);
-    
+T_CGFLOAT
+    $var = CBOSTypeFromSV($arg);
+T_NSINTEGER
+	$var = CBOSTypeFromSV($arg);
+	
 T_SELTYPE
     $var = CBSelectorFromSV($arg);
 T_CLASSTYPE
@@ -66,6 +74,11 @@ T_NSRECT
     $arg = CBRectToSV($var);
 T_NSSIZE
     $arg = CBSizeToSV($var);
+T_CGFLOAT
+    $arg = CBOSTypeToSV($var);
+T_NSINTEGER
+	$arg = CBOSTypeToSV($var);
+	
     
 T_SELTYPE
     $arg = CBSVFromSelector($var);
