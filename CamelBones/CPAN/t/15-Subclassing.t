@@ -13,17 +13,17 @@ class CBSubclass {
     super => 'CBSuper',
 };
 
-sub setInt : Selector(setInt:) ArgTypes(i) {
+sub setInt : Selector(setInt:) ArgTypes(l) {
     my ($self, $int) = @_;
     return $self->SUPER::setInt($int);
 }
 
-sub intValue : Selector(intValue) ReturnType(i) {
+sub intValue : Selector(intValue) ReturnType(l) {
     my ($self) = @_;
     return $self->SUPER::intValue();
 }
 
-sub floatValue : Selector(floatValue) ReturnType(f) {
+sub floatValue : Selector(floatValue) ReturnType(d) {
     my ($self) = @_;
     return $self->SUPER::floatValue();
 }
