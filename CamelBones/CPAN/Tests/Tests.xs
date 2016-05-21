@@ -2,13 +2,9 @@
 #import <AppKit/AppKit.h>
 #import <stdio.h>
 
-#ifndef GNUSTEP
-#include <Carbon/Carbon.h>
-#endif
-
 #import <CamelBones/PerlImports.h>
-#import <CamelBones/Conversions.h>
-#import <CamelBones/Structs.h>
+#import <CamelBones/Conversions_real.h>
+#import <CamelBones/Structs_real.h>
 
 #import "CBSuper.h"
 #import "CBStructureTests.h"
@@ -67,11 +63,11 @@ id
 cbt_long2string(aLong)
     long aLong;
 CODE:
-    RETVAL=[NSString stringWithFormat:@"%d", aLong];
+    RETVAL=[NSString stringWithFormat:@"%ld", aLong];
 
 
 id
 cbt_ulong2string(aLong)
     unsigned long aLong;
 CODE:
-    RETVAL=[NSString stringWithFormat:@"%u", aLong];
+    RETVAL=[NSString stringWithFormat:@"%lu", aLong];

@@ -1,13 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 
-#ifndef GNUSTEP
-#include <Carbon/Carbon.h>
-#endif
-
 #import <CamelBones/PerlImports.h>
-#import <CamelBones/Conversions.h>
-#import <CamelBones/Structs.h>
+#import <CamelBones/Conversions_real.h>
+#import <CamelBones/Structs_real.h>
 
 MODULE = CamelBones::Foundation		PACKAGE = CamelBones::Foundation
 

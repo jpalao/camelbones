@@ -37,50 +37,50 @@ BOOL        T_BOOL
 INPUT
 
 ID_PTR
-    $var = CBDerefSVtoID($arg);
+    $var = REAL_CBDerefSVtoID($arg);
 
 T_OSTYPE
-    $var = CBOSTypeFromSV($arg);
+    $var = REAL_CBOSTypeFromSV($arg);
 T_NSPOINT
-    $var = CBPointFromSV($arg);
+    $var = REAL_CBPointFromSV($arg);
 T_NSRANGE
-    $var = CBRangeFromSV($arg);
+    $var = REAL_CBRangeFromSV($arg);
 T_NSRECT
-    $var = CBRectFromSV($arg);
+    $var = REAL_CBRectFromSV($arg);
 T_NSSIZE
-    $var = CBSizeFromSV($arg);
+    $var = REAL_CBSizeFromSV($arg);
 T_CGFLOAT
-    $var = CBOSTypeFromSV($arg);
+    $var = REAL_CBOSTypeFromSV($arg);
 T_NSINTEGER
-	$var = CBOSTypeFromSV($arg);
+	$var = REAL_CBOSTypeFromSV($arg);
 	
 T_SELTYPE
-    $var = CBSelectorFromSV($arg);
+    $var = REAL_CBSelectorFromSV($arg);
 T_CLASSTYPE
-    $var = CBClassFromSV($arg);
+    $var = REAL_CBClassFromSV($arg);
 
 OUTPUT
 
 ID_PTR
-    $arg = CBDerefIDtoSV($var);
+    $arg = REAL_CBDerefIDtoSV($var);
 
 T_OSTYPE
-    $arg = CBOSTypeToSV($var);
+    $arg = REAL_CBOSTypeToSV($var);
 T_NSPOINT
-    $arg = CBPointToSV($var);
+    $arg = REAL_CBPointToSV($var);
 T_NSRANGE
-    $arg = CBRangeToSV($var);
+    $arg = REAL_CBRangeToSV($var);
 T_NSRECT
-    $arg = CBRectToSV($var);
+    $arg = REAL_CBRectToSV($var);
 T_NSSIZE
-    $arg = CBSizeToSV($var);
+    $arg = REAL_CBSizeToSV($var);
 T_CGFLOAT
-    $arg = CBOSTypeToSV($var);
+    $arg = REAL_CBOSTypeToSV($var);
 T_NSINTEGER
-	$arg = CBOSTypeToSV($var);
+	$arg = REAL_CBOSTypeToSV($var);
 	
     
 T_SELTYPE
-    $arg = CBSVFromSelector($var);
+    $arg = REAL_CBSVFromSelector($var);
 T_CLASSTYPE
-    $arg = CBSVFromClass($var);    
+    $arg = REAL_CBSVFromClass($var);    
