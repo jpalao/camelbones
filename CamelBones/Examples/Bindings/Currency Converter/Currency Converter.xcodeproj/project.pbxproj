@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84CB149310B81E9A0078B1AF /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CB149210B81E9A0078B1AF /* CamelBones.framework */; };
-		84CB149610B81E9E0078B1AF /* CamelBones.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84CB149210B81E9A0078B1AF /* CamelBones.framework */; };
+		82F02F161BA85F0D0050BF86 /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F02F151BA85F0D0050BF86 /* CamelBones.framework */; };
+		82F02F191BA86C450050BF86 /* CamelBones in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F02F171BA86C450050BF86 /* CamelBones */; };
+		82F02F1A1BA86C450050BF86 /* CamelBones.pm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F02F181BA86C450050BF86 /* CamelBones.pm */; };
+		82F02F211BA873310050BF86 /* AppKit.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F02F1D1BA873310050BF86 /* AppKit.bundle */; };
+		82F02F221BA873310050BF86 /* CamelBones.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F02F1E1BA873310050BF86 /* CamelBones.bundle */; };
+		82F02F231BA873310050BF86 /* Foundation.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F02F1F1BA873310050BF86 /* Foundation.bundle */; };
+		82F02F241BA873310050BF86 /* Tests.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F02F201BA873310050BF86 /* Tests.bundle */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -24,9 +29,14 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 10;
+			dstSubfolderSpec = 7;
 			files = (
-				84CB149610B81E9E0078B1AF /* CamelBones.framework in CopyFiles */,
+				82F02F191BA86C450050BF86 /* CamelBones in CopyFiles */,
+				82F02F211BA873310050BF86 /* AppKit.bundle in CopyFiles */,
+				82F02F221BA873310050BF86 /* CamelBones.bundle in CopyFiles */,
+				82F02F231BA873310050BF86 /* Foundation.bundle in CopyFiles */,
+				82F02F241BA873310050BF86 /* Tests.bundle in CopyFiles */,
+				82F02F1A1BA86C450050BF86 /* CamelBones.pm in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,7 +49,14 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		84CB149210B81E9A0078B1AF /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = CamelBones/Frameworks/CamelBones.framework; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		82F02F151BA85F0D0050BF86 /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = "../../../../../../../Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug/CamelBones.framework"; sourceTree = "<group>"; };
+		82F02F171BA86C450050BF86 /* CamelBones */ = {isa = PBXFileReference; lastKnownFileType = folder; name = CamelBones; path = ../../../CamelBones/CPAN/lib/CamelBones; sourceTree = "<group>"; };
+		82F02F181BA86C450050BF86 /* CamelBones.pm */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; name = CamelBones.pm; path = ../../../CamelBones/CPAN/lib/CamelBones.pm; sourceTree = "<group>"; };
+		82F02F1B1BA86E410050BF86 /* darwin-thread-multi-2level-5.22.0.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "darwin-thread-multi-2level-5.22.0.bundle"; path = "../../../../../../../Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug/CamelBones.framework/Libraries/darwin-thread-multi-2level-5.22.0.bundle"; sourceTree = "<group>"; };
+		82F02F1D1BA873310050BF86 /* AppKit.bundle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = AppKit.bundle; path = ../../../../../../../Users/jose/Desktop/CPAN/blib/arch/auto/CamelBones/AppKit/AppKit.bundle; sourceTree = "<group>"; };
+		82F02F1E1BA873310050BF86 /* CamelBones.bundle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = CamelBones.bundle; path = ../../../../../../../Users/jose/Desktop/CPAN/blib/arch/auto/CamelBones/CamelBones.bundle; sourceTree = "<group>"; };
+		82F02F1F1BA873310050BF86 /* Foundation.bundle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = Foundation.bundle; path = ../../../../../../../Users/jose/Desktop/CPAN/blib/arch/auto/CamelBones/Foundation/Foundation.bundle; sourceTree = "<group>"; };
+		82F02F201BA873310050BF86 /* Tests.bundle */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.bundle"; name = Tests.bundle; path = ../../../../../../../Users/jose/Desktop/CPAN/blib/arch/auto/CamelBones/Tests/Tests.bundle; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Currency Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Currency Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA254AF405B66F05003DBAE8 /* main.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = main.pl; sourceTree = "<group>"; };
@@ -53,8 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82F02F161BA85F0D0050BF86 /* CamelBones.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				84CB149310B81E9A0078B1AF /* CamelBones.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +90,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84CB149210B81E9A0078B1AF /* CamelBones.framework */,
+				82F02F151BA85F0D0050BF86 /* CamelBones.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -99,6 +116,13 @@
 		29B97314FDCFA39411CA2CEA /* Currency Converter */ = {
 			isa = PBXGroup;
 			children = (
+				82F02F1D1BA873310050BF86 /* AppKit.bundle */,
+				82F02F1E1BA873310050BF86 /* CamelBones.bundle */,
+				82F02F1F1BA873310050BF86 /* Foundation.bundle */,
+				82F02F201BA873310050BF86 /* Tests.bundle */,
+				82F02F1B1BA86E410050BF86 /* darwin-thread-multi-2level-5.22.0.bundle */,
+				82F02F171BA86C450050BF86 /* CamelBones */,
+				82F02F181BA86C450050BF86 /* CamelBones.pm */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -175,9 +199,15 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 84CB146210B81DE70078B1AF /* Build configuration list for PBXProject "Currency Converter" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Currency Converter */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -263,12 +293,15 @@
 		84CB145F10B81DE70078B1AF /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug",
+					"/Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/CamelBones/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "/Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -280,10 +313,12 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = "Currency Converter";
+				SDKROOT = macosx10.9;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -298,13 +333,16 @@
 		84CB146010B81DE70078B1AF /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug",
+					"/Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/CamelBones/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "/Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -318,9 +356,11 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "Currency Converter";
+				SDKROOT = macosx10.8;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -335,11 +375,14 @@
 		84CB146110B81DE70078B1AF /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug",
+					"/Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug",
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/CamelBones/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "/Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug";
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -350,9 +393,11 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "Currency Converter";
+				SDKROOT = macosx10.8;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
