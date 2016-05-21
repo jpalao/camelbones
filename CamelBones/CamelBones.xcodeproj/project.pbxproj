@@ -19,18 +19,6 @@
 			name = "Perl Module (5.22.0)";
 			productName = "Perl Module";
 		};
-		826184351BA80ECD00D8B9AB /* PAR Kits (5.22.0) */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 826184391BA80ECD00D8B9AB /* Build configuration list for PBXAggregateTarget "PAR Kits (5.22.0)" */;
-			buildPhases = (
-				826184381BA80ECD00D8B9AB /* ShellScript */,
-			);
-			dependencies = (
-				826184361BA80ECD00D8B9AB /* PBXTargetDependency */,
-			);
-			name = "PAR Kits (5.22.0)";
-			productName = "PAR Kits (5.22.0)";
-		};
 		AA7F61620DCCFBA900D20E5E /* All */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = AA7F61710DCCFBA900D20E5E /* Build configuration list for PBXAggregateTarget "All" */;
