@@ -1,0 +1,57 @@
+CamelBones CHANGES
+
+v.1.2.0 Jose Palao
+=======
+* Added x86_64 support. By default the project will build Universal binaries
+* Better Objective-C 2.0 support. Remove deprecated calls
+* Updated to libffi-3.2.1
+* Remove dependencies of OS X system Perl. Removed Plug-in Bundle from CamelBones.Framework
+* Removed ExtLibs, PerlSDK directories, legacy Iceberg projects, PAR kit targets
+* Add CGPoint, CGRect, CGSize type support
+* Edited some tests
+
+v.1.1.2 Sherm Pendley
+=======
+
+Added support for cacheing autoloaded ObjC methods. (Patch by Matt Sergeant)
+
+Fixed a bug that caused BOOL, char, and int values to be returned incorrectly from ObjC methods in some situations.
+
+Fixed a bug in argument passing to native methods, to correctly pass undef as NULL when the expected type is void*.
+
+Fixed bugs in CBPerlHash, where the Perl context was not correctly set up in several methods.
+
+Fixed a bug in CBWrapObjectiveCClass, where NSObject was added to its own @ISA.
+
+Fixed key enumerator bug in CBPerlHash - SourceForge tracker ID 3087368.
+
+v.1.1.1 Sherm Pendley
+=======
+
+Changed license from LGPL, to the same as Perl itself.
+
+Corrected import tags in Xcode file templates.
+
+Dropped support for Mac OS X 10.3 "Panther."
+
+Removed homebrewed 5.8.9 from Perl SDKs package, replaced it with a real copy from Snow Leopard.
+
+10.5 and 10.6 support bundles now use /usr/lib/libffi.dylib.
+
+Pulled libffi-15 from opensource.apple.com to solve "unsupported encoding in FDE" link error when building 10.4 support bundle.
+
+Removed references to missing plist & header files from Xcode project.
+
+Added "#define HAS_BOOL", with #ifdefs to silence "bool redefined" warnings when building 10.4 support bundle.
+
+Changed CFBundleIdentifier from dot-app.org to camelbones.org for support bundle Info.plists.
+
+Fixed buggy handling of struct return types from Objective-C methods.
+
+10.4 & 10.5 Perls in Perl SDKs package now have patched Config.pms to build XS modules on Snow Leopard using the relevant GCC version & SDK, for deployment on earlier OS versions.
+
+Restored PAR and related CPAN modules that were missing from embedded frameworks in 1.1.0.
+
+Added PAR Kit build scripts and targets to Xcode project.
+
+Added ExtLibs to Subversion repository.
