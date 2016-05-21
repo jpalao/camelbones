@@ -45,7 +45,7 @@ This will build the CamelBones framework and the dynamic bundles
 
 Note: You may need to edit the CCFLAGS and OTHERLDFLAGS for your target architecture in cb_common.pl and/or Makefile.PL if you do not wish to build a universal i386/x86_64 module.
 
-All tests should pass. You should also be able to build and use all the native applications in the Examples directory of the distribution, except for those requiring a PAR kit. I haven't looked into that yet
+All tests should pass. You should also be able to build the native applications in the Examples directory of the distribution
 
 Please report any problems so they can be corrected or better yet contribute your patches. Pull requests are welcome
 
