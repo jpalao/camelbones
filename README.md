@@ -28,21 +28,18 @@ These TODO items are from the the original author. https://sourceforge.net/p/cam
 
 # BUILD
 
-To build and test:
+0. Optionally have an environmental variable export the kind of build ('Debug' or 'Release'):
+export CAMELBONES_BUILD_CONFIGURATION='Debug'
 
-1. Open the XCode project file and build the Camelbones.framework
+1. Build and test the traditional way:
 
-2. Change to the directory containing the Camelbones Perl Module:
-% cd CPAN-camelbones  
-You may need to edit the CCFLAGS and OTHERLDFLAGS for your target architecture in cb_common.pl and/or Makefile.PL if you do not wish to build a universal i386/x86_64 module.
-
-3. Export the location of the directory containing the newly built Camelbones.framework:
-% export CAMELBONES_PATH=/Your/Location/Build/Products/Debug
-
-4. Build the Camelbones Perl Module:
 % perl Makefile.PL
 % make
 % make test
+
+This will build the CamelBones framework and the dynamic bundles
+
+Note: You may need to edit the CCFLAGS and OTHERLDFLAGS for your target architecture in cb_common.pl and/or Makefile.PL if you do not wish to build a universal i386/x86_64 module.
 
 All tests should pass. You should also be able to build and use all the native applications in the Examples directory of the distribution, except for those requiring a PAR kit. I haven't looked into that yet
 
