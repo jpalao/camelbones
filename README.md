@@ -28,24 +28,41 @@ These TODO items are from the the original author. https://sourceforge.net/p/cam
 
 # BUILD
 
-0. Optionally have an environmental variable export the kind of build ('Debug' or 'Release'):
+### Optionally set configuration parameters for the build:
+
+To set the type of build ('Debug' or 'Release')
 ```
 export CAMELBONES_BUILD_CONFIGURATION='Debug'
 ```
+To specify a different framework installation directory (defaults to ~/Library/Frameworks)
+```
+export CAMELBONES_FRAMEWORK_INSTALL_PATH=1
+```
+To allow overwriting of the framework
+```
+export OVERWRITE_CAMELBONES_FRAMEWORK=1
+```
 
-1. Build and test the traditional way:
+### Build and test
+
+To build and install the Framework and build the Perl module 
 
 ```
 % perl Makefile.PL
 % make
-% make test
 ```
 
-This will build the CamelBones framework and the dynamic bundles
+To test and install the perl module run
+
+```
+% make test
+% make install
+```
+Depending on your settings you may need to sudo 
 
 Note: You may need to edit the CCFLAGS and OTHERLDFLAGS for your target architecture in cb_common.pl and/or Makefile.PL if you do not wish to build a universal i386/x86_64 module.
 
-All tests should pass. You should also be able to build the native applications in the Examples directory of the distribution
+The Examples directory of the distribution contains several applications to get started
 
 Please report any problems so they can be corrected or better yet contribute your patches. Pull requests are welcome
 
