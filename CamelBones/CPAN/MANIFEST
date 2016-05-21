@@ -35,6 +35,9 @@ lib/CamelBones/NSPoint.pm
 lib/CamelBones/NSRange.pm
 lib/CamelBones/NSRect.pm
 lib/CamelBones/NSSize.pm
+lib/CamelBones/CGPoint.pm
+lib/CamelBones/CGRect.pm
+lib/CamelBones/CGSize.pm
 lib/CamelBones/Tests.pm
 lib/CamelBones/TiedArray.pm
 lib/CamelBones/TiedDictionary.pm
