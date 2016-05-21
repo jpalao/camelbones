@@ -29,13 +29,17 @@ These TODO items are from the the original author. https://sourceforge.net/p/cam
 # BUILD
 
 0. Optionally have an environmental variable export the kind of build ('Debug' or 'Release'):
+```
 export CAMELBONES_BUILD_CONFIGURATION='Debug'
+```
 
 1. Build and test the traditional way:
 
+```
 % perl Makefile.PL
 % make
 % make test
+```
 
 This will build the CamelBones framework and the dynamic bundles
 
