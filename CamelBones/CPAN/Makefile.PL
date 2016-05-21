@@ -3,6 +3,15 @@ use 5.006;
 my %local_opts;
 BEGIN {
     require "./cb_common.pl";
+    print "Building ". $CBCommon::LIBFFIDIR . "...\n";
+
+    chdir $CBCommon::LIBFFIDIR;
+    my $lib_ffi_build_result = system ("xcodebuild", "-target", "libffi-Mac-static", "-configuration", $CBCommon::XCODE_BUILD_CONFIG);
+    chdir "..";
+    print "Building ". $CBCommon::CAMELBONES_FRAMEWORK . "...\n";
+    my $camelbones_framework_build_result = system ("xcodebuild", "-target", $CBCommon::CAMELBONES_FRAMEWORK, "-configuration", $CBCommon::XCODE_BUILD_CONFIG);
+    chdir "CPAN";
+    
     %local_opts = (
         'NAME' => 'CamelBones',
         'DIR' => [ 'AppKit', 'Foundation', 'Tests' ],

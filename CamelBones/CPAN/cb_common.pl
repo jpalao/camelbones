@@ -3,14 +3,27 @@
 package CBCommon;
 
 use Config;
-use Cwd 'abs_path';
+use Cwd qw/abs_path getcwd/;
 
-my $CamelBonesPath = $ENV{'CAMELBONES_PATH'};
+die "This version of CamelBones only works on Darwin Mac OS X systems"
+    if ( $^O !~ m/darwin/ );
 
-my $CamelBones = "$CamelBonesPath/CamelBones.framework";
+our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
+our $LIBFFIDIR = '../libffi-3.2.1';
+our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 
-$CamelBones = abs_path($CamelBones);
-$CamelBonesPath = abs_path($CamelBonesPath);
+my $abs_path_to_cwd = getcwd();
+
+my $down = "..";
+if ($abs_path_to_cwd =~ /AppKit|Foundation|Tests/) {
+    $down .= "/.."
+}
+
+$XCODE_BUILD_CONFIG = "Debug" if (!length $XCODE_BUILD_CONFIG);
+
+my $CamelBonesPath = "$abs_path_to_cwd/$down/build/$XCODE_BUILD_CONFIG";
+
+my $CamelBones = "$CamelBonesPath/$CAMELBONES_FRAMEWORK";
 
 our %opts = (
     VERSION           => '1.2.0',
