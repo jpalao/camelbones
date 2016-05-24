@@ -700,18 +700,21 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INSTALL_PATH = "@rpath";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-Wl,-no_compact_unwind";
+				OTHER_LDFLAGS = (
+					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
+					"-Wl,-no_compact_unwind",
+					"-lperl",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx10.8;
@@ -735,18 +738,21 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INSTALL_PATH = "@rpath";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-Wl,-no_compact_unwind";
+				OTHER_LDFLAGS = (
+					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
+					"-Wl,-no_compact_unwind",
+					"-lperl",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx10.8;
@@ -769,18 +775,21 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@executable_path/../Frameworks";
+				INSTALL_PATH = "@rpath";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-Wl,-no_compact_unwind";
+				OTHER_LDFLAGS = (
+					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
+					"-Wl,-no_compact_unwind",
+					"-lperl",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx10.8;
@@ -803,18 +812,21 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@loader_path/../Frameworks";
+				INSTALL_PATH = "@rpath";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-Wl,-no_compact_unwind";
+				OTHER_LDFLAGS = (
+					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
+					"-Wl,-no_compact_unwind",
+					"-lperl",
+				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx10.8;
