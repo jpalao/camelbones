@@ -76,7 +76,6 @@
 		82151A5E1CEFBCAC00FB511B /* StubFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D50C875DB7004DA7BD /* StubFunctions.m */; };
 		82151A601CEFBCAC00FB511B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4240C875F90004DA7BD /* AppKit.framework */; };
 		82151A611CEFBCAC00FB511B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4280C875FA2004DA7BD /* Foundation.framework */; };
-		82151A621CEFBCAC00FB511B /* libperl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 826183FD1BA8099E00D8B9AB /* libperl.dylib */; };
 		82151A641CEFBCAC00FB511B /* typemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA83FE0E0CC9E9CF00E56F20 /* typemap */; };
 		82151A6D1CEFBD1100FB511B /* CBPerl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AC0C875DB7004DA7BD /* CBPerl.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
 		82151A6E1CEFBD1100FB511B /* CBPerlArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
@@ -248,21 +247,12 @@
 				82151A7D1CEFBEA200FB511B /* libffi.a in Frameworks */,
 				82151A601CEFBCAC00FB511B /* AppKit.framework in Frameworks */,
 				82151A611CEFBCAC00FB511B /* Foundation.framework in Frameworks */,
-				82151A621CEFBCAC00FB511B /* libperl.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		826183FA1BA8084900D8B9AB /* darwin-thread-mult-2level-5.22.0 */ = {
-			isa = PBXGroup;
-			children = (
-				826183FD1BA8099E00D8B9AB /* libperl.dylib */,
-			);
-			name = "darwin-thread-mult-2level-5.22.0";
-			sourceTree = "<group>";
-		};
 		84AC1BA80D73807100C751F7 /* t */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,7 +365,6 @@
 		AA50E4130C875E1D004DA7BD /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				826183FA1BA8084900D8B9AB /* darwin-thread-mult-2level-5.22.0 */,
 				AA50E4280C875FA2004DA7BD /* Foundation.framework */,
 				AA50E4240C875F90004DA7BD /* AppKit.framework */,
 			);
