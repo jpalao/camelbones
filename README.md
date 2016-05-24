@@ -28,7 +28,9 @@ These TODO items are from the the original author. https://sourceforge.net/p/cam
 
 # BUILD
 
-### Optionally set configuration parameters. Default values are shown in the examples:
+### Optionally set configuration parameters
+
+Default values are shown in the examples:
 
 To set the type of build ('Debug' or 'Release') for CamelBones.framework
 ```
