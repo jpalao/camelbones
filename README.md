@@ -28,19 +28,31 @@ These TODO items are from the the original author. https://sourceforge.net/p/cam
 
 # BUILD
 
-### Optionally set configuration parameters for the build:
+### Optionally set configuration parameters. Default values are shown in the examples:
 
-To set the type of build ('Debug' or 'Release')
+To set the type of build ('Debug' or 'Release') for CamelBones.framework
 ```
 export CAMELBONES_BUILD_CONFIGURATION='Debug'
 ```
-To specify a different framework installation directory (defaults to ~/Library/Frameworks)
+To specify a different installation directory for CamelBones.framework (defaults to ~/Library/Frameworks)
 ```
-export CAMELBONES_FRAMEWORK_INSTALL_PATH=1
+export CAMELBONES_FRAMEWORK_INSTALL_PATH=~/Library/Frameworks
 ```
-To allow overwriting of the framework
+To overwrite the framework set this to 1. The process will die if the framework exists in the destination and this flag is not set
 ```
-export OVERWRITE_CAMELBONES_FRAMEWORK=1
+export OVERWRITE_CAMELBONES_FRAMEWORK=0
+```
+To change the architectures for the perl module *.bundle binaries. The default is to build a universal binary
+```
+export ARCHFLAGS='-arch i386 -arch x86_64'
+```
+To change the include directory for Perl. Defaults to $Config{archlib}. "/CORE" of the invocant Perl
+```
+export PERL_INCLUDE_DIR='/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/'
+```
+To change the directory where libperl.dylib is located. Defaults to $Config{archlib}. "/CORE" of the invocant Perl
+```
+export PERL_LIB_DIR='/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/'
 ```
 
 ### Build and test
@@ -58,9 +70,7 @@ To test and install the perl module run
 % make test
 % make install
 ```
-Depending on your settings you may need to sudo 
-
-Note: You may need to edit the CCFLAGS and OTHERLDFLAGS for your target architecture in cb_common.pl and/or Makefile.PL if you do not wish to build a universal i386/x86_64 module.
+Depending on your framework and Perl module installation directories you may need to sudo the commands
 
 The Examples directory of the distribution contains several applications to get started
 
