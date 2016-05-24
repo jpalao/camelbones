@@ -127,10 +127,6 @@
 		82048DA21C96AF3500668B4F /* CGSize.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = CGSize.pm; sourceTree = "<group>"; };
 		82151A6B1CEFBCAC00FB511B /* CamelBones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CamelBones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82151A7C1CEFBEA200FB511B /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = "libffi-3.2.1/Build/Products/Debug/libffi.a"; sourceTree = "<group>"; };
-		826183FD1BA8099E00D8B9AB /* libperl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libperl.dylib; path = "../../../../../opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/libperl.dylib"; sourceTree = "<group>"; };
-		826184411BA8179700D8B9AB /* EXTERN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = EXTERN.h; path = "../../../../../opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/EXTERN.h"; sourceTree = "<group>"; };
-		826184431BA817B800D8B9AB /* perl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = perl.h; path = "../../../../../opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/perl.h"; sourceTree = "<group>"; };
-		826184451BA817CA00D8B9AB /* XSUB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XSUB.h; path = "../../../../../opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/XSUB.h"; sourceTree = "<group>"; };
 		84AC1B9F0D73805000C751F7 /* Tests.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Tests.pm; sourceTree = "<group>"; };
 		84AC1BA90D73807100C751F7 /* 00-CamelBones.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00-CamelBones.t"; sourceTree = "<group>"; };
 		84AC1BAA0D73807100C751F7 /* 01-Functions.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "01-Functions.t"; sourceTree = "<group>"; };
@@ -313,9 +309,6 @@
 			isa = PBXGroup;
 			children = (
 				82151A7C1CEFBEA200FB511B /* libffi.a */,
-				826184451BA817CA00D8B9AB /* XSUB.h */,
-				826184431BA817B800D8B9AB /* perl.h */,
-				826184411BA8179700D8B9AB /* EXTERN.h */,
 				AA50E9640C879392004DA7BD /* Info.plist */,
 				AA50E5CF0C877E37004DA7BD /* Resources */,
 				AA50E3A70C875D23004DA7BD /* CamelBones */,
