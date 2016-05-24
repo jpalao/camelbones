@@ -3,14 +3,6 @@ use 5.006;
 my %local_opts;
 BEGIN {
     require "./cb_common.pl";
-    print "Building ". $CBCommon::LIBFFIDIR . "...\n";
-
-    chdir $CBCommon::LIBFFIDIR;
-    my $lib_ffi_build_result = system ("xcodebuild", "-target", "libffi-Mac-static", "-configuration", $CBCommon::XCODE_BUILD_CONFIG);
-    chdir "..";
-    print "Building ". $CBCommon::CAMELBONES_FRAMEWORK . "...\n";
-    my $camelbones_framework_build_result = system ("xcodebuild", "-target", $CBCommon::CAMELBONES_FRAMEWORK, "-configuration", $CBCommon::XCODE_BUILD_CONFIG);
-    chdir "CPAN";
     
     %local_opts = (
         'NAME' => 'CamelBones',
@@ -18,9 +10,65 @@ BEGIN {
         'XS' => { 'CamelBones.xs' => 'CamelBones.m' },
     );
     for (keys %CBCommon::opts) {
-        $local_opts{$_} = $CBCommon::opts{$_};
+	$local_opts{$_} = $CBCommon::opts{$_};
     }
 }
+
+print "Building ". $CBCommon::LIBFFIDIR . "...\n";
+
+chdir $CBCommon::LIBFFIDIR;    
+
+my $lib_ffi_build_result = system (
+    "xcodebuild",
+    "-target",
+    "libffi-Mac-static",
+    "-configuration",
+    $CBCommon::XCODE_BUILD_CONFIG
+);
+
+chdir "..";
+
+die ("CamelBones framework build error. libffi.a could not be built: $lib_ffi_build_result\n")
+    if $lib_ffi_build_result;
+
+print "Building ". $CBCommon::CAMELBONES_FRAMEWORK . "...\n";
+
+my @camelbones_framework_build_cmd = (
+    "xcodebuild",
+    'USER_HEADER_SEARCH_PATHS=' . $CBCommon::PERL_INCLUDE_DIR . "'",
+    'OTHER_LDFLAGS=-L' . $CBCommon::PERL_LIB_DIR . ' -lperl -Wl,-no_compact_unwind',
+    "-target",
+    $CBCommon::CAMELBONES_FRAMEWORK,
+    "-configuration", $CBCommon::XCODE_BUILD_CONFIG
+);
+
+print "CamelBones.framework build command: \n";
+
+for my $arg (@camelbones_framework_build_cmd) {
+    print $arg. " ";
+}
+
+print "\n";
+
+my $camelbones_framework_build_result = system (
+    @camelbones_framework_build_cmd
+);
+
+die ("CamelBones framework build error. Result: $camelbones_framework_build_result\n")
+    if $camelbones_framework_build_result;
+
+die "CamelBones.framework exists already in " . $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH
+    if (( -e $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH . '/' . $CBCommon::CAMELBONES_FRAMEWORK) &&
+	    (!$CBCommon::OVERWRITE_CAMELBONES_FRAMEWORK));
+
+my $framework_install_result = 
+    system ('cp', '-Ra', "build/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . $CBCommon::CAMELBONES_FRAMEWORK ,
+	    $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH );
+     
+die ("Framework install error. Result: $framework_install_result\n")
+    if ($framework_install_result);
+
+chdir "CPAN";
 
 use ExtUtils::MakeMaker;
 WriteMakefile(
