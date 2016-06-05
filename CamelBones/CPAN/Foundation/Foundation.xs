@@ -52,8 +52,8 @@ NSOpenStepRootDirectory ()
 
 id
 NSSearchPathForDirectoriesInDomains (directory, domainMask, expandTilde)
-    int directory;
-    int domainMask;
+    NSUInteger directory;
+    NSUInteger domainMask;
     BOOL expandTilde;
 
 id
@@ -63,15 +63,15 @@ id
 NSUserName ()
 
 # Point utils
-int
+BOOL
 NSEqualPoints (point1, point2)
     NSPoint point1;
     NSPoint point2;
 
 NSPoint
 NSMakePoint (x,y)
-    float x;
-    float y;
+    CGFloat x;
+    CGFloat y;
 
 NSPoint
 NSPointFromString (aString)
@@ -82,7 +82,7 @@ NSStringFromPoint (aPoint)
     NSPoint aPoint;
 
 # Range utils
-int
+BOOL
 NSEqualRanges (range1, range2)
     NSRange range1;
     NSRange range2;
@@ -92,17 +92,17 @@ NSIntersectionRange (range1, range2)
     NSRange range1;
     NSRange range2;
 
-int
+BOOL
 NSLocationInRange (index, aRange)
-    int index;
+    NSUInteger index;
     NSRange aRange;
 
 NSRange
 NSMakeRange (location, length)
-    int location;
-    int length;
+    NSUInteger location;
+    NSUInteger length;
 
-int
+NSUInteger
 NSMaxRange (aRange)
     NSRange aRange;
 
@@ -120,28 +120,28 @@ NSUnionRange (range1,range2)
     NSRange range2;
 
 # Rect utils
-int
+BOOL
 NSContainsRect (rect1, rect2)
     NSRect rect1;
     NSRect rect2;
     
-int
+BOOL
 NSEqualRects (rect1, rect2)
     NSRect rect1;
     NSRect rect2;
 
-int
+BOOL
 NSIsEmptyRect (aRect)
     NSRect aRect;
 
-float NSHeight (aRect)
+CGFloat NSHeight (aRect)
     NSRect aRect;
     
 NSRect
 NSInsetRect (aRect, dX, dY)
     NSRect aRect;
-    float dX;
-    float dY;
+    CGFloat dX;
+    CGFloat dY;
 
 NSRect
 NSIntegralRect (aRect)
@@ -152,43 +152,43 @@ NSIntersectionRect (rect1, rect2)
     NSRect rect1;
     NSRect rect2;
 
-int
+BOOL
 NSIntersectsRect (rect1, rect2)
     NSRect rect1;
     NSRect rect2;
 
 NSRect
 NSMakeRect (x,y,width,height)
-    float x;
-    float y;
-    float width;
-    float height;
+    CGFloat x;
+    CGFloat y;
+    CGFloat width;
+    CGFloat height;
 
-float
+CGFloat
 NSMaxX (aRect)
     NSRect aRect;
 
-float
+CGFloat
 NSMaxY (aRect)
     NSRect aRect;
 
-float
+CGFloat
 NSMidX (aRect)
     NSRect aRect;
     
-float
+CGFloat
 NSMidY (aRect)
     NSRect aRect;
 
-float
+CGFloat
 NSMinX (aRect)
     NSRect aRect;
 
-float
+CGFloat
 NSMinY (aRect)
     NSRect aRect;
 
-int
+BOOL
 NSMouseInRect (aPoint, aRect, isFlipped)
     NSPoint aPoint;
     NSRect aRect;
@@ -197,10 +197,10 @@ NSMouseInRect (aPoint, aRect, isFlipped)
 NSRect
 NSOffsetRect (aRect, dx, dy)
     NSRect aRect;
-    float dx;
-    float dy;
+    CGFloat dx;
+    CGFloat dy;
 
-int
+BOOL
 NSPointInRect (aPoint, aRect)
     NSPoint aPoint;
     NSRect aRect;
@@ -218,20 +218,20 @@ NSUnionRect (rect1, rect2)
     NSRect rect1;
     NSRect rect2;
 
-float
+CGFloat
 NSWidth (aRect)
     NSRect aRect;
 
 # NSSize functions
-int
+BOOL
 NSEqualSizes (size1, size2)
     NSSize size1;
     NSSize size2;
 
 NSSize
 NSMakeSize (width, height)
-    float width;
-    float height;
+    CGFloat width;
+    CGFloat height;
     
 NSSize
 NSSizeFromString (aString)
@@ -242,19 +242,19 @@ NSStringFromSize (aSize)
     NSSize aSize;
 
 # Zone functions, but only some of them
-int
+NSUInteger
 NSLogPageSize ()
 
-int
+NSUInteger
 NSPageSize ()
 
-int
+NSUInteger
 NSRealMemoryAvailable ()
 
-int
+NSUInteger
 NSRoundDownToMultipleOfPageSize (pSize)
-    int pSize;
+    NSInteger pSize;
 
-int
+NSUInteger
 NSRoundUpToMultipleOfPageSize (pSize)
-    int pSize;
+    NSInteger pSize;
