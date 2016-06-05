@@ -53,7 +53,6 @@
 		82151A451CEFBCAC00FB511B /* CBPerlScalarInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A461CEFBCAC00FB511B /* Conversions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BE0C875DB7004DA7BD /* Conversions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A471CEFBCAC00FB511B /* Conversions_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A481CEFBCAC00FB511B /* DylibInit.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C00C875DB7004DA7BD /* DylibInit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A491CEFBCAC00FB511B /* Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C30C875DB7004DA7BD /* Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A4A1CEFBCAC00FB511B /* Globals_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C20C875DB7004DA7BD /* Globals_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,9 +69,7 @@
 		82151A561CEFBCAC00FB511B /* Wrappers_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A571CEFBCAC00FB511B /* CBPerlObject.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A581CEFBCAC00FB511B /* CBPerlScalar.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A5A1CEFBCAC00FB511B /* DylibInit.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C10C875DB7004DA7BD /* DylibInit.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
 		82151A5B1CEFBCAC00FB511B /* AppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3A90C875DB7004DA7BD /* AppMain.m */; };
-		82151A5D1CEFBCAC00FB511B /* StubClasses.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D40C875DB7004DA7BD /* StubClasses.m */; };
 		82151A5E1CEFBCAC00FB511B /* StubFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D50C875DB7004DA7BD /* StubFunctions.m */; };
 		82151A601CEFBCAC00FB511B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4240C875F90004DA7BD /* AppKit.framework */; };
 		82151A611CEFBCAC00FB511B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4280C875FA2004DA7BD /* Foundation.framework */; };
@@ -94,6 +91,8 @@
 		82151A7B1CEFBDEE00FB511B /* Wrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D90C875DB8004DA7BD /* Wrappers.m */; };
 		82151A7D1CEFBEA200FB511B /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82151A7C1CEFBEA200FB511B /* libffi.a */; };
 		82151A7F1CEFCDE800FB511B /* CBDummyModule.pm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B5406F0DA17D3800C351C3 /* CBDummyModule.pm */; };
+		82F870171CF630C100D0F3EA /* AppKitGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */; };
+		82F870181CF630C200D0F3EA /* FoundationGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +112,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				82F870171CF630C100D0F3EA /* AppKitGlobalStrings.plist in CopyFiles */,
+				82F870181CF630C200D0F3EA /* FoundationGlobalStrings.plist in CopyFiles */,
 				82151A7F1CEFCDE800FB511B /* CBDummyModule.pm in CopyFiles */,
 				82151A641CEFBCAC00FB511B /* typemap in CopyFiles */,
 			);
@@ -126,6 +127,8 @@
 		82048DA21C96AF3500668B4F /* CGSize.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = CGSize.pm; sourceTree = "<group>"; };
 		82151A6B1CEFBCAC00FB511B /* CamelBones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CamelBones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82151A7C1CEFBEA200FB511B /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = "libffi-3.2.1/Build/Products/Debug/libffi.a"; sourceTree = "<group>"; };
+		82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppKitGlobalStrings.plist; sourceTree = "<group>"; };
+		82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FoundationGlobalStrings.plist; sourceTree = "<group>"; };
 		84AC1B9F0D73805000C751F7 /* Tests.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Tests.pm; sourceTree = "<group>"; };
 		84AC1BA90D73807100C751F7 /* 00-CamelBones.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "00-CamelBones.t"; sourceTree = "<group>"; };
 		84AC1BAA0D73807100C751F7 /* 01-Functions.t */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "01-Functions.t"; sourceTree = "<group>"; };
@@ -170,7 +173,6 @@
 		AA50E3BE0C875DB7004DA7BD /* Conversions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Conversions.h; sourceTree = "<group>"; };
 		AA50E3BF0C875DB7004DA7BD /* Conversions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Conversions.m; sourceTree = "<group>"; };
 		AA50E3C00C875DB7004DA7BD /* DylibInit.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DylibInit.h; sourceTree = "<group>"; };
-		AA50E3C10C875DB7004DA7BD /* DylibInit.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = DylibInit.m; sourceTree = "<group>"; };
 		AA50E3C20C875DB7004DA7BD /* Globals_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Globals_real.h; sourceTree = "<group>"; };
 		AA50E3C30C875DB7004DA7BD /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		AA50E3C40C875DB7004DA7BD /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
@@ -189,9 +191,7 @@
 		AA50E3D10C875DB7004DA7BD /* Structs_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs_real.h; sourceTree = "<group>"; };
 		AA50E3D20C875DB7004DA7BD /* Structs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
 		AA50E3D30C875DB7004DA7BD /* Structs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Structs.m; sourceTree = "<group>"; };
-		AA50E3D40C875DB7004DA7BD /* StubClasses.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = StubClasses.m; sourceTree = "<group>"; };
 		AA50E3D50C875DB7004DA7BD /* StubFunctions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = StubFunctions.m; sourceTree = "<group>"; };
-		AA50E3D60C875DB7004DA7BD /* StubInit.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = StubInit.m; sourceTree = "<group>"; };
 		AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers_real.h; sourceTree = "<group>"; };
 		AA50E3D80C875DB7004DA7BD /* Wrappers.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers.h; sourceTree = "<group>"; };
 		AA50E3D90C875DB8004DA7BD /* Wrappers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Wrappers.m; sourceTree = "<group>"; };
@@ -298,7 +298,6 @@
 		AA50E2030C87571F004DA7BD = {
 			isa = PBXGroup;
 			children = (
-				82151A7C1CEFBEA200FB511B /* libffi.a */,
 				AA50E9640C879392004DA7BD /* Info.plist */,
 				AA50E5CF0C877E37004DA7BD /* Resources */,
 				AA50E3A70C875D23004DA7BD /* CamelBones */,
@@ -323,14 +322,14 @@
 				AA50E4620C876684004DA7BD /* Private-Include */,
 				AA50E45B0C87664F004DA7BD /* Include */,
 				AA50E40D0C875DD2004DA7BD /* Framework */,
-				AA50E40C0C875DC7004DA7BD /* Plugin */,
 			);
 			name = CamelBones;
 			sourceTree = "<group>";
 		};
-		AA50E40C0C875DC7004DA7BD /* Plugin */ = {
+		AA50E40D0C875DD2004DA7BD /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				AA50E3A90C875DB7004DA7BD /* AppMain.m */,
 				AA50E3AC0C875DB7004DA7BD /* CBPerl.m */,
 				AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */,
 				AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */,
@@ -345,19 +344,8 @@
 				AA50E3CC0C875DB7004DA7BD /* perlxsi.c */,
 				AA50E3D00C875DB7004DA7BD /* Runtime.m */,
 				AA50E3D30C875DB7004DA7BD /* Structs.m */,
-				AA50E3D90C875DB8004DA7BD /* Wrappers.m */,
-			);
-			name = Plugin;
-			sourceTree = "<group>";
-		};
-		AA50E40D0C875DD2004DA7BD /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				AA50E3C10C875DB7004DA7BD /* DylibInit.m */,
-				AA50E3A90C875DB7004DA7BD /* AppMain.m */,
-				AA50E3D60C875DB7004DA7BD /* StubInit.m */,
-				AA50E3D40C875DB7004DA7BD /* StubClasses.m */,
 				AA50E3D50C875DB7004DA7BD /* StubFunctions.m */,
+				AA50E3D90C875DB8004DA7BD /* Wrappers.m */,
 			);
 			name = Framework;
 			sourceTree = "<group>";
@@ -365,6 +353,7 @@
 		AA50E4130C875E1D004DA7BD /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				82151A7C1CEFBEA200FB511B /* libffi.a */,
 				AA50E4280C875FA2004DA7BD /* Foundation.framework */,
 				AA50E4240C875F90004DA7BD /* AppKit.framework */,
 			);
@@ -416,6 +405,8 @@
 		AA50E5CF0C877E37004DA7BD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */,
+				82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -542,7 +533,6 @@
 				82151A451CEFBCAC00FB511B /* CBPerlScalarInternals.h in Headers */,
 				82151A461CEFBCAC00FB511B /* Conversions.h in Headers */,
 				82151A471CEFBCAC00FB511B /* Conversions_real.h in Headers */,
-				82151A481CEFBCAC00FB511B /* DylibInit.h in Headers */,
 				82151A491CEFBCAC00FB511B /* Globals.h in Headers */,
 				82151A4A1CEFBCAC00FB511B /* Globals_real.h in Headers */,
 				82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */,
@@ -654,7 +644,6 @@
 				82151A6F1CEFBD1100FB511B /* CBPerlHash.m in Sources */,
 				82151A701CEFBD1100FB511B /* CBPerlObject.m in Sources */,
 				82151A711CEFBD1100FB511B /* CBPerlScalar.m in Sources */,
-				82151A5A1CEFBCAC00FB511B /* DylibInit.m in Sources */,
 				82151A5B1CEFBCAC00FB511B /* AppMain.m in Sources */,
 				82151A721CEFBDEE00FB511B /* CBPerlObjectInternals.m in Sources */,
 				82151A761CEFBDEE00FB511B /* NativeMethods.m in Sources */,
@@ -667,7 +656,6 @@
 				82151A751CEFBDEE00FB511B /* Globals.m in Sources */,
 				82151A791CEFBDEE00FB511B /* Runtime.m in Sources */,
 				82151A7B1CEFBDEE00FB511B /* Wrappers.m in Sources */,
-				82151A5D1CEFBCAC00FB511B /* StubClasses.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -702,13 +690,13 @@
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
@@ -717,8 +705,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = macosx10.8;
-				SYMROOT = build;
+				SDKROOT = macosx;
+				SYMROOT = Build/Products;
 				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/";
 			};
 			name = Debug;
@@ -740,13 +728,13 @@
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
@@ -755,7 +743,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
+				SYMROOT = Build/Products;
 				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/";
 			};
 			name = Release;
@@ -777,13 +766,13 @@
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
@@ -792,7 +781,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
+				SYMROOT = Build/Products;
 				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/";
 			};
 			name = "Release-App-Embedded";
@@ -814,13 +804,13 @@
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "@rpath";
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/",
@@ -829,7 +819,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
+				SYMROOT = Build/Products;
 				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/";
 			};
 			name = "Release-Lib-Embedded";
