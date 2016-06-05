@@ -31,11 +31,11 @@
     return range;
 }
 
-- (unsigned int) rangeLocation {
+- (NSInteger) rangeLocation {
     return range.location;
 }
 
-- (unsigned int) rangeLength {
+- (NSInteger) rangeLength {
     return range.length;
 }
 

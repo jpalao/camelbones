@@ -19,8 +19,8 @@
 - (void)setPoint:(NSPoint)value;
 
 - (NSRange)range;
-- (unsigned int) rangeLocation;
-- (unsigned int) rangeLength;
+- (NSInteger) rangeLocation;
+- (NSInteger) rangeLength;
 - (void)setRange:(NSRange)value;
 
 - (NSRect)rect;
