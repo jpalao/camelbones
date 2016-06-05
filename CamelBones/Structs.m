@@ -59,7 +59,8 @@ NSPoint REAL_CBPointFromSV(void* sv) {
 
     if (SvROK((SV*)sv)) {
         target = SvRV((SV*)sv);
-        if (sv_derived_from((SV*)sv,"CamelBones::NSPoint")) {
+        if (sv_derived_from((SV*)sv,"CamelBones::NSPoint") ||
+            sv_derived_from((SV*)sv,"CamelBones::CGPoint")) {
             pv = SvPV_nolen(target);
             memcpy(&newPoint, pv, sizeof(NSPoint));
             return newPoint;
@@ -132,7 +133,8 @@ CGPoint REAL_CBCGPointFromSV(void* sv) {
 
     if (SvROK((SV*)sv)) {
         target = SvRV((SV*)sv);
-        if (sv_derived_from((SV*)sv,"CamelBones::CGPoint")) {
+        if (sv_derived_from((SV*)sv,"CamelBones::CGPoint") ||
+            sv_derived_from((SV*)sv,"CamelBones::NSPoint")) {
             pv = SvPV_nolen(target);
             memcpy(&newPoint, pv, sizeof(CGPoint));
             return newPoint;
@@ -216,7 +218,8 @@ NSRect REAL_CBRectFromSV(void* sv) {
 
     if (SvROK((SV*)sv)) {
         target = SvRV((SV*)sv);
-        if (sv_derived_from((SV*)sv,"CamelBones::NSRect")) {
+        if (sv_derived_from((SV*)sv,"CamelBones::NSRect") ||
+            sv_derived_from((SV*)sv,"CamelBones::CGRect")) {
             pv = SvPV_nolen(target);
             memcpy(&newRect, pv, sizeof(NSRect));
             return newRect;
@@ -300,7 +303,8 @@ CGRect REAL_CBCGRectFromSV(void* sv) {
 
     if (SvROK((SV*)sv)) {
         target = SvRV((SV*)sv);
-        if (sv_derived_from((SV*)sv,"CamelBones::CGRect")) {
+        if (sv_derived_from((SV*)sv,"CamelBones::CGRect") ||
+            sv_derived_from((SV*)sv,"CamelBones::NSRect")) {
             pv = SvPV_nolen(target);
             memcpy(&newRect, pv, sizeof(CGRect));
             return newRect;
@@ -435,7 +439,8 @@ NSSize REAL_CBSizeFromSV(void* sv) {
 
     if (SvROK((SV*)sv)) {
         target = SvRV((SV*)sv);
-        if (sv_derived_from((SV*)sv,"CamelBones::NSSize")) {
+        if (sv_derived_from((SV*)sv,"CamelBones::NSSize") ||
+            sv_derived_from((SV*)sv,"CamelBones::CGSize")) {
             pv = SvPV_nolen(target);
             memcpy(&newSize, pv, sizeof(NSSize));
             return newSize;
@@ -510,7 +515,8 @@ CGSize REAL_CBCGSizeFromSV(void* sv) {
 
     if (SvROK((SV*)sv)) {
         target = SvRV((SV*)sv);
-        if (sv_derived_from((SV*)sv,"CamelBones::CGSize")) {
+        if (sv_derived_from((SV*)sv,"CamelBones::CGSize") ||
+            sv_derived_from((SV*)sv,"CamelBones::NSSize")) {
             pv = SvPV_nolen(target);
             memcpy(&newSize, pv, sizeof(CGSize));
             return newSize;
