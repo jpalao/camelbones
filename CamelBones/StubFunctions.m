@@ -156,6 +156,8 @@ void* (*CBCreateObjectOfClass)(NSString *className);
 #import "AppMain.h"
 static const char *perlArchVer = NULL;
 
+// The following code is unused in v1.2.0
+// We run the same with a perl binary and with libperl
 // Get Perl's architecture & version as a string
 const char *CBGetPerlArchver() {
     if (NULL != perlArchVer) return perlArchVer;

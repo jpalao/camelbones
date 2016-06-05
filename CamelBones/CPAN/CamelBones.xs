@@ -27,11 +27,9 @@ REAL_CBPoke(address, object, size=0)
 	CamelBones::REAL_CBPoke = 2
 
 void
-CBInit(archver)
-    char *archver
+CBInit()
     CODE:
     NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
-    CBSetPerlArchver(archver);
     [[CBPerl alloc] initXS];
 
 SV*

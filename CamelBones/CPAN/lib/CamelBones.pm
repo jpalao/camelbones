@@ -65,7 +65,7 @@ our $CacheAutoload = 1;
 
 require XSLoader;
 XSLoader::load('CamelBones', $VERSION);
-CamelBones::CBInit($Config{'archname'}.'-'.$Config{'version'});
+CamelBones::CBInit();
 CamelBones::Foundation::Globals->import;
 CamelBones::AppKit::Globals->import;
 
