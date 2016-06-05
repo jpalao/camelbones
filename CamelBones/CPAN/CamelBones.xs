@@ -3,7 +3,6 @@
 #import <CamelBones/NativeMethods_real.h>
 #import <CamelBones/Conversions_real.h>
 #import <CamelBones/Runtime_real.h>
-#import <CamelBones/DylibInit.h>
 #import <CamelBones/PerlImports.h>
 
 #ifdef GNUSTEP

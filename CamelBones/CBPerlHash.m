@@ -10,7 +10,7 @@
 #import "CBPerlHashInternals.h"
 #import "Conversions_real.h"
 
-@implementation CBPerlHash (Overrides)
+@implementation CBPerlHash
 
 // Required primitive methods
 - (unsigned long)count {
@@ -218,7 +218,7 @@
 
 
 // Key enumerator public methods
-@implementation CBPerlHashKeyEnumerator (Overrides)
+@implementation CBPerlHashKeyEnumerator
 
 - (NSArray *)allObjects {
     return [e allObjects];

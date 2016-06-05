@@ -15,7 +15,7 @@
 #import "CBPerlScalar.h"
 #import "CBPerlScalarInternals.h"
 
-@implementation CBPerlScalar (Overrides)
+@implementation CBPerlScalar
 
 SV *_sv;
 

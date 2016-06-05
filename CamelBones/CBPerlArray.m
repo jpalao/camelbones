@@ -11,7 +11,7 @@
 #import "PerlImports.h"
 #import "Conversions_real.h"
 
-@implementation CBPerlArray (Overrides)
+@implementation CBPerlArray
 
 #ifdef GNUSTEP
 - (id) initWithCapacity: (unsigned int) anInt

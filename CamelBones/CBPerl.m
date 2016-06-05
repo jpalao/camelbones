@@ -39,7 +39,7 @@ PerlInterpreter *_CBPerlInterpreter;
 - (void) dummyThread: (id)dummy;
 @end
 
-@implementation CBPerl (Overrides)
+@implementation CBPerl
 
 + (CBPerl *) sharedPerl {
     // Is there a shared perl object already?
@@ -47,11 +47,6 @@ PerlInterpreter *_CBPerlInterpreter;
         // Yes, return it
         return _sharedPerl;
     } else {
-        // No
-        
-        // Detect platform type and initialize CBPerl
-        [CBPerl stubInit];
-        
         // Now create a shared Perl and autorelease it
         _sharedPerl = [[CBPerl alloc] init];
         return _sharedPerl;

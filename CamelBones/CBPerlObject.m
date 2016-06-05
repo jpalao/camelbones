@@ -23,7 +23,7 @@
 + signatureWithObjCTypes:(const char *)fp12;
 @end
 
-@implementation CBPerlObject (Overrides)
+@implementation CBPerlObject
 
 // Returns an autoreleased handle to a Perl object named varName.
 // Returns nil of no such object exists.

@@ -95,11 +95,5 @@
 // Notification callback method for bundle loading
 - (void) bundleDidLoad: (NSNotification *)notification;
 
-// Class initialization method - loads the perl version-specific support bundle
-+ (void) stubInit;
-+ (void) dylibInit: (const char*)archver;
 @end
 
-@interface CBPerl (StubInit)
-+ (void) initialize;
-@end;
