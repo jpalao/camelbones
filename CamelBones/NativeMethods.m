@@ -606,8 +606,8 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			
             case '^':   // Pointer
 						// Pointer to id?
-				if (*(arg_type+1) == '@' && argSV) {
-					sv_setsv(argSV, REAL_CBDerefIDtoSV(output_values[i].voidp));
+				if (*(arg_type+1) == '@' && argSV && SvOK(argSV)) {
+                    sv_setsv(argSV, REAL_CBDerefIDtoSV(output_values[i].voidp));
 				}
                 break;
 		}
