@@ -43,7 +43,7 @@ $OVERWRITE_CAMELBONES_FRAMEWORK = 0
 $ARCHFLAGS = '-arch i386 -arch x86_64'
     if (!defined $ARCHFLAGS || !length $ARCHFLAGS);
 
-my $CamelBonesPath = "$abs_path_to_cwd/$down/build/$XCODE_BUILD_CONFIG";
+my $CamelBonesPath = "$abs_path_to_cwd/$down/Build/Products/$XCODE_BUILD_CONFIG";
 
 my $CamelBones = "$CamelBonesPath/$CAMELBONES_FRAMEWORK";
 
@@ -52,7 +52,7 @@ my $user_dir = $ENV{"HOME"};
 $CAMELBONES_FRAMEWORK_INSTALL_PATH =~ s/~/$user_dir/;
 
 if (! -e $CAMELBONES_FRAMEWORK_INSTALL_PATH) {
-    mkdir $CAMELBONES_FRAMEWORK_INSTALL_PATH
+    mkdir -p $CAMELBONES_FRAMEWORK_INSTALL_PATH
 }
 
 my $FrameworkInstallPath = abs_path($CAMELBONES_FRAMEWORK_INSTALL_PATH);
