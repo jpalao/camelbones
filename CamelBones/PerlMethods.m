@@ -334,13 +334,13 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                 case 'q':
                     // signed quad
                     typeBuf.slong = va_arg(argptr, int);
-                    XPUSHs(sv_2mortal(newSVnv(typeBuf.slong)));
+                    XPUSHs(sv_2mortal(newSViv(typeBuf.slong)));
                     break;
 
                 case 'Q':
                     // unsigned quad
                     typeBuf.ulong = va_arg(argptr, unsigned int);
-                    XPUSHs(sv_2mortal(newSVnv(typeBuf.ulong)));
+                    XPUSHs(sv_2mortal(newSVuv(typeBuf.ulong)));
                     break;
 
                 case '(':

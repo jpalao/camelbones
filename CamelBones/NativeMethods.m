@@ -539,7 +539,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             case 'q':
 				// unsigned quad
 				arg_ffi_types[i] = &ffi_type_sint64;
-				arg_values[i].slong = SvUV(argSV);
+				arg_values[i].slong = SvIV(argSV);
 				break;
             case 'Q':
                 // unsigned quad
@@ -708,10 +708,10 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             break;
 			
         case 'q':   // long long
-            sv_setnv(ret, return_value.slong);
+            sv_setiv(ret, return_value.slong);
             break;
         case 'Q':   // unsigned long long
-            sv_setnv(ret, return_value.ulong);
+            sv_setuv(ret, return_value.ulong);
             break;
 
         case '(':   // union
