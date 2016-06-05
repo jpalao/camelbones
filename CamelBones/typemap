@@ -1,6 +1,5 @@
 TYPEMAP
 
-float       T_FLOAT
 const char * T_PV
 
 id          ID_PTR
@@ -18,18 +17,33 @@ NSPoint     T_NSPOINT
 NSRange     T_NSRANGE
 NSRect      T_NSRECT
 NSSize      T_NSSIZE
-CGFloat		T_CGFLOAT
-NSInteger	T_NSINTEGER
+CGPoint     T_CGPOINT
+CGRect      T_CGRECT
+CGSize      T_CGSIZE
+NSInteger   T_IV
+NSUInteger  T_UV
+
+#ifdef __i386__
+CGFloat     T_FLOAT
+#endif
+#ifdef __x86_64__
+CGFloat     T_DOUBLE
+#endif
 
 OSType*     T_PTR
 NSPoint*    T_PTR
 NSRange*    T_PTR
 NSRect*     T_PTR
 NSSize*     T_PTR
-CGFloat*	T_PTR
-NSInteger*	T_PTR
+CGPoint*    T_PTR
+CGRect*     T_PTR
+CGSize*     T_PTR
+CGFloat*    T_PTR
+NSInteger*  T_PTR
+NSUInteger* T_PTR
 
 float*      T_PTR
+double*     T_PTR
 int*        T_PTR
 
 BOOL        T_BOOL
@@ -49,11 +63,13 @@ T_NSRECT
     $var = REAL_CBRectFromSV($arg);
 T_NSSIZE
     $var = REAL_CBSizeFromSV($arg);
-T_CGFLOAT
-    $var = REAL_CBOSTypeFromSV($arg);
-T_NSINTEGER
-	$var = REAL_CBOSTypeFromSV($arg);
-	
+T_CGPOINT
+    $var = REAL_CBCGPointFromSV($arg);
+T_CGRECT
+    $var = REAL_CBCGRectFromSV($arg);
+T_CGSIZE
+    $var = REAL_CBCGSizeFromSV($arg);
+
 T_SELTYPE
     $var = REAL_CBSelectorFromSV($arg);
 T_CLASSTYPE
@@ -74,11 +90,12 @@ T_NSRECT
     $arg = REAL_CBRectToSV($var);
 T_NSSIZE
     $arg = REAL_CBSizeToSV($var);
-T_CGFLOAT
-    $arg = REAL_CBOSTypeToSV($var);
-T_NSINTEGER
-	$arg = REAL_CBOSTypeToSV($var);
-	
+T_CGPOINT
+    $arg = CBCGPointToSV($var);
+T_CGRECT
+    $arg = CBCGRectToSV($var);
+T_CGSIZE
+    $arg = CBCGSizeToSV($var);
     
 T_SELTYPE
     $arg = REAL_CBSVFromSelector($var);
