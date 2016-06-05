@@ -3,7 +3,6 @@ use 5.006;
 my %local_opts;
 BEGIN {
     require "./cb_common.pl";
-    
     %local_opts = (
         'NAME' => 'CamelBones',
         'DIR' => [ 'AppKit', 'Foundation', 'Tests' ],
@@ -62,9 +61,9 @@ die "CamelBones.framework exists already in " . $CBCommon::CAMELBONES_FRAMEWORK_
 	    (!$CBCommon::OVERWRITE_CAMELBONES_FRAMEWORK));
 
 my $framework_install_result = 
-    system ('cp', '-Ra', "build/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . $CBCommon::CAMELBONES_FRAMEWORK ,
+    system ('cp', '-Ra', "Build/Products/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . $CBCommon::CAMELBONES_FRAMEWORK ,
 	    $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH );
-     
+
 die ("Framework install error. Result: $framework_install_result\n")
     if ($framework_install_result);
 
