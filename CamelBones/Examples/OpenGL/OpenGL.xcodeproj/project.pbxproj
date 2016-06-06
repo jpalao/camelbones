@@ -3,21 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		84EF9F4C10CA9D2B0053D1E1 /* PAR in Resources */ = {isa = PBXBuildFile; fileRef = 84EF9CBC10CA9D2A0053D1E1 /* PAR */; };
-		84EF9F4E10CA9DCA0053D1E1 /* GLKit.par in Resources */ = {isa = PBXBuildFile; fileRef = 84EF9F4D10CA9DCA0053D1E1 /* GLKit.par */; };
+		825A55031D05AE1A0061736F /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825A55021D05AE1A0061736F /* CamelBones.framework */; };
+		825A55041D05AE720061736F /* CamelBones.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 825A55021D05AE1A0061736F /* CamelBones.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AA254AF505B66F05003DBAE8 /* main.pl in Resources */ = {isa = PBXBuildFile; fileRef = AA254AF405B66F05003DBAE8 /* main.pl */; };
 		AA254AFA05B66F24003DBAE8 /* OpenGLDemo.pm in Resources */ = {isa = PBXBuildFile; fileRef = AA254AF805B66F24003DBAE8 /* OpenGLDemo.pm */; };
-		AA254AFF05B66F45003DBAE8 /* CamelBones.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA254AFE05B66F45003DBAE8 /* CamelBones.framework */; };
 		AA341CB30BE28D8800F7C99A /* OpenGLDemoView.pm in Resources */ = {isa = PBXBuildFile; fileRef = AA341CB20BE28D8800F7C99A /* OpenGLDemoView.pm */; };
-		AAE6CE93084467C9002E67C8 /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA254AFE05B66F45003DBAE8 /* CamelBones.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,7 +25,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				AA254AFF05B66F45003DBAE8 /* CamelBones.framework in CopyFiles */,
+				825A55041D05AE720061736F /* CamelBones.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,13 +38,13 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		84EF9CBC10CA9D2A0053D1E1 /* PAR */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PAR; path = CamelBones/Perl/PAR; sourceTree = SYSTEM_DEVELOPER_DIR; };
-		84EF9F4D10CA9DCA0053D1E1 /* GLKit.par */ = {isa = PBXFileReference; lastKnownFileType = file; name = GLKit.par; path = CamelBones/Perl/GLKit.par; sourceTree = SYSTEM_DEVELOPER_DIR; };
+		825A55021D05AE1A0061736F /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = ../../Build/Products/Debug/CamelBones.framework; sourceTree = SOURCE_ROOT; };
+		84EF9CBC10CA9D2A0053D1E1 /* PAR */ = {isa = PBXFileReference; lastKnownFileType = folder; name = PAR; path = CamelBones/Perl/PAR; sourceTree = DEVELOPER_DIR; };
+		84EF9F4D10CA9DCA0053D1E1 /* GLKit.par */ = {isa = PBXFileReference; lastKnownFileType = file; name = GLKit.par; path = CamelBones/Perl/GLKit.par; sourceTree = DEVELOPER_DIR; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* OpenGL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA254AF405B66F05003DBAE8 /* main.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = main.pl; sourceTree = "<group>"; };
 		AA254AF805B66F24003DBAE8 /* OpenGLDemo.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = OpenGLDemo.pm; sourceTree = "<group>"; };
-		AA254AFE05B66F45003DBAE8 /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = /Developer/CamelBones/Frameworks/CamelBones.framework; sourceTree = "<absolute>"; };
 		AA341CB20BE28D8800F7C99A /* OpenGLDemoView.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = OpenGLDemoView.pm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -56,7 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				AAE6CE93084467C9002E67C8 /* CamelBones.framework in Frameworks */,
+				825A55031D05AE1A0061736F /* CamelBones.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,7 +73,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA254AFE05B66F45003DBAE8 /* CamelBones.framework */,
+				825A55021D05AE1A0061736F /* CamelBones.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -178,9 +176,15 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = AA341C990BE28AAE00F7C99A /* Build configuration list for PBXProject "OpenGL" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* OpenGL */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,8 +204,6 @@
 				AA254AF505B66F05003DBAE8 /* main.pl in Resources */,
 				AA254AFA05B66F24003DBAE8 /* OpenGLDemo.pm in Resources */,
 				AA341CB30BE28D8800F7C99A /* OpenGLDemoView.pm in Resources */,
-				84EF9F4C10CA9D2B0053D1E1 /* PAR in Resources */,
-				84EF9F4E10CA9DCA0053D1E1 /* GLKit.par in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +244,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -252,7 +257,9 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
@@ -273,7 +280,10 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -285,7 +295,9 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = OpenGL;
@@ -303,7 +315,10 @@
 		AA341C980BE28AAE00F7C99A /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+				);
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -312,7 +327,9 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = OpenGL;
@@ -329,18 +346,21 @@
 		AA341C9A0BE28AAE00F7C99A /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 			};
 			name = Deployment;
 		};
 		AA341C9B0BE28AAE00F7C99A /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 			};
 			name = Development;
 		};
 		AA341C9C0BE28AAE00F7C99A /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 			};
 			name = Default;
 		};
