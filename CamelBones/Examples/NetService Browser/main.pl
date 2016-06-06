@@ -5,6 +5,8 @@ use warnings;
 
 use CamelBones qw(:All);
 
+use NetServiceBrowserController;
+
 # Get a reference to the shared NSApplication object
 our $nsApp = NSApplication->sharedApplication;
 
