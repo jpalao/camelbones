@@ -3,11 +3,7 @@
 use strict;
 use warnings;
 
-BEGIN {
-    use CamelBones qw(:All);
-    my $resDir = NSBundle->mainBundle()->resourcePath();
-    eval "use PAR '$resDir/*.par'";
-}
+use CamelBones qw(:All);
 
 use SimpleDBIController;
 
