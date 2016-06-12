@@ -52,7 +52,11 @@ my $user_dir = $ENV{"HOME"};
 $CAMELBONES_FRAMEWORK_INSTALL_PATH =~ s/~/$user_dir/;
 
 if (! -e $CAMELBONES_FRAMEWORK_INSTALL_PATH) {
-    system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
+    my $framework_install_dir_create = 
+    	system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
+    die ("Could not create framework install directory: " .
+    	$CAMELBONES_FRAMEWORK_INSTALL_PATH . "\nResult: $framework_install_dir_create")
+    	if ($framework_install_result);
 }
 
 my $FrameworkInstallPath = abs_path($CAMELBONES_FRAMEWORK_INSTALL_PATH);
