@@ -52,7 +52,7 @@ my $user_dir = $ENV{"HOME"};
 $CAMELBONES_FRAMEWORK_INSTALL_PATH =~ s/~/$user_dir/;
 
 if (! -e $CAMELBONES_FRAMEWORK_INSTALL_PATH) {
-    mkdir -p $CAMELBONES_FRAMEWORK_INSTALL_PATH
+    system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
 }
 
 my $FrameworkInstallPath = abs_path($CAMELBONES_FRAMEWORK_INSTALL_PATH);
