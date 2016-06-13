@@ -11,7 +11,7 @@ my $data = NSMutableData->alloc()->initWithLength(16);
 my $addr = $data->bytes();
 
 #test for 64/32 bit intel perl
-our $pack_template  = (pack 'P', -1 == 8) ? 'Q': 'I'; 
+our $pack_template  = (length (pack 'P', -1) == 8) ? 'Q': 'I'; 
 
 if ($pack_template eq 'Q') {
 	CBPoke($addr, pack('Q', 0xdeadbeefdeadbeef), 8);
