@@ -6,7 +6,7 @@ package CamelBones::NSSize;
 our @ISA = qw(Exporter);
 
 #test for 64/32 bit intel perl
-our $pack_template  = (pack 'P', -1 == 8) ? 'dd': 'ff'; 
+our $pack_template  = (length (pack 'P', -1) == 8) ? 'dd': 'ff'; 
 
 sub getWidth {
 	my ($self) = @_;

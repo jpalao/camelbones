@@ -6,7 +6,7 @@ package CamelBones::NSRange;
 our @ISA = qw(Exporter);
 
 #test for 64/32 bit intel perl
-our $pack_template  = (pack 'P', -1 == 8) ? 'QQ': 'II'; 
+our $pack_template  = (length (pack 'P', -1) == 8) ? 'QQ': 'II'; 
 
 sub getLocation {
 	my ($self) = @_;
