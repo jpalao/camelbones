@@ -3,9 +3,10 @@
 package CBCommon;
 
 use Config;
+use ExtUtils::Embed qw/ldopts/;
 use Cwd qw/abs_path getcwd/;
 
-die "This version of CamelBones only works on Darwin Mac OS X systems"
+die "This version of CamelBones only works on Mac OS X systems"
     if ( $^O !~ m/darwin/ );
 
 our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
@@ -13,8 +14,10 @@ our $CAMELBONES_FRAMEWORK_INSTALL_PATH = $ENV{'CAMELBONES_FRAMEWORK_INSTALL_PATH
 our $OVERWRITE_CAMELBONES_FRAMEWORK = $ENV{'OVERWRITE_CAMELBONES_FRAMEWORK'};
 our $LIBFFIDIR = '../libffi-3.2.1';
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
-our $ARCHFLAGS = $ENV{'ARCHFLAGS'};
+our $ARCHS = $ENV{'ARCHS'};
+our $ARCHFLAGS = '';
 our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
+our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};
 our $PERL_LIB_DIR = $ENV{'PERL_LIB_DIR'};    
 
 my $abs_path_to_cwd = getcwd();
@@ -24,8 +27,37 @@ if ($abs_path_to_cwd =~ /AppKit|Foundation|Tests/) {
     $down .= "/.."
 }
 
-$PERL_LIB_DIR = $Config{archlib}. "/CORE"
-    if (!defined $PERL_LIB_DIR || !length $PERL_LIB_DIR);
+my $perl_link_flags = ldopts();
+chomp $perl_link_flags;
+
+
+if (!defined $ARCHS || !length $ARCHS) {
+    # $ARCHS set before running
+    $ARCHFLAGS .= ' -arch i386'
+    	if ($perl_link_flags =~ /-arch[ ]*i386/);
+
+    $ARCHFLAGS .= ' -arch x86_64'
+	    if ($perl_link_flags =~ /-arch[ ]*x86_64/)   
+} else {
+    if ($ARCHS !~/ /) {
+        $ARCHFLAGS .= ' -arch ' . $ARCHS;
+    } else {
+        my @archs = split $ARCHS, " ";
+        for my $a(@archs){
+            $ARCHFLAGS .= ' -arch ' . $a;
+        }
+    }
+}
+
+if (!length $ARCHFLAGS) {
+    $ARCHFLAGS = '-arch i386 -arch x86_64';
+}
+
+# remove the arch switches to be passed to the linker
+$perl_link_flags =~ s/\-arch[ ]*\w*//g;
+
+$PERL_LINK_FLAGS = $perl_link_flags
+    if (!defined $PERL_LINK_FLAGS || !length $PERL_LINK_FLAGS);
 
 $PERL_INCLUDE_DIR = $Config{archlib}. "/CORE"
     if (!defined $PERL_INCLUDE_DIR || !length $PERL_INCLUDE_DIR);
@@ -40,9 +72,6 @@ $CAMELBONES_FRAMEWORK_INSTALL_PATH = "~/Library/Frameworks"
 $OVERWRITE_CAMELBONES_FRAMEWORK = 0
     if $OVERWRITE_CAMELBONES_FRAMEWORK != 1;   
     
-$ARCHFLAGS = '-arch i386 -arch x86_64'
-    if (!defined $ARCHFLAGS || !length $ARCHFLAGS);
-
 my $CamelBonesPath = "$abs_path_to_cwd/$down/Build/Products/$XCODE_BUILD_CONFIG";
 
 my $CamelBones = "$CamelBonesPath/$CAMELBONES_FRAMEWORK";
@@ -77,7 +106,9 @@ our %opts = (
     INC               => "-F$CamelBonesPath ",
     dynamic_lib       => {
                         'OTHERLDFLAGS' =>
-                            "$ARCHFLAGS -framework Foundation -framework AppKit -framework CamelBones -F/System/Library/Frameworks -F$FrameworkInstallPath"
+                            "$ARCHFLAGS -framework Foundation -framework AppKit " .
+                            "-framework CamelBones -F/System/Library/Frameworks " . 
+                            "-F$FrameworkInstallPath"
                         },
 );
 

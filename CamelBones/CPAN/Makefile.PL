@@ -15,10 +15,16 @@ BEGIN {
 
 print "Building ". $CBCommon::LIBFFIDIR . "...\n";
 
-chdir $CBCommon::LIBFFIDIR;    
+chdir $CBCommon::LIBFFIDIR;   
+
+my $archs = $CBCommon::ARCHFLAGS;
+
+$archs =~ s/\-arch([ ]*\w*)/$1/g;
 
 my $lib_ffi_build_result = system (
     "xcodebuild",
+    'ARCHS='.$archs,
+    'ONLY_ACTIVE_ARCH=NO',    
     "-target",
     "libffi-Mac-static",
     "-configuration",
@@ -27,15 +33,18 @@ my $lib_ffi_build_result = system (
 
 chdir "..";
 
-die ("CamelBones framework build error. libffi.a could not be built: $lib_ffi_build_result\n")
+die ("Error: libffi.a could not be built: $lib_ffi_build_result\n")
     if $lib_ffi_build_result;
 
 print "Building ". $CBCommon::CAMELBONES_FRAMEWORK . "...\n";
 
 my @camelbones_framework_build_cmd = (
     "xcodebuild",
-    'USER_HEADER_SEARCH_PATHS=' . $CBCommon::PERL_INCLUDE_DIR . "'",
-    'OTHER_LDFLAGS=-L' . $CBCommon::PERL_LIB_DIR . ' -lperl -Wl,-no_compact_unwind',
+    'ARCHS='.$archs,
+    'ONLY_ACTIVE_ARCH=NO',
+    'USER_HEADER_SEARCH_PATHS=' . $CBCommon::PERL_INCLUDE_DIR,
+    'OTHER_LDFLAGS=' . $CBCommon::PERL_LINK_FLAGS . 
+    	' -Wl,-headerpad_max_install_names -Wl,-no_compact_unwind',
     "-target",
     $CBCommon::CAMELBONES_FRAMEWORK,
     "-configuration", $CBCommon::XCODE_BUILD_CONFIG
@@ -56,13 +65,15 @@ my $camelbones_framework_build_result = system (
 die ("CamelBones framework build error. Result: $camelbones_framework_build_result\n")
     if $camelbones_framework_build_result;
 
-die "CamelBones.framework exists already in " . $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH
-    if (( -e $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH . '/' . $CBCommon::CAMELBONES_FRAMEWORK) &&
-	    (!$CBCommon::OVERWRITE_CAMELBONES_FRAMEWORK));
+die "CamelBones.framework exists already in " . 
+	$CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH
+    	if (( -e $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH . '/' . 
+    		$CBCommon::CAMELBONES_FRAMEWORK) &&
+	    		(!$CBCommon::OVERWRITE_CAMELBONES_FRAMEWORK));
 
 my $framework_install_result = 
-    system ('cp', '-Ra', "Build/Products/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . $CBCommon::CAMELBONES_FRAMEWORK ,
-	    $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH );
+    system ('cp', '-Ra', "Build/Products/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . 
+    	$CBCommon::CAMELBONES_FRAMEWORK, $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH);
 
 die ("Framework install error. Result: $framework_install_result\n")
     if ($framework_install_result);
