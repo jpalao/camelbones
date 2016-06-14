@@ -19,7 +19,9 @@ As of April 2016, this project had been unmaintained for about 5 years, I decide
 
 # TODO
 
-These TODO items are from the the original author. https://sourceforge.net/p/camelbones/mailman/message/26651559/
+XCode templates still need to be converted from the older json format to the newer XML format
+
+Also, these TODO items are from the the original author. https://sourceforge.net/p/camelbones/mailman/message/26651559/
 
 - Add support for "fast iteration" of Perl collections.
 
