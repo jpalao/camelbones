@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		825A54E31D04A0A70061736F /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825A54E21D04A0A70061736F /* CamelBones.framework */; };
-		825A54E41D04A0AC0061736F /* CamelBones.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 825A54E21D04A0A70061736F /* CamelBones.framework */; };
 		84CB14D510B81F3C0078B1AF /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		84CB14D610B81F3C0078B1AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		84CB14D710B81F3C0078B1AF /* main.pl in Resources */ = {isa = PBXBuildFile; fileRef = F5D5A3B4026B2DF601A80164 /* main.pl */; };
@@ -18,19 +17,6 @@
 		84CB14DC10B81F3C0078B1AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		84CB14DE10B81F3C0078B1AF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		84CB14F110B8200B0078B1AF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				825A54E41D04A0AC0061736F /* CamelBones.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -158,7 +144,6 @@
 				84CB14D410B81F3C0078B1AF /* Resources */,
 				84CB14DB10B81F3C0078B1AF /* Sources */,
 				84CB14DD10B81F3C0078B1AF /* Frameworks */,
-				84CB14F110B8200B0078B1AF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -274,6 +259,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -283,7 +269,7 @@
 				HEADER_SEARCH_PATHS = ..;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
@@ -309,13 +295,14 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
 				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
@@ -340,12 +327,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = ..;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
