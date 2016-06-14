@@ -65,18 +65,20 @@ my $camelbones_framework_build_result = system (
 die ("CamelBones framework build error. Result: $camelbones_framework_build_result\n")
     if $camelbones_framework_build_result;
 
-die "CamelBones.framework exists already in " . 
-	$CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH
-    	if (( -e $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH . '/' . 
-    		$CBCommon::CAMELBONES_FRAMEWORK) &&
-	    		(!$CBCommon::OVERWRITE_CAMELBONES_FRAMEWORK));
+if ($CBCommon::INSTALL_CAMELBONES_FRAMEWORK) {
+	die "CamelBones.framework exists already in " . 
+		$CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH
+			if (( -e $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH . '/' . 
+				$CBCommon::CAMELBONES_FRAMEWORK) &&
+					(!$CBCommon::OVERWRITE_CAMELBONES_FRAMEWORK));
 
-my $framework_install_result = 
-    system ('cp', '-Ra', "Build/Products/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . 
-    	$CBCommon::CAMELBONES_FRAMEWORK, $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH);
-
-die ("Framework install error. Result: $framework_install_result\n")
-    if ($framework_install_result);
+	my $framework_install_result = 
+		system ('cp', '-Ra', "Build/Products/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . 
+			$CBCommon::CAMELBONES_FRAMEWORK, $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH);
+	
+	die ("Framework install error. Result: $framework_install_result\n")
+		if ($framework_install_result);
+}
 
 chdir "CPAN";
 
