@@ -11,7 +11,7 @@ platforms           darwin
 maintainers         nomaintainer
 license             {Artistic-1 GPL}
 master_sites        https://github.com/jpalao/camelbones/files/314703/
-checksums           rmd160 https://github.com/jpalao/camelbones/files/314703/CamelBones-1.2.0.tar.gz
+checksums           rmd160 08c52ffbadf691af51de3c863f381d28bfd9af2e
 
 set cb_config       Release
 
