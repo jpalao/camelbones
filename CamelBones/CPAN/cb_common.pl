@@ -18,8 +18,7 @@ our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 our $ARCHS = $ENV{'ARCHS'};
 our $ARCHFLAGS = '';
 our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
-our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};
-our $PERL_LIB_DIR = $ENV{'PERL_LIB_DIR'};    
+our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 
 my $abs_path_to_cwd = getcwd();
 
