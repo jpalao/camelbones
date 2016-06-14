@@ -10,8 +10,8 @@ perl5.setup         Camelbones 1.2.0
 platforms           darwin
 maintainers         nomaintainer
 license             {Artistic-1 GPL}
-master_sites        https://www.pytm.net/camelbones/
-checksums           rmd160 161c1e7b9363c7b7e381d71101c764055769d364
+master_sites        https://github.com/jpalao/camelbones/files/314703/
+checksums           rmd160 https://github.com/jpalao/camelbones/files/314703/CamelBones-1.2.0.tar.gz
 
 set cb_config       Release
 
