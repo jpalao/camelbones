@@ -1,0 +1,55 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+PortGroup           perl5 1.0
+
+perl5.branches      5.8 5.10 5.12 5.14 5.16 5.18 5.20 5.22 5.24
+perl5.setup         Camelbones 1.2.0
+
+platforms           darwin
+maintainers         nomaintainer
+license             {Artistic-1 GPL}
+master_sites        https://www.pytm.net/camelbones/
+checksums           rmd160 161c1e7b9363c7b7e381d71101c764055769d364
+
+set cb_config       Release
+
+configure.env		CAMELBONES_FRAMEWORK_INSTALL_PATH=${workpath}/${distname}/Build/Products/Release/ \
+					INSTALL_CAMELBONES_FRAMEWORK=0
+
+worksrcdir          ${distname}/CPAN
+# Uncomment this line if you know there will be no arch-specific code:
+#supported_archs     noarch
+description         Camelbones (no description available)
+
+long_description    ${description}
+
+pre-configure {
+    if {![variant_isset universal]} {
+		configure.env-append  ARCHS=${configure.build_arch}
+    }
+}
+
+post-destroot {
+    # Install CamelBones.framework not installed by the Makefile
+    file delete ${destroot}/${prefix}/lib/perl5/vendor_perl/5.22/darwin-thread-multi-2level/cb_common.pl
+    file mkdir ${destroot}/${prefix}/Library/Frameworks
+	file copy ${worksrcpath}/../Build/Products/${cb_config}/CamelBones.framework \
+        ${destroot}/${prefix}/Library/Frameworks
+    file mkdir ${destroot}/${prefix}/share/CamelBones
+	file copy ${worksrcpath}/../Examples/ \
+        ${destroot}/${prefix}/share/CamelBones
+	file copy ${worksrcpath}/../ShuX/ \
+        ${destroot}/${prefix}/share/CamelBones           
+}
+
+variant debug description {Build Debug target for CamelbonesFramewok} {
+	configure.env-append  CAMELBONES_BUILD_CONFIGURATION=Debug \
+						  CAMELBONES_FRAMEWORK_INSTALL_PATH=${workpath}/${distname}/Build/Products/Debug/
+    set cb_config         Debug
+}
+
+variant universal description {Build universal Camelbones Framewok and perl modules} {
+    configure.env-append  ARCHS="${configure.universal_archs}"
+}
