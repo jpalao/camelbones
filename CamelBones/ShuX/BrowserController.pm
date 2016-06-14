@@ -175,7 +175,7 @@ sub browserSelectionChanged : Selector(browserSelectionChanged:) IBAction {
 # Toolbar delegate methods
 sub toolbarItemForID : Selector(toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:) ArgTypes(@@c) ReturnType(@) {
 	my ($self, $toolbar, $identifier, $insert) = @_;
-	my $item = undef;
+	my $item = '';
 	if ($identifier eq 'docSetPopup') {
 		$item = NSToolbarItem->alloc()->initWithItemIdentifier($identifier)->autorelease();
 		$item->setView($self->toolbarDocSetPopup());
@@ -214,7 +214,7 @@ sub numberOfItemsInComboBox : Selector(numberOfItemsInComboBox:) ArgTypes(@) Ret
 
 sub comboBoxObjectValue : Selector(comboBox:objectValueForItemAtIndex:) ArgTypes(@i) ReturnType(@) {
 	my ($self, $comboBox, $index) = @_;
-	my $value = undef;
+	my $value = '';
 
 	if (@{$self->gotoGlob()}) {
 		$value = $self->gotoGlob()->[$index];
