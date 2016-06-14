@@ -23,7 +23,7 @@ $archs =~ s/\-arch([ ]*\w*)/$1/g;
 
 my $lib_ffi_build_result = system (
     "xcodebuild",
-    'ARCHS='.$archs,
+    'ARCHS='.$CBCommon::ARCHS,
     'ONLY_ACTIVE_ARCH=NO',    
     "-target",
     "libffi-Mac-static",
@@ -40,7 +40,7 @@ print "Building ". $CBCommon::CAMELBONES_FRAMEWORK . "...\n";
 
 my @camelbones_framework_build_cmd = (
     "xcodebuild",
-    'ARCHS='.$archs,
+    'ARCHS='.$CBCommon::ARCHS,
     'ONLY_ACTIVE_ARCH=NO',
     'USER_HEADER_SEARCH_PATHS=' . $CBCommon::PERL_INCLUDE_DIR,
     'OTHER_LDFLAGS=' . $CBCommon::PERL_LINK_FLAGS . 

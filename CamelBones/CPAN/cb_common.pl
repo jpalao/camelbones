@@ -31,27 +31,29 @@ if ($abs_path_to_cwd =~ /AppKit|Foundation|Tests/) {
 my $perl_link_flags = ldopts();
 chomp $perl_link_flags;
 
-
 if (!defined $ARCHS || !length $ARCHS) {
-    # $ARCHS set before running
     $ARCHFLAGS .= ' -arch i386'
     	if ($perl_link_flags =~ /-arch[ ]*i386/);
 
     $ARCHFLAGS .= ' -arch x86_64'
-	    if ($perl_link_flags =~ /-arch[ ]*x86_64/)   
+	if ($perl_link_flags =~ /-arch[ ]*x86_64/);  
 } else {
     if ($ARCHS !~/ /) {
         $ARCHFLAGS .= ' -arch ' . $ARCHS;
     } else {
-        my @archs = split $ARCHS, " ";
-        for my $a(@archs){
-            $ARCHFLAGS .= ' -arch ' . $a;
-        }
+        $ARCHFLAGS .= ' -arch i386'        
+            if ($ARCHS =~ /i386/);
+        $ARCHFLAGS .= ' -arch x86_64'
+            if ($ARCHS =~ /x86_64/);  
     }
 }
 
 if (!length $ARCHFLAGS) {
     $ARCHFLAGS = '-arch i386 -arch x86_64';
+}
+
+if (!length $ARCHS) {
+    $ARCHS = 'i386 x86_64';
 }
 
 # remove the arch switches to be passed to the linker
@@ -66,7 +68,7 @@ $PERL_INCLUDE_DIR = $Config{archlib}. "/CORE"
 $INSTALL_CAMELBONES_FRAMEWORK = 1    
 	if (!defined $INSTALL_CAMELBONES_FRAMEWORK || !length $INSTALL_CAMELBONES_FRAMEWORK);
 	
-$XCODE_BUILD_CONFIG = "Debug"
+$XCODE_BUILD_CONFIG = "Release"
     if (!defined $XCODE_BUILD_CONFIG || !length $XCODE_BUILD_CONFIG);
 
 $CAMELBONES_FRAMEWORK_INSTALL_PATH = "~/Library/Frameworks"
@@ -112,7 +114,7 @@ our %opts = (
                         'OTHERLDFLAGS' =>
                             "$ARCHFLAGS -framework Foundation -framework AppKit " .
                             "-framework CamelBones -F/System/Library/Frameworks " . 
-                            "-F$FrameworkInstallPath"
+                            "-F$FrameworkInstallPath -Wl,-rpath,/opt/local/Library/Frameworks"
                         },
 );
 
