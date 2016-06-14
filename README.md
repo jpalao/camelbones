@@ -9,10 +9,13 @@ As of April 2016, this project had been unmaintained for about 5 years, I decide
 - Added x86_64 support. By default the project will build Universal binaries
 - Better Objective-C 2.0 support
 - Updated to libffi-3.2.1
-- Remove dependencies of OS X system Perl. Removed Plug-in Bundle from CamelBones.Framework
+- Remove dependencies of OS X system Perl
+- Removed Plug-in Bundle from CamelBones.Framework
 - Removed ExtLibs, PerlSDK directories, legacy Iceberg projects, PAR kit targets
 - Add CGPoint, CGRect, CGSize type support
 - Edited some tests
+- Updated Examples and ShuX
+- Produced a Port file for macports installation (included)
 
 # TODO
 
@@ -34,7 +37,7 @@ Default values are shown in the examples:
 
 To set the type of build ('Debug' or 'Release') for CamelBones.framework
 ```
-export CAMELBONES_BUILD_CONFIGURATION='Debug'
+export CAMELBONES_BUILD_CONFIGURATION='Release'
 ```
 To specify a different installation directory for CamelBones.framework (defaults to ~/Library/Frameworks)
 ```
@@ -44,37 +47,32 @@ To overwrite the framework set this to 1. The process will die if the framework 
 ```
 export OVERWRITE_CAMELBONES_FRAMEWORK=0
 ```
-To change the architectures for the perl module *.bundle binaries. The default is to build a universal binary
+To change the architectures for the CamelBones framework and perl module *.bundle binaries. The default is to build a universal binary
 ```
-export ARCHFLAGS='-arch i386 -arch x86_64'
+export ARCHS='i386 x86_64'
 ```
-To change the include directory for Perl. Defaults to $Config{archlib}. "/CORE" of the invocant Perl
+To change the include directory for Perl
 ```
-export PERL_INCLUDE_DIR='/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/'
+export PERL_INCLUDE_DIR= $Config{archlib}. "/CORE"
 ```
-To change the directory where libperl.dylib is located. Defaults to $Config{archlib}. "/CORE" of the invocant Perl
+To change the flags used to link libperl.dylib. Defaults to the output of ExtUtils::Embed ldopts
 ```
-export PERL_LIB_DIR='/opt/local/lib/perl5/5.22/darwin-thread-multi-2level/CORE/'
+export PERL_LINK_FLAGS= perl -MExtUtils::Embed -e ldopts
 ```
 
 ### Build and test
 
-To build and install the Framework and build the Perl module 
+To build, test and install the Framework and build the Perl module 
 
 ```
 % perl Makefile.PL
 % make
-```
-
-To test and install the perl module run
-
-```
 % make test
 % make install
 ```
-Depending on your framework and Perl module installation directories you may need to sudo the commands
+Depending on your framework and Perl module installation directories you may need to sudo the commands. Please keep in mind that it is not generally a good idea to mess around w/ OS X System perl.
 
-The Examples directory of the distribution contains several applications to get started
+The Examples and ShuX directories of the distribution contain several applications to get started
 
 Please report any problems so they can be corrected or better yet contribute your patches. Pull requests are welcome
 
