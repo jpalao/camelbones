@@ -692,6 +692,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
@@ -730,6 +731,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
@@ -768,6 +770,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
@@ -806,6 +809,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
