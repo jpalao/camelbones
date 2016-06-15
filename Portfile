@@ -15,8 +15,9 @@ checksums           rmd160 08c52ffbadf691af51de3c863f381d28bfd9af2e
 
 set cb_config       Release
 
-configure.env		CAMELBONES_FRAMEWORK_INSTALL_PATH=${workpath}/${distname}/Build/Products/Release/ \
-					INSTALL_CAMELBONES_FRAMEWORK=0
+configure.env       CAMELBONES_BUILD_CONFIGURATION=Release \
+                    CAMELBONES_FRAMEWORK_INSTALL_PATH=${workpath}/${distname}/Build/Products/Release/ \
+                    INSTALL_CAMELBONES_FRAMEWORK=0
 
 worksrcdir          ${distname}/CPAN
 # Uncomment this line if you know there will be no arch-specific code:
@@ -27,7 +28,7 @@ long_description    ${description}
 
 pre-configure {
     if {![variant_isset universal]} {
-		configure.env-append  ARCHS=${configure.build_arch}
+        configure.env-append  ARCHS=${configure.build_arch}
     }
 }
 
@@ -35,19 +36,20 @@ post-destroot {
     # Install CamelBones.framework not installed by the Makefile
     file delete ${destroot}/${prefix}/lib/perl5/vendor_perl/5.22/darwin-thread-multi-2level/cb_common.pl
     file mkdir ${destroot}/${prefix}/Library/Frameworks
-	file copy ${worksrcpath}/../Build/Products/${cb_config}/CamelBones.framework \
+    file copy ${worksrcpath}/../Build/Products/${cb_config}/CamelBones.framework \
         ${destroot}/${prefix}/Library/Frameworks
     file mkdir ${destroot}/${prefix}/share/CamelBones
-	file copy ${worksrcpath}/../Examples/ \
+    file copy ${worksrcpath}/../Examples/ \
         ${destroot}/${prefix}/share/CamelBones
-	file copy ${worksrcpath}/../ShuX/ \
+    file copy ${worksrcpath}/../ShuX/ \
         ${destroot}/${prefix}/share/CamelBones           
 }
 
 variant debug description {Build Debug target for CamelbonesFramewok} {
-	configure.env-append  CAMELBONES_BUILD_CONFIGURATION=Debug \
-						  CAMELBONES_FRAMEWORK_INSTALL_PATH=${workpath}/${distname}/Build/Products/Debug/
-    set cb_config         Debug
+    configure.env   CAMELBONES_BUILD_CONFIGURATION=Debug \
+                    CAMELBONES_FRAMEWORK_INSTALL_PATH=${workpath}/${distname}/Build/Products/Debug/ \
+                    INSTALL_CAMELBONES_FRAMEWORK=0
+    set cb_config   Debug
 }
 
 variant universal description {Build universal Camelbones Framewok and perl modules} {
