@@ -22,29 +22,37 @@ void (*CBPoke)(void *address, void *object, unsigned length);
 //
 
 // Creating NSPoint structs
+#if !TARGET_OS_IPHONE
 NSPoint (*CBPointFromAV)(void* av);
 NSPoint (*CBPointFromHV)(void* hv);
 NSPoint (*CBPointFromSV)(void* sv);
+#endif
 
 CGPoint (*CBCGPointFromAV)(void* av);
 CGPoint (*CBCGPointFromHV)(void* hv);
 CGPoint (*CBCGPointFromSV)(void* sv);
 
 // Converting NSPoint structs to blessed scalar references
+#if !TARGET_OS_IPHONE
 void* (*CBPointToSV)(NSPoint point);
+#endif
 void* (*CBCGPointToSV)(CGPoint point);
 
+#if !TARGET_OS_IPHONE
 // Creating NSRect structs
 NSRect (*CBRectFromAV)(void* av);
 NSRect (*CBRectFromHV)(void* hv);
 NSRect (*CBRectFromSV)(void* sv);
+#endif
 
 CGRect (*CBCGRectFromAV)(void* av);
 CGRect (*CBCGRectFromHV)(void* hv);
 CGRect (*CBCGRectFromSV)(void* sv);
 
 // Converting NSRect structs to blessed scalar references
+#if !TARGET_OS_IPHONE
 void* (*CBRectToSV)(NSRect rect);
+#endif
 void* (*CBCGRectToSV)(CGRect rect);
 
 // Creating NSRange structs
@@ -55,17 +63,20 @@ NSRange (*CBRangeFromSV)(void* sv);
 // Converting NSRange structs to blessed scalar references
 void* (*CBRangeToSV)(NSRange range);
 
+#if !TARGET_OS_IPHONE
 // Creating NSSize structs
 NSSize (*CBSizeFromAV)(void* av);
 NSSize (*CBSizeFromHV)(void* hv);
 NSSize (*CBSizeFromSV)(void* sv);
-
+#endif
 CGSize (*CBCGSizeFromAV)(void* av);
 CGSize (*CBCGSizeFromHV)(void* hv);
 CGSize (*CBCGSizeFromSV)(void* sv);
 
 // Converting NSSize structs to blessed scalar references
+#if !TARGET_OS_IPHONE
 void* (*CBSizeToSV)(NSSize size);
+#endif
 void* (*CBCGSizeToSV)(CGSize size);
 
 // The following aren't needed on GNUStep
@@ -159,6 +170,7 @@ static const char *perlArchVer = NULL;
 // The following code is unused in v1.2.0
 // We run the same with a perl binary and with libperl
 // Get Perl's architecture & version as a string
+/*
 const char *CBGetPerlArchver() {
     if (NULL != perlArchVer) return perlArchVer;
 
@@ -237,6 +249,7 @@ const char *CBGetPerlArchver() {
 	perlArchVer = (char*)[archName UTF8String];
 	return perlArchVer;
 }
+*/
 
 void CBSetPerlArchver(const char *archVer) {
     perlArchVer = archVer;

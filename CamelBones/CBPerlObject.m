@@ -8,7 +8,7 @@
 #ifdef GNUSTEP
 #import <objc/objc-api.h>
 #else
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 #endif
 
 #import <Foundation/Foundation.h>

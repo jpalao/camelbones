@@ -4,14 +4,19 @@
 //
 //  Copyright (c) 2004 Sherm Pendley. All rights reserved.
 //
-
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#import <CoreGraphics/CoreGraphics.h>
+#elif TARGET_OS_MAC
 #import <AppKit/AppKit.h>
+#endif
 #import "Structs_real.h"
 #import "CBPerlArray.h"
 #import "CBPerlArrayInternals.h"
 #import "CBPerlHash.h"
 #import "CBPerlHashInternals.h"
 
+#if !TARGET_OS_IPHONE
 // Creating NSPoint structs
 NSPoint REAL_CBPointFromAV(void* av) {
     NSPoint newPoint;
@@ -26,7 +31,6 @@ NSPoint REAL_CBPointFromAV(void* av) {
     newPoint.x = [[arr objectAtIndex:0] doubleValue];
     newPoint.y = [[arr objectAtIndex:1] doubleValue];
 #endif
-
 
     return newPoint;
 }
@@ -87,6 +91,7 @@ void* REAL_CBPointToSV(NSPoint point) {
     SvREFCNT_inc(thingRef);
     return (void*)thingRef;
 }
+#endif
 
 CGPoint REAL_CBCGPointFromAV(void* av) {
     CGPoint newPoint;
@@ -163,7 +168,7 @@ void* REAL_CBCGPointToSV(CGPoint point) {
     return (void*)thingRef;
 }
 
-
+#if !TARGET_OS_IPHONE
 // Creating NSRect structs
 NSRect REAL_CBRectFromAV(void* av) {
     NSRect newRect;
@@ -247,6 +252,7 @@ void* REAL_CBRectToSV(NSRect rect) {
     SvREFCNT_inc(thingRef);
     return thingRef;
 }
+#endif
 
 // Creating CGRect structs
 CGRect REAL_CBCGRectFromAV(void* av) {
@@ -394,6 +400,7 @@ void* REAL_CBRangeToSV(NSRange range) {
     return (void*)thingRef;
 }
 
+#if !TARGET_OS_IPHONE
 // Creating NSSize structs
 NSSize REAL_CBSizeFromAV(void* av) {
     NSSize newSize;
@@ -467,6 +474,7 @@ void* REAL_CBSizeToSV(NSSize size) {
     SvREFCNT_inc(thingRef);
     return (void*)thingRef;
 }
+#endif
 
 // Creating CGSize structs
 CGSize REAL_CBCGSizeFromAV(void* av) {

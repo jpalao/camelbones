@@ -3,7 +3,13 @@
     Creates on 3/4/2007 by Sherm Pendley
 */
 
+#if TARGET_OS_IPHONE
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#elif TARGET_OS_MAC
 #import <Cocoa/Cocoa.h>
+#endif
 #import <CamelBones/CamelBones.h>
 
 #import <stdio.h>

@@ -24,8 +24,13 @@
 
 #else
 
+#if TARGET_OS_IPHONE
+#import <objc/runtime.h>
+#elif TARGET_OS_MAC
 #import <objc/objc-runtime.h>
 #import <objc/objc-class.h>
+#endif
+
 
 #endif /* GNUSTEP */
 
@@ -256,28 +261,34 @@ void REAL_CBPoke(void *address, void *object, unsigned length) {
 				memcpy(address, &src, sizeof(void*));
 			}
 			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSPoint")) {
+		}
+
+        else if (sv_derived_from((SV*)object, "CamelBones::NSRange")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(NSRange));
+            return;
+        }
+#if !TARGET_OS_IPHONE
+        else if (sv_derived_from((SV*)object, "CamelBones::NSPoint")) {
 			SV *target = SvRV((SV*)object);
 			src = (void*)SvPV_nolen(target);
 			memcpy(address, src, sizeof(NSPoint));
 			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSRange")) {
-			SV *target = SvRV((SV*)object);
-			src = (void*)SvPV_nolen(target);
-			memcpy(address, src, sizeof(NSRange));
-			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSRect")) {
+		}
+        else if (sv_derived_from((SV*)object, "CamelBones::NSRect")) {
 			SV *target = SvRV((SV*)object);
 			src = (void*)SvPV_nolen(target);
 			memcpy(address, src, sizeof(NSRect));
 			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSSize")) {
+		}
+        else if (sv_derived_from((SV*)object, "CamelBones::NSSize")) {
 			SV *target = SvRV((SV*)object);
 			src = (void*)SvPV_nolen(target);
 			memcpy(address, src, sizeof(NSSize));
 			return;
 		}
-
+#endif
 		NSLog(@"Unknown object type passed to CBPoke");
 		return;
 

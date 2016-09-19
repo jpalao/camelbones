@@ -10,8 +10,13 @@
 #import "Structs_real.h"
 #import "CBPerlObjectInternals.h"
 
-#import <objc/objc-class.h>
+#if TARGET_OS_IPHONE
+#import <objc/runtime.h>
+#elif TARGET_OS_MAC
 #import <objc/objc-runtime.h>
+#import <objc/objc-class.h>
+#endif
+
 #import "PerlImports.h"
 #import "perlxsi.h"
 
@@ -36,12 +41,14 @@ typedef union {
     double fdouble;
     void *voidp;
     SEL sel;
+#if !(TARGET_OS_IPHONE)
     NSPoint struct_nspoint;
+    NSRect struct_nsrect;
+    NSSize struct_nssize;
+#endif
     CGPoint struct_cgpoint;
     NSRange struct_nsrange;
-    NSRect struct_nsrect;
     CGRect struct_cgrect;
-    NSSize struct_nssize;
     CGSize struct_cgsize;
 } arg_value;
 
@@ -502,11 +509,21 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 				
             case '{':   // Struct
 				c_arg_type = arg_type[1] == '_' ? arg_type+2 : arg_type+1;
+#if !(TARGET_OS_IPHONE)
                 if (0 == strncmp(c_arg_type, "NSPoint", strlen("NSPoint"))) {
 					arg_ffi_types[i] = &nspoint_type;
 					arg_values[i].struct_nspoint = REAL_CBPointFromSV(argSV);
                 }
-                else if (0 == strncmp(c_arg_type, "CGPoint", strlen("CGPoint"))) {
+                else if (0 == strncmp(c_arg_type, "NSRect", strlen("NSRect"))) {
+                    arg_ffi_types[i] = &nsrect_type;
+                    arg_values[i].struct_nsrect = REAL_CBRectFromSV(argSV);
+                }
+                else if (0 == strncmp(c_arg_type, "NSSize", strlen("NSSize"))) {
+                    arg_ffi_types[i] = &nssize_type;
+                    arg_values[i].struct_nssize = REAL_CBSizeFromSV(argSV);
+                }
+#endif
+                if (0 == strncmp(c_arg_type, "CGPoint", strlen("CGPoint"))) {
 					arg_ffi_types[i] = &cgpoint_type;
 					arg_values[i].struct_cgpoint = REAL_CBCGPointFromSV(argSV);
                 }
@@ -514,17 +531,9 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 					arg_ffi_types[i] = &nsrange_type;
 					arg_values[i].struct_nsrange = REAL_CBRangeFromSV(argSV);
                 }
-                else if (0 == strncmp(c_arg_type, "NSRect", strlen("NSRect"))) {
-					arg_ffi_types[i] = &nsrect_type;
-					arg_values[i].struct_nsrect = REAL_CBRectFromSV(argSV);
-                }
                 else if (0 == strncmp(c_arg_type, "CGRect", strlen("CGRect"))) {
 					arg_ffi_types[i] = &cgrect_type;
 					arg_values[i].struct_cgrect = REAL_CBCGRectFromSV(argSV);
-                }
-                else if (0 == strncmp(c_arg_type, "NSSize", strlen("NSSize"))) {
-					arg_ffi_types[i] = &nssize_type;
-					arg_values[i].struct_nssize = REAL_CBSizeFromSV(argSV);
                 }
                 else if (0 == strncmp(c_arg_type, "CGSize", strlen("CGSize"))) {
 					arg_ffi_types[i] = &cgsize_type;
@@ -687,21 +696,31 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             break;
 			
         case '{':   // Struct
-            if (0 == strncmp(c_return_type, "NSPoint", strlen("NSPoint"))) {
+            if (0 == strncmp(c_return_type, "CGPoint", strlen("CGPoint"))) {
+                sv_setsv(ret, REAL_CBCGPointToSV(return_value.struct_cgpoint));
+            }
+            else if (0 == strncmp(c_return_type, "NSRange", strlen("NSRange"))) {
+                sv_setsv(ret, REAL_CBRangeToSV(return_value.struct_nsrange));
+            }
+            else if (0 == strncmp(c_return_type, "CGRect", strlen("CGRect"))) {
+                sv_setsv(ret, REAL_CBCGRectToSV(return_value.struct_cgrect));
+            }
+            else if (0 == strncmp(c_return_type, "CGSize", strlen("CGSize"))) {
+                sv_setsv(ret, REAL_CBCGSizeToSV(return_value.struct_cgsize));
+            }
+
+#if !TARGET_OS_IPHONE
+            else if (0 == strncmp(c_return_type, "NSPoint", strlen("NSPoint"))) {
                 sv_setsv(ret, REAL_CBPointToSV(return_value.struct_nspoint));
-            } else if (0 == strncmp(c_return_type, "CGPoint", strlen("CGPoint"))) {
-				sv_setsv(ret, REAL_CBCGPointToSV(return_value.struct_cgpoint));
-            } else if (0 == strncmp(c_return_type, "NSRange", strlen("NSRange"))) {
-				sv_setsv(ret, REAL_CBRangeToSV(return_value.struct_nsrange));
-            } else if (0 == strncmp(c_return_type, "NSRect", strlen("NSRect"))) {
+            }
+            else if (0 == strncmp(c_return_type, "NSRect", strlen("NSRect"))) {
                 sv_setsv(ret, REAL_CBRectToSV(return_value.struct_nsrect));
-            } else if (0 == strncmp(c_return_type, "NSSize", strlen("NSSize"))) {
+            }
+            else if (0 == strncmp(c_return_type, "NSSize", strlen("NSSize"))) {
                 sv_setsv(ret, REAL_CBSizeToSV(return_value.struct_nssize));
-            } else if (0 == strncmp(c_return_type, "CGRect", strlen("CGRect"))) {
-				sv_setsv(ret, REAL_CBCGRectToSV(return_value.struct_cgrect));
-			} else if (0 == strncmp(c_return_type, "CGSize", strlen("CGSize"))) {
-				sv_setsv(ret, REAL_CBCGSizeToSV(return_value.struct_cgsize));
-			} else {
+            }
+#endif
+            else {
                 NSLog(@"Unknown structure type %s in return", return_type_string);
                 return nil;
             }
