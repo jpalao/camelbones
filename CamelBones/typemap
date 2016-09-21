@@ -23,10 +23,10 @@ CGSize      T_CGSIZE
 NSInteger   T_IV
 NSUInteger  T_UV
 
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
 CGFloat     T_FLOAT
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
 CGFloat     T_DOUBLE
 #endif
 

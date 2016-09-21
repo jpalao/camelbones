@@ -23,11 +23,11 @@ NSPoint REAL_CBPointFromAV(void* av) {
     CBPerlArray *arr;
     
     arr = [CBPerlArray arrayWithAV:av];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newPoint.x = [[arr objectAtIndex:0] floatValue];
     newPoint.y = [[arr objectAtIndex:1] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newPoint.x = [[arr objectAtIndex:0] doubleValue];
     newPoint.y = [[arr objectAtIndex:1] doubleValue];
 #endif
@@ -40,11 +40,11 @@ NSPoint REAL_CBPointFromHV(void* hv) {
     CBPerlHash *dict;
 
     dict = [CBPerlHash dictionaryWithHV:hv];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newPoint.x = [[dict objectForKey:@"x"] floatValue];
     newPoint.y = [[dict objectForKey:@"y"] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newPoint.x = [[dict objectForKey:@"x"] doubleValue];
     newPoint.y = [[dict objectForKey:@"y"] doubleValue];
 #endif
@@ -98,11 +98,11 @@ CGPoint REAL_CBCGPointFromAV(void* av) {
     CBPerlArray *arr;
 
     arr = [CBPerlArray arrayWithAV:av];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newPoint.x = [[arr objectAtIndex:0] floatValue];
     newPoint.y = [[arr objectAtIndex:1] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newPoint.x = [[arr objectAtIndex:0] doubleValue];
     newPoint.y = [[arr objectAtIndex:1] doubleValue];
 #endif
@@ -115,11 +115,11 @@ CGPoint REAL_CBCGPointFromHV(void* hv) {
     CBPerlHash *dict;
 
     dict = [CBPerlHash dictionaryWithHV:hv];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newPoint.x = [[dict objectForKey:@"x"] floatValue];
     newPoint.y = [[dict objectForKey:@"y"] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newPoint.x = [[dict objectForKey:@"x"] doubleValue];
     newPoint.y = [[dict objectForKey:@"y"] doubleValue];
 #endif
@@ -175,13 +175,13 @@ NSRect REAL_CBRectFromAV(void* av) {
     CBPerlArray *arr;
     
     arr = [CBPerlArray arrayWithAV:av];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newRect.origin.x = [[arr objectAtIndex:0] floatValue];
     newRect.origin.y = [[arr objectAtIndex:1] floatValue];
     newRect.size.width = [[arr objectAtIndex:2] floatValue];
     newRect.size.height = [[arr objectAtIndex:3] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newRect.origin.x = [[arr objectAtIndex:0] doubleValue];
     newRect.origin.y = [[arr objectAtIndex:1] doubleValue];
     newRect.size.width = [[arr objectAtIndex:2] doubleValue];
@@ -196,13 +196,13 @@ NSRect REAL_CBRectFromHV(void* hv) {
     CBPerlHash *dict;
     
     dict = [CBPerlHash dictionaryWithHV:hv];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newRect.origin.x = [[dict objectForKey:@"x"] floatValue];
     newRect.origin.y = [[dict objectForKey:@"y"] floatValue];
     newRect.size.width = [[dict objectForKey:@"width"] floatValue];
     newRect.size.height = [[dict objectForKey:@"height"] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newRect.origin.x = [[dict objectForKey:@"x"] doubleValue];
     newRect.origin.y = [[dict objectForKey:@"y"] doubleValue];
     newRect.size.width = [[dict objectForKey:@"width"] doubleValue];
@@ -260,13 +260,13 @@ CGRect REAL_CBCGRectFromAV(void* av) {
     CBPerlArray *arr;
 
     arr = [CBPerlArray arrayWithAV:av];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newRect.origin.x = [[arr objectAtIndex:0] floatValue];
     newRect.origin.y = [[arr objectAtIndex:1] floatValue];
     newRect.size.width = [[arr objectAtIndex:2] floatValue];
     newRect.size.height = [[arr objectAtIndex:3] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newRect.origin.x = [[arr objectAtIndex:0] doubleValue];
     newRect.origin.y = [[arr objectAtIndex:1] doubleValue];
     newRect.size.width = [[arr objectAtIndex:2] doubleValue];
@@ -282,13 +282,13 @@ CGRect REAL_CBCGRectFromHV(void* hv) {
 
     dict = [CBPerlHash dictionaryWithHV:hv];
 
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newRect.origin.x = [[dict objectForKey:@"x"] floatValue];
     newRect.origin.y = [[dict objectForKey:@"y"] floatValue];
     newRect.size.width = [[dict objectForKey:@"width"] floatValue];
     newRect.size.height = [[dict objectForKey:@"height"] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newRect.origin.x = [[dict objectForKey:@"x"] doubleValue];
     newRect.origin.y = [[dict objectForKey:@"y"] doubleValue];
     newRect.size.width = [[dict objectForKey:@"width"] doubleValue];
@@ -407,11 +407,11 @@ NSSize REAL_CBSizeFromAV(void* av) {
     CBPerlArray *arr;
     
     arr = [CBPerlArray arrayWithAV:av];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newSize.width = [[arr objectAtIndex:0] floatValue];
     newSize.height = [[arr objectAtIndex:1] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newSize.width = [[arr objectAtIndex:0] doubleValue];
     newSize.height = [[arr objectAtIndex:1] doubleValue];
 #endif
@@ -423,11 +423,11 @@ NSSize REAL_CBSizeFromHV(void* hv) {
     CBPerlHash *dict;
     
     dict = [CBPerlHash dictionaryWithHV:hv];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newSize.width = [[dict objectForKey:@"width"] floatValue];
     newSize.height = [[dict objectForKey:@"height"] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newSize.width = [[dict objectForKey:@"width"] doubleValue];
     newSize.height = [[dict objectForKey:@"height"] doubleValue];
 #endif
@@ -482,11 +482,11 @@ CGSize REAL_CBCGSizeFromAV(void* av) {
     CBPerlArray *arr;
 
     arr = [CBPerlArray arrayWithAV:av];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newSize.width = [[arr objectAtIndex:0] floatValue];
     newSize.height = [[arr objectAtIndex:1] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newSize.width = [[arr objectAtIndex:0] doubleValue];
     newSize.height = [[arr objectAtIndex:1] doubleValue];
 #endif
@@ -500,11 +500,11 @@ CGSize REAL_CBCGSizeFromHV(void* hv) {
     CBPerlHash *dict;
 
     dict = [CBPerlHash dictionaryWithHV:hv];
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
     newSize.width = [[dict objectForKey:@"width"] floatValue];
     newSize.height = [[dict objectForKey:@"height"] floatValue];
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
     newSize.width = [[dict objectForKey:@"width"] doubleValue];
     newSize.height = [[dict objectForKey:@"height"] doubleValue];
 #endif

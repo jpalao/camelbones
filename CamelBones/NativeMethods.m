@@ -80,11 +80,11 @@ void init_ffi_types() {
 	nspoint_type.size = nspoint_type.alignment = 0;
 	nspoint_type.elements = (ffi_type**)&nspoint_elements;
     nspoint_type.type = FFI_TYPE_STRUCT;
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
 	nspoint_elements[0] = &ffi_type_float;
 	nspoint_elements[1] = &ffi_type_float;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
 	nspoint_elements[0] = &ffi_type_double;
 	nspoint_elements[1] = &ffi_type_double;
 #endif
@@ -93,11 +93,11 @@ void init_ffi_types() {
     cgpoint_type.size = cgpoint_type.alignment = 0;
 	cgpoint_type.elements = (ffi_type**)&cgpoint_elements;
     cgpoint_type.type = FFI_TYPE_STRUCT;
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
 	cgpoint_elements[0] = &ffi_type_float;
 	cgpoint_elements[1] = &ffi_type_float;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
 	cgpoint_elements[0] = &ffi_type_double;
 	cgpoint_elements[1] = &ffi_type_double;
 #endif
@@ -113,11 +113,11 @@ void init_ffi_types() {
     cgsize_type.size = cgsize_type.alignment = 0;
 	cgsize_type.elements = (ffi_type**)&cgsize_elements;
     cgsize_type.type = FFI_TYPE_STRUCT;
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
 	cgsize_elements[0] = &ffi_type_float;
 	cgsize_elements[1] = &ffi_type_float;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
 	cgsize_elements[0] = &ffi_type_double;
 	cgsize_elements[1] = &ffi_type_double;
 #endif
@@ -140,11 +140,11 @@ void init_ffi_types() {
 	nsrange_type.size = nsrange_type.alignment = 0;
 	nsrange_type.elements = (ffi_type**)&nsrange_elements;
     nsrange_type.type = FFI_TYPE_STRUCT;
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
 	nsrange_elements[0] = &ffi_type_uint32;
 	nsrange_elements[1] = &ffi_type_uint32;
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
 	nsrange_elements[0] = &ffi_type_uint64;
 	nsrange_elements[1] = &ffi_type_uint64;
 #endif
