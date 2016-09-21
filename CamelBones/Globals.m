@@ -28,24 +28,40 @@ void REAL_CBWrapAllGlobals(void) {
 
     CBPerlArray *foundationISA;
     CBPerlArray *foundationEXPORT;
+#if TARGET_OS_IPHONE
+    CBPerlArray *uikitISA;
+    CBPerlArray *uikitEXPORT;
+#elif TARGET_OS_MAC
     CBPerlArray *appkitISA;
     CBPerlArray *appkitEXPORT;
+#endif
 
     // Fill out the Foundation package's ISA and EXPORT arrays
     foundationISA = [CBPerlArray newArrayNamed:@"CamelBones::Foundation::Globals::ISA"];
     [foundationISA addObject:@"Exporter"];
     foundationEXPORT = [CBPerlArray newArrayNamed:@"CamelBones::Foundation::Globals::EXPORT"];
 
-    // Fill out the AppKit package's ISA and EXPORT arrays
+    // Fill out the AppKit/UIKit package's ISA and EXPORT arrays
+#if TARGET_OS_IPHONE
+    uikitISA = [CBPerlArray newArrayNamed:@"CamelBones::UIKit::Globals::ISA"];
+    [uikitISA addObject:@"Exporter"];
+    uikitEXPORT = [CBPerlArray newArrayNamed:@"CamelBones::UIKit::Globals::EXPORT"];
+#elif TARGET_OS_MAC
     appkitISA = [CBPerlArray newArrayNamed:@"CamelBones::AppKit::Globals::ISA"];
     [appkitISA addObject:@"Exporter"];
     appkitEXPORT = [CBPerlArray newArrayNamed:@"CamelBones::AppKit::Globals::EXPORT"];
+#endif
 
     // Get a handle on the CamelBones framework bundle
     thisBundle = [NSBundle bundleForClass:NSClassFromString(@"CBPerl")];
 
     // Get the Foundation exports plist and loop over the entries
+#if TARGET_OS_IPHONE
+    plistPath = [thisBundle pathForResource:@"FoundationGlobalStrings" ofType:@"plist" inDirectory:[thisBundle bundlePath]];
+#elif TARGET_OS_MAC
     plistPath = [thisBundle pathForResource:@"FoundationGlobalStrings" ofType:@"plist"];
+#endif
+
     exports = [NSArray arrayWithContentsOfFile:plistPath];
     e = [exports objectEnumerator];
     while ((thisExport = [e nextObject])) {
@@ -56,7 +72,19 @@ void REAL_CBWrapAllGlobals(void) {
         }
     }
 
-    // Get the AppKit exports plist and loop over the entries
+// Get the AppKit exports plist and loop over the entries
+#if TARGET_OS_IPHONE
+    plistPath = [thisBundle pathForResource:@"UIKitGlobalStrings" ofType:@"plist"];
+    exports = [NSArray arrayWithContentsOfFile:plistPath];
+    e = [exports objectEnumerator];
+    while ((thisExport = [e nextObject])) {
+        // Try to make a wrapper
+        if (REAL_CBWrapString([thisExport UTF8String], "CamelBones::UIKit::Globals")) {
+            // If successful, make the wrapper exportable
+            [uikitEXPORT addObject:[thisExport substringFromIndex:1]];
+        }
+    }
+#elif TARGET_OS_MAC
     plistPath = [thisBundle pathForResource:@"AppKitGlobalStrings" ofType:@"plist"];
     exports = [NSArray arrayWithContentsOfFile:plistPath];
     e = [exports objectEnumerator];
@@ -67,6 +95,7 @@ void REAL_CBWrapAllGlobals(void) {
             [appkitEXPORT addObject:[thisExport substringFromIndex:1]];
         }
     }
+#endif
 }
 
 BOOL REAL_CBWrapString(const char *varName, const char *pkgName) {
