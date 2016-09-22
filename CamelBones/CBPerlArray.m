@@ -37,7 +37,7 @@
 
 
 // Required primitive methods
-- (unsigned long)count {
+- (NSUInteger)count {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -67,7 +67,7 @@
 		[anObject retain];
 	}
 }
-- (void)insertObject:(id)anObject atIndex:(unsigned long)index {
+- (void)insertObject:(id)anObject atIndex:(unsigned int)index {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -101,7 +101,7 @@
         [anObject autorelease];
     }
 }
-- (void)removeObjectAtIndex:(unsigned long)index {
+- (void)removeObjectAtIndex:(unsigned int)index {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;

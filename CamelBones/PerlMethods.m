@@ -155,7 +155,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     const char *returnType;
     CB_ObjCType returnValue;
     
-    int success;
+    long success;
 
     // Get the method name
     methodName = [REAL_CBGetMethodNameForSelector(REAL_CBDerefIDtoSV(self), _cmd) UTF8String];

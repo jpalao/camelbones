@@ -13,7 +13,7 @@
 @implementation CBPerlHash
 
 // Required primitive methods
-- (unsigned long)count {
+- (NSUInteger)count {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
