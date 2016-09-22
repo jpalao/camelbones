@@ -831,6 +831,7 @@
 					"-lffi",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
@@ -874,6 +875,7 @@
 					"-lffi",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
@@ -905,6 +907,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
@@ -941,6 +944,7 @@
 					"-lperl",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
@@ -1014,6 +1018,7 @@
 					"-lffi",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos7.1;
 				SYMROOT = Build/Products;
@@ -1085,6 +1090,7 @@
 					"-lffi",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos7.1;
 				SYMROOT = Build/Products;
@@ -1134,6 +1140,7 @@
 					"-lperl",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos7.1;
 				SYMROOT = Build/Products;
@@ -1183,6 +1190,7 @@
 					"-lperl",
 				);
 				PREBINDING = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos7.1;
 				SYMROOT = Build/Products;
