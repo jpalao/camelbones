@@ -12,6 +12,7 @@
 
 #if TARGET_OS_IPHONE
 #import <objc/runtime.h>
+#import <objc/message.h>
 #elif TARGET_OS_MAC
 #import <objc/objc-runtime.h>
 #import <objc/objc-class.h>

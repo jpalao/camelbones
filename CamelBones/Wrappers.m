@@ -11,7 +11,7 @@
 // Create a Perl object that wraps an Objective-C object
 // The wrapper will be blessed into the "NSObject" package.
 void* REAL_CBCreateWrapperObject(id obj) {
-    return (void*)REAL_CBCreateWrapperObjectWithClassName(obj, [obj className]);
+    return (void*)REAL_CBCreateWrapperObjectWithClassName(obj, NSStringFromClass([obj class]));
 }
 
 // Create a Perl object that wraps an Objective-C object.
