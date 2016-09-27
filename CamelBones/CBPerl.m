@@ -68,6 +68,11 @@ PerlInterpreter *_CBPerlInterpreter;
 - (id) init {
     char *emb[] = { "", "-e", "0" };
 
+#if TARGET_OS_IPHONE
+    NSString * bundlePath = [[NSBundle mainBundle] resourcePath] ;
+    NSString * inc = [NSString stringWithFormat:@"@INC=('%@/perl5/5.24.0', '%@/perl5/site_perl', '%@/perl5/5.24.0/darwin-thread-multi-2level', '%@/perl5/site_perl/5.24.0/darwin-thread-multi-2level');", bundlePath, bundlePath, bundlePath, bundlePath];
+#endif
+
     // Is there a shared perl object already?
     if (_sharedPerl) {
         // Yes, retain and return it
@@ -95,6 +100,10 @@ PerlInterpreter *_CBPerlInterpreter;
             perl_parse(_CBPerlInterpreter, xs_init, 3, emb, (char **)NULL);
             perl_run(_CBPerlInterpreter);
             _sharedPerl = self;
+
+#if TARGET_OS_IPHONE
+            NSString * setINC = [self eval: inc];
+#endif
 
 			// Get Perl's archname and version
 			[self useModule: @"Config"];
