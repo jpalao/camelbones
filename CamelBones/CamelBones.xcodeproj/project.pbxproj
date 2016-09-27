@@ -811,6 +811,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_osx/include",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -855,6 +857,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_osx/include",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -899,6 +903,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_osx/include",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -931,6 +937,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_osx/include",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -977,6 +985,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -1020,7 +1030,7 @@
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
@@ -1049,6 +1059,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -1092,7 +1104,7 @@
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
@@ -1121,6 +1133,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -1142,7 +1156,7 @@
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
@@ -1171,6 +1185,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -1192,7 +1208,7 @@
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos7.1;
+				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
