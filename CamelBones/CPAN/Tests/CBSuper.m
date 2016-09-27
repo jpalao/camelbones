@@ -3,8 +3,8 @@
     Created on June 26, 2006 by Sherm Pendley
 */
 
-#if TARGET_OS_IPHONE
 #import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #elif TARGET_OS_MAC

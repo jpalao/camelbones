@@ -6,8 +6,8 @@
 //  Copyright 2010 Sherm Pendley.
 //
 
-#if TARGET_OS_IPHONE
 #import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #elif TARGET_OS_MAC
@@ -30,9 +30,14 @@
 - (BOOL)testObject:(id)target withObject:(id)value;
 - (BOOL)testObject:(id)target withPointer:(void*)value;
 - (BOOL)testObject:(id)target withSelector:(SEL)value;
-- (BOOL)testObject:(id)target withPoint:(NSPoint)value;
 - (BOOL)testObject:(id)target withRange:(NSRange)value;
+#if TARGET_OS_IPHONE
+- (BOOL)testObject:(id)target withPoint:(CGPoint)value;
+- (BOOL)testObject:(id)target withRect:(CGRect)value;
+- (BOOL)testObject:(id)target withSize:(CGSize)value;
+#elif TARGET_OS_MAC
+- (BOOL)testObject:(id)target withPoint:(NSPoint)value;
 - (BOOL)testObject:(id)target withRect:(NSRect)value;
 - (BOOL)testObject:(id)target withSize:(NSSize)value;
-
+#endif
 @end
