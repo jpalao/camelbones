@@ -16,6 +16,9 @@
 #import <dlfcn.h>
 #else
 CFBundleRef b;
+CFBundleRef foundationFramework;
+CFBundleRef uiKitFramework;
+CFBundleRef coreGraphicsFramework;
 #endif
 
 void REAL_CBWrapAllGlobals(void) {
@@ -94,19 +97,59 @@ void REAL_CBWrapAllGlobals(void) {
 #endif
 }
 
+// temporary quick and dirty function to load globals from just the three iOS fundamental frameworks
+void * CBGetiOSFrameworkGlobalAddress(const char *varName, const char *pkgName){
+    CFStringRef cfTotalPath;
+    CFURLRef    cURL;
+    CFBundleRef resultFramework = NULL;
+    if (strncmp("CamelBones::Foundation::Globals", pkgName, strlen("CamelBones::Foundation::Globals")) == 0) {
+        if (NULL == foundationFramework) {
+            cfTotalPath = CFStringCreateWithCString (NULL, "/System/Library/Frameworks/Foundation.framework", kCFStringEncodingUTF8);
+            cURL = CFURLCreateWithFileSystemPath(NULL, cfTotalPath, kCFURLPOSIXPathStyle, false);
+            foundationFramework = CFBundleCreate(kCFAllocatorDefault, cURL);
+        }
+        resultFramework = foundationFramework;
+    }
+    else if (strncmp("CamelBones::UIKit::Globals", pkgName, strlen("CamelBones::UIKit::Globals")) == 0) {
+        if (NULL == uiKitFramework) {
+            cfTotalPath = CFStringCreateWithCString (NULL, "/System/Library/Frameworks/UIKit.framework", kCFStringEncodingUTF8);
+            cURL = CFURLCreateWithFileSystemPath(NULL, cfTotalPath, kCFURLPOSIXPathStyle, false);
+            uiKitFramework = CFBundleCreate(kCFAllocatorDefault, cURL);
+        }
+        resultFramework = uiKitFramework;
+    }
+    else if (strncmp("CamelBones::CoreGraphics::Globals", pkgName, strlen("CamelBones::CoreGraphics::Globals")) == 0) {
+        if (NULL == coreGraphicsFramework) {
+            cfTotalPath = CFStringCreateWithCString (NULL, "/System/Library/Frameworks/CoreGraphics.framework", kCFStringEncodingUTF8);
+            cURL = CFURLCreateWithFileSystemPath(NULL, cfTotalPath, kCFURLPOSIXPathStyle, false);
+            coreGraphicsFramework = CFBundleCreate(kCFAllocatorDefault, cURL);
+
+        }
+        resultFramework = coreGraphicsFramework;
+    }
+    if (resultFramework == NULL) return NULL;
+    return (void*)CFBundleGetDataPointerForName(resultFramework, (CFStringRef)[NSString stringWithFormat:@"%s", varName+1]);
+}
+
 BOOL REAL_CBWrapString(const char *varName, const char *pkgName) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
 
-    void *address;
+    void *address = NULL;
     SV *mySV;
 
 #ifdef HAVE_DLFCN_H
     address = dlsym( NULL, varName );
 #else
 	if (NULL == b) { b = CFBundleGetMainBundle(); }
-	address = CFBundleGetDataPointerForName(b, (CFStringRef)[NSString stringWithFormat:@"%c", (int)varName]);
+
+#if TARGET_OS_IPHONE
+    address = CBGetiOSFrameworkGlobalAddress(varName, pkgName);
+#elif TARGET_OS_MAC
+    address = CFBundleGetDataPointerForName(b, (CFStringRef)[NSString stringWithFormat:@"%c", (int)varName]);
+#endif
+
 #endif
 
     if (address) {
