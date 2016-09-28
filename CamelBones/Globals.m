@@ -123,7 +123,6 @@ void * CBGetiOSFrameworkGlobalAddress(const char *varName, const char *pkgName){
             cfTotalPath = CFStringCreateWithCString (NULL, "/System/Library/Frameworks/CoreGraphics.framework", kCFStringEncodingUTF8);
             cURL = CFURLCreateWithFileSystemPath(NULL, cfTotalPath, kCFURLPOSIXPathStyle, false);
             coreGraphicsFramework = CFBundleCreate(kCFAllocatorDefault, cURL);
-
         }
         resultFramework = coreGraphicsFramework;
     }
