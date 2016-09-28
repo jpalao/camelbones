@@ -56,11 +56,7 @@ void REAL_CBWrapAllGlobals(void) {
     thisBundle = [NSBundle bundleForClass:NSClassFromString(@"CBPerl")];
 
     // Get the Foundation exports plist and loop over the entries
-#if TARGET_OS_IPHONE
-    plistPath = [thisBundle pathForResource:@"FoundationGlobalStrings" ofType:@"plist" inDirectory:[thisBundle bundlePath]];
-#elif TARGET_OS_MAC
     plistPath = [thisBundle pathForResource:@"FoundationGlobalStrings" ofType:@"plist"];
-#endif
 
     exports = [NSArray arrayWithContentsOfFile:plistPath];
     e = [exports objectEnumerator];
@@ -68,7 +64,7 @@ void REAL_CBWrapAllGlobals(void) {
         // Try to make a wrapper
         if (REAL_CBWrapString([thisExport UTF8String], "CamelBones::Foundation::Globals")) {
             // If successful, make the wrapper exportable
-            [foundationEXPORT addObject:[thisExport substringFromIndex:1]];
+            [foundationEXPORT addObject:thisExport];
         }
     }
 
