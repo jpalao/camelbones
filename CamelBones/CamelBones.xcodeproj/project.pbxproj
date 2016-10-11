@@ -41,14 +41,12 @@
 		82151A501CEFBCAC00FB511B /* perlxsi.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CD0C875DB7004DA7BD /* perlxsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A511CEFBCAC00FB511B /* Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CF0C875DB7004DA7BD /* Runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A521CEFBCAC00FB511B /* Runtime_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A531CEFBCAC00FB511B /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D20C875DB7004DA7BD /* Structs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A541CEFBCAC00FB511B /* Structs_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D10C875DB7004DA7BD /* Structs_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D80C875DB7004DA7BD /* Wrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A561CEFBCAC00FB511B /* Wrappers_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A571CEFBCAC00FB511B /* CBPerlObject.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A581CEFBCAC00FB511B /* CBPerlScalar.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A5B1CEFBCAC00FB511B /* AppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3A90C875DB7004DA7BD /* AppMain.m */; };
-		82151A5E1CEFBCAC00FB511B /* StubFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D50C875DB7004DA7BD /* StubFunctions.m */; };
 		82151A601CEFBCAC00FB511B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4240C875F90004DA7BD /* AppKit.framework */; };
 		82151A611CEFBCAC00FB511B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4280C875FA2004DA7BD /* Foundation.framework */; };
 		82151A641CEFBCAC00FB511B /* typemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA83FE0E0CC9E9CF00E56F20 /* typemap */; };
@@ -105,7 +103,6 @@
 		829162041D4D561C006DF121 /* NativeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C70C875DB7004DA7BD /* NativeMethods.m */; };
 		829162051D4D561C006DF121 /* perlxsi.c in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CC0C875DB7004DA7BD /* perlxsi.c */; };
 		829162061D4D561C006DF121 /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */; };
-		829162071D4D561C006DF121 /* StubFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D50C875DB7004DA7BD /* StubFunctions.m */; };
 		829162081D4D561C006DF121 /* Structs.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D30C875DB7004DA7BD /* Structs.m */; };
 		829162091D4D561C006DF121 /* CBPerlScalarInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */; };
 		8291620A1D4D561C006DF121 /* Conversions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BF0C875DB7004DA7BD /* Conversions.m */; };
@@ -229,7 +226,6 @@
 		AA50E3D10C875DB7004DA7BD /* Structs_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs_real.h; sourceTree = "<group>"; };
 		AA50E3D20C875DB7004DA7BD /* Structs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
 		AA50E3D30C875DB7004DA7BD /* Structs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Structs.m; sourceTree = "<group>"; };
-		AA50E3D50C875DB7004DA7BD /* StubFunctions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = StubFunctions.m; sourceTree = "<group>"; };
 		AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers_real.h; sourceTree = "<group>"; };
 		AA50E3D80C875DB7004DA7BD /* Wrappers.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers.h; sourceTree = "<group>"; };
 		AA50E3D90C875DB8004DA7BD /* Wrappers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Wrappers.m; sourceTree = "<group>"; };
@@ -395,7 +391,6 @@
 				AA50E3CC0C875DB7004DA7BD /* perlxsi.c */,
 				AA50E3D00C875DB7004DA7BD /* Runtime.m */,
 				AA50E3D30C875DB7004DA7BD /* Structs.m */,
-				AA50E3D50C875DB7004DA7BD /* StubFunctions.m */,
 				AA50E3D90C875DB8004DA7BD /* Wrappers.m */,
 			);
 			name = Framework;
@@ -597,7 +592,6 @@
 				82151A501CEFBCAC00FB511B /* perlxsi.h in Headers */,
 				82151A511CEFBCAC00FB511B /* Runtime.h in Headers */,
 				82151A521CEFBCAC00FB511B /* Runtime_real.h in Headers */,
-				82151A531CEFBCAC00FB511B /* Structs.h in Headers */,
 				82151A541CEFBCAC00FB511B /* Structs_real.h in Headers */,
 				82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */,
 				82151A561CEFBCAC00FB511B /* Wrappers_real.h in Headers */,
@@ -755,7 +749,6 @@
 				82151A761CEFBDEE00FB511B /* NativeMethods.m in Sources */,
 				82151A781CEFBDEE00FB511B /* perlxsi.c in Sources */,
 				82151A771CEFBDEE00FB511B /* PerlMethods.m in Sources */,
-				82151A5E1CEFBCAC00FB511B /* StubFunctions.m in Sources */,
 				82151A7A1CEFBDEE00FB511B /* Structs.m in Sources */,
 				82151A731CEFBDEE00FB511B /* CBPerlScalarInternals.m in Sources */,
 				82151A741CEFBDEE00FB511B /* Conversions.m in Sources */,
@@ -779,7 +772,6 @@
 				829162041D4D561C006DF121 /* NativeMethods.m in Sources */,
 				829162051D4D561C006DF121 /* perlxsi.c in Sources */,
 				829162061D4D561C006DF121 /* PerlMethods.m in Sources */,
-				829162071D4D561C006DF121 /* StubFunctions.m in Sources */,
 				829162081D4D561C006DF121 /* Structs.m in Sources */,
 				829162091D4D561C006DF121 /* CBPerlScalarInternals.m in Sources */,
 				8291620A1D4D561C006DF121 /* Conversions.m in Sources */,
@@ -837,7 +829,7 @@
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5//5.22/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
 			};
 			name = Debug;
 		};
@@ -883,7 +875,7 @@
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5//5.22/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
 			};
 			name = Release;
 		};
@@ -917,7 +909,7 @@
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5//5.22/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
 			};
 			name = "Release-App-Embedded";
 		};
@@ -956,7 +948,7 @@
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/opt/local/lib/perl5//5.22/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
 			};
 			name = "Release-Lib-Embedded";
 		};
