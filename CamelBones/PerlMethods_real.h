@@ -9,10 +9,10 @@
 #import "PerlImports.h"
 
 // Get information about a Perl object
-extern NSString* REAL_CBGetMethodNameForSelector(void* sv, SEL selector);
-extern NSString* REAL_CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector);
-extern NSString* REAL_CBGetMethodReturnSignatureForSelector(void* sv, SEL selector);
+extern NSString* CBGetMethodNameForSelector(void* sv, SEL selector);
+extern NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector);
+extern NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector);
 
 // IMP registered as a native method
-extern id REAL_CBPerlIMP(id self, SEL _cmd, ...);
+extern id CBPerlIMP(id self, SEL _cmd, ...);
 

@@ -17,7 +17,7 @@
 #include <stdarg.h>
 
 // Get information about a Perl object
-NSString* REAL_CBGetMethodNameForSelector(void* sv, SEL selector) {
+NSString* CBGetMethodNameForSelector(void* sv, SEL selector) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -54,7 +54,7 @@ NSString* REAL_CBGetMethodNameForSelector(void* sv, SEL selector) {
     return nil;
 }
 
-NSString* REAL_CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
+NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -94,7 +94,7 @@ NSString* REAL_CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
     return @"";
 }
 
-NSString* REAL_CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
+NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -136,7 +136,7 @@ NSString* REAL_CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
     return @"@";
 }
 
-id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
+id CBPerlIMP(id self, SEL _cmd, ...) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -158,7 +158,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     long success;
 
     // Get the method name
-    methodName = [REAL_CBGetMethodNameForSelector(REAL_CBDerefIDtoSV(self), _cmd) UTF8String];
+    methodName = [CBGetMethodNameForSelector(CBDerefIDtoSV(self), _cmd) UTF8String];
 
     // Save the Perl stack
     ENTER;
@@ -275,7 +275,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                 case '@':
                     // id
                     typeBuf.id_p = va_arg(argptr, id);
-                    XPUSHs(sv_2mortal(REAL_CBDerefIDtoSV(typeBuf.id_p)));
+                    XPUSHs(sv_2mortal(CBDerefIDtoSV(typeBuf.id_p)));
                     break;
                     
                 case '^':
@@ -287,13 +287,13 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                 case '#':
                     // Class
                     typeBuf.class_p = va_arg(argptr, Class);
-                    XPUSHs(sv_2mortal(REAL_CBSVFromClass(typeBuf.class_p)));
+                    XPUSHs(sv_2mortal(CBSVFromClass(typeBuf.class_p)));
                     break;
 
                 case ':':
                     // SEL
                     typeBuf.sel_p = va_arg(argptr, SEL);
-                    XPUSHs(sv_2mortal(REAL_CBSVFromSelector(typeBuf.sel_p)));
+                    XPUSHs(sv_2mortal(CBSVFromSelector(typeBuf.sel_p)));
                     break;
 
                 case '[':
@@ -306,32 +306,32 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                     // struct
                     if (0 == strncmp(argType, "{CGPoint", strlen("{CGPoint"))) {
                         typeBuf.cgpoint_s = va_arg(argptr, CGPoint);
-                        XPUSHs(sv_2mortal(REAL_CBCGPointToSV(typeBuf.cgpoint_s)));
+                        XPUSHs(sv_2mortal(CBCGPointToSV(typeBuf.cgpoint_s)));
                     }
                     else if (0 == strncmp(argType, "{CGRect", strlen("{CGRect"))) {
                         typeBuf.cgrect_s = va_arg(argptr,CGRect);
-                        XPUSHs(sv_2mortal(REAL_CBCGRectToSV(typeBuf.cgrect_s)));
+                        XPUSHs(sv_2mortal(CBCGRectToSV(typeBuf.cgrect_s)));
                     }
                     else if (0 == strncmp(argType, "{CGSize", strlen("{CGSize"))) {
                         typeBuf.cgsize_s = va_arg(argptr, CGSize);
-                        XPUSHs(sv_2mortal(REAL_CBCGSizeToSV(typeBuf.cgsize_s)));
+                        XPUSHs(sv_2mortal(CBCGSizeToSV(typeBuf.cgsize_s)));
                     }
 #if !TARGET_OS_IPHONE
                     else if (0 == strncmp(argType, "{NSPoint", strlen("{NSPoint"))) {
                         typeBuf.point_s = va_arg(argptr, NSPoint);
-                        XPUSHs(sv_2mortal(REAL_CBPointToSV(typeBuf.point_s)));
+                        XPUSHs(sv_2mortal(CBPointToSV(typeBuf.point_s)));
                     }
                     else if (0 == strncmp(argType, "{NSRange", strlen("{NSRange"))) {
                         typeBuf.range_s = va_arg(argptr, NSRange);
-                        XPUSHs(sv_2mortal(REAL_CBRangeToSV(typeBuf.range_s)));
+                        XPUSHs(sv_2mortal(CBRangeToSV(typeBuf.range_s)));
                     }
                     else if (0 == strncmp(argType, "{NSRect", strlen("{NSRect"))) {
                         typeBuf.rect_s = va_arg(argptr, NSRect);
-                        XPUSHs(sv_2mortal(REAL_CBRectToSV(typeBuf.rect_s)));
+                        XPUSHs(sv_2mortal(CBRectToSV(typeBuf.rect_s)));
                     }
                     else if (0 == strncmp(argType, "{NSSize", strlen("{NSSize"))) {
                         typeBuf.size_s = va_arg(argptr, NSSize);
-                        XPUSHs(sv_2mortal(REAL_CBSizeToSV(typeBuf.size_s)));
+                        XPUSHs(sv_2mortal(CBSizeToSV(typeBuf.size_s)));
                     }
 #endif
                     else {
@@ -458,7 +458,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     
             case '@':
                 // id
-                returnValue.id_p = REAL_CBDerefSVtoID(POPs);
+                returnValue.id_p = CBDerefSVtoID(POPs);
                 break;
 
             case '^':
@@ -468,12 +468,12 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     
             case '#':
                 // Class
-                returnValue.class_p = REAL_CBClassFromSV(POPs);
+                returnValue.class_p = CBClassFromSV(POPs);
                 break;
     
             case ':':
                 // SEL
-                returnValue.sel_p = REAL_CBSelectorFromSV(POPs);
+                returnValue.sel_p = CBSelectorFromSV(POPs);
                 break;
     
             case '[':
@@ -484,26 +484,26 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
             case '{':
                 // struct
                 if (0 == strncmp(returnType, "{CGPoint", strlen("{CGPoint"))) {
-                    returnValue.cgpoint_s = REAL_CBCGPointFromSV(POPs);
+                    returnValue.cgpoint_s = CBCGPointFromSV(POPs);
                 }
                 else if (0 == strncmp(returnType, "{CGSize", strlen("{CGSize"))) {
-                    returnValue.cgsize_s = REAL_CBCGSizeFromSV(POPs);
+                    returnValue.cgsize_s = CBCGSizeFromSV(POPs);
                 }
                 else if (0 == strncmp(returnType, "{CGRect", strlen("{CGRect"))) {
-                    returnValue.cgrect_s = REAL_CBCGRectFromSV(POPs);
+                    returnValue.cgrect_s = CBCGRectFromSV(POPs);
                 }
                 else if (0 == strncmp(returnType, "{NSRange", strlen("{NSRange"))) {
-                    returnValue.range_s = REAL_CBRangeFromSV(POPs);
+                    returnValue.range_s = CBRangeFromSV(POPs);
                 }
 #if !TARGET_OS_IPHONE
                 else if (0 == strncmp(returnType, "{NSPoint", strlen("{NSPoint"))) {
-                    returnValue.point_s = REAL_CBPointFromSV(POPs);
+                    returnValue.point_s = CBPointFromSV(POPs);
                 }
                 else if (0 == strncmp(returnType, "{NSRect", strlen("{NSRect"))) {
-                    returnValue.rect_s = REAL_CBRectFromSV(POPs);
+                    returnValue.rect_s = CBRectFromSV(POPs);
                 }
                 else if (0 == strncmp(returnType, "{NSSize", strlen("{NSSize"))) {
-                    returnValue.size_s = REAL_CBSizeFromSV(POPs);
+                    returnValue.size_s = CBSizeFromSV(POPs);
                 }
 #endif
                 else {

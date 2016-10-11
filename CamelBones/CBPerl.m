@@ -135,10 +135,10 @@ PerlInterpreter *_CBPerlInterpreter;
 			[self useBundleLib:[NSBundle mainBundle] withArch: perlArchname forVersion: perlVersion];
 
             // Create Perl wrappers for all registered Objective-C classes
-            REAL_CBWrapRegisteredClasses();
+            CBWrapRegisteredClasses();
             
             // Export globals into Perl's name space
-            REAL_CBWrapAllGlobals();
+            CBWrapAllGlobals();
 
 			// When bundles are loaded, we want to hear about it
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bundleDidLoad:)
@@ -147,7 +147,7 @@ PerlInterpreter *_CBPerlInterpreter;
 			// Register the class handler
 #ifndef OBJC2_UNAVAILABLE
             //http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg02484.html
-			REAL_CBRegisterClassHandler();
+			CBRegisterClassHandler();
 #endif
 
             return [_sharedPerl retain];
@@ -210,10 +210,10 @@ PerlInterpreter *_CBPerlInterpreter;
             }
             
             // Create Perl wrappers for all registered Objective-C classes
-            REAL_CBWrapRegisteredClasses();
+            CBWrapRegisteredClasses();
             
             // Export globals into Perl's name space
-            REAL_CBWrapAllGlobals();
+            CBWrapAllGlobals();
 
 			// When bundles are loaded, we want to hear about it
 			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bundleDidLoad:)
@@ -224,7 +224,7 @@ PerlInterpreter *_CBPerlInterpreter;
 			// Register the class handler
 #ifndef OBJC2_UNAVAILABLE
             //http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg02484.html
-			REAL_CBRegisterClassHandler();
+			CBRegisterClassHandler();
 #endif
 
             return [_sharedPerl retain];
@@ -275,7 +275,7 @@ PerlInterpreter *_CBPerlInterpreter;
         return nil;
     }
 
-    return REAL_CBDerefSVtoID(result);
+    return CBDerefSVtoID(result);
 }
 
 // Standard KVC methods
@@ -291,14 +291,14 @@ PerlInterpreter *_CBPerlInterpreter;
     } else {
         sv = get_sv([key UTF8String], TRUE);
     }
-    return REAL_CBDerefSVtoID(sv);
+    return CBDerefSVtoID(sv);
 }
 
 - (void) setValue:(id)value forKey:(NSString*)key {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
-    SV* newVal = REAL_CBDerefIDtoSV(value);
+    SV* newVal = CBDerefIDtoSV(value);
     SV* sv = get_sv([key UTF8String], TRUE);
     sv_setsv_mg(sv, newVal);
 }
@@ -457,7 +457,7 @@ PerlInterpreter *_CBPerlInterpreter;
 	NSBundle *bundle = [notification object];
 	[self useBundleLib:bundle  withArch: perlArchname forVersion: perlVersion];
             
-	REAL_CBWrapNamedClasses(classes);
+	CBWrapNamedClasses(classes);
 }
 
 - (void) dummyThread: (id)dummy {

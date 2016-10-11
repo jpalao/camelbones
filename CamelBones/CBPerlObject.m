@@ -164,7 +164,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 
     propPointer = hv_fetch((HV*)_myHV, [propName UTF8String], (I32)[propName length], 0);
     if (propPointer) {
-        return REAL_CBDerefSVtoID((SV*) *propPointer);
+        return CBDerefSVtoID((SV*) *propPointer);
     } else {
         return nil;
     }
@@ -181,7 +181,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
         return;
     }
 
-    propSV = REAL_CBDerefIDtoSV(propValue);
+    propSV = CBDerefIDtoSV(propValue);
     hv_store((HV*)_myHV, [propName UTF8String], (I32)[propName length], propSV, 0);
 }
 
@@ -201,7 +201,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 }
 
 - (BOOL) respondsToSelector: (SEL)aSelector {
-    NSString *perlSelector = REAL_CBGetMethodNameForSelector(_mySV, aSelector);
+    NSString *perlSelector = CBGetMethodNameForSelector(_mySV, aSelector);
     NSString *selString = NSStringFromSelector(aSelector);
 
     // If there's a real Perl method, return TRUE
@@ -270,9 +270,9 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
     } else {
 
         selectorString = NSStringFromSelector(aSelector);
-        if (REAL_CBGetMethodNameForSelector(_mySV, aSelector)) {
-            argEncoding = REAL_CBGetMethodArgumentSignatureForSelector(_mySV, aSelector);
-            returnEncoding = REAL_CBGetMethodReturnSignatureForSelector(_mySV, aSelector);
+        if (CBGetMethodNameForSelector(_mySV, aSelector)) {
+            argEncoding = CBGetMethodArgumentSignatureForSelector(_mySV, aSelector);
+            returnEncoding = CBGetMethodReturnSignatureForSelector(_mySV, aSelector);
         } else {
             if ([selectorString hasPrefix: @"set"] && [selectorString hasSuffix: @":"]) {
                 argEncoding = @"@";
@@ -306,20 +306,20 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 
 	// First look for a public accessor method of the form getKey or key
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"get%@%@", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"%@%@", lcfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 	
 	// Next look for private accessor methods of the form _getKey or _key
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"_get%@%@", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"_%@%@", lcfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector))
+	if (CBGetMethodNameForSelector(_mySV, aSelector))
 		return [self performSelector:aSelector];
 
 	// Now look for an iVar
@@ -343,7 +343,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 
 	// Look for public accessor method first
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"set%@%@:", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector)) {
+	if (CBGetMethodNameForSelector(_mySV, aSelector)) {
 		[self performSelector:aSelector withObject:value];
 		if (doesKVO) [super didChangeValueForKey:key];
 		return;
@@ -351,7 +351,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 
 	// Failing that, look for a private accessor
 	aSelector = NSSelectorFromString([NSString stringWithFormat:@"_set%@%@:", ucfirst, remainder]);
-	if (REAL_CBGetMethodNameForSelector(_mySV, aSelector)) {
+	if (CBGetMethodNameForSelector(_mySV, aSelector)) {
 		[self performSelector:aSelector withObject:value];
 		if (doesKVO) [super didChangeValueForKey:key];
 		return;

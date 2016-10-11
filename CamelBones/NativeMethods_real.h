@@ -8,5 +8,5 @@
 #import <Foundation/Foundation.h>
 
 // Call a native class or object method
-extern void* REAL_CBCallNativeMethod(void* target, SEL sel, void*args, BOOL isSuper);
+extern void* CBCallNativeMethod(void* target, SEL sel, void*args, BOOL isSuper);
 

@@ -9,9 +9,9 @@
 #import "PerlImports.h"
 
 // Create a Perl object that "wraps" an Objective-C object
-extern void* REAL_CBCreateWrapperObject(id obj);
-extern void* REAL_CBCreateWrapperObjectWithClassName(id obj, NSString* className);
+extern void* CBCreateWrapperObject(id obj);
+extern void* CBCreateWrapperObjectWithClassName(id obj, NSString* className);
 
 // Create a new Perl object blessed into the specified package
-extern void* REAL_CBCreateObjectOfClass(NSString *className);
+extern void* CBCreateObjectOfClass(NSString *className);
 

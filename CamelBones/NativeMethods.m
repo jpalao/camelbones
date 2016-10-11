@@ -160,7 +160,7 @@ void init_ffi_types() {
 //
 // This assumes the ffi_type has been properly initialized with its size
 // and alignment info - call ffi_prep_cif before calling this.
-void* REAL_CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
+void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
     // On Intel, floats and doubles call objc_msgSend_fpret()
 #ifdef __i386__
     if (theType == &ffi_type_float || theType == &ffi_type_double)
@@ -193,7 +193,7 @@ void* REAL_CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
 }
 
 // Call a native class or object method
-void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
+void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -205,9 +205,9 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 	// Instance or class?
 	id targetID;
     if (sv_isobject((SV*)target)) {
-        targetID = REAL_CBDerefSVtoID(target);
+        targetID = CBDerefSVtoID(target);
     } else {
-        targetID = REAL_CBClassFromSV(target);
+        targetID = CBClassFromSV(target);
     }
 	
 	// Get the Method signature
@@ -468,7 +468,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			case '@':
 				// id
 				arg_ffi_types[i] = &ffi_type_pointer;
-                arg_values[i].voidp = argSV ? REAL_CBDerefSVtoID(argSV) : NULL;
+                arg_values[i].voidp = argSV ? CBDerefSVtoID(argSV) : NULL;
 				break;
 			
 			case '^':
@@ -494,13 +494,13 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			case '#':
 				// Class
 				arg_ffi_types[i] = &ffi_type_pointer;
-				arg_values[i].voidp = REAL_CBClassFromSV(argSV);
+				arg_values[i].voidp = CBClassFromSV(argSV);
                 break;
 				
             case ':':
 				// SEL
 				arg_ffi_types[i] = &ffi_type_pointer;
-				arg_values[i].sel = REAL_CBSelectorFromSV(argSV);
+				arg_values[i].sel = CBSelectorFromSV(argSV);
                 break;
 				
             case '[':   // Array
@@ -513,32 +513,32 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 #if !(TARGET_OS_IPHONE)
                 if (0 == strncmp(c_arg_type, "NSPoint", strlen("NSPoint"))) {
 					arg_ffi_types[i] = &nspoint_type;
-					arg_values[i].struct_nspoint = REAL_CBPointFromSV(argSV);
+					arg_values[i].struct_nspoint = CBPointFromSV(argSV);
                 }
                 else if (0 == strncmp(c_arg_type, "NSRect", strlen("NSRect"))) {
                     arg_ffi_types[i] = &nsrect_type;
-                    arg_values[i].struct_nsrect = REAL_CBRectFromSV(argSV);
+                    arg_values[i].struct_nsrect = CBRectFromSV(argSV);
                 }
                 else if (0 == strncmp(c_arg_type, "NSSize", strlen("NSSize"))) {
                     arg_ffi_types[i] = &nssize_type;
-                    arg_values[i].struct_nssize = REAL_CBSizeFromSV(argSV);
+                    arg_values[i].struct_nssize = CBSizeFromSV(argSV);
                 }
 #endif
                 if (0 == strncmp(c_arg_type, "CGPoint", strlen("CGPoint"))) {
 					arg_ffi_types[i] = &cgpoint_type;
-					arg_values[i].struct_cgpoint = REAL_CBCGPointFromSV(argSV);
+					arg_values[i].struct_cgpoint = CBCGPointFromSV(argSV);
                 }
                 else if (0 == strncmp(c_arg_type, "NSRange", strlen("NSRange"))) {
 					arg_ffi_types[i] = &nsrange_type;
-					arg_values[i].struct_nsrange = REAL_CBRangeFromSV(argSV);
+					arg_values[i].struct_nsrange = CBRangeFromSV(argSV);
                 }
                 else if (0 == strncmp(c_arg_type, "CGRect", strlen("CGRect"))) {
 					arg_ffi_types[i] = &cgrect_type;
-					arg_values[i].struct_cgrect = REAL_CBCGRectFromSV(argSV);
+					arg_values[i].struct_cgrect = CBCGRectFromSV(argSV);
                 }
                 else if (0 == strncmp(c_arg_type, "CGSize", strlen("CGSize"))) {
 					arg_ffi_types[i] = &cgsize_type;
-					arg_values[i].struct_cgsize = REAL_CBCGSizeFromSV(argSV);
+					arg_values[i].struct_cgsize = CBCGSizeFromSV(argSV);
                 }
                 else {
                     NSLog(@"Unknown structure type %s in position %d", arg_type, i);
@@ -588,7 +588,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 		return nil;
 	}
 
-    void* messenger_func = REAL_CBMessengerFunctionForFFIType(return_type, isSuper);
+    void* messenger_func = CBMessengerFunctionForFFIType(return_type, isSuper);
 
     // Finished processing arguments, call the method!
     NS_DURING
@@ -596,7 +596,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     NS_HANDLER
         SV *errsv = get_sv("@", TRUE);
         NSLog(@"NSException raised: %@. %@", [localException name], [localException reason]);
-        sv_setsv(errsv, REAL_CBDerefIDtoSV(localException));
+        sv_setsv(errsv, CBDerefIDtoSV(localException));
         croak("Died.");
 	NS_ENDHANDLER
     
@@ -617,7 +617,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             case '^':   // Pointer
 						// Pointer to id?
 				if (*(arg_type+1) == '@' && argSV && SvOK(argSV)) {
-                    sv_setsv(argSV, REAL_CBDerefIDtoSV(output_values[i].voidp));
+                    sv_setsv(argSV, CBDerefIDtoSV(output_values[i].voidp));
 				}
                 break;
 		}
@@ -677,7 +677,7 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             break;
 			
         case '@':   // id
-            sv_setsv(ret, REAL_CBDerefIDtoSV(return_value.voidp));
+            sv_setsv(ret, CBDerefIDtoSV(return_value.voidp));
             break;
 			
         case '^':   // Pointer
@@ -685,11 +685,11 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             break;
 			
         case '#':   // Class
-            sv_setsv(ret, REAL_CBSVFromClass(return_value.voidp));
+            sv_setsv(ret, CBSVFromClass(return_value.voidp));
             break;
 			
         case ':':   // SEL
-            sv_setsv(ret, REAL_CBSVFromSelector(return_value.sel));
+            sv_setsv(ret, CBSVFromSelector(return_value.sel));
             break;
 			
         case '[':   // Array
@@ -698,27 +698,27 @@ void* REAL_CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			
         case '{':   // Struct
             if (0 == strncmp(c_return_type, "CGPoint", strlen("CGPoint"))) {
-                sv_setsv(ret, REAL_CBCGPointToSV(return_value.struct_cgpoint));
+                sv_setsv(ret, CBCGPointToSV(return_value.struct_cgpoint));
             }
             else if (0 == strncmp(c_return_type, "NSRange", strlen("NSRange"))) {
-                sv_setsv(ret, REAL_CBRangeToSV(return_value.struct_nsrange));
+                sv_setsv(ret, CBRangeToSV(return_value.struct_nsrange));
             }
             else if (0 == strncmp(c_return_type, "CGRect", strlen("CGRect"))) {
-                sv_setsv(ret, REAL_CBCGRectToSV(return_value.struct_cgrect));
+                sv_setsv(ret, CBCGRectToSV(return_value.struct_cgrect));
             }
             else if (0 == strncmp(c_return_type, "CGSize", strlen("CGSize"))) {
-                sv_setsv(ret, REAL_CBCGSizeToSV(return_value.struct_cgsize));
+                sv_setsv(ret, CBCGSizeToSV(return_value.struct_cgsize));
             }
 
 #if !TARGET_OS_IPHONE
             else if (0 == strncmp(c_return_type, "NSPoint", strlen("NSPoint"))) {
-                sv_setsv(ret, REAL_CBPointToSV(return_value.struct_nspoint));
+                sv_setsv(ret, CBPointToSV(return_value.struct_nspoint));
             }
             else if (0 == strncmp(c_return_type, "NSRect", strlen("NSRect"))) {
-                sv_setsv(ret, REAL_CBRectToSV(return_value.struct_nsrect));
+                sv_setsv(ret, CBRectToSV(return_value.struct_nsrect));
             }
             else if (0 == strncmp(c_return_type, "NSSize", strlen("NSSize"))) {
-                sv_setsv(ret, REAL_CBSizeToSV(return_value.struct_nssize));
+                sv_setsv(ret, CBSizeToSV(return_value.struct_nssize));
             }
 #endif
             else {

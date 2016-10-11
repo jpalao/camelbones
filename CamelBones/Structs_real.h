@@ -15,75 +15,75 @@
 
 // Creating NSPoint structs
 #if !TARGET_OS_IPHONE
-extern NSPoint REAL_CBPointFromAV(void* av);
-extern NSPoint REAL_CBPointFromHV(void* hv);
-extern NSPoint REAL_CBPointFromSV(void* sv);
+extern NSPoint CBPointFromAV(void* av);
+extern NSPoint CBPointFromHV(void* hv);
+extern NSPoint CBPointFromSV(void* sv);
 
 
 // Converting NSPoint structs to blessed scalar references
-extern void* REAL_CBPointToSV(NSPoint point);
+extern void* CBPointToSV(NSPoint point);
 #endif
 
 // Creating CGPoint structs
-extern CGPoint REAL_CBCGPointFromAV(void* av);
-extern CGPoint REAL_CBCGPointFromHV(void* hv);
-extern CGPoint REAL_CBCGPointFromSV(void* sv);
+extern CGPoint CBCGPointFromAV(void* av);
+extern CGPoint CBCGPointFromHV(void* hv);
+extern CGPoint CBCGPointFromSV(void* sv);
 
 // Converting CGPoint structs to blessed scalar references
-extern void* REAL_CBCGPointToSV(CGPoint point);
+extern void* CBCGPointToSV(CGPoint point);
 
 #if !TARGET_OS_IPHONE
 // Creating NSRect structs
-extern NSRect REAL_CBRectFromAV(void* av);
-extern NSRect REAL_CBRectFromHV(void* hv);
-extern NSRect REAL_CBRectFromSV(void* sv);
+extern NSRect CBRectFromAV(void* av);
+extern NSRect CBRectFromHV(void* hv);
+extern NSRect CBRectFromSV(void* sv);
 
 // Converting NSRect structs to blessed scalar references
-extern void* REAL_CBRectToSV(NSRect rect);
+extern void* CBRectToSV(NSRect rect);
 #endif
 
 // Creating CGRect structs
-extern CGRect REAL_CBCGRectFromAV(void* av);
-extern CGRect REAL_CBCGRectFromHV(void* hv);
-extern CGRect REAL_CBCGRectFromSV(void* sv);
+extern CGRect CBCGRectFromAV(void* av);
+extern CGRect CBCGRectFromHV(void* hv);
+extern CGRect CBCGRectFromSV(void* sv);
 
 // Converting CGRect structs to blessed scalar references
-extern void* REAL_CBCGRectToSV(CGRect rect);
+extern void* CBCGRectToSV(CGRect rect);
 
 // Creating NSRange structs
-extern NSRange REAL_CBRangeFromAV(void* av);
-extern NSRange REAL_CBRangeFromHV(void* hv);
-extern NSRange REAL_CBRangeFromSV(void* sv);
+extern NSRange CBRangeFromAV(void* av);
+extern NSRange CBRangeFromHV(void* hv);
+extern NSRange CBRangeFromSV(void* sv);
 
 // Converting NSRange structs to blessed scalar references
-extern void* REAL_CBRangeToSV(NSRange range);
+extern void* CBRangeToSV(NSRange range);
 
 #if !TARGET_OS_IPHONE
 // Creating NSSize structs
-extern NSSize REAL_CBSizeFromAV(void* av);
-extern NSSize REAL_CBSizeFromHV(void* hv);
-extern NSSize REAL_CBSizeFromSV(void* sv);
+extern NSSize CBSizeFromAV(void* av);
+extern NSSize CBSizeFromHV(void* hv);
+extern NSSize CBSizeFromSV(void* sv);
 
 // Converting NSSize structs to blessed scalar references
-extern void* REAL_CBSizeToSV(NSSize size);
+extern void* CBSizeToSV(NSSize size);
 #endif
 
 // Creating CGSize structs
-extern CGSize REAL_CBCGSizeFromAV(void* av);
-extern CGSize REAL_CBCGSizeFromHV(void* hv);
-extern CGSize REAL_CBCGSizeFromSV(void* sv);
+extern CGSize CBCGSizeFromAV(void* av);
+extern CGSize CBCGSizeFromHV(void* hv);
+extern CGSize CBCGSizeFromSV(void* sv);
 
 // Converting CGSize structs to blessed scalar references
-extern void* REAL_CBCGSizeToSV(CGSize size);
+extern void* CBCGSizeToSV(CGSize size);
 
 
 // The following aren't needed on GNUStep
 #ifndef GNUSTEP
 // Creating OSType structs
-extern OSType REAL_CBOSTypeFromSV(void* sv);
+extern OSType CBOSTypeFromSV(void* sv);
 
 // Converting OSType structs to blessed scalar references
-extern void* REAL_CBOSTypeToSV(OSType type);
+extern void* CBOSTypeToSV(OSType type);
 #endif
 
 

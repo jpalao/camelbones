@@ -43,7 +43,7 @@
         theValue = HeVAL(theEntry);
 
         if (NULL != theValue) {
-            return REAL_CBDerefSVtoID(theValue);
+            return CBDerefSVtoID(theValue);
         }
     }
     
@@ -86,7 +86,7 @@
 
     // Create the key and object SVs
     theKey = [self keyWithId:aKey];
-    theObject = REAL_CBDerefIDtoSV(anObject);
+    theObject = CBDerefIDtoSV(anObject);
 
     // If it gets wrapped as a Cocoa object, retain it
     if (sv_isobject(theObject) && sv_derived_from(theObject, "NSObject")) {

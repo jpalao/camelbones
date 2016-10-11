@@ -22,7 +22,7 @@
 #endif
 
 // Create Perl wrappers for all global variables
-extern void REAL_CBWrapAllGlobals(void);
+extern void CBWrapAllGlobals(void);
 
 // Create Perl wrappers for one global variable of a specific type
-extern BOOL REAL_CBWrapString(const char *varName, const char *pkgName);
+extern BOOL CBWrapString(const char *varName, const char *pkgName);

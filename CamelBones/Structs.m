@@ -18,7 +18,7 @@
 
 #if !TARGET_OS_IPHONE
 // Creating NSPoint structs
-NSPoint REAL_CBPointFromAV(void* av) {
+NSPoint CBPointFromAV(void* av) {
     NSPoint newPoint;
     CBPerlArray *arr;
     
@@ -35,7 +35,7 @@ NSPoint REAL_CBPointFromAV(void* av) {
     return newPoint;
 }
 
-NSPoint REAL_CBPointFromHV(void* hv) {
+NSPoint CBPointFromHV(void* hv) {
     NSPoint newPoint;
     CBPerlHash *dict;
 
@@ -52,7 +52,7 @@ NSPoint REAL_CBPointFromHV(void* hv) {
     return newPoint;
 }
 
-NSPoint REAL_CBPointFromSV(void* sv) {
+NSPoint CBPointFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -69,9 +69,9 @@ NSPoint REAL_CBPointFromSV(void* sv) {
             memcpy(&newPoint, pv, sizeof(NSPoint));
             return newPoint;
         } else if (SvTYPE(target) == SVt_PVAV) {
-            return REAL_CBPointFromAV((void*)target);
+            return CBPointFromAV((void*)target);
         } else if (SvTYPE(target) == SVt_PVHV) {
-            return REAL_CBPointFromHV((void*)target);
+            return CBPointFromHV((void*)target);
         }
     }
 
@@ -79,7 +79,7 @@ NSPoint REAL_CBPointFromSV(void* sv) {
 }
 
 // Converting NSPoint structs to blessed scalar references
-void* REAL_CBPointToSV(NSPoint point) {
+void* CBPointToSV(NSPoint point) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -93,7 +93,7 @@ void* REAL_CBPointToSV(NSPoint point) {
 }
 #endif
 
-CGPoint REAL_CBCGPointFromAV(void* av) {
+CGPoint CBCGPointFromAV(void* av) {
     CGPoint newPoint;
     CBPerlArray *arr;
 
@@ -110,7 +110,7 @@ CGPoint REAL_CBCGPointFromAV(void* av) {
     return newPoint;
 }
 
-CGPoint REAL_CBCGPointFromHV(void* hv) {
+CGPoint CBCGPointFromHV(void* hv) {
     CGPoint newPoint;
     CBPerlHash *dict;
 
@@ -127,7 +127,7 @@ CGPoint REAL_CBCGPointFromHV(void* hv) {
     return newPoint;
 }
 
-CGPoint REAL_CBCGPointFromSV(void* sv) {
+CGPoint CBCGPointFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -144,9 +144,9 @@ CGPoint REAL_CBCGPointFromSV(void* sv) {
             memcpy(&newPoint, pv, sizeof(CGPoint));
             return newPoint;
         } else if (SvTYPE(target) == SVt_PVAV) {
-            return REAL_CBCGPointFromAV((void*)target);
+            return CBCGPointFromAV((void*)target);
         } else if (SvTYPE(target) == SVt_PVHV) {
-            return REAL_CBCGPointFromHV((void*)target);
+            return CBCGPointFromHV((void*)target);
         }
     }
 
@@ -155,7 +155,7 @@ CGPoint REAL_CBCGPointFromSV(void* sv) {
 
 
 // Converting NSPoint structs to blessed scalar references
-void* REAL_CBCGPointToSV(CGPoint point) {
+void* CBCGPointToSV(CGPoint point) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -170,7 +170,7 @@ void* REAL_CBCGPointToSV(CGPoint point) {
 
 #if !TARGET_OS_IPHONE
 // Creating NSRect structs
-NSRect REAL_CBRectFromAV(void* av) {
+NSRect CBRectFromAV(void* av) {
     NSRect newRect;
     CBPerlArray *arr;
     
@@ -191,7 +191,7 @@ NSRect REAL_CBRectFromAV(void* av) {
     return newRect;
 }
 
-NSRect REAL_CBRectFromHV(void* hv) {
+NSRect CBRectFromHV(void* hv) {
     NSRect newRect;
     CBPerlHash *dict;
     
@@ -212,7 +212,7 @@ NSRect REAL_CBRectFromHV(void* hv) {
     return newRect;
 }
 
-NSRect REAL_CBRectFromSV(void* sv) {
+NSRect CBRectFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -229,9 +229,9 @@ NSRect REAL_CBRectFromSV(void* sv) {
             memcpy(&newRect, pv, sizeof(NSRect));
             return newRect;
         } else if (SvTYPE(target) == SVt_PVAV) {
-            return REAL_CBRectFromAV((void*)target);
+            return CBRectFromAV((void*)target);
         } else if (SvTYPE(target) == SVt_PVHV) {
-            return REAL_CBRectFromHV((void*)target);
+            return CBRectFromHV((void*)target);
         }
     }
 
@@ -240,7 +240,7 @@ NSRect REAL_CBRectFromSV(void* sv) {
 
 // Converting NSRect structs to blessed scalar references
 
-void* REAL_CBRectToSV(NSRect rect) {
+void* CBRectToSV(NSRect rect) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -255,7 +255,7 @@ void* REAL_CBRectToSV(NSRect rect) {
 #endif
 
 // Creating CGRect structs
-CGRect REAL_CBCGRectFromAV(void* av) {
+CGRect CBCGRectFromAV(void* av) {
     CGRect newRect;
     CBPerlArray *arr;
 
@@ -276,7 +276,7 @@ CGRect REAL_CBCGRectFromAV(void* av) {
     return newRect;
 }
 
-CGRect REAL_CBCGRectFromHV(void* hv) {
+CGRect CBCGRectFromHV(void* hv) {
     CGRect newRect;
     CBPerlHash *dict;
 
@@ -298,7 +298,7 @@ CGRect REAL_CBCGRectFromHV(void* hv) {
     return newRect;
 }
 
-CGRect REAL_CBCGRectFromSV(void* sv) {
+CGRect CBCGRectFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -315,9 +315,9 @@ CGRect REAL_CBCGRectFromSV(void* sv) {
             memcpy(&newRect, pv, sizeof(CGRect));
             return newRect;
         } else if (SvTYPE(target) == SVt_PVAV) {
-            return REAL_CBCGRectFromAV((void*)target);
+            return CBCGRectFromAV((void*)target);
         } else if (SvTYPE(target) == SVt_PVHV) {
-            return REAL_CBCGRectFromHV((void*)target);
+            return CBCGRectFromHV((void*)target);
         }
     }
 
@@ -325,7 +325,7 @@ CGRect REAL_CBCGRectFromSV(void* sv) {
 }
 
 // Converting CGRect structs to blessed scalar references
-void* REAL_CBCGRectToSV(CGRect rect) {
+void* CBCGRectToSV(CGRect rect) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -339,7 +339,7 @@ void* REAL_CBCGRectToSV(CGRect rect) {
 }
 
 // Creating NSRange structs
-NSRange REAL_CBRangeFromAV(void* av) {
+NSRange CBRangeFromAV(void* av) {
     NSRange newRange;
     CBPerlArray *arr;
     
@@ -350,7 +350,7 @@ NSRange REAL_CBRangeFromAV(void* av) {
     return newRange;
 }
 
-NSRange REAL_CBRangeFromHV(void* hv) {
+NSRange CBRangeFromHV(void* hv) {
     NSRange newRange;
     CBPerlHash *dict;
     
@@ -361,7 +361,7 @@ NSRange REAL_CBRangeFromHV(void* hv) {
     return newRange;
 }
 
-NSRange REAL_CBRangeFromSV(void* sv) {
+NSRange CBRangeFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -377,9 +377,9 @@ NSRange REAL_CBRangeFromSV(void* sv) {
             memcpy(&newRange, pv, sizeof(NSRange));
             return newRange;
         } else if (SvTYPE(target) == SVt_PVAV) {
-            return REAL_CBRangeFromAV((void*)target);
+            return CBRangeFromAV((void*)target);
         } else if (SvTYPE(target) == SVt_PVHV) {
-            return REAL_CBRangeFromHV((void*)target);
+            return CBRangeFromHV((void*)target);
         }
     }
 
@@ -387,7 +387,7 @@ NSRange REAL_CBRangeFromSV(void* sv) {
 }
 
 // Converting NSRange structs to blessed scalar references
-void* REAL_CBRangeToSV(NSRange range) {
+void* CBRangeToSV(NSRange range) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -402,7 +402,7 @@ void* REAL_CBRangeToSV(NSRange range) {
 
 #if !TARGET_OS_IPHONE
 // Creating NSSize structs
-NSSize REAL_CBSizeFromAV(void* av) {
+NSSize CBSizeFromAV(void* av) {
     NSSize newSize;
     CBPerlArray *arr;
     
@@ -418,7 +418,7 @@ NSSize REAL_CBSizeFromAV(void* av) {
 
     return newSize;
 }
-NSSize REAL_CBSizeFromHV(void* hv) {
+NSSize CBSizeFromHV(void* hv) {
     NSSize newSize;
     CBPerlHash *dict;
     
@@ -435,7 +435,7 @@ NSSize REAL_CBSizeFromHV(void* hv) {
 
     return newSize;
 }
-NSSize REAL_CBSizeFromSV(void* sv) {
+NSSize CBSizeFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -452,9 +452,9 @@ NSSize REAL_CBSizeFromSV(void* sv) {
             memcpy(&newSize, pv, sizeof(NSSize));
             return newSize;
         } else if (SvTYPE(target) == SVt_PVAV) {
-            return REAL_CBSizeFromAV((void*)target);
+            return CBSizeFromAV((void*)target);
         } else if (SvTYPE(target) == SVt_PVHV) {
-            return REAL_CBSizeFromHV((void*)target);
+            return CBSizeFromHV((void*)target);
         }
     }
 
@@ -462,7 +462,7 @@ NSSize REAL_CBSizeFromSV(void* sv) {
 }
 
 // Converting NSSize structs to blessed scalar references
-void* REAL_CBSizeToSV(NSSize size) {
+void* CBSizeToSV(NSSize size) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -477,7 +477,7 @@ void* REAL_CBSizeToSV(NSSize size) {
 #endif
 
 // Creating CGSize structs
-CGSize REAL_CBCGSizeFromAV(void* av) {
+CGSize CBCGSizeFromAV(void* av) {
     CGSize newSize;
     CBPerlArray *arr;
 
@@ -495,7 +495,7 @@ CGSize REAL_CBCGSizeFromAV(void* av) {
     return newSize;
 }
 
-CGSize REAL_CBCGSizeFromHV(void* hv) {
+CGSize CBCGSizeFromHV(void* hv) {
     CGSize newSize;
     CBPerlHash *dict;
 
@@ -512,7 +512,7 @@ CGSize REAL_CBCGSizeFromHV(void* hv) {
 
     return newSize;
 }
-CGSize REAL_CBCGSizeFromSV(void* sv) {
+CGSize CBCGSizeFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -529,9 +529,9 @@ CGSize REAL_CBCGSizeFromSV(void* sv) {
             memcpy(&newSize, pv, sizeof(CGSize));
             return newSize;
         } else if (SvTYPE(target) == SVt_PVAV) {
-            return REAL_CBCGSizeFromAV((void*)target);
+            return CBCGSizeFromAV((void*)target);
         } else if (SvTYPE(target) == SVt_PVHV) {
-            return REAL_CBCGSizeFromHV((void*)target);
+            return CBCGSizeFromHV((void*)target);
         }
     }
 
@@ -539,7 +539,7 @@ CGSize REAL_CBCGSizeFromSV(void* sv) {
 }
 
 // Converting CGSize structs to blessed scalar references
-void* REAL_CBCGSizeToSV(CGSize size) {
+void* CBCGSizeToSV(CGSize size) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -554,7 +554,7 @@ void* REAL_CBCGSizeToSV(CGSize size) {
 
 #ifndef GNUSTEP
 // Creating OSType structs
-OSType REAL_CBOSTypeFromSV(void* sv) {
+OSType CBOSTypeFromSV(void* sv) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -576,7 +576,7 @@ OSType REAL_CBOSTypeFromSV(void* sv) {
 }
 
 // Converting OSType structs to blessed scalar references
-void* REAL_CBOSTypeToSV(OSType type) {
+void* CBOSTypeToSV(OSType type) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
