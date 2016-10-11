@@ -5,9 +5,9 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
-#import "Globals_real.h"
-#import "Wrappers_real.h"
-#import "Conversions_real.h"
+#import "Globals.h"
+#import "Wrappers.h"
+#import "Conversions.h"
 #import "PerlImports.h"
 #import "CBPerlArray.h"
 

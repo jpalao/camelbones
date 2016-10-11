@@ -30,20 +30,13 @@
 		82151A441CEFBCAC00FB511B /* CBPerlObjectInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A451CEFBCAC00FB511B /* CBPerlScalarInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A461CEFBCAC00FB511B /* Conversions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BE0C875DB7004DA7BD /* Conversions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A471CEFBCAC00FB511B /* Conversions_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A491CEFBCAC00FB511B /* Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C30C875DB7004DA7BD /* Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A4A1CEFBCAC00FB511B /* Globals_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C20C875DB7004DA7BD /* Globals_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A4C1CEFBCAC00FB511B /* NativeMethods_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C50C875DB7004DA7BD /* NativeMethods_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A4D1CEFBCAC00FB511B /* PerlImports.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C80C875DB7004DA7BD /* PerlImports.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A4E1CEFBCAC00FB511B /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A4F1CEFBCAC00FB511B /* PerlMethods_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C90C875DB7004DA7BD /* PerlMethods_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A501CEFBCAC00FB511B /* perlxsi.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CD0C875DB7004DA7BD /* perlxsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A511CEFBCAC00FB511B /* Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CF0C875DB7004DA7BD /* Runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A521CEFBCAC00FB511B /* Runtime_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A541CEFBCAC00FB511B /* Structs_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D10C875DB7004DA7BD /* Structs_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D80C875DB7004DA7BD /* Wrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A561CEFBCAC00FB511B /* Wrappers_real.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A571CEFBCAC00FB511B /* CBPerlObject.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A581CEFBCAC00FB511B /* CBPerlScalar.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A5B1CEFBCAC00FB511B /* AppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3A90C875DB7004DA7BD /* AppMain.m */; };
@@ -581,20 +574,13 @@
 				82151A441CEFBCAC00FB511B /* CBPerlObjectInternals.h in Headers */,
 				82151A451CEFBCAC00FB511B /* CBPerlScalarInternals.h in Headers */,
 				82151A461CEFBCAC00FB511B /* Conversions.h in Headers */,
-				82151A471CEFBCAC00FB511B /* Conversions_real.h in Headers */,
 				82151A491CEFBCAC00FB511B /* Globals.h in Headers */,
-				82151A4A1CEFBCAC00FB511B /* Globals_real.h in Headers */,
 				82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */,
-				82151A4C1CEFBCAC00FB511B /* NativeMethods_real.h in Headers */,
 				82151A4D1CEFBCAC00FB511B /* PerlImports.h in Headers */,
 				82151A4E1CEFBCAC00FB511B /* PerlMethods.h in Headers */,
-				82151A4F1CEFBCAC00FB511B /* PerlMethods_real.h in Headers */,
 				82151A501CEFBCAC00FB511B /* perlxsi.h in Headers */,
 				82151A511CEFBCAC00FB511B /* Runtime.h in Headers */,
-				82151A521CEFBCAC00FB511B /* Runtime_real.h in Headers */,
-				82151A541CEFBCAC00FB511B /* Structs_real.h in Headers */,
 				82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */,
-				82151A561CEFBCAC00FB511B /* Wrappers_real.h in Headers */,
 				82151A571CEFBCAC00FB511B /* CBPerlObject.h in Headers */,
 				82151A581CEFBCAC00FB511B /* CBPerlScalar.h in Headers */,
 			);

@@ -5,9 +5,9 @@
 //  Copyright (c) 2004 Sherm Pendley. All rights reserved.
 //
 
-#import "Conversions_real.h"
-#import "NativeMethods_real.h"
-#import "Structs_real.h"
+#import "Conversions.h"
+#import "NativeMethods.h"
+#import "Structs.h"
 #import "CBPerlObjectInternals.h"
 
 #if TARGET_OS_IPHONE

@@ -1,8 +1,8 @@
 #import <CamelBones/AppMain.h>
 #import <CamelBones/CBPerl.h>
-#import <CamelBones/NativeMethods_real.h>
-#import <CamelBones/Conversions_real.h>
-#import <CamelBones/Runtime_real.h>
+#import <CamelBones/NativeMethods.h>
+#import <CamelBones/Conversions.h>
+#import <CamelBones/Runtime.h>
 #import <CamelBones/PerlImports.h>
 
 #ifdef GNUSTEP

@@ -9,9 +9,9 @@
 #import "CBPerl.h"
 #import "CBPerlObject.h"
 #import "CBPerlObjectInternals.h"
-#import "PerlMethods_real.h"
-#import "Conversions_real.h"
-#import "Structs_real.h"
+#import "PerlMethods.h"
+#import "Conversions.h"
+#import "Structs.h"
 #import "PerlImports.h"
 
 #include <stdarg.h>

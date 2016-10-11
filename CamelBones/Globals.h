@@ -1,5 +1,5 @@
 //
-//  Globals_real.h
+//  Globals.h
 //  CamelBones
 //
 //  Copyright (c) 2001 Sherm Pendley. All rights reserved.

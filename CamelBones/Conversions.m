@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Conversions_real.h"
+#import "Conversions.h"
 #import "PerlImports.h"
-#import "Wrappers_real.h"
+#import "Wrappers.h"
 
 #import "CBPerlObject.h"
 #import "CBPerlObjectInternals.h"

@@ -5,7 +5,7 @@
 //  Copyright (c) 2004 Sherm Pendley. All rights reserved.
 //
 
-#import "Wrappers_real.h"
+#import "Wrappers.h"
 #import "PerlImports.h"
 
 // Create a Perl object that wraps an Objective-C object

@@ -7,8 +7,8 @@
 #endif
 
 #import <CamelBones/PerlImports.h>
-#import <CamelBones/Conversions_real.h>
-#import <CamelBones/Structs_real.h>
+#import <CamelBones/Conversions.h>
+#import <CamelBones/Structs.h>
 
 MODULE = CamelBones::Foundation		PACKAGE = CamelBones::Foundation
 

@@ -10,7 +10,7 @@
 #elif TARGET_OS_MAC
 #import <AppKit/AppKit.h>
 #endif
-#import "Structs_real.h"
+#import "Structs.h"
 #import "CBPerlArray.h"
 #import "CBPerlArrayInternals.h"
 #import "CBPerlHash.h"
