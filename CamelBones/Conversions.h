@@ -7,7 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-// Implementations of functions pointed to in Conversions.h
 extern id CBDerefSVtoID(void* sv);
 extern void* CBDerefIDtoSV(id target);
 
