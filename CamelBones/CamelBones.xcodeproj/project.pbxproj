@@ -205,29 +205,22 @@
 		AA50E3B80C875DB7004DA7BD /* CBPerlScalar.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlScalar.m; sourceTree = "<group>"; };
 		AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = CBPerlScalarInternals.h; sourceTree = "<group>"; };
 		AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlScalarInternals.m; sourceTree = "<group>"; };
-		AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Conversions_real.h; sourceTree = "<group>"; };
 		AA50E3BE0C875DB7004DA7BD /* Conversions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Conversions.h; sourceTree = "<group>"; };
 		AA50E3BF0C875DB7004DA7BD /* Conversions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Conversions.m; sourceTree = "<group>"; };
 		AA50E3C00C875DB7004DA7BD /* DylibInit.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DylibInit.h; sourceTree = "<group>"; };
-		AA50E3C20C875DB7004DA7BD /* Globals_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Globals_real.h; sourceTree = "<group>"; };
 		AA50E3C30C875DB7004DA7BD /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		AA50E3C40C875DB7004DA7BD /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
-		AA50E3C50C875DB7004DA7BD /* NativeMethods_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NativeMethods_real.h; sourceTree = "<group>"; };
 		AA50E3C60C875DB7004DA7BD /* NativeMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NativeMethods.h; sourceTree = "<group>"; };
 		AA50E3C70C875DB7004DA7BD /* NativeMethods.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NativeMethods.m; sourceTree = "<group>"; };
 		AA50E3C80C875DB7004DA7BD /* PerlImports.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlImports.h; sourceTree = "<group>"; };
-		AA50E3C90C875DB7004DA7BD /* PerlMethods_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlMethods_real.h; sourceTree = "<group>"; };
 		AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
 		AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PerlMethods.m; sourceTree = "<group>"; };
 		AA50E3CC0C875DB7004DA7BD /* perlxsi.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = perlxsi.c; sourceTree = "<group>"; };
 		AA50E3CD0C875DB7004DA7BD /* perlxsi.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = perlxsi.h; sourceTree = "<group>"; };
-		AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Runtime_real.h; sourceTree = "<group>"; };
 		AA50E3CF0C875DB7004DA7BD /* Runtime.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Runtime.h; sourceTree = "<group>"; };
 		AA50E3D00C875DB7004DA7BD /* Runtime.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Runtime.m; sourceTree = "<group>"; };
-		AA50E3D10C875DB7004DA7BD /* Structs_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs_real.h; sourceTree = "<group>"; };
 		AA50E3D20C875DB7004DA7BD /* Structs.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
 		AA50E3D30C875DB7004DA7BD /* Structs.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Structs.m; sourceTree = "<group>"; };
-		AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers_real.h; sourceTree = "<group>"; };
 		AA50E3D80C875DB7004DA7BD /* Wrappers.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Wrappers.h; sourceTree = "<group>"; };
 		AA50E3D90C875DB8004DA7BD /* Wrappers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Wrappers.m; sourceTree = "<group>"; };
 		AA50E4240C875F90004DA7BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -453,15 +446,8 @@
 				AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */,
 				AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */,
 				AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */,
-				AA50E3BD0C875DB7004DA7BD /* Conversions_real.h */,
 				AA50E3C00C875DB7004DA7BD /* DylibInit.h */,
-				AA50E3C20C875DB7004DA7BD /* Globals_real.h */,
-				AA50E3C50C875DB7004DA7BD /* NativeMethods_real.h */,
-				AA50E3C90C875DB7004DA7BD /* PerlMethods_real.h */,
 				AA50E3CD0C875DB7004DA7BD /* perlxsi.h */,
-				AA50E3CE0C875DB7004DA7BD /* Runtime_real.h */,
-				AA50E3D10C875DB7004DA7BD /* Structs_real.h */,
-				AA50E3D70C875DB7004DA7BD /* Wrappers_real.h */,
 			);
 			name = "Private-Include";
 			sourceTree = "<group>";
@@ -1027,7 +1013,7 @@
 				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
 			};
 			name = Debug;
 		};
@@ -1101,7 +1087,7 @@
 				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
 			};
 			name = Release;
 		};
@@ -1153,7 +1139,7 @@
 				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
 			};
 			name = "Release-App-Embedded";
 		};
@@ -1205,7 +1191,7 @@
 				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
 			};
 			name = "Release-Lib-Embedded";
 		};
