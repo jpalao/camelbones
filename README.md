@@ -4,18 +4,20 @@ Fork of Sherm Pendley's original CamelBones Project
 
 CamelBones is a Cocoa/Perl bridge for Mac OS X. It allows easy access to the Cocoa API for Perl developers. It also allows easy, object-oriented access to an embedded Perl interpreter for Objective-C developers.
 
-As of April 2016, this project had been unmaintained for about 5 years, I decided to give this project a go in order to modernize it a bit:
+This project went unmaintained for about 5 years, this is what I have done:
 
+- Updated to build with modern XCode versions
 - Added x86_64 support. By default the project will build Universal binaries
 - Better Objective-C 2.0 support
 - Updated to libffi-3.2.1
 - Remove dependencies of OS X system Perl
 - Removed Plug-in Bundle from CamelBones.Framework
 - Removed ExtLibs, PerlSDK directories, legacy Iceberg projects, PAR kit targets
-- Add CGPoint, CGRect, CGSize type support
+- Add CoreGraphics support
 - Edited some tests
 - Updated Examples and ShuX
 - Produced a Port file for macports installation (included)
+- iOS support
 
 # TODO
 
