@@ -60,14 +60,13 @@ void CBWrapAllGlobals(void) {
 
     // Get the Foundation exports plist and loop over the entries
     plistPath = [thisBundle pathForResource:@"FoundationGlobalStrings" ofType:@"plist"];
-
     exports = [NSArray arrayWithContentsOfFile:plistPath];
     e = [exports objectEnumerator];
     while ((thisExport = [e nextObject])) {
         // Try to make a wrapper
         if (CBWrapString([thisExport UTF8String], "CamelBones::Foundation::Globals")) {
             // If successful, make the wrapper exportable
-            [foundationEXPORT addObject:thisExport];
+            [foundationEXPORT addObject:[thisExport substringFromIndex:1]];
         }
     }
 
