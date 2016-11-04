@@ -13,7 +13,7 @@
 }
 
 // Required primitive methods
-- (unsigned)count;
+- (NSUInteger)count;
 - (NSEnumerator *)keyEnumerator;
 - (id)objectForKey:(id)aKey;
 

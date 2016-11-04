@@ -5,7 +5,7 @@ BEGIN {
     require "./cb_common.pl";
     %local_opts = (
         'NAME' => 'CamelBones',
-        'DIR' => [ 'AppKit', 'Foundation', 'Tests' ],
+        'DIR' => [ 'AppKit', 'Foundation', 'CoreGraphics', 'Tests' ],
         'XS' => { 'CamelBones.xs' => 'CamelBones.m' },
     );
     for (keys %CBCommon::opts) {
@@ -44,7 +44,7 @@ my @camelbones_framework_build_cmd = (
     'ONLY_ACTIVE_ARCH=NO',
     'USER_HEADER_SEARCH_PATHS=' . $CBCommon::PERL_INCLUDE_DIR,
     'OTHER_LDFLAGS=' . $CBCommon::PERL_LINK_FLAGS . 
-    	' -Wl,-headerpad_max_install_names -Wl,-no_compact_unwind',
+    	' -lffi -Wl,-headerpad_max_install_names -Wl,-no_compact_unwind',
     "-target",
     $CBCommon::CAMELBONES_FRAMEWORK,
     "-configuration", $CBCommon::XCODE_BUILD_CONFIG

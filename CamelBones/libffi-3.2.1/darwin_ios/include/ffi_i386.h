@@ -1,3 +1,5 @@
+#ifdef __i386__
+
 /* -----------------------------------------------------------------*-C-*-
    libffi 3.2.1 - Copyright (c) 2011, 2014 Anthony Green
                     - Copyright (c) 1996-2003, 2007, 2008 Red Hat, Inc.
@@ -64,7 +66,7 @@ extern "C" {
 
 /* ---- System configuration information --------------------------------- */
 
-#include "ffitarget.h"
+#include <ffitarget.h>
 
 #ifndef LIBFFI_ASM
 
@@ -483,5 +485,8 @@ void ffi_call(ffi_cif *cif,
 #ifdef __cplusplus
 }
 #endif
+
+#endif
+
 
 #endif

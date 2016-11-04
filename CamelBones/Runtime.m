@@ -5,34 +5,91 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
+#include <sys/types.h>
+#include <sys/sysctl.h>
+#include <mach/machine.h>
+
 #ifdef GNUSTEP
 #import <objc/objc-api.h>
 #else
-#import <objc/objc-class.h>
-#import <objc/objc-runtime.h>
+#import <objc/runtime.h>
 #endif
 
 #import <Foundation/Foundation.h>
 
 #import "CBPerl.h"
-#import "Runtime_real.h"
+#import "Runtime.h"
 #import "PerlImports.h"
-#import "PerlMethods_real.h"
+#import "PerlMethods.h"
 
 #ifndef OBJC2_UNAVAILABLE
 // Private function
 struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class);
 #endif
 
+NSString * CBGetProcessorDescription(void) {
+    char buf[100];
+    size_t buflen = 100;
+    sysctlbyname("machdep.cpu.brand_string", &buf, &buflen, NULL, 0);
+    NSString *cpu = [NSString stringWithFormat:@"%s", buf];
+
+    return [cpu autorelease];
+}
+
+
+NSString * CBGetArchitecture(void) {
+    NSMutableString *cpu = [[NSMutableString alloc] init];
+    size_t size;
+    cpu_type_t type;
+    cpu_subtype_t subtype;
+
+    size = sizeof(type);
+    sysctlbyname("hw.cputype", &type, &size, NULL, 0);
+
+    size = sizeof(subtype);
+    sysctlbyname("hw.cpusubtype", &subtype, &size, NULL, 0);
+
+    if (type == CPU_TYPE_I386)
+    {
+        [cpu appendString:@"i386"];
+    }
+    else if (type == CPU_TYPE_X86_64)
+    {
+        [cpu appendString:@"x86_64"];
+    }
+    else if (type == CPU_TYPE_ARM)
+    {
+        [cpu appendString:@"arm"];
+        switch(subtype)
+        {
+            case CPU_SUBTYPE_ARM_V7:
+                [cpu appendString:@"v7"];
+                break;
+            case CPU_SUBTYPE_ARM_V7S:
+                [cpu appendString:@"v7s"];
+                break;
+            case CPU_SUBTYPE_ARM64_ALL:
+                [cpu appendString:@"64"];
+        }
+    }
+    else
+    {
+        //arch not supported
+        NSCAssert(FALSE, sprintf("(%d, %d) is not a supported architecture (type, subtype)", type, subtype));
+    }
+    return [cpu autorelease];
+}
+
+
 // Create Perl wrappers for all registered ObjC classes
-void REAL_CBWrapRegisteredClasses(void) {
+void CBWrapRegisteredClasses(void) {
 #ifdef GNUSTEP
 	void *enum_state;
 	Class thisClass;
 	
 	enum_state = NULL;
 	while ((thisClass = objc_next_class(&enum_state))) {
-		REAL_CBWrapObjectiveCClass(thisClass);
+		CBWrapObjectiveCClass(thisClass);
 	}
 #else
 	int numClasses;
@@ -45,25 +102,25 @@ void REAL_CBWrapRegisteredClasses(void) {
         classes = malloc(sizeof(Class) * numClasses);
         objc_getClassList(classes, numClasses);
         for(i=0; i < numClasses; i++) {
-            REAL_CBWrapObjectiveCClass(classes[i]);
+            CBWrapObjectiveCClass(classes[i]);
         }
         free(classes);
     }
 #endif
 }
 
-void REAL_CBWrapNamedClasses(NSArray *names) {
+void CBWrapNamedClasses(NSArray *names) {
 	if (nil == names) return;
 	NSEnumerator *e = [names objectEnumerator];
     NSString *s;
 	while ((s = [e nextObject])) {
 		Class c = objc_getClass([s UTF8String]);
-		REAL_CBWrapObjectiveCClass(c);
+		CBWrapObjectiveCClass(c);
 	}
 }
 
 // Create a Perl wrapper for a single ObjC class
-void REAL_CBWrapObjectiveCClass(Class aClass) {
+void CBWrapObjectiveCClass(Class aClass) {
     // Define a Perl context
     PERL_SET_CONTEXT(_CBPerlInterpreter);
     dTHX;
@@ -110,12 +167,12 @@ void REAL_CBWrapObjectiveCClass(Class aClass) {
 }
 
 // Query class registration
-BOOL REAL_CBIsClassRegistered(const char *className) {
+BOOL CBIsClassRegistered(const char *className) {
     return (nil != objc_getClass(className)) ? YES : NO;
 }
 
 // Register a Perl class with the runtime
-void REAL_CBRegisterClassWithSuperClass(const char *className, const char *superName) {
+void CBRegisterClassWithSuperClass(const char *className, const char *superName) {
 #ifdef GNUSTEP
     NSDictionary *ivars = [NSDictionary dictionaryWithObject:@"v" forKey:@"_sv"];
     NSValue *theClass = GSObjCMakeClass([NSString stringWithUTF8String:className],
@@ -204,7 +261,7 @@ void REAL_CBRegisterClassWithSuperClass(const char *className, const char *super
 }
 
 // Query method registration
-BOOL REAL_CBIsObjectMethodRegisteredForClass(SEL selector, Class class) {
+BOOL CBIsObjectMethodRegisteredForClass(SEL selector, Class class) {
 #ifdef GNUSTEP
     return (NULL != GSGetMethod(class, selector, YES, NO)) ? YES : NO;
 #else
@@ -212,7 +269,7 @@ BOOL REAL_CBIsObjectMethodRegisteredForClass(SEL selector, Class class) {
 #endif
 }
 
-BOOL REAL_CBIsClassMethodRegisteredForClass(SEL selector, Class class) {
+BOOL CBIsClassMethodRegisteredForClass(SEL selector, Class class) {
 #ifdef GNUSTEP
     return (NULL != GSGetMethod(class, selector, NO, NO)) ? YES : NO;
 #else
@@ -221,7 +278,7 @@ BOOL REAL_CBIsClassMethodRegisteredForClass(SEL selector, Class class) {
 }
 
 // Perform method registration
-void REAL_CBRegisterObjectMethodsForClass(const char *package, NSArray *methods, Class class) {
+void CBRegisterObjectMethodsForClass(const char *package, NSArray *methods, Class class) {
 #ifndef OBJC2_UNAVAILABLE
     struct objc_method_list *list;
 
@@ -250,13 +307,13 @@ void REAL_CBRegisterObjectMethodsForClass(const char *package, NSArray *methods,
 		selName = [[[methods objectAtIndex: i] objectForKey:@"name"] UTF8String];
         perlSig = [[[methods objectAtIndex:i] objectForKey:@"signature"] UTF8String];
 
-        class_addMethod(class, sel_registerName(selName), REAL_CBPerlIMP, perlSig);
+        class_addMethod(class, sel_registerName(selName), CBPerlIMP, perlSig);
     }
 #endif
 #endif
 }
 
-void REAL_CBRegisterClassMethodsForClass(const char *package, NSArray *methods, Class class) {
+void CBRegisterClassMethodsForClass(const char *package, NSArray *methods, Class class) {
 #ifndef OBJC2_UNAVAILABLE
     struct objc_method_list *list;
 
@@ -284,7 +341,7 @@ void REAL_CBRegisterClassMethodsForClass(const char *package, NSArray *methods, 
 		selName = [[[methods objectAtIndex: i] objectForKey:@"name"] UTF8String];
         perlSig = [[[methods objectAtIndex:i] objectForKey:@"signature"] UTF8String];
 
-        class_addMethod(class, sel_registerName(selName), REAL_CBPerlIMP, perlSig);
+        class_addMethod(class, sel_registerName(selName), CBPerlIMP, perlSig);
     }
 #else
 
@@ -325,7 +382,7 @@ __CB_classHandler(const char* className) {
 #endif
 }
 
-void REAL_CBRegisterClassHandler(void) {
+void CBRegisterClassHandler(void) {
 #ifdef GNUSTEP
     _objc_lookup_class = __CB_classHandler;
 #else
@@ -375,7 +432,7 @@ struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class) {
         GSAppendMethodToList(list,
                              GSSelectorFromName(selName),
                              perlSig,
-                             REAL_CBPerlIMP,
+                             CBPerlIMP,
                              YES);
 #else
         this_method = &list->method_list[i];
@@ -384,7 +441,7 @@ struct objc_method_list* CBAllocateMethodList(NSArray *methods, Class class) {
         this_method->method_types = malloc(strlen(perlSig)+1);
         strcpy((char*)this_method->method_types, perlSig);
         
-        this_method->method_imp = REAL_CBPerlIMP;
+        this_method->method_imp = CBPerlIMP;
 #endif
     }
 

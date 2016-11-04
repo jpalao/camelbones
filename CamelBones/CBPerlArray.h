@@ -16,7 +16,7 @@
 #ifdef GNUSTEP
 - (id) initWithCapacity: (unsigned int) anInt;
 #endif /* GNUSTEP */
-- (unsigned)count;
+- (NSUInteger)count;
 - (id)objectAtIndex:(unsigned)index;
 
 - (void)addObject:(id)anObject;

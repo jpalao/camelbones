@@ -1,9 +1,14 @@
 #import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#elif TARGET_OS_MAC
 #import <AppKit/AppKit.h>
+#endif
 
 #import <CamelBones/PerlImports.h>
-#import <CamelBones/Conversions_real.h>
-#import <CamelBones/Structs_real.h>
+#import <CamelBones/Conversions.h>
+#import <CamelBones/Structs.h>
 
 MODULE = CamelBones::Foundation		PACKAGE = CamelBones::Foundation
 
@@ -21,7 +26,7 @@ NSClassFromString(aString)
 
 
 # HFS Utils
-#ifndef GNUSTEP
+#if !defined(GNUSTEP) && !TARGET_OS_IPHONE
 id
 NSFileTypeForHFSTypeCode (typeCode)
     OSType typeCode;
@@ -62,6 +67,8 @@ NSTemporaryDirectory ()
 id
 NSUserName ()
 
+#if !TARGET_OS_IPHONE
+
 # Point utils
 BOOL
 NSEqualPoints (point1, point2)
@@ -80,6 +87,8 @@ NSPointFromString (aString)
 id
 NSStringFromPoint (aPoint)
     NSPoint aPoint;
+
+#endif
 
 # Range utils
 BOOL
@@ -119,6 +128,8 @@ NSUnionRange (range1,range2)
     NSRange range1;
     NSRange range2;
 
+
+#if !TARGET_OS_IPHONE
 # Rect utils
 BOOL
 NSContainsRect (rect1, rect2)
@@ -240,6 +251,9 @@ NSSizeFromString (aString)
 id
 NSStringFromSize (aSize)
     NSSize aSize;
+    
+#endif
+    
 
 # Zone functions, but only some of them
 NSUInteger

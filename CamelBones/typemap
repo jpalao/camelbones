@@ -23,10 +23,10 @@ CGSize      T_CGSIZE
 NSInteger   T_IV
 NSUInteger  T_UV
 
-#ifdef __i386__
+#if defined(__i386__) || defined(_ARM_ARCH_7)
 CGFloat     T_FLOAT
 #endif
-#ifdef __x86_64__
+#if defined(__x86_64__) || defined(__arm64__)
 CGFloat     T_DOUBLE
 #endif
 
@@ -51,45 +51,45 @@ BOOL        T_BOOL
 INPUT
 
 ID_PTR
-    $var = REAL_CBDerefSVtoID($arg);
+    $var = CBDerefSVtoID($arg);
 
 T_OSTYPE
-    $var = REAL_CBOSTypeFromSV($arg);
+    $var = CBOSTypeFromSV($arg);
 T_NSPOINT
-    $var = REAL_CBPointFromSV($arg);
+    $var = CBPointFromSV($arg);
 T_NSRANGE
-    $var = REAL_CBRangeFromSV($arg);
+    $var = CBRangeFromSV($arg);
 T_NSRECT
-    $var = REAL_CBRectFromSV($arg);
+    $var = CBRectFromSV($arg);
 T_NSSIZE
-    $var = REAL_CBSizeFromSV($arg);
+    $var = CBSizeFromSV($arg);
 T_CGPOINT
-    $var = REAL_CBCGPointFromSV($arg);
+    $var = CBCGPointFromSV($arg);
 T_CGRECT
-    $var = REAL_CBCGRectFromSV($arg);
+    $var = CBCGRectFromSV($arg);
 T_CGSIZE
-    $var = REAL_CBCGSizeFromSV($arg);
+    $var = CBCGSizeFromSV($arg);
 
 T_SELTYPE
-    $var = REAL_CBSelectorFromSV($arg);
+    $var = CBSelectorFromSV($arg);
 T_CLASSTYPE
-    $var = REAL_CBClassFromSV($arg);
+    $var = CBClassFromSV($arg);
 
 OUTPUT
 
 ID_PTR
-    $arg = REAL_CBDerefIDtoSV($var);
+    $arg = CBDerefIDtoSV($var);
 
 T_OSTYPE
-    $arg = REAL_CBOSTypeToSV($var);
+    $arg = CBOSTypeToSV($var);
 T_NSPOINT
-    $arg = REAL_CBPointToSV($var);
+    $arg = CBPointToSV($var);
 T_NSRANGE
-    $arg = REAL_CBRangeToSV($var);
+    $arg = CBRangeToSV($var);
 T_NSRECT
-    $arg = REAL_CBRectToSV($var);
+    $arg = CBRectToSV($var);
 T_NSSIZE
-    $arg = REAL_CBSizeToSV($var);
+    $arg = CBSizeToSV($var);
 T_CGPOINT
     $arg = CBCGPointToSV($var);
 T_CGRECT
@@ -98,6 +98,6 @@ T_CGSIZE
     $arg = CBCGSizeToSV($var);
     
 T_SELTYPE
-    $arg = REAL_CBSVFromSelector($var);
+    $arg = CBSVFromSelector($var);
 T_CLASSTYPE
-    $arg = REAL_CBSVFromClass($var);    
+    $arg = CBSVFromClass($var);    

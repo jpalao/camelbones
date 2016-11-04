@@ -115,7 +115,6 @@
     <!--
     NSError userInfo Keys
     -->
-    <string>_NSLocalizedDescriptionKey</string>
     <string>_NSUnderlyingErrorKey</string>
 
     <!--
