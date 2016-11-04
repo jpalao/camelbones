@@ -104,7 +104,6 @@ PerlInterpreter *_CBPerlInterpreter;
 #if TARGET_OS_IPHONE
             NSString * setINC = [self eval: inc];
 #endif
-
 			// Get Perl's archname and version
 			[self useModule: @"Config"];
 			perlArchname = [self eval: @"$Config{'archname'}"];

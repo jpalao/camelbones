@@ -7,7 +7,7 @@
 	<key>CFBundleGetInfoString</key>
 	<string>CamelBones, Copyright 2005-2011 Sherm Pendley, 2016 Jose Palao</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>org.CamelBones.framework</string>
 	<key>CFBundleName</key>
 	<string>CamelBones</string>
 	<key>CFBundlePackageType</key>
