@@ -42,13 +42,13 @@ typedef union {
     double fdouble;
     void *voidp;
     SEL sel;
-#if !(TARGET_OS_IPHONE)
+    NSRange struct_nsrange;
+#if !TARGET_OS_IPHONE
     NSPoint struct_nspoint;
     NSRect struct_nsrect;
     NSSize struct_nssize;
 #endif
     CGPoint struct_cgpoint;
-    NSRange struct_nsrange;
     CGRect struct_cgrect;
     CGSize struct_cgsize;
 } arg_value;
@@ -56,6 +56,10 @@ typedef union {
 // Define ffi_type structs for NSPoint, NSRect, NSRange, and NSSize
 static int ffi_type_structs_init = 0;
 
+static ffi_type nsrange_type;
+static ffi_type *nsrange_elements[3];
+
+#if !TARGET_OS_IPHONE
 static ffi_type nspoint_type;
 static ffi_type *nspoint_elements[3];
 
@@ -64,9 +68,7 @@ static ffi_type *nssize_elements[3];
 
 static ffi_type nsrect_type;
 static ffi_type *nsrect_elements[3];
-
-static ffi_type nsrange_type;
-static ffi_type *nsrange_elements[3];
+#endif
 
 static ffi_type cgpoint_type;
 static ffi_type *cgpoint_elements[3];
@@ -78,7 +80,22 @@ static ffi_type cgrect_type;
 static ffi_type *cgrect_elements[3];
 
 void init_ffi_types() {
-	nspoint_type.size = nspoint_type.alignment = 0;
+
+    nsrange_type.size = nsrange_type.alignment = 0;
+    nsrange_type.elements = (ffi_type**)&nsrange_elements;
+    nsrange_type.type = FFI_TYPE_STRUCT;
+#if defined(__i386__) || defined(_ARM_ARCH_7)
+    nsrange_elements[0] = &ffi_type_uint32;
+    nsrange_elements[1] = &ffi_type_uint32;
+#endif
+#if defined(__x86_64__) || defined(__arm64__)
+    nsrange_elements[0] = &ffi_type_uint64;
+    nsrange_elements[1] = &ffi_type_uint64;
+#endif
+    nsrange_elements[2] = NULL;
+
+#if !TARGET_OS_IPHONE
+    nspoint_type.size = nspoint_type.alignment = 0;
 	nspoint_type.elements = (ffi_type**)&nspoint_elements;
     nspoint_type.type = FFI_TYPE_STRUCT;
 #if defined(__i386__) || defined(_ARM_ARCH_7)
@@ -90,6 +107,27 @@ void init_ffi_types() {
 	nspoint_elements[1] = &ffi_type_double;
 #endif
 	nspoint_elements[2] = NULL;
+
+    nssize_type.size = nssize_type.alignment = 0;
+    nssize_type.elements = (ffi_type**)&nssize_elements;
+    nssize_type.type = FFI_TYPE_STRUCT;
+#if defined(__i386__) || defined(_ARM_ARCH_7)
+    nssize_elements[0] = &ffi_type_float;
+    nssize_elements[1] = &ffi_type_float;
+#endif
+#if defined(__x86_64__) || defined(__arm64__)
+    nssize_elements[0] = &ffi_type_double;
+    nssize_elements[1] = &ffi_type_double;
+#endif
+    nssize_elements[2] = NULL;
+
+    nsrect_type.size = nsrect_type.alignment = 0;
+    nsrect_type.elements = (ffi_type**)&nsrect_elements;
+    nsrect_type.type = FFI_TYPE_STRUCT;
+    nsrect_elements[0] = &nspoint_type;
+    nsrect_elements[1] = &nssize_type;
+    nsrect_elements[2] = NULL;
+#endif
 
     cgpoint_type.size = cgpoint_type.alignment = 0;
 	cgpoint_type.elements = (ffi_type**)&cgpoint_elements;
@@ -104,15 +142,15 @@ void init_ffi_types() {
 #endif
 	cgpoint_elements[2] = NULL;
 
-	nssize_type.size = nssize_type.alignment = 0;
-	nssize_type.elements = (ffi_type**)&nssize_elements;
-    nssize_type.type = FFI_TYPE_STRUCT;
-	nssize_elements[0] = &ffi_type_float;
-	nssize_elements[1] = &ffi_type_float;
-	nssize_elements[2] = NULL;
+    cgrect_type.size = cgrect_type.alignment = 0;
+    cgrect_type.elements = (ffi_type**)&cgrect_elements;
+    cgrect_type.type = FFI_TYPE_STRUCT;
+    cgrect_elements[0] = &cgpoint_type;
+    cgrect_elements[1] = &cgsize_type;
+    cgrect_elements[2] = NULL;
 
     cgsize_type.size = cgsize_type.alignment = 0;
-	cgsize_type.elements = (ffi_type**)&cgsize_elements;
+    cgsize_type.elements = (ffi_type**)&cgsize_elements;
     cgsize_type.type = FFI_TYPE_STRUCT;
 #if defined(__i386__) || defined(_ARM_ARCH_7)
 	cgsize_elements[0] = &ffi_type_float;
@@ -122,35 +160,8 @@ void init_ffi_types() {
 	cgsize_elements[0] = &ffi_type_double;
 	cgsize_elements[1] = &ffi_type_double;
 #endif
-	cgsize_elements[2] = NULL;
-	
-	nsrect_type.size = nsrect_type.alignment = 0;
-	nsrect_type.elements = (ffi_type**)&nsrect_elements;
-    nsrect_type.type = FFI_TYPE_STRUCT;
-	nsrect_elements[0] = &nspoint_type;
-	nsrect_elements[1] = &nssize_type;
-	nsrect_elements[2] = NULL;
+    cgsize_elements[2] = NULL;
 
-	cgrect_type.size = cgrect_type.alignment = 0;
-	cgrect_type.elements = (ffi_type**)&cgrect_elements;
-    cgrect_type.type = FFI_TYPE_STRUCT;
-	cgrect_elements[0] = &cgpoint_type;
-	cgrect_elements[1] = &cgsize_type;
-	cgrect_elements[2] = NULL;
-
-	nsrange_type.size = nsrange_type.alignment = 0;
-	nsrange_type.elements = (ffi_type**)&nsrange_elements;
-    nsrange_type.type = FFI_TYPE_STRUCT;
-#if defined(__i386__) || defined(_ARM_ARCH_7)
-	nsrange_elements[0] = &ffi_type_uint32;
-	nsrange_elements[1] = &ffi_type_uint32;
-#endif
-#if defined(__x86_64__) || defined(__arm64__)
-	nsrange_elements[0] = &ffi_type_uint64;
-	nsrange_elements[1] = &ffi_type_uint64;
-#endif
-	nsrange_elements[2] = NULL;
-	
 	ffi_type_structs_init++;
 }
 
@@ -186,6 +197,11 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
 #ifdef __ppc__
     if (theType->type == FFI_TYPE_STRUCT)
         return isSuper ? (void*)&objc_msgSendSuper_stret : (void*)&objc_msgSend_stret;
+#endif
+#ifdef _ARM_ARCH_7
+    if (theType->type == FFI_TYPE_STRUCT && theType->size > 4) {
+        return isSuper ? (void*)&objc_msgSendSuper_stret : (void*)&objc_msgSend_stret;
+    }
 #endif
 
     // Otherwise, use vanilla
@@ -313,18 +329,21 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 			
 		case '{':   // Struct
 			c_return_type = (return_type_string[1] == '_') ? return_type_string+2 : return_type_string+1;
-			if (0 == strncmp(c_return_type, "NSPoint", strlen("NSPoint"))) {
+
+            if (0 == strncmp(c_return_type, "NSRange", strlen("NSRange"))) {
+                return_type = &nsrange_type;
+#if !(TARGET_OS_IPHONE)
+            } else if (0 == strncmp(c_return_type, "NSPoint", strlen("NSPoint"))) {
 				return_type = &nspoint_type;
+            } else if (0 == strncmp(c_return_type, "NSSize", strlen("NSSize"))) {
+                return_type = &nssize_type;
+            } else if (0 == strncmp(c_return_type, "NSRect", strlen("NSRect"))) {
+                return_type = &nsrect_type;
+#endif
             } else if (0 == strncmp(c_return_type, "CGPoint", strlen("CGPoint"))) {
- 				return_type = &cgpoint_type;
-            } else if (0 == strncmp(c_return_type, "NSRange", strlen("NSRange"))) {
-				return_type = &nsrange_type;
-			} else if (0 == strncmp(c_return_type, "NSRect", strlen("NSRect"))) {
-				return_type = &nsrect_type;
-			} else if (0 == strncmp(c_return_type, "CGRect", strlen("CGRect"))) {
+                return_type = &cgpoint_type;
+            } else if (0 == strncmp(c_return_type, "CGRect", strlen("CGRect"))) {
 				return_type = &cgrect_type;
-			} else if (0 == strncmp(c_return_type, "NSSize", strlen("NSSize"))) {
-				return_type = &nssize_type;
 			} else if (0 == strncmp(c_return_type, "CGSize", strlen("CGSize"))) {
 				return_type = &cgsize_type;
 			} else {
@@ -510,8 +529,13 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
 				
             case '{':   // Struct
 				c_arg_type = arg_type[1] == '_' ? arg_type+2 : arg_type+1;
+
+                if (0 == strncmp(c_arg_type, "NSRange", strlen("NSRange"))) {
+                    arg_ffi_types[i] = &nsrange_type;
+                    arg_values[i].struct_nsrange = CBRangeFromSV(argSV);
+                }
 #if !(TARGET_OS_IPHONE)
-                if (0 == strncmp(c_arg_type, "NSPoint", strlen("NSPoint"))) {
+                else if (0 == strncmp(c_arg_type, "NSPoint", strlen("NSPoint"))) {
 					arg_ffi_types[i] = &nspoint_type;
 					arg_values[i].struct_nspoint = CBPointFromSV(argSV);
                 }
@@ -524,13 +548,9 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
                     arg_values[i].struct_nssize = CBSizeFromSV(argSV);
                 }
 #endif
-                if (0 == strncmp(c_arg_type, "CGPoint", strlen("CGPoint"))) {
+                else if (0 == strncmp(c_arg_type, "CGPoint", strlen("CGPoint"))) {
 					arg_ffi_types[i] = &cgpoint_type;
 					arg_values[i].struct_cgpoint = CBCGPointFromSV(argSV);
-                }
-                else if (0 == strncmp(c_arg_type, "NSRange", strlen("NSRange"))) {
-					arg_ffi_types[i] = &nsrange_type;
-					arg_values[i].struct_nsrange = CBRangeFromSV(argSV);
                 }
                 else if (0 == strncmp(c_arg_type, "CGRect", strlen("CGRect"))) {
 					arg_ffi_types[i] = &cgrect_type;
@@ -697,19 +717,9 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             break;
 			
         case '{':   // Struct
-            if (0 == strncmp(c_return_type, "CGPoint", strlen("CGPoint"))) {
-                sv_setsv(ret, CBCGPointToSV(return_value.struct_cgpoint));
-            }
-            else if (0 == strncmp(c_return_type, "NSRange", strlen("NSRange"))) {
+            if (0 == strncmp(c_return_type, "NSRange", strlen("NSRange"))) {
                 sv_setsv(ret, CBRangeToSV(return_value.struct_nsrange));
             }
-            else if (0 == strncmp(c_return_type, "CGRect", strlen("CGRect"))) {
-                sv_setsv(ret, CBCGRectToSV(return_value.struct_cgrect));
-            }
-            else if (0 == strncmp(c_return_type, "CGSize", strlen("CGSize"))) {
-                sv_setsv(ret, CBCGSizeToSV(return_value.struct_cgsize));
-            }
-
 #if !TARGET_OS_IPHONE
             else if (0 == strncmp(c_return_type, "NSPoint", strlen("NSPoint"))) {
                 sv_setsv(ret, CBPointToSV(return_value.struct_nspoint));
@@ -721,6 +731,15 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
                 sv_setsv(ret, CBSizeToSV(return_value.struct_nssize));
             }
 #endif
+            else if (0 == strncmp(c_return_type, "CGPoint", strlen("CGPoint"))) {
+                sv_setsv(ret, CBCGPointToSV(return_value.struct_cgpoint));
+            }
+            else if (0 == strncmp(c_return_type, "CGRect", strlen("CGRect"))) {
+                sv_setsv(ret, CBCGRectToSV(return_value.struct_cgrect));
+            }
+            else if (0 == strncmp(c_return_type, "CGSize", strlen("CGSize"))) {
+                sv_setsv(ret, CBCGSizeToSV(return_value.struct_cgsize));
+            }
             else {
                 NSLog(@"Unknown structure type %s in return", return_type_string);
                 return nil;

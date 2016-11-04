@@ -17,7 +17,7 @@
 
 @implementation CBStructureTests
 
-- (NSPoint)point {
+- (CGPoint)point {
     return point;
 }
 
@@ -29,7 +29,7 @@
     return point.y;
 }
 
-- (void)setPoint:(NSPoint)value {
+- (void)setPoint:(CGPoint)value {
     point = value;
 }
 
@@ -49,7 +49,7 @@
     range = value;
 }
 
-- (NSRect)rect {
+- (CGRect)rect {
     return rect;
 }
 
@@ -69,11 +69,11 @@
     return rect.size.height;
 }
 
-- (void)setRect:(NSRect)value {
+- (void)setRect:(CGRect)value {
     rect = value;
 }
 
-- (NSSize)size {
+- (CGSize)size {
     return size;
 }
 
@@ -85,7 +85,7 @@
     return size.height;
 }
 
-- (void)setSize:(NSSize)value {
+- (void)setSize:(CGSize)value {
     size = value;
 }
 

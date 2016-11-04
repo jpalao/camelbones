@@ -20,7 +20,7 @@ if ($pack_template eq 'Q') {
 	
 	ok(($val == 0xdeadbeefdeadbeef) ? 3 : 0);
 	
-	my $point = NSMakePoint(5.0, 5.0);
+	my $point = CGPointMake(5.0, 5.0);
 	CBPoke($addr, $point);
 	ok(4);
 	
@@ -34,7 +34,7 @@ else {
 	
 	ok(($val == 0xdeadbeef) ? 3 : 0);
 	
-	my $point = NSMakePoint(5.0, 5.0);
+	my $point = CGPointMake(5.0, 5.0);
 	CBPoke($addr, $point);
 	ok(4);
 	

@@ -32,3 +32,4 @@ EXTERN_C void boot_DynaLoader (pTHXo_ CV* cv);
 EXTERN_C void boot_CamelBones (pTHXo_ CV* cv);
 EXTERN_C void boot_CamelBones__Foundation (pTHXo_ CV* cv);
 EXTERN_C void boot_CamelBones__AppKit (pTHXo_ CV* cv);
+EXTERN_C void boot_CamelBones__CoreGraphics (pTHXo_ CV* cv);

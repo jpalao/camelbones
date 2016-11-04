@@ -158,7 +158,7 @@ void* CBDerefIDtoSV(id target) {
     if (i) {
         SV *thisNewSV;
 
-        // It's a Perl class - check to see if the Perl object has been created yet
+    // It's a Perl class - check to see if the Perl object has been created yet
 	GSObjCGetVariable(target, svOffset, svSize, (void*)&thisNewSV);
 
     if (!thisNewSV) {
@@ -289,6 +289,26 @@ void CBPoke(void *address, void *object, unsigned length) {
 			return;
 		}
 #endif
+        else if (sv_derived_from((SV*)object, "CamelBones::CGPoint")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(CGPoint));
+            return;
+        }
+        else if (sv_derived_from((SV*)object, "CamelBones::CGRect")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(CGRect));
+            return;
+        }
+        else if (sv_derived_from((SV*)object, "CamelBones::CGSize")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(CGSize));
+            return;
+        }
+
+
 		NSLog(@"Unknown object type passed to CBPoke");
 		return;
 

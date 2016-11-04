@@ -9,6 +9,8 @@ use CamelBones::Foundation::Constants;
 use CamelBones::AppKit qw(:All);
 use CamelBones::AppKit::Constants;
 
+use CamelBones::CoreGraphics qw(:All);
+
 use CamelBones::NSPoint;
 use CamelBones::NSRange;
 use CamelBones::NSRect;
@@ -32,6 +34,7 @@ our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::AppKit::EXPORT_OK,
                     @CamelBones::AppKit::Constants::EXPORT,
                     @CamelBones::AppKit::Globals::EXPORT,
+                    @CamelBones::CoreGraphics::EXPORT_OK,
                     'class', 'CBCreateAccessor', 'CBPoke',
                 );
 our %EXPORT_TAGS = (
@@ -45,6 +48,11 @@ our %EXPORT_TAGS = (
             @CamelBones::AppKit::EXPORT,
             @CamelBones::AppKit::Constants::EXPORT,
             @CamelBones::AppKit::Globals::EXPORT,
+        ],
+    'CoreGraphics' => [
+            @CamelBones::CoreGraphics::EXPORT,
+            #@CamelBones::CoreGraphics::Constants::EXPORT,
+            #@CamelBones::CoreGraphics::Globals::EXPORT,
         ],
 );
 
@@ -309,6 +317,7 @@ sub NSObject::AUTOLOAD {
         } else {
             return $returnObject;
         }
+	DESTROY { 1 };
     };
    
     if (!$isSuperMethod && $CamelBones::CacheAutoload) {

@@ -36,12 +36,12 @@ union _CB_OBJC_T {
     void *void_p;
     Class class_p;
     SEL sel_p;
+    NSRange range_s;
 #if !(TARGET_OS_IPHONE)
     NSPoint point_s;
     NSRect rect_s;
     NSSize size_s;
 #endif
-    NSRange range_s;
     CGPoint cgpoint_s;
     CGRect cgrect_s;
     CGSize cgsize_s;

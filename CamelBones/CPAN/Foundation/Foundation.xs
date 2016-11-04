@@ -26,7 +26,7 @@ NSClassFromString(aString)
 
 
 # HFS Utils
-#ifndef GNUSTEP
+#if !defined(GNUSTEP) && !TARGET_OS_IPHONE
 id
 NSFileTypeForHFSTypeCode (typeCode)
     OSType typeCode;
@@ -67,6 +67,8 @@ NSTemporaryDirectory ()
 id
 NSUserName ()
 
+#if !TARGET_OS_IPHONE
+
 # Point utils
 BOOL
 NSEqualPoints (point1, point2)
@@ -85,6 +87,8 @@ NSPointFromString (aString)
 id
 NSStringFromPoint (aPoint)
     NSPoint aPoint;
+
+#endif
 
 # Range utils
 BOOL
@@ -124,6 +128,8 @@ NSUnionRange (range1,range2)
     NSRange range1;
     NSRange range2;
 
+
+#if !TARGET_OS_IPHONE
 # Rect utils
 BOOL
 NSContainsRect (rect1, rect2)
@@ -245,6 +251,9 @@ NSSizeFromString (aString)
 id
 NSStringFromSize (aSize)
     NSSize aSize;
+    
+#endif
+    
 
 # Zone functions, but only some of them
 NSUInteger

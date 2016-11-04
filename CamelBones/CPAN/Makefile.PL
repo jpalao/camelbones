@@ -5,7 +5,7 @@ BEGIN {
     require "./cb_common.pl";
     %local_opts = (
         'NAME' => 'CamelBones',
-        'DIR' => [ 'AppKit', 'Foundation', 'Tests' ],
+        'DIR' => [ 'AppKit', 'Foundation', 'CoreGraphics', 'Tests' ],
         'XS' => { 'CamelBones.xs' => 'CamelBones.m' },
     );
     for (keys %CBCommon::opts) {

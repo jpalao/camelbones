@@ -34,14 +34,14 @@
 - (void*)pointercbtest;
 - (void)setSelectorcbtest:(SEL)value;
 - (SEL)selectorcbtest;
-- (void)setPointcbtest:(NSPoint)value;
-- (NSPoint)pointcbtest;
+- (void)setPointcbtest:(CGPoint)value;
+- (CGPoint)pointcbtest;
 - (void)setRangecbtest:(NSRange)value;
 - (NSRange)rangecbtest;
-- (void)setRectcbtest:(NSRect)value;
-- (NSRect)rectcbtest;
-- (void)setSizecbtest:(NSSize)value;
-- (NSSize)sizecbtest;
+- (void)setRectcbtest:(CGRect)value;
+- (CGRect)rectcbtest;
+- (void)setSizecbtest:(CGSize)value;
+- (CGSize)sizecbtest;
 @end
 
 @implementation CBPropertyTests
@@ -106,10 +106,10 @@
     return (value == [target selectorcbtest]);
 }
 
-- (BOOL)testObject:(id)target withPoint:(NSPoint)value {
+- (BOOL)testObject:(id)target withPoint:(CGPoint)value {
     [target setPointcbtest:value];
-    NSPoint newValue = [target pointcbtest];
-    return NSEqualPoints(value, newValue);
+    CGPoint newValue = [target pointcbtest];
+    return CGPointEqualToPoint(value, newValue);
 }
 
 - (BOOL)testObject:(id)target withRange:(NSRange)value {
@@ -118,16 +118,16 @@
     return NSEqualRanges(value, newValue);
 }
 
-- (BOOL)testObject:(id)target withRect:(NSRect)value {
+- (BOOL)testObject:(id)target withRect:(CGRect)value {
     [target setRectcbtest:value];
-    NSRect newValue = [target rectcbtest];
-    return NSEqualRects(value, newValue);
+    CGRect newValue = [target rectcbtest];
+    return CGRectEqualToRect(value, newValue);
 }
 
-- (BOOL)testObject:(id)target withSize:(NSSize)value {
+- (BOOL)testObject:(id)target withSize:(CGSize)value {
     [target setSizecbtest:value];
-    NSSize newValue = [target sizecbtest];
-    return NSEqualSizes(value, newValue);
+    CGSize newValue = [target sizecbtest];
+    return CGSizeEqualToSize(value, newValue);
 }
 
 @end
