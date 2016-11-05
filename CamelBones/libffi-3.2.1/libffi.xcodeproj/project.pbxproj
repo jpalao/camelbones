@@ -632,7 +632,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ffi;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
@@ -678,7 +678,7 @@
 					darwin_ios/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ffi;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos8.0;
