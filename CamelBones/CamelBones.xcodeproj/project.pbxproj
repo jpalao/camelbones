@@ -20,24 +20,22 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		820241F81DAD11A100801EA6 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = 820241F61DAD11A100801EA6 /* Structs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A3D1CEFBCAC00FB511B /* AppMain.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3A80C875DB7004DA7BD /* AppMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A3E1CEFBCAC00FB511B /* CamelBones.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AA0C875DB7004DA7BD /* CamelBones.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A3F1CEFBCAC00FB511B /* CBPerl.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AB0C875DB7004DA7BD /* CBPerl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A401CEFBCAC00FB511B /* CBPerlArray.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AD0C875DB7004DA7BD /* CBPerlArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A411CEFBCAC00FB511B /* CBPerlHash.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B00C875DB7004DA7BD /* CBPerlHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A421CEFBCAC00FB511B /* CBPerlArrayInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AF0C875DB7004DA7BD /* CBPerlArrayInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A431CEFBCAC00FB511B /* CBPerlHashInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A441CEFBCAC00FB511B /* CBPerlObjectInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A451CEFBCAC00FB511B /* CBPerlScalarInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A461CEFBCAC00FB511B /* Conversions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BE0C875DB7004DA7BD /* Conversions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A491CEFBCAC00FB511B /* Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C30C875DB7004DA7BD /* Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82151A421CEFBCAC00FB511B /* CBPerlArrayInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AF0C875DB7004DA7BD /* CBPerlArrayInternals.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82151A431CEFBCAC00FB511B /* CBPerlHashInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82151A441CEFBCAC00FB511B /* CBPerlObjectInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82151A451CEFBCAC00FB511B /* CBPerlScalarInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82151A461CEFBCAC00FB511B /* Conversions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BE0C875DB7004DA7BD /* Conversions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82151A491CEFBCAC00FB511B /* Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C30C875DB7004DA7BD /* Globals.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		82151A4D1CEFBCAC00FB511B /* PerlImports.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C80C875DB7004DA7BD /* PerlImports.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A4E1CEFBCAC00FB511B /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A501CEFBCAC00FB511B /* perlxsi.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CD0C875DB7004DA7BD /* perlxsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A511CEFBCAC00FB511B /* Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CF0C875DB7004DA7BD /* Runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D80C875DB7004DA7BD /* Wrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82151A511CEFBCAC00FB511B /* Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CF0C875DB7004DA7BD /* Runtime.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D80C875DB7004DA7BD /* Wrappers.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		82151A571CEFBCAC00FB511B /* CBPerlObject.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A581CEFBCAC00FB511B /* CBPerlScalar.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		82151A5B1CEFBCAC00FB511B /* AppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3A90C875DB7004DA7BD /* AppMain.m */; };
@@ -54,7 +52,6 @@
 		82151A741CEFBDEE00FB511B /* Conversions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BF0C875DB7004DA7BD /* Conversions.m */; };
 		82151A751CEFBDEE00FB511B /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C40C875DB7004DA7BD /* Globals.m */; };
 		82151A761CEFBDEE00FB511B /* NativeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C70C875DB7004DA7BD /* NativeMethods.m */; };
-		82151A771CEFBDEE00FB511B /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */; };
 		82151A781CEFBDEE00FB511B /* perlxsi.c in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CC0C875DB7004DA7BD /* perlxsi.c */; };
 		82151A791CEFBDEE00FB511B /* Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D00C875DB7004DA7BD /* Runtime.m */; };
 		82151A7A1CEFBDEE00FB511B /* Structs.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D30C875DB7004DA7BD /* Structs.m */; };
@@ -73,7 +70,6 @@
 		829161EC1D4D561C006DF121 /* Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C30C875DB7004DA7BD /* Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		829161EE1D4D561C006DF121 /* NativeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		829161F01D4D561C006DF121 /* PerlImports.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C80C875DB7004DA7BD /* PerlImports.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		829161F11D4D561C006DF121 /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		829161F31D4D561C006DF121 /* perlxsi.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CD0C875DB7004DA7BD /* perlxsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		829161F41D4D561C006DF121 /* Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CF0C875DB7004DA7BD /* Runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		829161F61D4D561C006DF121 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D20C875DB7004DA7BD /* Structs.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,7 +85,6 @@
 		829162031D4D561C006DF121 /* CBPerlObjectInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B60C875DB7004DA7BD /* CBPerlObjectInternals.m */; };
 		829162041D4D561C006DF121 /* NativeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C70C875DB7004DA7BD /* NativeMethods.m */; };
 		829162051D4D561C006DF121 /* perlxsi.c in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CC0C875DB7004DA7BD /* perlxsi.c */; };
-		829162061D4D561C006DF121 /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */; };
 		829162081D4D561C006DF121 /* Structs.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D30C875DB7004DA7BD /* Structs.m */; };
 		829162091D4D561C006DF121 /* CBPerlScalarInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */; };
 		8291620A1D4D561C006DF121 /* Conversions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BF0C875DB7004DA7BD /* Conversions.m */; };
@@ -105,6 +100,11 @@
 		829162651D4D6831006DF121 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829162611D4D6831006DF121 /* CoreFoundation.framework */; };
 		829162661D4D6831006DF121 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829162621D4D6831006DF121 /* CoreGraphics.framework */; };
 		829162671D4D6831006DF121 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829162631D4D6831006DF121 /* UIKit.framework */; };
+		82B5E4A21E0AF7CE00012BF7 /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82B5E4A31E0AF7CE00012BF7 /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */; };
+		82B5E4A41E0AF86900012BF7 /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */; };
+		82B5E4A51E0AFE4A00012BF7 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D20C875DB7004DA7BD /* Structs.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		82B5E4A61E0BC8BF00012BF7 /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */; };
 		82F870171CF630C100D0F3EA /* AppKitGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */; };
 		82F870181CF630C200D0F3EA /* FoundationGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */; };
 /* End PBXBuildFile section */
@@ -139,30 +139,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		820241F11DAD11A100801EA6 /* Conversions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversions.h; sourceTree = "<group>"; };
-		820241F21DAD11A100801EA6 /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
-		820241F31DAD11A100801EA6 /* NativeMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeMethods.h; sourceTree = "<group>"; };
-		820241F41DAD11A100801EA6 /* PerlMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
-		820241F51DAD11A100801EA6 /* Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Runtime.h; sourceTree = "<group>"; };
-		820241F61DAD11A100801EA6 /* Structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
-		820241F71DAD11A100801EA6 /* Wrappers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wrappers.h; sourceTree = "<group>"; };
-		820241F91DAD11E500801EA6 /* Conversions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Conversions.h; sourceTree = "<group>"; };
-		820241FA1DAD11E500801EA6 /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
-		820241FB1DAD11E500801EA6 /* NativeMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NativeMethods.h; sourceTree = "<group>"; };
-		820241FC1DAD11E500801EA6 /* PerlMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
-		820241FD1DAD11E500801EA6 /* Runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Runtime.h; sourceTree = "<group>"; };
-		820241FE1DAD11E500801EA6 /* Structs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Structs.h; sourceTree = "<group>"; };
-		820241FF1DAD11E500801EA6 /* Wrappers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wrappers.h; sourceTree = "<group>"; };
 		82048DA01C96AF3500668B4F /* CGPoint.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = CGPoint.pm; sourceTree = "<group>"; };
 		82048DA11C96AF3500668B4F /* CGRect.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = CGRect.pm; sourceTree = "<group>"; };
 		82048DA21C96AF3500668B4F /* CGSize.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = CGSize.pm; sourceTree = "<group>"; };
 		82151A6B1CEFBCAC00FB511B /* CamelBones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CamelBones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8291621D1D4D561C006DF121 /* CamelBones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CamelBones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8291621E1D4D561C006DF121 /* CamelBonesInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = CamelBonesInfo.plist; path = /Datos/NEW/CamelBones/camelbones/CamelBones/CamelBonesInfo.plist; sourceTree = "<absolute>"; };
 		829162601D4D6831006DF121 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		829162611D4D6831006DF121 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/CoreFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		829162621D4D6831006DF121 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		829162631D4D6831006DF121 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
+		82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerlMethods.m; sourceTree = "<group>"; };
 		82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppKitGlobalStrings.plist; sourceTree = "<group>"; };
 		82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FoundationGlobalStrings.plist; sourceTree = "<group>"; };
 		84AC1B9F0D73805000C751F7 /* Tests.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Tests.pm; sourceTree = "<group>"; };
@@ -207,14 +194,11 @@
 		AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = CBPerlScalarInternals.m; sourceTree = "<group>"; };
 		AA50E3BE0C875DB7004DA7BD /* Conversions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Conversions.h; sourceTree = "<group>"; };
 		AA50E3BF0C875DB7004DA7BD /* Conversions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Conversions.m; sourceTree = "<group>"; };
-		AA50E3C00C875DB7004DA7BD /* DylibInit.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = DylibInit.h; sourceTree = "<group>"; };
 		AA50E3C30C875DB7004DA7BD /* Globals.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
 		AA50E3C40C875DB7004DA7BD /* Globals.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		AA50E3C60C875DB7004DA7BD /* NativeMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NativeMethods.h; sourceTree = "<group>"; };
 		AA50E3C70C875DB7004DA7BD /* NativeMethods.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NativeMethods.m; sourceTree = "<group>"; };
 		AA50E3C80C875DB7004DA7BD /* PerlImports.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlImports.h; sourceTree = "<group>"; };
-		AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
-		AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PerlMethods.m; sourceTree = "<group>"; };
 		AA50E3CC0C875DB7004DA7BD /* perlxsi.c */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.c; path = perlxsi.c; sourceTree = "<group>"; };
 		AA50E3CD0C875DB7004DA7BD /* perlxsi.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = perlxsi.h; sourceTree = "<group>"; };
 		AA50E3CF0C875DB7004DA7BD /* Runtime.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Runtime.h; sourceTree = "<group>"; };
@@ -225,7 +209,6 @@
 		AA50E3D90C875DB8004DA7BD /* Wrappers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Wrappers.m; sourceTree = "<group>"; };
 		AA50E4240C875F90004DA7BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		AA50E4280C875FA2004DA7BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		AA50E9640C879392004DA7BD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA83FE0E0CC9E9CF00E56F20 /* typemap */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = typemap; sourceTree = "<group>"; };
 		AA9143200CC99B2A0055B0E5 /* AppKit.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = AppKit.xs; sourceTree = "<group>"; };
 		AA9143230CC99B2A0055B0E5 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
@@ -337,22 +320,6 @@
 		AA50E2030C87571F004DA7BD = {
 			isa = PBXGroup;
 			children = (
-				820241F91DAD11E500801EA6 /* Conversions.h */,
-				820241FA1DAD11E500801EA6 /* Globals.h */,
-				820241FB1DAD11E500801EA6 /* NativeMethods.h */,
-				820241FC1DAD11E500801EA6 /* PerlMethods.h */,
-				820241FD1DAD11E500801EA6 /* Runtime.h */,
-				820241FE1DAD11E500801EA6 /* Structs.h */,
-				820241FF1DAD11E500801EA6 /* Wrappers.h */,
-				820241F11DAD11A100801EA6 /* Conversions.h */,
-				820241F21DAD11A100801EA6 /* Globals.h */,
-				820241F31DAD11A100801EA6 /* NativeMethods.h */,
-				820241F41DAD11A100801EA6 /* PerlMethods.h */,
-				820241F51DAD11A100801EA6 /* Runtime.h */,
-				820241F61DAD11A100801EA6 /* Structs.h */,
-				820241F71DAD11A100801EA6 /* Wrappers.h */,
-				AA50E9640C879392004DA7BD /* Info.plist */,
-				8291621E1D4D561C006DF121 /* CamelBonesInfo.plist */,
 				AA50E5CF0C877E37004DA7BD /* Resources */,
 				AA50E3A70C875D23004DA7BD /* CamelBones */,
 				AA50E4130C875E1D004DA7BD /* Libraries */,
@@ -384,6 +351,7 @@
 		AA50E40D0C875DD2004DA7BD /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */,
 				AA50E3A90C875DB7004DA7BD /* AppMain.m */,
 				AA50E3AC0C875DB7004DA7BD /* CBPerl.m */,
 				AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */,
@@ -395,7 +363,6 @@
 				AA50E3BF0C875DB7004DA7BD /* Conversions.m */,
 				AA50E3C40C875DB7004DA7BD /* Globals.m */,
 				AA50E3C70C875DB7004DA7BD /* NativeMethods.m */,
-				AA50E3CB0C875DB7004DA7BD /* PerlMethods.m */,
 				AA50E3CC0C875DB7004DA7BD /* perlxsi.c */,
 				AA50E3D00C875DB7004DA7BD /* Runtime.m */,
 				AA50E3D30C875DB7004DA7BD /* Structs.m */,
@@ -437,8 +404,8 @@
 				AA50E3BE0C875DB7004DA7BD /* Conversions.h */,
 				AA50E3C30C875DB7004DA7BD /* Globals.h */,
 				AA50E3C60C875DB7004DA7BD /* NativeMethods.h */,
+				82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */,
 				AA50E3C80C875DB7004DA7BD /* PerlImports.h */,
-				AA50E3CA0C875DB7004DA7BD /* PerlMethods.h */,
 				AA50E3CF0C875DB7004DA7BD /* Runtime.h */,
 				AA50E3D20C875DB7004DA7BD /* Structs.h */,
 				AA50E3D80C875DB7004DA7BD /* Wrappers.h */,
@@ -446,7 +413,6 @@
 				AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */,
 				AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */,
 				AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */,
-				AA50E3C00C875DB7004DA7BD /* DylibInit.h */,
 				AA50E3CD0C875DB7004DA7BD /* perlxsi.h */,
 			);
 			name = "Private-Include";
@@ -572,25 +538,25 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82151A461CEFBCAC00FB511B /* Conversions.h in Headers */,
-				82151A491CEFBCAC00FB511B /* Globals.h in Headers */,
-				82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */,
-				82151A4E1CEFBCAC00FB511B /* PerlMethods.h in Headers */,
-				82151A511CEFBCAC00FB511B /* Runtime.h in Headers */,
-				820241F81DAD11A100801EA6 /* Structs.h in Headers */,
-				82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */,
 				82151A3D1CEFBCAC00FB511B /* AppMain.h in Headers */,
 				82151A3E1CEFBCAC00FB511B /* CamelBones.h in Headers */,
 				82151A3F1CEFBCAC00FB511B /* CBPerl.h in Headers */,
 				82151A401CEFBCAC00FB511B /* CBPerlArray.h in Headers */,
 				82151A411CEFBCAC00FB511B /* CBPerlHash.h in Headers */,
+				82151A571CEFBCAC00FB511B /* CBPerlObject.h in Headers */,
+				82B5E4A51E0AFE4A00012BF7 /* Structs.h in Headers */,
+				82151A4D1CEFBCAC00FB511B /* PerlImports.h in Headers */,
+				82151A501CEFBCAC00FB511B /* perlxsi.h in Headers */,
 				82151A421CEFBCAC00FB511B /* CBPerlArrayInternals.h in Headers */,
 				82151A431CEFBCAC00FB511B /* CBPerlHashInternals.h in Headers */,
 				82151A441CEFBCAC00FB511B /* CBPerlObjectInternals.h in Headers */,
 				82151A451CEFBCAC00FB511B /* CBPerlScalarInternals.h in Headers */,
-				82151A4D1CEFBCAC00FB511B /* PerlImports.h in Headers */,
-				82151A501CEFBCAC00FB511B /* perlxsi.h in Headers */,
-				82151A571CEFBCAC00FB511B /* CBPerlObject.h in Headers */,
+				82B5E4A21E0AF7CE00012BF7 /* PerlMethods.h in Headers */,
+				82151A4B1CEFBCAC00FB511B /* NativeMethods.h in Headers */,
+				82151A551CEFBCAC00FB511B /* Wrappers.h in Headers */,
+				82151A511CEFBCAC00FB511B /* Runtime.h in Headers */,
+				82151A491CEFBCAC00FB511B /* Globals.h in Headers */,
+				82151A461CEFBCAC00FB511B /* Conversions.h in Headers */,
 				82151A581CEFBCAC00FB511B /* CBPerlScalar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -599,10 +565,17 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				829161F61D4D561C006DF121 /* Structs.h in Headers */,
+				829161F81D4D561C006DF121 /* Wrappers.h in Headers */,
+				829161F41D4D561C006DF121 /* Runtime.h in Headers */,
+				829161EE1D4D561C006DF121 /* NativeMethods.h in Headers */,
+				829161EC1D4D561C006DF121 /* Globals.h in Headers */,
+				829161EA1D4D561C006DF121 /* Conversions.h in Headers */,
 				829161E11D4D561C006DF121 /* AppMain.h in Headers */,
 				829161E21D4D561C006DF121 /* CamelBones.h in Headers */,
 				829161E31D4D561C006DF121 /* CBPerl.h in Headers */,
 				829161E41D4D561C006DF121 /* CBPerlArray.h in Headers */,
+				82B5E4A41E0AF86900012BF7 /* PerlMethods.h in Headers */,
 				829161E51D4D561C006DF121 /* CBPerlHash.h in Headers */,
 				829161E61D4D561C006DF121 /* CBPerlArrayInternals.h in Headers */,
 				829161E71D4D561C006DF121 /* CBPerlHashInternals.h in Headers */,
@@ -612,13 +585,6 @@
 				829161F31D4D561C006DF121 /* perlxsi.h in Headers */,
 				829161FA1D4D561C006DF121 /* CBPerlObject.h in Headers */,
 				829161FB1D4D561C006DF121 /* CBPerlScalar.h in Headers */,
-				829161EA1D4D561C006DF121 /* Conversions.h in Headers */,
-				829161EC1D4D561C006DF121 /* Globals.h in Headers */,
-				829161EE1D4D561C006DF121 /* NativeMethods.h in Headers */,
-				829161F11D4D561C006DF121 /* PerlMethods.h in Headers */,
-				829161F41D4D561C006DF121 /* Runtime.h in Headers */,
-				829161F61D4D561C006DF121 /* Structs.h in Headers */,
-				829161F81D4D561C006DF121 /* Wrappers.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,13 +702,13 @@
 				82151A721CEFBDEE00FB511B /* CBPerlObjectInternals.m in Sources */,
 				82151A761CEFBDEE00FB511B /* NativeMethods.m in Sources */,
 				82151A781CEFBDEE00FB511B /* perlxsi.c in Sources */,
-				82151A771CEFBDEE00FB511B /* PerlMethods.m in Sources */,
 				82151A7A1CEFBDEE00FB511B /* Structs.m in Sources */,
 				82151A731CEFBDEE00FB511B /* CBPerlScalarInternals.m in Sources */,
 				82151A741CEFBDEE00FB511B /* Conversions.m in Sources */,
 				82151A751CEFBDEE00FB511B /* Globals.m in Sources */,
 				82151A791CEFBDEE00FB511B /* Runtime.m in Sources */,
 				82151A7B1CEFBDEE00FB511B /* Wrappers.m in Sources */,
+				82B5E4A31E0AF7CE00012BF7 /* PerlMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,13 +725,13 @@
 				829162031D4D561C006DF121 /* CBPerlObjectInternals.m in Sources */,
 				829162041D4D561C006DF121 /* NativeMethods.m in Sources */,
 				829162051D4D561C006DF121 /* perlxsi.c in Sources */,
-				829162061D4D561C006DF121 /* PerlMethods.m in Sources */,
 				829162081D4D561C006DF121 /* Structs.m in Sources */,
 				829162091D4D561C006DF121 /* CBPerlScalarInternals.m in Sources */,
 				8291620A1D4D561C006DF121 /* Conversions.m in Sources */,
 				8291620B1D4D561C006DF121 /* Globals.m in Sources */,
 				8291620C1D4D561C006DF121 /* Runtime.m in Sources */,
 				8291620D1D4D561C006DF121 /* Wrappers.m in Sources */,
+				82B5E4A61E0BC8BF00012BF7 /* PerlMethods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -775,6 +741,7 @@
 		82151A671CEFBCAC00FB511B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
@@ -787,6 +754,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -801,13 +769,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
-					"/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE",
+					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Debug",
-					"-L/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE",
+					"-L/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
 					"-Wl,-no_compact_unwind",
 					"-lperl",
 					"-lffi",
@@ -817,13 +785,14 @@
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
 			};
 			name = Debug;
 		};
 		82151A681CEFBCAC00FB511B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -847,13 +816,13 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release",
-					"/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE",
+					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Release",
-					"-L/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE",
+					"-L/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
 					"-Wl,-no_compact_unwind",
 					"-lperl",
 					"-lffi",
@@ -863,82 +832,9 @@
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
 			};
 			name = Release;
-		};
-		82151A691CEFBCAC00FB511B /* Release-App-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_LINK_OBJC_RUNTIME = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = "";
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"./libffi-3.2.1/darwin_common/include",
-					"./libffi-3.2.1/darwin_osx/include",
-				);
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
-				LD_RUNPATH_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = NO;
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
-				PRODUCT_NAME = CamelBones;
-				SDKROOT = macosx;
-				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
-			};
-			name = "Release-App-Embedded";
-		};
-		82151A6A1CEFBCAC00FB511B /* Release-Lib-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_LINK_OBJC_RUNTIME = YES;
-				COMBINE_HIDPI_IMAGES = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = "";
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"./libffi-3.2.1/darwin_common/include",
-					"./libffi-3.2.1/darwin_osx/include",
-				);
-				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
-				LD_RUNPATH_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-L/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
-					"-lperl",
-				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
-				PRODUCT_NAME = CamelBones;
-				SDKROOT = macosx;
-				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE";
-			};
-			name = "Release-Lib-Embedded";
 		};
 		829162191D4D561C006DF121 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -947,11 +843,20 @@
 					"$(ARCHS_STANDARD)",
 					armv7s,
 				);
+				"ARCHS[sdk=iphoneos*]" = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
+				"ARCHS[sdk=iphonesimulator*]" = (
+					x86_64,
+					i386,
+				);
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -961,6 +866,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DEBUG=1";
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -986,34 +892,34 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-L./libffi-3.2.1/Build/Products/Debug-iphoneos",
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
-					"-lperl",
-					"-lffi",
-				);
+				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L./libffi-3.2.1/Build/Products/Debug-iphoneos",
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
+					"-L\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-L./libffi-3.2.1/Build/Products/Debug-iphonesimulator",
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
+					"-L\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos8.0;
+				PROVISIONING_PROFILE = "a3f23c77-f03f-4c78-b762-9aa231edd86b";
+				SDKROOT = iphoneos;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
+				USER_HEADER_SEARCH_PATHS = "";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
+				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=armv7]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=armv7s]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=i386]" = "\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = "\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1024,10 +930,11 @@
 					"$(ARCHS_STANDARD)",
 					armv7s,
 				);
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
@@ -1060,140 +967,30 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-L./libffi-3.2.1/Build/Products/Release-iphoneos",
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
-					"-lperl",
-					"-lffi",
-				);
+				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L./libffi-3.2.1/Build/Products/Release-iphoneos",
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
+					"-L\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-L./libffi-3.2.1/Build/Products/Release-iphonesimulator",
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
+					"-L\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos8.0;
+				PROVISIONING_PROFILE = "a3f23c77-f03f-4c78-b762-9aa231edd86b";
+				SDKROOT = iphoneos;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
+				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
-		};
-		8291621B1D4D561C006DF121 /* Release-App-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_BITCODE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = "";
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"./libffi-3.2.1/darwin_common/include",
-					"./libffi-3.2.1/darwin_ios/include",
-				);
-				INFOPLIST_FILE = CamelBonesInfo.plist;
-				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
-				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Debug-iphoneos",
-					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
-					"-lperl",
-				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
-				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos8.0;
-				SYMROOT = Build/Products;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
-			};
-			name = "Release-App-Embedded";
-		};
-		8291621C1D4D561C006DF121 /* Release-Lib-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_BITCODE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
-				GCC_INPUT_FILETYPE = sourcecode.c.objc;
-				GCC_MODEL_TUNING = "";
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"./libffi-3.2.1/darwin_common/include",
-					"./libffi-3.2.1/darwin_ios/include",
-				);
-				INFOPLIST_FILE = CamelBonesInfo.plist;
-				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
-				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Debug-iphoneos",
-					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-L/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE",
-					"-Wl,-no_compact_unwind",
-					"-lperl",
-				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
-				PRODUCT_NAME = CamelBones;
-				SDKROOT = iphoneos8.0;
-				SYMROOT = Build/Products;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "/Datos/NEW/CamelBones/camelbones/CamelBones/Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE libffi-3.2.1/darwin_common/include";
-			};
-			name = "Release-Lib-Embedded";
 		};
 		AA50E2070C87571F004DA7BD /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1211,6 +1008,7 @@
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
@@ -1237,6 +1035,7 @@
 					"$(inherited)",
 					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
@@ -1244,56 +1043,6 @@
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
-		};
-		AA6C31C40CCC912D00306BD7 /* Release-App-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					/System/Library/Frameworks,
-					/Library/Frameworks,
-				);
-				GCC_FAST_OBJC_DISPATCH = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE/**";
-				WARNING_CFLAGS = "-Wall";
-			};
-			name = "Release-App-Embedded";
-		};
-		AA6C31C50CCC912D00306BD7 /* Release-Lib-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CODE_SIGN_IDENTITY = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					/System/Library/Frameworks,
-					/Library/Frameworks,
-				);
-				GCC_FAST_OBJC_DISPATCH = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE/**";
-				WARNING_CFLAGS = "-Wall";
-			};
-			name = "Release-Lib-Embedded";
 		};
 		AA7F61720DCCFBA900D20E5E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1317,20 +1066,6 @@
 			};
 			name = Release;
 		};
-		AA7F61740DCCFBA900D20E5E /* Release-App-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = All;
-			};
-			name = "Release-App-Embedded";
-		};
-		AA7F61750DCCFBA900D20E5E /* Release-Lib-Embedded */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = All;
-			};
-			name = "Release-Lib-Embedded";
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1339,8 +1074,6 @@
 			buildConfigurations = (
 				82151A671CEFBCAC00FB511B /* Debug */,
 				82151A681CEFBCAC00FB511B /* Release */,
-				82151A691CEFBCAC00FB511B /* Release-App-Embedded */,
-				82151A6A1CEFBCAC00FB511B /* Release-Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1350,8 +1083,6 @@
 			buildConfigurations = (
 				829162191D4D561C006DF121 /* Debug */,
 				8291621A1D4D561C006DF121 /* Release */,
-				8291621B1D4D561C006DF121 /* Release-App-Embedded */,
-				8291621C1D4D561C006DF121 /* Release-Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1361,8 +1092,6 @@
 			buildConfigurations = (
 				AA50E2070C87571F004DA7BD /* Debug */,
 				AA50E2080C87571F004DA7BD /* Release */,
-				AA6C31C40CCC912D00306BD7 /* Release-App-Embedded */,
-				AA6C31C50CCC912D00306BD7 /* Release-Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1372,8 +1101,6 @@
 			buildConfigurations = (
 				AA7F61720DCCFBA900D20E5E /* Debug */,
 				AA7F61730DCCFBA900D20E5E /* Release */,
-				AA7F61740DCCFBA900D20E5E /* Release-App-Embedded */,
-				AA7F61750DCCFBA900D20E5E /* Release-Lib-Embedded */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
