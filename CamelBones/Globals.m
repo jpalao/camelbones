@@ -5,6 +5,7 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
+#import "CBPerl.h"
 #import "Globals.h"
 #import "Wrappers.h"
 #import "Conversions.h"
@@ -17,7 +18,11 @@
 #else
 CFBundleRef b;
 CFBundleRef foundationFramework;
+#if TARGET_OS_IPHONE
 CFBundleRef uiKitFramework;
+#elif TARGET_OS_MAC
+CFBundleRef appKitFramework;
+#endif
 CFBundleRef coreGraphicsFramework;
 #endif
 
@@ -109,6 +114,7 @@ void * CBGetiOSFrameworkGlobalAddress(const char *varName, const char *pkgName){
         }
         resultFramework = foundationFramework;
     }
+#if TARGET_OS_IPHONE
     else if (strncmp("CamelBones::UIKit::Globals", pkgName, strlen("CamelBones::UIKit::Globals")) == 0) {
         if (NULL == uiKitFramework) {
             cfTotalPath = CFStringCreateWithCString (NULL, "/System/Library/Frameworks/UIKit.framework", kCFStringEncodingUTF8);
@@ -117,6 +123,16 @@ void * CBGetiOSFrameworkGlobalAddress(const char *varName, const char *pkgName){
         }
         resultFramework = uiKitFramework;
     }
+#elif TARGET_OS_MAC
+    else if (strncmp("CamelBones::AppKit::Globals", pkgName, strlen("CamelBones::AppKit::Globals")) == 0) {
+        if (NULL == appKitFramework) {
+            cfTotalPath = CFStringCreateWithCString (NULL, "/System/Library/Frameworks/AppKit.framework", kCFStringEncodingUTF8);
+            cURL = CFURLCreateWithFileSystemPath(NULL, cfTotalPath, kCFURLPOSIXPathStyle, false);
+            appKitFramework = CFBundleCreate(kCFAllocatorDefault, cURL);
+        }
+        resultFramework = appKitFramework;
+    }
+#endif
     else if (strncmp("CamelBones::CoreGraphics::Globals", pkgName, strlen("CamelBones::CoreGraphics::Globals")) == 0) {
         if (NULL == coreGraphicsFramework) {
             cfTotalPath = CFStringCreateWithCString (NULL, "/System/Library/Frameworks/CoreGraphics.framework", kCFStringEncodingUTF8);
