@@ -14,22 +14,16 @@ int CBApplicationMain(int argc, const char *argv[]) {
 }
 
 int CBApplicationMain2(const char *scriptName, int argc, const char *argv[]) {
-    NSAutoreleasePool *arPool;
-    CBPerl *sp;
-    NSString *wrapperFolder;
-    NSString *mainPL;
-    NSString *perlcode;
 
-    arPool = [[NSAutoreleasePool alloc] init];
-    sp = [CBPerl sharedPerl];
-    wrapperFolder = [[NSBundle mainBundle] resourcePath];
-    mainPL = [NSString stringWithFormat: @"%@/%s", wrapperFolder, scriptName];
-    perlcode = [NSString stringWithContentsOfFile: mainPL];
+    NSAutoreleasePool *arPool = [[NSAutoreleasePool alloc] init];
+    NSString *wrapperFolder = [[NSBundle mainBundle] resourcePath];
+    NSString *mainPL = [NSString stringWithFormat: @"%@/%s", wrapperFolder, scriptName];
 
-    // Run Perl startup code
-    [sp eval: perlcode];
+    // Run Perl code
+    CBPerl *sp = [[CBPerl alloc] initWithFileName:mainPL withDebugger:0 withOptions:nil withArguments:nil];
 
     // Clean up
+    [sp cleanUp];
     [arPool release];
     return 0;
 }
