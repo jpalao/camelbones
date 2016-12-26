@@ -17,7 +17,8 @@ This project went unmaintained for about 5 years, this is what I have done:
 - Edited some tests
 - Updated Examples and ShuX
 - Produced a Port file for macports installation (included)
-- iOS support
+- Experimental iOS support
+- Support for multiple multithreaded Perl interpreters simultaneously
 
 # TODO
 
