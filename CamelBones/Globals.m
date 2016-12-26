@@ -131,7 +131,7 @@ void * CBGetiOSFrameworkGlobalAddress(const char *varName, const char *pkgName){
 
 BOOL CBWrapString(const char *varName, const char *pkgName) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     void *address = NULL;

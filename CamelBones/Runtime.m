@@ -122,7 +122,7 @@ void CBWrapNamedClasses(NSArray *names) {
 // Create a Perl wrapper for a single ObjC class
 void CBWrapObjectiveCClass(Class aClass) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     // Create the @ClassName::ISA = qw(SuperClass);
@@ -358,12 +358,12 @@ int
 #endif
 __CB_classHandler(const char* className) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 	// Try to load it
 	NSString *useCommand = [NSString stringWithFormat:@"eval 'use %s'", className];
-	[[CBPerl sharedPerl] eval:useCommand];
+    [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:useCommand];
 
     // Check for an error
     if (SvTRUE(ERRSV)) {

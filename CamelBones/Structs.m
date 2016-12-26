@@ -10,6 +10,7 @@
 #elif TARGET_OS_MAC
 #import <AppKit/AppKit.h>
 #endif
+#import "CBPerl.h"
 #import "Structs.h"
 #import "CBPerlArray.h"
 #import "CBPerlArrayInternals.h"
@@ -54,7 +55,7 @@ NSPoint CBPointFromHV(void* hv) {
 
 NSPoint CBPointFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSPoint newPoint;
@@ -81,7 +82,7 @@ NSPoint CBPointFromSV(void* sv) {
 // Converting NSPoint structs to blessed scalar references
 void* CBPointToSV(NSPoint point) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -141,7 +142,7 @@ NSRect CBRectFromHV(void* hv) {
 
 NSRect CBRectFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSRect newRect;
@@ -169,7 +170,7 @@ NSRect CBRectFromSV(void* sv) {
 
 void* CBRectToSV(NSRect rect) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -208,7 +209,7 @@ NSRange CBRangeFromHV(void* hv) {
 
 NSRange CBRangeFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSRange newRange;
@@ -234,7 +235,7 @@ NSRange CBRangeFromSV(void* sv) {
 // Converting NSRange structs to blessed scalar references
 void* CBRangeToSV(NSRange range) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -282,7 +283,7 @@ NSSize CBSizeFromHV(void* hv) {
 }
 NSSize CBSizeFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSSize newSize;
@@ -309,7 +310,7 @@ NSSize CBSizeFromSV(void* sv) {
 // Converting NSSize structs to blessed scalar references
 void* CBSizeToSV(NSSize size) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -327,7 +328,7 @@ void* CBSizeToSV(NSSize size) {
 // Creating OSType structs
 OSType CBOSTypeFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     OSType newType = 0;
@@ -349,7 +350,7 @@ OSType CBOSTypeFromSV(void* sv) {
 // Converting OSType structs to blessed scalar references
 void* CBOSTypeToSV(OSType type) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -414,7 +415,7 @@ CGAffineTransform CBCGAffineTransformFromHV(void* hv) {
 
 CGAffineTransform CBCGAffineTransformFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGAffineTransform newStruct;
@@ -440,7 +441,7 @@ CGAffineTransform CBCGAffineTransformFromSV(void* sv) {
 // Converting CGAffineTransform structs to blessed scalar references
 void* CBCGAffineTransformToSV(CGAffineTransform cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -488,7 +489,7 @@ CGDeviceColor CBCGDeviceColorFromHV(void* hv) {
 
 CGDeviceColor CBCGDeviceColorFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGDeviceColor newStruct;
@@ -514,7 +515,7 @@ CGDeviceColor CBCGDeviceColorFromSV(void* sv) {
 // Converting CGDeviceColor structs to blessed scalar references
 void* CBCGDeviceColorToSV(CGDeviceColor cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -575,7 +576,7 @@ CGEventTapInformation CBCGEventTapInformationFromHV(void* hv) {
 
 CGEventTapInformation CBCGEventTapInformationFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGEventTapInformation newStruct;
@@ -601,7 +602,7 @@ CGEventTapInformation CBCGEventTapInformationFromSV(void* sv) {
 // Converting CGEventTapInformation structs to blessed scalar references
 void* CBCGEventTapInformationToSV(CGEventTapInformation cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -647,7 +648,7 @@ CGPathElement CBCGPathElementFromHV(void* hv) {
 
 CGPathElement CBCGPathElementFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGPathElement newStruct;
@@ -673,7 +674,7 @@ CGPathElement CBCGPathElementFromSV(void* sv) {
 // Converting CGPathElement structs to blessed scalar references
 void* CBCGPathElementToSV(CGPathElement cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -722,7 +723,7 @@ CGPoint CBCGPointFromHV(void* hv) {
 
 CGPoint CBCGPointFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGPoint newStruct;
@@ -748,7 +749,7 @@ CGPoint CBCGPointFromSV(void* sv) {
 // Converting CGPoint structs to blessed scalar references
 void* CBCGPointToSV(CGPoint cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -805,7 +806,7 @@ CGRect CBCGRectFromHV(void* hv) {
 
 CGRect CBCGRectFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGRect newStruct;
@@ -831,7 +832,7 @@ CGRect CBCGRectFromSV(void* sv) {
 // Converting CGRect structs to blessed scalar references
 void* CBCGRectToSV(CGRect cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -877,7 +878,7 @@ CGScreenUpdateMoveDelta CBCGScreenUpdateMoveDeltaFromHV(void* hv) {
 
 CGScreenUpdateMoveDelta CBCGScreenUpdateMoveDeltaFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGScreenUpdateMoveDelta newStruct;
@@ -903,7 +904,7 @@ CGScreenUpdateMoveDelta CBCGScreenUpdateMoveDeltaFromSV(void* sv) {
 // Converting CGScreenUpdateMoveDelta structs to blessed scalar references
 void* CBCGScreenUpdateMoveDeltaToSV(CGScreenUpdateMoveDelta cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -954,7 +955,7 @@ CGSize CBCGSizeFromHV(void* hv) {
 
 CGSize CBCGSizeFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGSize newStruct;
@@ -980,7 +981,7 @@ CGSize CBCGSizeFromSV(void* sv) {
 // Converting CGSize structs to blessed scalar references
 void* CBCGSizeToSV(CGSize cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *thing;
@@ -1029,7 +1030,7 @@ CGVector CBCGVectorFromHV(void* hv) {
 
 CGVector CBCGVectorFromSV(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     CGVector newStruct;
@@ -1055,7 +1056,7 @@ CGVector CBCGVectorFromSV(void* sv) {
 // Converting CGVector structs to blessed scalar references
 void* CBCGVectorToSV(CGVector cStruct) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     
     SV *thing;

@@ -6,6 +6,7 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
+#import "CBPerl.h"
 #import "CBPerlArray.h"
 #import "CBPerlArrayInternals.h"
 #import "CBPerlHash.h"
@@ -60,7 +61,7 @@ SV *_sv;
 // Returns nil of no such scalar exists.
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *newSV = get_sv([varName UTF8String], FALSE);
@@ -80,7 +81,7 @@ SV *_sv;
 // Returns nil if the named object does not exist, and could not be created
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultString: (NSString *)def {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *newSV = get_sv([varName UTF8String], FALSE);
@@ -103,7 +104,7 @@ SV *_sv;
 }
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultInteger: (int)def {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *newSV = get_sv([varName UTF8String], FALSE);
@@ -126,7 +127,7 @@ SV *_sv;
 }
 - (CBPerlScalar *) initNamedScalar: (NSString *)varName withDefaultDouble: (double)def {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *newSV = get_sv([varName UTF8String], FALSE);
@@ -198,7 +199,7 @@ SV *_sv;
 
 - (BOOL) isTrue {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     return (SvTRUE(_sv) ? TRUE : FALSE);

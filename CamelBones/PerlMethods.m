@@ -19,7 +19,7 @@
 // Get information about a Perl object
 NSString* CBGetMethodNameForSelector(void* sv, SEL selector) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     HV* hash = (HV*)SvRV((SV*)sv);
@@ -28,8 +28,7 @@ NSString* CBGetMethodNameForSelector(void* sv, SEL selector) {
     NSMutableString *ms = [NSMutableString stringWithString: NSStringFromSelector(selector)];
 
     NSString *methodEntryName = [NSString stringWithFormat: @"$%s::OBJC_EXPORT{'%@'}->{'method'}", package, ms];
-    id methodEntry = [[CBPerl sharedPerl] eval: methodEntryName];
-
+    id methodEntry = [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:methodEntryName];
     NSRange all;
 
     if (methodEntry != nil) {
@@ -56,7 +55,7 @@ NSString* CBGetMethodNameForSelector(void* sv, SEL selector) {
 
 NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     HV* hash = (HV*)SvRV((SV*)sv);
@@ -66,7 +65,7 @@ NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
     NSMutableString *params = [NSMutableString stringWithString: @""];
 
     NSString *methodEntryName = [NSString stringWithFormat: @"$%s::OBJC_EXPORT{'%@'}->{'args'}", package, ms];
-    id methodEntry = [[CBPerl sharedPerl] eval: methodEntryName];
+    id methodEntry = [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:methodEntryName];
 
     NSRange all;
 
@@ -96,7 +95,7 @@ NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
 
 NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     HV* hash = (HV*)SvRV((SV*)sv);
@@ -105,7 +104,7 @@ NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
     NSMutableString *ms = [NSMutableString stringWithString: NSStringFromSelector(selector)];
 
     NSString *methodEntryName = [NSString stringWithFormat: @"$%s::OBJC_EXPORT{'%@'}->{'return'}", package, ms];
-    id methodEntry = [[CBPerl sharedPerl] eval: methodEntryName];
+    id methodEntry = [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:methodEntryName];
 
     NSRange all;
 
@@ -138,7 +137,7 @@ NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
 
 id CBPerlIMP(id self, SEL _cmd, ...) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     dSP;

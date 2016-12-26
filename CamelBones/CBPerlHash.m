@@ -6,6 +6,7 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
+#import "CBPerl.h"
 #import "CBPerlHash.h"
 #import "CBPerlHashInternals.h"
 #import "Conversions.h"
@@ -15,7 +16,7 @@
 // Required primitive methods
 - (NSUInteger)count {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     
     return HvKEYS((HV *)_myHash);
@@ -25,7 +26,7 @@
 }
 - (id)objectForKey:(id)aKey {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -52,7 +53,7 @@
 
 - (void)removeObjectForKey:(id)aKey {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -75,7 +76,7 @@
 
 - (void)setObject:(id)anObject forKey:(id)aKey {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -100,7 +101,7 @@
 // Destructor
 - (void) dealloc {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     if (NULL != _myHash) {
@@ -136,7 +137,7 @@
 // Designated initializer
 - (id) initDictionaryNamed: (NSString *)varName isReference: (BOOL)isRef create: (BOOL)shouldCreate {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     self = [super init];
@@ -183,7 +184,7 @@
 }
 - (id) initWithHV: (HV*)theHV {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     self = [super init];
@@ -196,7 +197,7 @@
 
 - (SV *) keyWithId: (id)theId {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -246,7 +247,7 @@
 }
 - (id) initEnumeratorWithHV:(HV*)theHV {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     
     if (self = [super init]) {

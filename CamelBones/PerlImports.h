@@ -20,5 +20,3 @@
 #endif
 #include "perl.h"
 #include "XSUB.h"
-
-extern PerlInterpreter *_CBPerlInterpreter;

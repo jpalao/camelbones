@@ -93,7 +93,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 // Returns nil of no such object exists.
 - (CBPerlObject *) initNamedObject: (NSString *)varName {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 
@@ -130,14 +130,14 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 - (CBPerlObject *) initNamedObject: (NSString *)varName ofClass: (NSString *)newClassName {
     // Build a constructor and eval it
     NSString *construct = [NSString stringWithFormat: @"$%@ = new %@;", varName, newClassName];
-    [[CBPerl sharedPerl] eval: construct];
+    [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval: construct];
     return [self initNamedObject: varName];
 }
 
 // Check for named properties, and get/set their values
 - (BOOL) hasProperty: (NSString *)propName {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     if (SvTYPE((SV*)_myHV) == SVt_PVAV) {
@@ -155,7 +155,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 	SV** propPointer;
 
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     if (SvTYPE((SV*)_myHV) == SVt_PVAV) {
@@ -174,7 +174,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 	SV *propSV;
 
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     if (SvTYPE((SV*)_myHV) == SVt_PVAV) {
@@ -187,7 +187,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 
 - (void) dealloc {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     [className release];

@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PerlImports.h"
+#include "perlxsi.h"
+
+#define perlVersionString @"5.24.0"
 
 #define CBPerlErrorException @"CBPerlErrorException"
 
@@ -15,26 +19,54 @@
 @class CBPerlHash;
 @class CBPerlObject;
 
+static NSMutableDictionary * perlInstanceDict = nil;
+static Boolean perlInitialized = false;
+
 @interface CBPerl : NSObject {
+    id _sharedPerl;
+    PerlInterpreter * _CBPerlInterpreter;
 }
 
-// The two methods used here to access the shared Perl interpreter
-// instance differ only in memory management. Both will create the shared
-// CBPerl object if necessary - although only init: retains it. Both will
-// return nil if a CBPerl object does not exist, and for some reason could
-// not be created.
+// CBPerl ivars:
+
+// _sharedPerl: pointer to this CBPerl object
+@property (nonatomic, assign) id sharedPerl;
+// _CBPerlInterpreter: pointer to this CBPerl object's perl interpreter
+@property (nonatomic, assign) PerlInterpreter * CBPerlInterpreter;
+
+// getPerlInterpreter: Class method that returns the current perl Interpreter
++ (PerlInterpreter *) getPerlInterpreter;
+
+// The following three methods handle global registration of CBPerl objects and their perl
+// interpreters through perlInstanceDict and perlInitialized globals
+
+// getPerlInterpreter: Class method that returns the global perl Interpreter dictionary
+// It will initialize the dictionary if not already initialized
++ (NSDictionary *) getPerlInstanceDictionary;
+
+// getCBPerlFromPerlInterpreter: Class method that returns the CBPerl object corresponding to an embedded perl interpreter object
++ (CBPerl *) getCBPerlFromPerlInterpreter: (PerlInterpreter *) perlInterpreter;
+
+// setCBPerl: Class method that sets the CBPerl object corresponding to an embedded perl interpreter object
++ (void) setCBPerl:(CBPerl *) cbperl forPerlInterpreter:(PerlInterpreter *) perlInterpreter;
+
+// clean up this CBPerl object's perl interpreter
+- (void) cleanUp;
+
+// init this CBPerl object with a new perl interpreter
+- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments;
 
 // sharedPerl: will return the shared CBPerl object (without retaining
 // it) if it exists. Otherwise it calls init: to create one, autoreleases
-// it, and then returns it.
+// it, and then returns it. It will return nil if a CBPerl object does not
+// exist, and for some reason could not be created.
 
-+ (CBPerl *) sharedPerl;
+- (CBPerl *) sharedPerl;
 
-// initXS: A version of sharedPerl suitable for use within XS modules
-+ (CBPerl *) sharedPerlXS;
-
-// init: creates the shared CBPerl object if necessary, and then returns it.
+// init: creates the shared CBPerl object if necessary, retains and returns it.
 - (id) init;
+
+- (void) dealloc;
 
 // initXS: A version of init suitable for use within XS modules
 - (id) initXS;

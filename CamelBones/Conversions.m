@@ -36,7 +36,7 @@
 
 id CBDerefSVtoID(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 #ifdef GNUSTEP
@@ -136,7 +136,7 @@ id CBDerefSVtoID(void* sv) {
 
 void* CBDerefIDtoSV(id target) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 #ifdef GNUSTEP
@@ -203,7 +203,7 @@ void* CBDerefIDtoSV(id target) {
 
 	// Some types of objects may get special handling
     } else if ([target isKindOfClass: [NSString class]]
-	       && [[[CBPerl sharedPerl] valueForKey: @"CamelBones::ReturnStringsAsObjects"]
+	       && [[[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] valueForKey: @"CamelBones::ReturnStringsAsObjects"]
 	               intValue] == 0) {
     	const char *u = [(NSString *)target UTF8String];
     	unsigned long len = strlen(u);
@@ -243,7 +243,7 @@ void* CBSVFromSelector(SEL aSel) {
 
 void CBPoke(void *address, void *object, unsigned length) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 	// Check if object is blessed

@@ -18,59 +18,220 @@
 #import "CBPerlObject.h"
 #import "CBPerlScalar.h"
 
-#import "PerlImports.h"
-#include "perlxsi.h"
-
-typedef enum
-{
-    INTERP_NONE,
-    INTERP_HELD,
-    INTERP_TRUSTED,
-    INTERP_UNTRUSTED,
-    INTERP_BOTH
-} InterpState;
-
-static InterpState interp_state = INTERP_NONE;
-
-static id _sharedPerl = nil;
-PerlInterpreter *_CBPerlInterpreter;
-
 @interface CBPerl (DummyThread)
 - (void) dummyThread: (id)dummy;
 @end
 
 @implementation CBPerl
 
-+ (CBPerl *) sharedPerl {
-    // Is there a shared perl object already?
-    if (_sharedPerl) {
-        // Yes, return it
-        return _sharedPerl;
-    } else {
-        // Now create a shared Perl and autorelease it
-        _sharedPerl = [[CBPerl alloc] init];
-        return _sharedPerl;
+@synthesize CBPerlInterpreter = _CBPerlInterpreter;
+@synthesize sharedPerl = _sharedPerl;
+
++ (void) initializePerl {
+    @synchronized(self) {
+        char *dummy_perl_env[1] = { NULL };
+        int nargs = 3;
+        char *emb[] = {};
+
+#if defined(PERL_SYS_INIT3) && !defined(MYMALLOC)
+        /* only call this the first time through, as per perlembed man page */
+        PERL_SYS_INIT3(&nargs, (char ***) &emb, (char***)&dummy_perl_env);
+#endif
+        
+        perlInitialized = true;
     }
 }
 
-+ (CBPerl *) sharedPerlXS {
-    // Is there a shared perl object already?
-    if (_sharedPerl) {
-        // Yes, return it
-        return _sharedPerl;
++ (void) destroyPerl {
+    PERL_SYS_TERM();
+    perlInitialized = false;
+}
+
++ (NSDictionary *) getPerlInstanceDictionary {
+
+    if (perlInstanceDict == nil) {
+        perlInstanceDict = [NSMutableDictionary dictionaryWithCapacity:128];
+    }
+    return perlInstanceDict;
+}
+
++ (CBPerl *) getCBPerlFromPerlInterpreter: (PerlInterpreter *) perlInterpreter {
+    @synchronized(self) {
+        CBPerl * result = [[CBPerl getPerlInstanceDictionary] valueForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) perlInterpreter]];
+        return result;
+    }
+}
+
++ (void) setCBPerl:(CBPerl *) cbperl forPerlInterpreter:(PerlInterpreter *) perlInterpreter {
+    @synchronized(self) {
+        NSAssert ([CBPerl getPerlInstanceDictionary] != NULL, @"perl2CBPerlDict is NULL");
+        [perlInstanceDict setObject:cbperl forKey:[NSString stringWithFormat:@"%llx", (unsigned long long) perlInterpreter]];
+    }
+}
+
++ (PerlInterpreter *) getPerlInterpreter {
+    @synchronized(self) {
+#if DEBUG
+        void * vp = PERL_GET_CONTEXT;
+        NSAssert(vp != NULL, @"getPerlInterpreter returning null...");
+        return vp;
+#else
+        return PERL_GET_CONTEXT;
+#endif
+    }
+}
+
+- (CBPerl *) sharedPerl {
+    return _sharedPerl;
+}
+
+- (void) dealloc
+{
+    [super dealloc];
+}
+
+-(void) camelBonesInitialization {
+
+    NSArray *bundles;
+    NSEnumerator *e;
+    NSBundle *obj;
+    NSString *perlArchname;
+    NSString *perlVersion;
+
+    // Get Perl's archname and version
+    [self useModule: @"Config"];
+    perlArchname = [self eval: @"$Config{'archname'}"];
+    perlVersion = [self eval: @"$Config{'version'}"];
+
+    // Are we threaded?
+    if ([perlArchname rangeOfString:@"thread"].location != NSNotFound) {
+        // Yes - start a dummy Cocoa thread
+        [NSThread detachNewThreadSelector:@selector(dummyThread:) toTarget:self withObject:nil];
+
+        // Now tell Perl to use threads.pm
+        [self useModule:@"threads"];
+    }
+
+    // Add bundled resource folders to @INC
+    bundles = [NSBundle allFrameworks];
+    e = [bundles objectEnumerator];
+    while ((obj = [e nextObject])) {
+        [self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
+    }
+
+    bundles = [NSBundle allBundles];
+    e = [bundles objectEnumerator];
+    while ((obj = [e nextObject])) {
+        [self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
+    }
+
+    [self useBundleLib:[NSBundle mainBundle] withArch: perlArchname forVersion: perlVersion];
+
+    // Create Perl wrappers for all registered Objective-C classes
+    CBWrapRegisteredClasses();
+
+    // Export globals into Perl's name space
+    CBWrapAllGlobals();
+
+    // When bundles are loaded, we want to hear about it
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bundleDidLoad:)
+                                                 name:NSBundleDidLoadNotification object:nil];
+}
+
+- (NSArray *) getDefaultPerlIncludes {
+    NSString * bundlePath                   = [[NSBundle mainBundle] resourcePath];
+    NSString * incCaches = [NSString stringWithFormat:@"-I%@/Library/Caches", bundlePath];
+    NSString * inc1 = [NSString stringWithFormat:@"-I%@/perl5/%@", bundlePath, perlVersionString];
+    NSString * inc2 = [NSString stringWithFormat:@"-I%@/perl5/site_perl", bundlePath];
+    NSString * inc3 = [NSString stringWithFormat:@"-I%@/perl5/%@/darwin-thread-multi-2level", bundlePath, perlVersionString];
+    NSString * inc4 = [NSString stringWithFormat:@"-I%@/perl5/site_perl/%@/darwin-thread-multi-2level", bundlePath, perlVersionString];
+    return [NSArray arrayWithObjects:bundlePath, incCaches, inc1, inc2, inc3, inc4, nil];
+}
+
+- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments {
+
+    int embSize = 0;
+    char *emb[32];
+
+    NSArray * perlIncludes = [self getDefaultPerlIncludes];
+
+    for (NSString * perlInclude in perlIncludes){
+        if (perlInclude != nil)
+            emb[embSize++] = (char *)[perlInclude UTF8String];
+    }
+
+    if (options != nil){
+        for (NSString * option in options) {
+            if (option != nil)
+                emb[embSize++] = (char *)[option UTF8String];
+        }
+    }
+
+    if ( debuggerEnabled ) {
+        emb[embSize++] = "-d:ebug::Backend";
+        emb[embSize++] = (char *)[fileName UTF8String];
     } else {
-        // No, create one and autorelease it
-        _sharedPerl = [[CBPerl alloc] initXS];
-        return _sharedPerl;
+        emb[embSize++] = (char *)[fileName UTF8String];
+    }
+
+    if (arguments != nil){
+        for (NSString * argument in arguments) {
+            if (argument != nil)
+                emb[embSize++] = (char *)[argument UTF8String];
+        }
+    }
+
+    // No, create one and retain it
+    if ((self = [super init])) {
+
+        if (!perlInitialized) {
+            [CBPerl initializePerl];
+        }
+
+        _CBPerlInterpreter = perl_alloc();
+#if DEBUG
+        NSLog(@"Inited Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
+#endif
+        _sharedPerl = self;
+        [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
+        PERL_SET_CONTEXT(_CBPerlInterpreter);
+        //_CBPerlInterpreter = PERL_GET_CONTEXT;
+
+        perl_construct(_CBPerlInterpreter);
+        perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
+        perl_run(_CBPerlInterpreter);
+
+
+        return [_sharedPerl retain];
+        
+    } else {
+        // Wonder what happened here?
+        return nil;
     }
 }
 
 - (id) init {
-    char *emb[] = { "", "-e", "0" };
 
-#if TARGET_OS_IPHONE
-    NSString * bundlePath = [[NSBundle mainBundle] resourcePath] ;
-    NSString * inc = [NSString stringWithFormat:@"@INC=('%@/perl5/5.24.0', '%@/perl5/site_perl', '%@/perl5/5.24.0/darwin-thread-multi-2level', '%@/perl5/site_perl/5.24.0/darwin-thread-multi-2level');", bundlePath, bundlePath, bundlePath, bundlePath];
+    int embSize = 0;
+    
+#if !TARGET_OS_IPHONE
+    char *emb[] = { "", "-e", "0" };
+    embSize = 3;
+#else
+    int embSize = 0;
+    char *emb[32];
+
+    NSArray * perlIncludes = [self getDefaultPerlIncludes];
+
+    emb[embSize++] = "";
+
+    for (NSString * perlInclude in perlIncludes){
+        if (perlInclude != nil)
+            emb[embSize++] = (char *)[perlInclude UTF8String];
+    }
+
+    emb[embSize++] = "-e";
+    emb[embSize++] = "0";
 #endif
 
     // Is there a shared perl object already?
@@ -81,73 +242,26 @@ PerlInterpreter *_CBPerlInterpreter;
     } else {
         // No, create one and retain it
         if ((self = [super init])) {
-            NSArray *bundles;
-            NSEnumerator *e;
-            NSBundle *obj;
-            NSString *perlArchname;
-            NSString *perlVersion;
-            
-            char *dummy_perl_env[1] = { NULL };
-            int nargs = 3;
-#if defined(PERL_SYS_INIT3) && !defined(MYMALLOC)
-            /* only call this the first time through, as per perlembed man page */
-            if (interp_state == INTERP_NONE)
-                PERL_SYS_INIT3(&nargs, (char ***) &emb, (char***)&dummy_perl_env);
-#endif
+
+            if (!perlInitialized) {
+                [CBPerl initializePerl];
+            }
 
             _CBPerlInterpreter = perl_alloc();
+#if DEBUG
+            NSLog(@"Inited Perl Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
+#endif
+            PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
             perl_construct(_CBPerlInterpreter);
-            perl_parse(_CBPerlInterpreter, xs_init, 3, emb, (char **)NULL);
+            perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
             perl_run(_CBPerlInterpreter);
             _sharedPerl = self;
 
-#if TARGET_OS_IPHONE
-            NSString * setINC = [self eval: inc];
-#endif
-			// Get Perl's archname and version
-			[self useModule: @"Config"];
-			perlArchname = [self eval: @"$Config{'archname'}"];
-			perlVersion = [self eval: @"$Config{'version'}"];
+            NSAssert([CBPerl getCBPerlFromPerlInterpreter:_CBPerlInterpreter] == NULL, @"Interpreter already in DB");
 
-            // Are we threaded?
-            if ([perlArchname rangeOfString:@"thread"].location != NSNotFound) {
-                // Yes - start a dummy Cocoa thread
-                [NSThread detachNewThreadSelector:@selector(dummyThread:) toTarget:self withObject:nil];
+            [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
 
-                // Now tell Perl to use threads.pm
-                [self useModule:@"threads"];
-            }
-
-			// Add bundled resource folders to @INC
-            bundles = [NSBundle allFrameworks];
-            e = [bundles objectEnumerator];
-            while ((obj = [e nextObject])) {
-            	[self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
-            }
-            
-            bundles = [NSBundle allBundles];
-            e = [bundles objectEnumerator];
-            while ((obj = [e nextObject])) {
-            	[self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
-            }
-            
-			[self useBundleLib:[NSBundle mainBundle] withArch: perlArchname forVersion: perlVersion];
-
-            // Create Perl wrappers for all registered Objective-C classes
-            CBWrapRegisteredClasses();
-            
-            // Export globals into Perl's name space
-            CBWrapAllGlobals();
-
-			// When bundles are loaded, we want to hear about it
-			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bundleDidLoad:)
-												  name:NSBundleDidLoadNotification object:nil];
-
-			// Register the class handler
-#ifndef OBJC2_UNAVAILABLE
-            //http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg02484.html
-			CBRegisterClassHandler();
-#endif
+            [self camelBonesInitialization];
 
             return [_sharedPerl retain];
 
@@ -159,80 +273,97 @@ PerlInterpreter *_CBPerlInterpreter;
     }
 }
 
+-(void) cleanUp {
+    @synchronized(self) {
+        PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+#if DEBUG
+        NSLog(@"Cleanup Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
+#endif
+        [perlInstanceDict removeObjectForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) _CBPerlInterpreter]];
+        perl_destruct(_CBPerlInterpreter);
+        perl_free(_CBPerlInterpreter);
+
+//      TODO: PERL_SYS_TERM will kill the app, cannot be called at least on iOS
+
+//        if (![perl2CBPerlDict count]) {
+//            [CBPerl destroyPerl];
+//            perlInitialized = false;
+//        }
+    }
+}
+
 - (id) initXS {
-    // Is there a shared perl object already?
-    if (_sharedPerl) {
-        // Yes, retain and return it
+
+    // Force initialization of erlInstanceDict if not yet initialized
+    [CBPerl getPerlInstanceDictionary];
+
+    if ((self = [super init])) {
+        NSArray *bundles;
+        NSEnumerator *e;
+        NSBundle *obj;
+        NSString *perlArchname;
+        NSString *perlVersion;
+
+        NSAutoreleasePool *p;
+        
+        // Set up housekeeping
+        p = [[NSAutoreleasePool alloc] init];
+        _sharedPerl = self;
+        _CBPerlInterpreter = PERL_GET_CONTEXT;
+        [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
+
+        // Get Perl's archname and version
+        [self useModule: @"Config"];
+        perlArchname = [self eval: @"$Config{'archname'}"];
+        perlVersion = [self eval: @"$Config{'version'}"];
+
+        // Are we threaded?
+        if ([perlArchname rangeOfString:@"thread"].location != NSNotFound) {
+            // Yes - start a dummy Cocoa thread
+            [NSThread detachNewThreadSelector:@selector(dummyThread:) toTarget:self withObject:nil];
+
+            // Now tell Perl to use threads.pm
+            [self useModule:@"threads"];
+        }
+
+        // Add bundled resource folders to @INC
+        bundles = [NSBundle allFrameworks];
+        e = [bundles objectEnumerator];
+        while ((obj = [e nextObject])) {
+            [self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
+        }
+        
+        bundles = [NSBundle allBundles];
+        e = [bundles objectEnumerator];
+        while ((obj = [e nextObject])) {
+            [self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
+        }
+        
+        // Create Perl wrappers for all registered Objective-C classes
+        CBWrapRegisteredClasses();
+        
+        // Export globals into Perl's name space
+        CBWrapAllGlobals();
+
+        // When bundles are loaded, we want to hear about it
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bundleDidLoad:)
+                                              name:NSBundleDidLoadNotification object:nil];
+
+        [p release];
+
+        // Register the class handler
+#ifndef OBJC2_UNAVAILABLE
+        //http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg02484.html
+        CBRegisterClassHandler();
+#endif
+
+        //_CBPerlInterpreter = checkCBPerl;
+        //[CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
         return [_sharedPerl retain];
 
     } else {
-        // No, create one and retain it
-        if ((self = [super init])) {
-            NSArray *bundles;
-            NSEnumerator *e;
-            NSBundle *obj;
-            NSString *perlArchname;
-            NSString *perlVersion;
-
-            NSAutoreleasePool *p;
-            
-            // Set up housekeeping
-            p = [[NSAutoreleasePool alloc] init];
-            _sharedPerl = self;
-            _CBPerlInterpreter = PERL_GET_CONTEXT;
-
-			// Get Perl's archname and version
-			[self useModule: @"Config"];
-			perlArchname = [self eval: @"$Config{'archname'}"];
-			perlVersion = [self eval: @"$Config{'version'}"];
-
-            // Are we threaded?
-            if ([perlArchname rangeOfString:@"thread"].location != NSNotFound) {
-                // Yes - start a dummy Cocoa thread
-                [NSThread detachNewThreadSelector:@selector(dummyThread:) toTarget:self withObject:nil];
-
-                // Now tell Perl to use threads.pm
-                [self useModule:@"threads"];
-            }
-
-			// Add bundled resource folders to @INC
-            bundles = [NSBundle allFrameworks];
-            e = [bundles objectEnumerator];
-            while ((obj = [e nextObject])) {
-            	[self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
-            }
-            
-            bundles = [NSBundle allBundles];
-            e = [bundles objectEnumerator];
-            while ((obj = [e nextObject])) {
-            	[self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
-            }
-            
-            // Create Perl wrappers for all registered Objective-C classes
-            CBWrapRegisteredClasses();
-            
-            // Export globals into Perl's name space
-            CBWrapAllGlobals();
-
-			// When bundles are loaded, we want to hear about it
-			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bundleDidLoad:)
-												  name:NSBundleDidLoadNotification object:nil];
-
-            [p release];
-
-			// Register the class handler
-#ifndef OBJC2_UNAVAILABLE
-            //http://lists.apple.com/archives/cocoa-dev/2009/Jan/msg02484.html
-			CBRegisterClassHandler();
-#endif
-
-            return [_sharedPerl retain];
-
-        } else {
-            // Wonder what happened here?
-            return nil;
-
-        }
+        // Wonder what happened here?
+        return nil;
     }
 }
 
@@ -259,28 +390,35 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (id) eval: (NSString *)perlCode {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
+    @synchronized(self) {
+        PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+        dTHX;
 
-    SV *result = eval_pv([perlCode UTF8String], FALSE);
+        SV *result = eval_pv([perlCode UTF8String], FALSE);
 
-    // Check for an error
-    if (SvTRUE(ERRSV)) {
-        [NSException raise:CBPerlErrorException format:@"Perl exception: %s", SvPV(ERRSV, PL_na)];
-        return nil;
+        // Check for an error
+        if (SvTRUE(ERRSV)) {
+            NSString * message = [NSString stringWithFormat:@"Perl exception: %s", SvPV(ERRSV, PL_na)];
+#if DEBUG
+            NSLog(@"%@", message);
+#endif
+            [NSException raise:CBPerlErrorException format:message];
+
+            return nil;
+        }
+
+        if (result == &PL_sv_undef || result == NULL) {
+            return nil;
+        }
+
+    	return CBDerefSVtoID(result);
     }
-
-    if (result == &PL_sv_undef || result == NULL) {
-        return nil;
-    }
-
-    return CBDerefSVtoID(result);
 }
 
 // Standard KVC methods
 - (id) valueForKey:(NSString*)key {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     SV* sv;
     if ([key hasPrefix:@"@"]) {
@@ -295,7 +433,7 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (void) setValue:(id)value forKey:(NSString*)key {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     SV* newVal = CBDerefIDtoSV(value);
     SV* sv = get_sv([key UTF8String], TRUE);
@@ -304,7 +442,7 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (long) varAsInt: (NSString *)perlVar {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
@@ -314,7 +452,7 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (void) setVar: (NSString *)perlVar toInt: (long)newValue {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
@@ -324,7 +462,7 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (double) varAsFloat: (NSString *)perlVar {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
@@ -334,7 +472,7 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (void) setVar: (NSString *)perlVar toFloat: (double)newValue {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
@@ -344,7 +482,7 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (NSString *) varAsString: (NSString *)perlVar {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));
@@ -355,7 +493,7 @@ PerlInterpreter *_CBPerlInterpreter;
 
 - (void) setVar: (NSString *)perlVar toString: (NSString *)newValue {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     NSLog(@"Warning: %@ has been deprecated and will soon be removed. Use KVC methods valueForKey: and setValue:forKey: instead.", NSStringFromSelector(_cmd));

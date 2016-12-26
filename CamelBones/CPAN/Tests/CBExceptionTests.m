@@ -26,7 +26,7 @@
 
 - (void)bogusPerl {
     NS_DURING
-        [[CBPerl sharedPerl] eval:@"die"];
+        [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:@"die"];
     NS_HANDLER
         NSLog(@"%@", localException);
     NS_ENDHANDLER

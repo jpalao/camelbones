@@ -5,6 +5,7 @@
 //  Copyright (c) 2004 Sherm Pendley. All rights reserved.
 //
 
+#import "CBPerl.h"
 #import "Wrappers.h"
 #import "PerlImports.h"
 
@@ -18,7 +19,7 @@ void* CBCreateWrapperObject(id obj) {
 // The wrapper will be blessed into className.
 void* CBCreateWrapperObjectWithClassName(id obj, NSString* className) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *sv = CBCreateObjectOfClass(className);
@@ -30,7 +31,7 @@ void* CBCreateWrapperObjectWithClassName(id obj, NSString* className) {
 // Create a new Perl object blessed into the specified package
 void* CBCreateObjectOfClass(NSString *className) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     HV *hv = newHV();

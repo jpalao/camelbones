@@ -5,6 +5,7 @@
 //  Copyright (c) 2004 Sherm Pendley. All rights reserved.
 //
 
+#import "CBPerl.h"
 #import "Conversions.h"
 #import "NativeMethods.h"
 #import "Structs.h"
@@ -211,7 +212,7 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
 // Call a native class or object method
 void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     
 	if (0 == ffi_type_structs_init) {
