@@ -141,6 +141,10 @@ void CBWrapObjectiveCClass(Class aClass) {
         return;
     }
 
+#if 0
+    NSLog(@"Wrapping class: %s", className);
+#endif
+
     // Get the super class name; default to "NSObject" for root classes
 #ifdef OBJC2_UNAVAILABLE
     Class superClass = class_getSuperclass(aClass);
