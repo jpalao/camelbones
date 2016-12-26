@@ -11,7 +11,6 @@ extern "C" {
 #ifdef PERL_OBJECT
 #define NO_XSLOCKS
 #include <XSUB.h>
-#include "win32iop.h"
 #include <fcntl.h>
 #include <perlhost.h>
 #endif
