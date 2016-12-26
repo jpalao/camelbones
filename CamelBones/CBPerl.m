@@ -30,7 +30,7 @@
 + (void) initializePerl {
     @synchronized(self) {
         char *dummy_perl_env[1] = { NULL };
-        int nargs = 3;
+        int nargs = 0;
         char *emb[] = {};
 
 #if defined(PERL_SYS_INIT3) && !defined(MYMALLOC)
@@ -218,7 +218,6 @@
     char *emb[] = { "", "-e", "0" };
     embSize = 3;
 #else
-    int embSize = 0;
     char *emb[32];
 
     NSArray * perlIncludes = [self getDefaultPerlIncludes];
