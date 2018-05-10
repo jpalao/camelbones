@@ -19,13 +19,14 @@
 @class CBPerlHash;
 @class CBPerlObject;
 
-static NSMutableDictionary * perlInstanceDict = nil;
 static Boolean perlInitialized = false;
 
 @interface CBPerl : NSObject {
     id _sharedPerl;
     PerlInterpreter * _CBPerlInterpreter;
 }
+
++ (NSMutableDictionary *)perlInstanceDict;
 
 // CBPerl ivars:
 
@@ -42,7 +43,8 @@ static Boolean perlInitialized = false;
 
 // getPerlInterpreter: Class method that returns the global perl Interpreter dictionary
 // It will initialize the dictionary if not already initialized
-+ (NSDictionary *) getPerlInstanceDictionary;
++ (NSMutableDictionary *) getPerlInstanceDictionary;
++ (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary;
 
 // getCBPerlFromPerlInterpreter: Class method that returns the CBPerl object corresponding to an embedded perl interpreter object
 + (CBPerl *) getCBPerlFromPerlInterpreter: (PerlInterpreter *) perlInterpreter;

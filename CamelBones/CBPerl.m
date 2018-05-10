@@ -27,6 +27,16 @@
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
 @synthesize sharedPerl = _sharedPerl;
 
+static NSMutableDictionary *perlInstanceDict = nil;
+
++ (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
+    perlInstanceDict = dictionary;
+}
+
++ (NSMutableDictionary *) getPerlInstanceDictionary {
+    return perlInstanceDict;
+}
+
 + (void) initializePerl {
     @synchronized(self) {
         char *dummy_perl_env[1] = { NULL };
@@ -37,22 +47,13 @@
         /* only call this the first time through, as per perlembed man page */
         PERL_SYS_INIT3(&nargs, (char ***) &emb, (char***)&dummy_perl_env);
 #endif
-        
-        perlInitialized = true;
+        perlInitialized = 1;
     }
 }
 
 + (void) destroyPerl {
     PERL_SYS_TERM();
-    perlInitialized = false;
-}
-
-+ (NSDictionary *) getPerlInstanceDictionary {
-
-    if (perlInstanceDict == nil) {
-        perlInstanceDict = [NSMutableDictionary dictionaryWithCapacity:128];
-    }
-    return perlInstanceDict;
+    perlInitialized = 0;
 }
 
 + (CBPerl *) getCBPerlFromPerlInterpreter: (PerlInterpreter *) perlInterpreter {
@@ -65,7 +66,7 @@
 + (void) setCBPerl:(CBPerl *) cbperl forPerlInterpreter:(PerlInterpreter *) perlInterpreter {
     @synchronized(self) {
         NSAssert ([CBPerl getPerlInstanceDictionary] != NULL, @"perl2CBPerlDict is NULL");
-        [perlInstanceDict setObject:cbperl forKey:[NSString stringWithFormat:@"%llx", (unsigned long long) perlInterpreter]];
+        [[CBPerl getPerlInstanceDictionary] setObject:cbperl forKey:[NSString stringWithFormat:@"%llx", (unsigned long long) perlInterpreter]];
     }
 }
 
@@ -145,7 +146,7 @@
     NSString * inc2 = [NSString stringWithFormat:@"-I%@/perl5/site_perl", bundlePath];
     NSString * inc3 = [NSString stringWithFormat:@"-I%@/perl5/%@/darwin-thread-multi-2level", bundlePath, perlVersionString];
     NSString * inc4 = [NSString stringWithFormat:@"-I%@/perl5/site_perl/%@/darwin-thread-multi-2level", bundlePath, perlVersionString];
-    return [NSArray arrayWithObjects:bundlePath, incCaches, inc1, inc2, inc3, inc4, nil];
+    return [NSArray arrayWithObjects:incCaches, inc1, inc2, inc3, inc4, nil];
 }
 
 - (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments {
@@ -195,12 +196,10 @@
         _sharedPerl = self;
         [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
         PERL_SET_CONTEXT(_CBPerlInterpreter);
-        //_CBPerlInterpreter = PERL_GET_CONTEXT;
 
         perl_construct(_CBPerlInterpreter);
         perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
         perl_run(_CBPerlInterpreter);
-
 
         return [_sharedPerl retain];
         
@@ -267,7 +266,6 @@
         } else {
             // Wonder what happened here?
             return nil;
-
         }
     }
 }
@@ -278,7 +276,7 @@
 #if DEBUG
         NSLog(@"Cleanup Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
 #endif
-        [perlInstanceDict removeObjectForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) _CBPerlInterpreter]];
+        [[CBPerl getPerlInstanceDictionary] removeObjectForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) _CBPerlInterpreter]];
         perl_destruct(_CBPerlInterpreter);
         perl_free(_CBPerlInterpreter);
 
@@ -293,8 +291,7 @@
 
 - (id) initXS {
 
-    // Force initialization of erlInstanceDict if not yet initialized
-    [CBPerl getPerlInstanceDictionary];
+    [CBPerl initPerlInstanceDictionary: [NSMutableDictionary dictionaryWithCapacity:128]];
 
     if ((self = [super init])) {
         NSArray *bundles;
