@@ -172,7 +172,7 @@ id CBPerlIMP(id self, SEL _cmd, ...) {
         sv = [self getSV];
     } else {
 
-		// See if it has an instance variable
+    // See if it has an instance variable
 
 #ifdef GNUSTEP
         const char *ivarType;
@@ -187,26 +187,26 @@ id CBPerlIMP(id self, SEL _cmd, ...) {
         Class c = object_getClass(self);
         if (class_getInstanceVariable(c, "_sv")) {
 #else
-		if (class_getInstanceVariable(self->isa, "_sv")) {
+            if (class_getInstanceVariable(self->isa, "_sv")) {
 #endif
-			// It does - get the value
-			object_getInstanceVariable(self, "_sv", (void*)&sv);
+            // It does - get the value
+            object_getInstanceVariable(self, "_sv", (void*)&sv);
 
 #ifdef OBJC2_UNAVAILABLE
-		} else if (class_isMetaClass(c)) {
+        } else if (class_isMetaClass(c)) {
             const char * class_name = class_getName(c);
             // Class method, self is the class name as a string
             sv = sv_2mortal(newSVpv(class_name, strlen(class_name)));
 #else
-		} else if (self->isa->info & CLS_META) {
+        } else if (self->isa->info & CLS_META) {
             // Class method, self is the class name as a string
             sv = sv_2mortal(newSVpv(((struct objc_class*)self)->name, strlen(((struct objc_class*)self)->name)));
 #endif
 #endif
         } else {
-			NSLog(@"Error: CBPerlIMP called with invalid self");
-			sv = &PL_sv_undef;
-		}
+            NSLog(@"Error: CBPerlIMP called with invalid self");
+            sv = &PL_sv_undef;
+        }
     }
 
     // Push "self" onto the stack first
@@ -281,7 +281,7 @@ id CBPerlIMP(id self, SEL _cmd, ...) {
                     // Pointer
                     typeBuf.void_p = va_arg(argptr, void*);
                     XPUSHs(sv_2mortal(newSViv(PTR2IV(typeBuf.void_p))));
-                	break;
+                    break;
 
                 case '#':
                     // Class
@@ -386,6 +386,7 @@ id CBPerlIMP(id self, SEL _cmd, ...) {
     if (success) {
         switch (*returnType) {
             case 'c':
+            case 'B':
                 // char
                 returnValue.sint = POPi;
                 break;
