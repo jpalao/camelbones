@@ -35,6 +35,8 @@ our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::AppKit::Constants::EXPORT,
                     @CamelBones::AppKit::Globals::EXPORT,
                     @CamelBones::CoreGraphics::EXPORT_OK,
+                    @CamelBones::CoreGraphics::Constants::EXPORT,
+                    @CamelBones::CoreGraphics::Globals::EXPORT,                    
                     'class', 'CBCreateAccessor', 'CBPoke',
                 );
 our %EXPORT_TAGS = (
@@ -76,6 +78,7 @@ XSLoader::load('CamelBones', $VERSION);
 CamelBones::CBInit();
 CamelBones::Foundation::Globals->import;
 CamelBones::AppKit::Globals->import;
+CamelBones::CoreGraphics::Globals->import;
 
 # Add a bundle loader to @INC
 push @INC, sub {
@@ -317,7 +320,7 @@ sub NSObject::AUTOLOAD {
         } else {
             return $returnObject;
         }
-	DESTROY { 1 };
+        DESTROY { 1 };
     };
    
     if (!$isSuperMethod && $CamelBones::CacheAutoload) {
