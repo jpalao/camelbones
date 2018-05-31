@@ -894,31 +894,31 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
-					"-L./libffi-3.2.1/Build/Products/Debug-iphoneos",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos\"",
+					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-L./libffi-3.2.1/Build/Products/Debug-iphonesimulator",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator\"",
+					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				PROVISIONING_PROFILE = "a3f23c77-f03f-4c78-b762-9aa231edd86b";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
-				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7s]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=i386]" = "\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = "\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=armv7]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=armv7s]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=i386]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
 				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Debug;
@@ -969,25 +969,25 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
-					"-L./libffi-3.2.1/Build/Products/Release-iphoneos",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos\"",
+					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-L./libffi-3.2.1/Build/Products/Release-iphonesimulator",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator\"",
+					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				PROVISIONING_PROFILE = "a3f23c77-f03f-4c78-b762-9aa231edd86b";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
 				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
 			};
 			name = Release;
