@@ -75,11 +75,11 @@ if ($CBCommon::INSTALL_CAMELBONES_FRAMEWORK) {
   if (( -e $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH . '/' . 
       $CBCommon::CAMELBONES_FRAMEWORK) &&
         (!$CBCommon::OVERWRITE_CAMELBONES_FRAMEWORK)){
-      print('Removing existing CamelBones.framework in ' . $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH)
-      system ('rm', '-Rf', $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH) 
+      print('Removing existing CamelBones.framework in ' . $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH);
+      system ('rm', '-Rf', $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH);
   }
   
-  print('Installing CamelBones.framework in ' . $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH)
+  print('Installing CamelBones.framework in ' . $CBCommon::CAMELBONES_FRAMEWORK_INSTALL_PATH);
 
 	my $framework_install_result = 
 		system ('cp', '-Ra', "Build/Products/" . $CBCommon::XCODE_BUILD_CONFIG . '/' . 
