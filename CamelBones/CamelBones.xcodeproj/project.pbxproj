@@ -671,7 +671,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"\n#if [! -e \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"]\n#    then\n        mkdir -p \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#fi\n\n#if [-h \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"]\n#then\n#nothing\n#else\nln -fs \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\" \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework\"\n#fi\n\n\n";
+			shellScript = "#!/bin/bash\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"\n#if [! -e \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"]\n#    then\n        mkdir -p \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#fi\n\n#if [-h \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"]\n#then\n#nothing\n#else\ncd \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework\"\nln -fs \"Versions/A/Libraries\"\n#fi\n\n\n";
 		};
 		829162171D4D561C006DF121 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
