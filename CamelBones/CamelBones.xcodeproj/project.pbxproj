@@ -839,21 +839,15 @@
 		829162191D4D561C006DF121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
-				"ARCHS[sdk=iphoneos*]" = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
+				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
 				"ARCHS[sdk=iphonesimulator*]" = (
 					x86_64,
 					i386,
 				);
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jose Palao (NZ87W4U8L2)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				ENABLE_BITCODE = YES;
@@ -891,7 +885,7 @@
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos\"",
@@ -932,7 +926,7 @@
 				);
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jose Palao (NZ87W4U8L2)";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_BITCODE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -966,7 +960,7 @@
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos\"",
