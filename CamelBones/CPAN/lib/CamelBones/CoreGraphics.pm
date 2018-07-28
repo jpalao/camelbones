@@ -9,9 +9,6 @@ our $VERSION = '1.2.0';
 our @EXPORT = qw(
 			  );
 our @EXPORT_OK = qw(
-	CGMainDisplayID	
-	CGDisplayGetDrawingContext
-	CGDisplayCapture
 		CGPointMake CGAffineTransformMake CGPathGetBoundingBox
 				   );
 our %EXPORT_TAGS = (
