@@ -6,15 +6,9 @@ require Exporter;
 
 use CamelBones::Foundation qw(:All);
 use CamelBones::Foundation::Constants;
-use CamelBones::AppKit qw(:All);
-use CamelBones::AppKit::Constants;
-
 use CamelBones::CoreGraphics qw(:All);
 
-use CamelBones::NSPoint;
 use CamelBones::NSRange;
-use CamelBones::NSRect;
-use CamelBones::NSSize;
 
 use CamelBones::CGPoint;
 use CamelBones::CGRect;
