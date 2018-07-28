@@ -16,7 +16,7 @@ our $INSTALL_CAMELBONES_FRAMEWORK = $ENV{'INSTALL_CAMELBONES_FRAMEWORK'};
 our $LIBFFIDIR = '../libffi-3.2.1';
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 our $ARCHS = $ENV{'ARCHS'};
-our $ARCHFLAGS = '';
+our $ARCHFLAGS = '-v -arch armv7 -arch armv7s -arch arm64 -miphoneos-version-min=8.0 -isysroot/opt/sdks/Latest.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/opt/sdks/Latest.sdk/usr/include  -I/opt/local/include -I I/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE -isysroot/opt/sdks/Latest.sdk -L/opt/sdks/Latest.sdk/usr/lib -L/opt/sdks/Latest.sdk/usr/lib/system -L/opt/local/lib  -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE  -Wall -O3  ';
 our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 
@@ -29,18 +29,6 @@ if ($abs_path_to_cwd =~ /AppKit|Foundation|Tests/) {
 
 my $perl_link_flags = ldopts();
 chomp $perl_link_flags;
-
-if (!defined $ARCHS || !length $ARCHS) {
-    $ARCHFLAGS .= ' -arch i386' if ($perl_link_flags =~ /-arch[ ]*i386/);
-    $ARCHFLAGS .= ' -arch x86_64' if ($perl_link_flags =~ /-arch[ ]*x86_64/);
-} else {
-    if ($ARCHS !~/ /) {
-        $ARCHFLAGS .= ' -arch ' . $ARCHS;
-    } else {
-        $ARCHFLAGS .= ' -arch i386' if ($ARCHS =~ /i386/);
-        $ARCHFLAGS .= ' -arch x86_64' if ($ARCHS =~ /x86_64/);
-    }
-}
 
 if (!length $ARCHFLAGS) {
     $ARCHFLAGS = '-arch i386 -arch x86_64';
@@ -55,24 +43,26 @@ $perl_link_flags =~ s/\-arch[ ]*\w*//g;
 
 $PERL_LINK_FLAGS = $perl_link_flags
     if (!defined $PERL_LINK_FLAGS || !length $PERL_LINK_FLAGS);
+    
+#$ARCHFLAGS .= " " . $PERL_LINK_FLAGS;
 
 $PERL_INCLUDE_DIR = $Config{archlib}. "/CORE"
     if (!defined $PERL_INCLUDE_DIR || !length $PERL_INCLUDE_DIR);
-
-$INSTALL_CAMELBONES_FRAMEWORK = 1
-    if (!defined $INSTALL_CAMELBONES_FRAMEWORK || !length $INSTALL_CAMELBONES_FRAMEWORK);
-
+    
+$INSTALL_CAMELBONES_FRAMEWORK = 1    
+	if (!defined $INSTALL_CAMELBONES_FRAMEWORK || !length $INSTALL_CAMELBONES_FRAMEWORK);
+	
 $XCODE_BUILD_CONFIG = "Release"
     if (!defined $XCODE_BUILD_CONFIG || !length $XCODE_BUILD_CONFIG);
 
 $CAMELBONES_FRAMEWORK_INSTALL_PATH = "~/Library/Frameworks"
-    if (!defined $CAMELBONES_FRAMEWORK_INSTALL_PATH ||
-        !length $CAMELBONES_FRAMEWORK_INSTALL_PATH);
+    if (!defined $CAMELBONES_FRAMEWORK_INSTALL_PATH || 
+    	  !length $CAMELBONES_FRAMEWORK_INSTALL_PATH);
     
 $OVERWRITE_CAMELBONES_FRAMEWORK = 0
-    if $OVERWRITE_CAMELBONES_FRAMEWORK != 1;
-
-my $CamelBonesPath = "$abs_path_to_cwd/$down/Build/Products/$XCODE_BUILD_CONFIG";
+    if $OVERWRITE_CAMELBONES_FRAMEWORK != 1;   
+    
+my $CamelBonesPath = "/opt/CB";
 
 my $CamelBones = "$CamelBonesPath/$CAMELBONES_FRAMEWORK";
 
@@ -81,18 +71,18 @@ my $user_dir = $ENV{"HOME"};
 $CAMELBONES_FRAMEWORK_INSTALL_PATH =~ s/~/$user_dir/;
 
 if (! -e $CAMELBONES_FRAMEWORK_INSTALL_PATH) {
-    my $framework_install_dir_create =
-      system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
+    my $framework_install_dir_create = 
+    	system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
     die ("Could not create framework install directory: " .
-      $CAMELBONES_FRAMEWORK_INSTALL_PATH . "\nResult: $framework_install_dir_create")
-      if ($framework_install_dir_create);
+    	$CAMELBONES_FRAMEWORK_INSTALL_PATH . "\nResult: $framework_install_dir_create")
+    	if ($framework_install_result);
 }
 
 my $FrameworkInstallPath = abs_path($CAMELBONES_FRAMEWORK_INSTALL_PATH);
 
 die "Error, cannot create framework installation directory: " . $FrameworkInstallPath
     if (!length $FrameworkInstallPath);
-
+    
 our %opts = (
     VERSION           => '1.2.0',
     CCFLAGS           => "$ARCHFLAGS -Wall",
@@ -100,15 +90,15 @@ our %opts = (
 
     AUTHOR            => 'Sherm Pendley <sherm.pendley@gmail.com>',
 
-    XSOPT             => "-typemap $CamelBones/Resources/typemap",
+    XSOPT             => "-typemap $CamelBones/typemap",
 
     LIBS              => [ '-lobjc'],
     INC               => "-F$CamelBonesPath ",
     dynamic_lib       => {
                         'OTHERLDFLAGS' =>
-                            "$ARCHFLAGS -framework Foundation -framework AppKit " .
+                            "$ARCHFLAGS -framework Foundation -framework UIKit " .
                             "-framework CamelBones -F/System/Library/Frameworks " . 
-                            "-F$FrameworkInstallPath -Wl,-rpath,/opt/local/Library/Frameworks"
+                            "-F$CamelBonesPath -Wl,-rpath,/opt/local/CB"
                         },
 );
 
