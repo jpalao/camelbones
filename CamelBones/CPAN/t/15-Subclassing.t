@@ -28,11 +28,13 @@ sub floatValue : Selector(floatValue) ReturnType(d) {
     return $self->SUPER::floatValue();
 }
 
-
 # Now test the overridden methods
 
+# Disable non pointer isa obj-c runtimes, needed on iOS arm64/macOS x86_64
+# my $testNumber = CBSubclass->alloc->init;
+my $testNumber = CBSubclass->allocWithZone(0)->init;
+
 # Can we create a number?
-my $testNumber = CBSubclass->alloc()->init;
 if (defined $testNumber) {
     ok(1);
 } else {

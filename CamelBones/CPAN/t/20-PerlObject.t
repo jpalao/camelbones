@@ -14,7 +14,7 @@ sub sayOK : Selector(sayOK:) ArgTypes(i) {
 
 sub initNewPerlObject : Selector(initNewPerlObject) ArgTypes() ReturnType(@) {
     my $self = shift;
-    $self = $self->SUPER::init();
+#    $self = $self->SUPER::init();
     return $self;
 }
 
