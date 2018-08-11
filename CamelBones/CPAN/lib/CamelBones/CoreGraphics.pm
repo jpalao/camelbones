@@ -5,7 +5,7 @@ package CamelBones::CoreGraphics;
 
 require Exporter;
 our @ISA = qw(Exporter);
-our $VERSION = '1.2.0';
+our $VERSION = '1.2.1';
 our @EXPORT = qw(
 			  );
 our @EXPORT_OK = qw(

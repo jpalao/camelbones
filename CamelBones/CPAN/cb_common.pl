@@ -99,7 +99,7 @@ die "Error, cannot create framework installation directory: " . $FrameworkInstal
     if (!length $FrameworkInstallPath);
     
 our %opts = (
-    VERSION           => '1.2.0',
+    VERSION           => '1.2.1',
     CCFLAGS           => "$ARCHFLAGS -Wall",
     PREREQ_PM         => {},
 
