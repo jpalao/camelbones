@@ -1,5 +1,9 @@
 CamelBones CHANGES
 
+v.1.2.1 Jose Palao
+=======
+* Non Pointer ISA bug fixes
+
 v.1.2.0 Jose Palao
 =======
 * Added x86_64 support. By default the project will build Universal binaries
