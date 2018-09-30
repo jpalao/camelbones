@@ -30,7 +30,14 @@
 static NSMutableDictionary *perlInstanceDict = nil;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
-    perlInstanceDict = dictionary;
+    // prevent xs call to overwrite the perl instance dict when running from app
+    if (!perlInstanceDict)
+        perlInstanceDict = dictionary;
+}
+
++ (void) clearPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
+    if (dictionary == perlInstanceDict)
+        perlInstanceDict = nil;
 }
 
 + (NSMutableDictionary *) getPerlInstanceDictionary {
