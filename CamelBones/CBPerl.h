@@ -44,7 +44,13 @@ static Boolean perlInitialized = false;
 // getPerlInterpreter: Class method that returns the global perl Interpreter dictionary
 // It will initialize the dictionary if not already initialized
 + (NSMutableDictionary *) getPerlInstanceDictionary;
+
+// init the perl instance Dictionary
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary;
+
+// if passed the correct pointer will delete the dictionary
+// make sure the dictionary is empty before using this!!!
++ (void) clearPerlInstanceDictionary: (NSMutableDictionary *) dictionary;
 
 // getCBPerlFromPerlInterpreter: Class method that returns the CBPerl object corresponding to an embedded perl interpreter object
 + (CBPerl *) getCBPerlFromPerlInterpreter: (PerlInterpreter *) perlInterpreter;
