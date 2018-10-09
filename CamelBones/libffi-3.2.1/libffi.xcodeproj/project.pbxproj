@@ -636,9 +636,10 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ffi;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SYMROOT = Build/Products;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Debug;
 		};
@@ -682,10 +683,11 @@
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = ffi;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SYMROOT = Build/Products;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "arm64 armv7";
 			};
 			name = Release;
 		};
