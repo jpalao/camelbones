@@ -64,7 +64,7 @@ static NSMutableDictionary *perlInstanceDict = nil;
 }
 
 + (CBPerl *) getCBPerlFromPerlInterpreter: (PerlInterpreter *) perlInterpreter {
-    @synchronized(self) {
+    @synchronized(perlInstanceDict) {
         CBPerl * result = [[CBPerl getPerlInstanceDictionary] valueForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) perlInterpreter]];
         return result;
     }
@@ -78,7 +78,7 @@ static NSMutableDictionary *perlInstanceDict = nil;
 }
 
 + (PerlInterpreter *) getPerlInterpreter {
-    @synchronized(self) {
+    @synchronized(perlInstanceDict) {
 #if DEBUG
         void * vp = PERL_GET_CONTEXT;
         NSAssert(vp != NULL, @"getPerlInterpreter returning null...");
@@ -278,7 +278,7 @@ static NSMutableDictionary *perlInstanceDict = nil;
 }
 
 -(void) cleanUp {
-    @synchronized(self) {
+    @synchronized(perlInstanceDict) {
         PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
 #if DEBUG
         NSLog(@"Cleanup Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
