@@ -5,11 +5,11 @@ BEGIN {
     require "./cb_common.pl";
     %local_opts = (
         'NAME' => 'CamelBones',
-        'DIR' => [  'Foundation', 'CoreGraphics', 'Tests' ], #'AppKit',
+        'DIR' => [ 'Foundation', 'CoreGraphics', 'Tests' ], #'AppKit',
         'XS' => { 'CamelBones.xs' => 'CamelBones.m' },
     );
     for (keys %CBCommon::opts) {
-	$local_opts{$_} = $CBCommon::opts{$_};
+	      $local_opts{$_} = $CBCommon::opts{$_};
     }
 }
 

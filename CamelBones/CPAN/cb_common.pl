@@ -6,7 +6,7 @@ use Config;
 use ExtUtils::Embed qw/ldopts/;
 use Cwd qw/abs_path getcwd/;
 
-die "This version of CamelBones only works on Mac OS X systems"
+die "This version of CamelBones only works on macOS and iOS systems"
     if ( $^O !~ m/darwin/ );
 
 our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
@@ -16,7 +16,7 @@ our $INSTALL_CAMELBONES_FRAMEWORK = $ENV{'INSTALL_CAMELBONES_FRAMEWORK'};
 our $LIBFFIDIR = '../libffi-3.2.1';
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 our $ARCHS = $ENV{'ARCHS'};
-our $ARCHFLAGS = '-v -arch armv7 -arch armv7s -arch arm64 -miphoneos-version-min=8.0 -isysroot/opt/sdks/Latest.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/opt/sdks/Latest.sdk/usr/include  -I/opt/local/include -I I/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE -isysroot/opt/sdks/Latest.sdk -L/opt/sdks/Latest.sdk/usr/lib -L/opt/sdks/Latest.sdk/usr/lib/system -L/opt/local/lib  -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE  -Wall -O3  ';
+our $ARCHFLAGS = '-v -arch armv7 -arch arm64 -miphoneos-version-min=8.0 -isysroot/opt/sdks/Latest.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/opt/sdks/Latest.sdk/usr/include  -I/opt/local/include -I I/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE -isysroot/opt/sdks/Latest.sdk -L/opt/sdks/Latest.sdk/usr/lib -L/opt/sdks/Latest.sdk/usr/lib/system -L/opt/local/lib  -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE  -Wall -O3  ';
 our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 
