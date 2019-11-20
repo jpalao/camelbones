@@ -10,7 +10,7 @@
 #import "PerlImports.h"
 #include "perlxsi.h"
 
-#define perlVersionString @"5.24.0"
+#define perlVersionString @"5.28.0"
 
 #define CBPerlErrorException @"CBPerlErrorException"
 

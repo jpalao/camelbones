@@ -847,7 +847,7 @@
 				);
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jose Palao (NZ87W4U8L2)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				ENABLE_BITCODE = YES;
@@ -889,7 +889,7 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos\"",
-					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
@@ -903,14 +903,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
-				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7s]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=armv7]" = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
+				"USER_HEADER_SEARCH_PATHS[arch=armv7s]" = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
 				"USER_HEADER_SEARCH_PATHS[arch=i386]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
 				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
 				VALID_ARCHS = "arm64 armv7 i386 x86_64";
@@ -923,7 +923,7 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jose Palao (NZ87W4U8L2)";
+				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_BITCODE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -961,7 +961,7 @@
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos\"",
-					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"",
 					"-lperl",
 					"-lffi",
 				);
@@ -975,11 +975,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos8.0;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
+				VALID_ARCHS = "arm64 armv7 i386 x86_64";
 			};
 			name = Release;
 		};
