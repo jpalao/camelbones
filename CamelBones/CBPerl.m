@@ -27,7 +27,7 @@
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
 @synthesize sharedPerl = _sharedPerl;
 
-static NSMutableDictionary *perlInstanceDict = nil;
+static NSMutableDictionary * perlInstanceDict = nil;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {
@@ -162,64 +162,96 @@ static NSMutableDictionary *perlInstanceDict = nil;
     return [NSArray arrayWithObjects:incCaches, inc1, inc2, inc3, inc4, nil];
 }
 
-- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments {
+- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error{
+    @synchronized(perlInstanceDict) {
+        int embSize = 0;
+        char *emb[32];
 
-    int embSize = 0;
-    char *emb[32];
+        NSArray * perlIncludes = [self getDefaultPerlIncludes];
 
-    NSArray * perlIncludes = [self getDefaultPerlIncludes];
-
-    for (NSString * perlInclude in perlIncludes){
-        if (perlInclude != nil)
-            emb[embSize++] = (char *)[perlInclude UTF8String];
-    }
-
-    if (options != nil){
-        for (NSString * option in options) {
-            if (option != nil)
-                emb[embSize++] = (char *)[option UTF8String];
-        }
-    }
-
-    if ( debuggerEnabled ) {
-        emb[embSize++] = "-d:ebug::Backend";
-        emb[embSize++] = (char *)[fileName UTF8String];
-    } else {
-        emb[embSize++] = (char *)[fileName UTF8String];
-    }
-
-    if (arguments != nil){
-        for (NSString * argument in arguments) {
-            if (argument != nil)
-                emb[embSize++] = (char *)[argument UTF8String];
-        }
-    }
-
-    // No, create one and retain it
-    if ((self = [super init])) {
-
-        if (!perlInitialized) {
-            [CBPerl initializePerl];
+        for (NSString * perlInclude in perlIncludes){
+            if (perlInclude != nil)
+                emb[embSize++] = (char *)[perlInclude UTF8String];
         }
 
-        _CBPerlInterpreter = perl_alloc();
-#if DEBUG
-        NSLog(@"Inited Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
-#endif
-        _sharedPerl = self;
-        [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
-        PERL_SET_CONTEXT(_CBPerlInterpreter);
+        if (options != nil){
+            for (NSString * option in options) {
+                if (option != nil)
+                    emb[embSize++] = (char *)[option UTF8String];
+            }
+        }
 
-        perl_construct(_CBPerlInterpreter);
-        perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
-        perl_run(_CBPerlInterpreter);
+        if ( debuggerEnabled ) {
+            emb[embSize++] = "-d:ebug::Backend";
+            emb[embSize++] = (char *)[fileName UTF8String];
+        } else {
+            emb[embSize++] = (char *)[fileName UTF8String];
+        }
 
-        return [_sharedPerl retain];
-        
-    } else {
-        // Wonder what happened here?
-        return nil;
+        if (arguments != nil){
+            for (NSString * argument in arguments) {
+                if (argument != nil)
+                    emb[embSize++] = (char *)[argument UTF8String];
+            }
+        }
+
+        // No, create one and retain it
+
+        if ((self = [super init])) {
+            if (!perlInitialized) {
+                [CBPerl initializePerl];
+            }
+
+            _CBPerlInterpreter = perl_alloc();
+
+            if(_CBPerlInterpreter == NULL) {
+                * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": @"Cannot initialize perl interpreter"}];
+                [self cleanUp];
+                return nil;
+            } else {
+                PERL_SET_CONTEXT(_CBPerlInterpreter);
+            }
+
+            _sharedPerl = self;
+            [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
+
+    #if DEBUG
+            NSLog(@"Inited Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
+    #endif
+            PL_perl_destruct_level = 1;
+            @try {
+                perl_construct(_CBPerlInterpreter);
+            } @catch (NSException * exception ){
+                NSLog(@"perl_construct threw Exception %@", [exception description]);
+                return nil;
+            }
+            int result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
+            if (result) {
+                if ( SvTRUE(ERRSV ) )
+                {
+                    char * perl_error = SvPVx_nolen(ERRSV);
+                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+                    [self cleanUp];
+                    return nil;
+                }
+            }
+        } else {
+            // Wonder what happened here?
+            return nil;
+        }
     }
+    int result = perl_run(_CBPerlInterpreter);
+    if (result) {
+        if ( SvTRUE(ERRSV ) )
+        {
+            char * perl_error = SvPVx_nolen(ERRSV);
+            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+            [self cleanUp];
+            return nil;
+        }
+    }
+    return [_sharedPerl retain];
+
 }
 
 - (id) init {
@@ -290,6 +322,7 @@ static NSMutableDictionary *perlInstanceDict = nil;
         NSLog(@"Cleanup Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
 #endif
         [[CBPerl getPerlInstanceDictionary] removeObjectForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) _CBPerlInterpreter]];
+        PL_perl_destruct_level = 1;
         perl_destruct(_CBPerlInterpreter);
         perl_free(_CBPerlInterpreter);
 
