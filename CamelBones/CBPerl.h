@@ -62,7 +62,7 @@ static Boolean perlInitialized = false;
 - (void) cleanUp;
 
 // init this CBPerl object with a new perl interpreter
-- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments;
+- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError**) error;
 
 // sharedPerl: will return the shared CBPerl object (without retaining
 // it) if it exists. Otherwise it calls init: to create one, autoreleases
