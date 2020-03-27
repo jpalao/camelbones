@@ -13,7 +13,7 @@
 #undef _
 #endif
 
-#define PERL_NO_GET_CONTEXT     /* we want efficiency */ 
+// #define PERL_NO_GET_CONTEXT     /* we want efficiency */ 
 #include "EXTERN.h"
 #ifdef PERL_TIGER
 #define HAS_BOOL
