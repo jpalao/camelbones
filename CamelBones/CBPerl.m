@@ -246,9 +246,9 @@ static NSMutableDictionary * perlInstanceDict = nil;
         {
             char * perl_error = SvPVx_nolen(ERRSV);
             * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
-            [self cleanUp];
-            return nil;
         }
+        [self cleanUp];
+        return nil;
     }
     return [_sharedPerl retain];
 
