@@ -162,6 +162,80 @@ static NSMutableDictionary * perlInstanceDict = nil;
     return [NSArray arrayWithObjects:incCaches, inc1, inc2, inc3, inc4, nil];
 }
 
+- (void) syntaxCheck:(NSString*)fileName error:(NSError **)error {
+    @synchronized(perlInstanceDict) {
+        int embSize = 0;
+        char *emb[32];
+
+        NSArray * perlIncludes = [self getDefaultPerlIncludes];
+
+        for (NSString * perlInclude in perlIncludes){
+            if (perlInclude != nil)
+                emb[embSize++] = (char *)[perlInclude UTF8String];
+        }
+        NSArray * options = @[@"-W", @"-c"];
+
+        for (NSString * option in options) {
+            if (option != nil)
+                emb[embSize++] = (char *)[option UTF8String];
+        }
+
+        emb[embSize++] = (char *)[fileName UTF8String];
+
+        // No, create one and retain it
+
+        if ((self = [super init])) {
+            if (!perlInitialized) {
+                [CBPerl initializePerl];
+            }
+
+            _CBPerlInterpreter = perl_alloc();
+
+            if(_CBPerlInterpreter == NULL) {
+                * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": @"Cannot initialize perl interpreter"}];
+                [self cleanUp];
+                return;
+            } else {
+                PERL_SET_CONTEXT(_CBPerlInterpreter);
+            }
+
+            _sharedPerl = self;
+            [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
+
+#if DEBUG
+            NSLog(@"Inited Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
+#endif
+            PL_perl_destruct_level = 1;
+            @try {
+                perl_construct(_CBPerlInterpreter);
+            } @catch (NSException * exception ){
+                NSLog(@"perl_construct threw Exception %@", [exception description]);
+                return;
+            }
+            int result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
+            if (result) {
+                if ( SvTRUE(ERRSV ) )
+                {
+                    char * perl_error = SvPVx_nolen(ERRSV);
+                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+                }
+                else
+                {
+                    char * perl_error = SvPVx_nolen(ERRSV);
+                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
+                }
+            }
+            fflush(stdout);
+            fflush(stderr);
+            [self cleanUp];
+            return;
+        } else {
+            // Wonder what happened here?
+            return;
+        }
+    }
+}
+
 - (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error{
     @synchronized(perlInstanceDict) {
         int embSize = 0;
