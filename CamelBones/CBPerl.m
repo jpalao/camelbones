@@ -307,6 +307,10 @@ static NSMutableDictionary * perlInstanceDict = nil;
                     char * perl_error = SvPVx_nolen(ERRSV);
                     * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
                 }
+                else
+                {
+                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
+                }
                 [self cleanUp];
                 return nil;
             }
@@ -320,7 +324,11 @@ static NSMutableDictionary * perlInstanceDict = nil;
         if ( SvTRUE(ERRSV ) )
         {
             char * perl_error = SvPVx_nolen(ERRSV);
-            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+        }
+        else
+        {
+            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
         }
         [self cleanUp];
         return nil;
