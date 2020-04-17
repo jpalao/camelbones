@@ -101,7 +101,9 @@ static NSMutableDictionary * perlInstanceDict = nil;
 
 - (void) dealloc
 {
-    [super dealloc];
+    @synchronized(perlInstanceDict) {
+        [super dealloc];
+    };
 }
 
 -(void) camelBonesInitialization {
