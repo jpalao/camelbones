@@ -18,9 +18,10 @@ int CBApplicationMain2(const char *scriptName, int argc, const char *argv[]) {
     NSAutoreleasePool *arPool = [[NSAutoreleasePool alloc] init];
     NSString *wrapperFolder = [[NSBundle mainBundle] resourcePath];
     NSString *mainPL = [NSString stringWithFormat: @"%@/%s", wrapperFolder, scriptName];
-
+    NSError *error = nil;
     // Run Perl code
-    CBPerl *sp = [[CBPerl alloc] initWithFileName:mainPL withDebugger:0 withOptions:nil withArguments:nil];
+    CBPerl *sp = [[CBPerl alloc] initWithFileName:mainPL withDebugger:0 withOptions:nil withArguments:nil error:&error];
+    //TODO handle error
 
     // Clean up
     [sp cleanUp];
