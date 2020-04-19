@@ -903,7 +903,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -914,6 +914,11 @@
 				"USER_HEADER_SEARCH_PATHS[arch=i386]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
 				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
 				VALID_ARCHS = "arm64 armv7 i386 x86_64";
+				WARNING_CFLAGS = (
+					"-Wno-shorten-64-to-32",
+					"-Wall",
+					"-Wno-shift-count-overflow",
+				);
 			};
 			name = Debug;
 		};
@@ -975,11 +980,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.0;
+				SDKROOT = iphoneos;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
 				VALID_ARCHS = "arm64 armv7 i386 x86_64";
+				WARNING_CFLAGS = (
+					"-Wno-shorten-64-to-32",
+					"-Wall",
+					"-Wno-shift-count-overflow",
+				);
 			};
 			name = Release;
 		};
