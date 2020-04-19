@@ -26,8 +26,6 @@ static Boolean perlInitialized = false;
     PerlInterpreter * _CBPerlInterpreter;
 }
 
-+ (NSMutableDictionary *)perlInstanceDict;
-
 // CBPerl ivars:
 
 // _sharedPerl: pointer to this CBPerl object
