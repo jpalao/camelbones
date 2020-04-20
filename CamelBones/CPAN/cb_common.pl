@@ -48,21 +48,21 @@ $PERL_LINK_FLAGS = $perl_link_flags
 
 $PERL_INCLUDE_DIR = $Config{archlib}. "/CORE"
     if (!defined $PERL_INCLUDE_DIR || !length $PERL_INCLUDE_DIR);
-    
-$INSTALL_CAMELBONES_FRAMEWORK = 1    
-	if (!defined $INSTALL_CAMELBONES_FRAMEWORK || !length $INSTALL_CAMELBONES_FRAMEWORK);
-	
+
+$INSTALL_CAMELBONES_FRAMEWORK = 1
+    if (!defined $INSTALL_CAMELBONES_FRAMEWORK || !length $INSTALL_CAMELBONES_FRAMEWORK);
+
 $XCODE_BUILD_CONFIG = "Release"
     if (!defined $XCODE_BUILD_CONFIG || !length $XCODE_BUILD_CONFIG);
 
 $CAMELBONES_FRAMEWORK_INSTALL_PATH = "~/Library/Frameworks"
-    if (!defined $CAMELBONES_FRAMEWORK_INSTALL_PATH || 
-    	  !length $CAMELBONES_FRAMEWORK_INSTALL_PATH);
+    if (!defined $CAMELBONES_FRAMEWORK_INSTALL_PATH ||
+        !length $CAMELBONES_FRAMEWORK_INSTALL_PATH);
     
 $OVERWRITE_CAMELBONES_FRAMEWORK = 0
-    if $OVERWRITE_CAMELBONES_FRAMEWORK != 1;   
-    
 my $CamelBonesPath = "/opt/CB";
+    if $OVERWRITE_CAMELBONES_FRAMEWORK != 1;
+
 
 my $CamelBones = "$CamelBonesPath/$CAMELBONES_FRAMEWORK";
 
@@ -71,18 +71,18 @@ my $user_dir = $ENV{"HOME"};
 $CAMELBONES_FRAMEWORK_INSTALL_PATH =~ s/~/$user_dir/;
 
 if (! -e $CAMELBONES_FRAMEWORK_INSTALL_PATH) {
-    my $framework_install_dir_create = 
-    	system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
-    die ("Could not create framework install directory: " .
-    	$CAMELBONES_FRAMEWORK_INSTALL_PATH . "\nResult: $framework_install_dir_create")
-    	if ($framework_install_result);
+    my $framework_install_dir_create =
+      system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
+    die ("Could not create framework install directory:" .
+        "$CAMELBONES_FRAMEWORK_INSTALL_PATH \nResult: $framework_install_dir_create")
+      if ($framework_install_dir_create);
 }
 
 my $FrameworkInstallPath = abs_path($CAMELBONES_FRAMEWORK_INSTALL_PATH);
 
 die "Error, cannot create framework installation directory: " . $FrameworkInstallPath
     if (!length $FrameworkInstallPath);
-    
+
 our %opts = (
     VERSION           => '1.2.0',
     CCFLAGS           => "$ARCHFLAGS -Wall",
