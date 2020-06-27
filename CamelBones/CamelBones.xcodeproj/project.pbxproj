@@ -767,9 +767,8 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
-					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = NO;
@@ -786,7 +785,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -816,9 +815,8 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release",
-					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = NO;
@@ -835,7 +833,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
@@ -884,9 +883,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos",
 					"$(CB_LIB_PERL_PATH)",
 				);
@@ -965,9 +963,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos",
 					"$(CB_LIB_PERL_PATH)",
 				);
@@ -1028,7 +1025,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE/**";
+				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
@@ -1054,7 +1051,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE/**";
+				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
