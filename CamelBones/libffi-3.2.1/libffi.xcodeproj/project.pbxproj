@@ -748,7 +748,10 @@
 					"$(inherited)",
 					darwin_common/include,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -759,6 +762,9 @@
 					"$(inherited)",
 					darwin_common/include,
 				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
