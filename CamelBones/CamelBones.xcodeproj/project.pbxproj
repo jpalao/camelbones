@@ -858,7 +858,7 @@
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				"ARCHS[sdk=iphonesimulator*]" = x86_64;
 				A_PERL_VERSION = 5.32.0;
-				B_CI_BUILD = "perl-$(A_PERL_VERSION)/opt";
+				B_CI_BUILD = "";
 				CB_DIST_PERL_PATH = "";
 				"CB_DIST_PERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../$(B_CI_BUILD)/local/lib/perl5/";
 				"CB_DIST_PERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../$(B_CI_BUILD)/local/lib/perl5/";
@@ -947,7 +947,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				A_PERL_VERSION = 5.32.0;
-				B_CI_BUILD = "perl-$(A_PERL_VERSION)/opt";
+				B_CI_BUILD = "";
 				CB_DIST_PERL_PATH = "";
 				"CB_DIST_PERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../$(B_CI_BUILD)/local/lib/perl5/";
 				"CB_DIST_PERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../$(B_CI_BUILD)/local/lib/perl5/";
