@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8252E3D6244E2D4600C27EA2 /* ffi64_x86_64.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7175187F1D9B00A76262 /* ffi64_x86_64.c */; };
+		8252E3D7244E2D4600C27EA2 /* ffi_armv7.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA716F187F1D9B00A76262 /* ffi_armv7.c */; };
+		8252E3D8244E2D4600C27EA2 /* trampoline_armv7.S in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7171187F1D9B00A76262 /* trampoline_armv7.S */; };
+		8252E3D9244E2D4600C27EA2 /* closures.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7143187F1D8600A76262 /* closures.c */; };
+		8252E3DA244E2D4600C27EA2 /* sysv_armv7.S in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7170187F1D9B00A76262 /* sysv_armv7.S */; };
+		8252E3DB244E2D4600C27EA2 /* darwin_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7174187F1D9B00A76262 /* darwin_i386.S */; };
+		8252E3DC244E2D4600C27EA2 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7147187F1D8600A76262 /* prep_cif.c */; };
+		8252E3DD244E2D4600C27EA2 /* ffi_i386.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7176187F1D9B00A76262 /* ffi_i386.c */; };
+		8252E3DE244E2D4600C27EA2 /* raw_api.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7148187F1D8600A76262 /* raw_api.c */; };
+		8252E3DF244E2D4600C27EA2 /* sysv_arm64.S in Sources */ = {isa = PBXBuildFile; fileRef = DBFA716D187F1D9B00A76262 /* sysv_arm64.S */; };
+		8252E3E0244E2D4600C27EA2 /* darwin64_x86_64.S in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7173187F1D9B00A76262 /* darwin64_x86_64.S */; };
+		8252E3E1244E2D4600C27EA2 /* types.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7149187F1D8600A76262 /* types.c */; };
+		8252E3E2244E2D4600C27EA2 /* ffi_arm64.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA716C187F1D9B00A76262 /* ffi_arm64.c */; };
 		82610ADF1CDF8A8000E94E11 /* ffi64_x86_64.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA718C187F1DA100A76262 /* ffi64_x86_64.c */; };
 		82610AE01CDF8A8000E94E11 /* darwin_i386.S in Sources */ = {isa = PBXBuildFile; fileRef = DBFA718B187F1DA100A76262 /* darwin_i386.S */; };
 		82610AE11CDF8A8000E94E11 /* prep_cif.c in Sources */ = {isa = PBXBuildFile; fileRef = DBFA7147187F1D8600A76262 /* prep_cif.c */; };
@@ -49,6 +62,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		8252E3E3244E2D4600C27EA2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		DB13B1641849DF1E0010F42D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 8;
@@ -61,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8252E3E7244E2D4600C27EA2 /* libffi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libffi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		82610AF51CDF8A8000E94E11 /* libffi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libffi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB13B1661849DF1E0010F42D /* libffi.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libffi.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB13B1911849DF510010F42D /* libffi.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libffi.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +146,7 @@
 				DB13B1661849DF1E0010F42D /* libffi.a */,
 				DB13B1911849DF510010F42D /* libffi.dylib */,
 				82610AF51CDF8A8000E94E11 /* libffi.a */,
+				8252E3E7244E2D4600C27EA2 /* libffi.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +315,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8252E3D3244E2D4600C27EA2 /* libffi-iOS  simulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8252E3E4244E2D4600C27EA2 /* Build configuration list for PBXNativeTarget "libffi-iOS  simulator" */;
+			buildPhases = (
+				8252E3D4244E2D4600C27EA2 /* ShellScript */,
+				8252E3D5244E2D4600C27EA2 /* Sources */,
+				8252E3E3244E2D4600C27EA2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "libffi-iOS  simulator";
+			productName = ffi;
+			productReference = 8252E3E7244E2D4600C27EA2 /* libffi.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		82610ADC1CDF8A8000E94E11 /* libffi-Mac-static */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82610AF21CDF8A8000E94E11 /* Build configuration list for PBXNativeTarget "libffi-Mac-static" */;
@@ -354,6 +395,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = DB13B15B1849DEB70010F42D;
@@ -364,11 +406,25 @@
 				DB13B1651849DF1E0010F42D /* libffi-iOS */,
 				DB13B1901849DF510010F42D /* libffi-Mac */,
 				82610ADC1CDF8A8000E94E11 /* libffi-Mac-static */,
+				8252E3D3244E2D4600C27EA2 /* libffi-iOS  simulator */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		8252E3D4244E2D4600C27EA2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/bin/python generate-darwin-source-and-headers.py --only-ios\n";
+		};
 		82610ADD1CDF8A8000E94E11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -411,6 +467,26 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8252E3D5244E2D4600C27EA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8252E3D6244E2D4600C27EA2 /* ffi64_x86_64.c in Sources */,
+				8252E3D7244E2D4600C27EA2 /* ffi_armv7.c in Sources */,
+				8252E3D8244E2D4600C27EA2 /* trampoline_armv7.S in Sources */,
+				8252E3D9244E2D4600C27EA2 /* closures.c in Sources */,
+				8252E3DA244E2D4600C27EA2 /* sysv_armv7.S in Sources */,
+				8252E3DB244E2D4600C27EA2 /* darwin_i386.S in Sources */,
+				8252E3DC244E2D4600C27EA2 /* prep_cif.c in Sources */,
+				8252E3DD244E2D4600C27EA2 /* ffi_i386.c in Sources */,
+				8252E3DE244E2D4600C27EA2 /* raw_api.c in Sources */,
+				8252E3DF244E2D4600C27EA2 /* sysv_arm64.S in Sources */,
+				8252E3E0244E2D4600C27EA2 /* darwin64_x86_64.S in Sources */,
+				8252E3E1244E2D4600C27EA2 /* types.c in Sources */,
+				8252E3E2244E2D4600C27EA2 /* ffi_arm64.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		82610ADE1CDF8A8000E94E11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,6 +540,103 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		8252E3E5244E2D4600C27EA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/ffi.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					darwin_ios/include,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = ffi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SYMROOT = Build/Products;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		8252E3E6244E2D4600C27EA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/ffi.dst;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					darwin_ios/include,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = ffi;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SYMROOT = Build/Products;
+				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
 		82610AF31CDF8A8000E94E11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -782,6 +955,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8252E3E4244E2D4600C27EA2 /* Build configuration list for PBXNativeTarget "libffi-iOS  simulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8252E3E5244E2D4600C27EA2 /* Debug */,
+				8252E3E6244E2D4600C27EA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		82610AF21CDF8A8000E94E11 /* Build configuration list for PBXNativeTarget "libffi-Mac-static" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
