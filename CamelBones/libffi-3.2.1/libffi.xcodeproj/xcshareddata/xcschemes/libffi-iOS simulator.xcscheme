@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8252E3D3244E2D4600C27EA2"
-               BuildableName = "liblibffi-iOS  simulator.a"
+               BuildableName = "libffi.a"
                BlueprintName = "libffi-iOS  simulator"
                ReferencedContainer = "container:libffi.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8252E3D3244E2D4600C27EA2"
-            BuildableName = "liblibffi-iOS  simulator.a"
+            BuildableName = "libffi.a"
             BlueprintName = "libffi-iOS  simulator"
             ReferencedContainer = "container:libffi.xcodeproj">
          </BuildableReference>
