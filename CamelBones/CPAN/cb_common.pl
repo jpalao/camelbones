@@ -60,9 +60,9 @@ $CAMELBONES_FRAMEWORK_INSTALL_PATH = "~/Library/Frameworks"
         !length $CAMELBONES_FRAMEWORK_INSTALL_PATH);
     
 $OVERWRITE_CAMELBONES_FRAMEWORK = 0
-my $CamelBonesPath = "/opt/CB";
     if $OVERWRITE_CAMELBONES_FRAMEWORK != 1;
 
+my $CamelBonesPath = "$abs_path_to_cwd/$down/Build/Products/$XCODE_BUILD_CONFIG";
 
 my $CamelBones = "$CamelBonesPath/$CAMELBONES_FRAMEWORK";
 
@@ -90,15 +90,15 @@ our %opts = (
 
     AUTHOR            => 'Sherm Pendley <sherm.pendley@gmail.com>',
 
-    XSOPT             => "-typemap $CamelBones/typemap",
+    XSOPT             => "-typemap $abs_path_to_cwd/$down/typemap",
 
     LIBS              => [ '-lobjc'],
     INC               => "-F$CamelBonesPath ",
     dynamic_lib       => {
                         'OTHERLDFLAGS' =>
-                            "$ARCHFLAGS -framework Foundation -framework UIKit " .
-                            "-framework CamelBones -F/System/Library/Frameworks " . 
-                            "-F$CamelBonesPath -Wl,-rpath,/opt/local/CB"
+                            "$ARCHFLAGS -framework Foundation " .
+                            "-framework CamelBones -F$CamelBonesPath " . 
+                            "-F$FrameworkInstallPath -Wl,-rpath,$CamelBonesPath"
                         },
 );
 
