@@ -758,7 +758,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_osx/include",
 				);
@@ -771,7 +771,7 @@
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Debug",
@@ -783,9 +783,11 @@
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
 				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -805,7 +807,7 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_osx/include",
 				);
@@ -818,7 +820,7 @@
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release",
 					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Release",
@@ -830,6 +832,7 @@
 				PREBINDING = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
 				PRODUCT_NAME = CamelBones;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
 				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
@@ -841,10 +844,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
-				"ARCHS[sdk=iphonesimulator*]" = (
-					x86_64,
-					i386,
-				);
+				"ARCHS[sdk=iphonesimulator*]" = x86_64;
+				CB_DIST_PERL_PATH = "";
+				"CB_DIST_PERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-5.32.0/opt/local/lib/perl5/";
+				"CB_DIST_PERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-5.32.0/opt2/local/lib/perl5/";
+				CB_LIB_PERL_PATH = "";
+				"CB_LIB_PERL_PATH[sdk=iphoneos*]" = "$(CB_DIST_PERL_PATH)/5.32.0/darwin-thread-multi-2level/CORE";
+				"CB_LIB_PERL_PATH[sdk=iphonesimulator*]" = "$(CB_DIST_PERL_PATH)/5.32.0/darwin-thread-multi-2level/CORE";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
@@ -862,11 +868,16 @@
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DEBUG=1";
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_ios/include",
+					"$(CB_LIB_PERL_PATH)",
+				);
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -876,26 +887,25 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Debug-iphonesimulator",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos\"",
-					"-L\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"",
+					"-L$(CB_LIB_PERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator\"",
-					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L$(CB_LIB_PERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
@@ -907,13 +917,7 @@
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
-				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7]" = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7s]" = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=i386]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = "\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				VALID_ARCHS = "arm64 armv7 i386 x86_64";
+				VALID_ARCHS = "arm64 armv7 x86_64";
 				WARNING_CFLAGS = (
 					"-Wno-shorten-64-to-32",
 					"-Wall",
@@ -926,6 +930,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
+				CB_DIST_PERL_PATH = "";
+				"CB_DIST_PERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-5.32.0/opt/local/lib/perl5/";
+				"CB_DIST_PERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-5.32.0/opt2/local/lib/perl5/";
+				CB_LIB_PERL_PATH = "";
+				"CB_LIB_PERL_PATH[sdk=iphoneos*]" = "$(CB_DIST_PERL_PATH)/5.32.0/darwin-thread-multi-2level/CORE";
+				"CB_LIB_PERL_PATH[sdk=iphonesimulator*]" = "$(CB_DIST_PERL_PATH)/5.32.0/darwin-thread-multi-2level/CORE";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
@@ -939,11 +949,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_ios/include",
+					"$(CB_LIB_PERL_PATH)",
+				);
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
@@ -953,26 +968,25 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Release-iphoneos",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Release-iphonesimulator",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator",
+					"$(CB_LIB_PERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos\"",
-					"-L\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"",
+					"-L$(CB_LIB_PERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
 					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator\"",
-					"-L\"$(PROJECT_DIR)/../../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L$(CB_LIB_PERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
@@ -983,8 +997,8 @@
 				SDKROOT = iphoneos;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../../perl-5.28.0/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE\"";
-				VALID_ARCHS = "arm64 armv7 i386 x86_64";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "arm64 armv7 x86_64";
 				WARNING_CFLAGS = (
 					"-Wno-shorten-64-to-32",
 					"-Wall",
@@ -1007,7 +1021,7 @@
 				GCC_MODEL_TUNING = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -1034,7 +1048,7 @@
 				GCC_MODEL_TUNING = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
