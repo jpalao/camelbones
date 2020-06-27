@@ -16,7 +16,7 @@ our $INSTALL_CAMELBONES_FRAMEWORK = $ENV{'INSTALL_CAMELBONES_FRAMEWORK'};
 our $LIBFFIDIR = '../libffi-3.2.1';
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 our $ARCHS = $ENV{'ARCHS'};
-our $ARCHFLAGS = '-v -arch armv7 -arch arm64 -miphoneos-version-min=8.0 -isysroot/opt/sdks/Latest.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/opt/sdks/Latest.sdk/usr/include  -I/opt/local/include -I I/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE -isysroot/opt/sdks/Latest.sdk -L/opt/sdks/Latest.sdk/usr/lib -L/opt/sdks/Latest.sdk/usr/lib/system -L/opt/local/lib  -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L/opt/local/lib/perl5/5.28.0/darwin-thread-multi-2level/CORE  -Wall -O3  ';
+our $ARCHFLAGS = '-v -arch arm64 -miphoneos-version-min=8.0 -isysroot/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include  -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/include  -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L/Users/jose/perl5/perlbrew/perls/perl-5.32.0/lib/5.32.0/darwin-thread-multi-2level/CORE -Wall -O3  ';
 our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 
