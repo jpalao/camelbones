@@ -11,6 +11,9 @@
 #import <Cocoa/Cocoa.h>
 #endif
 #import "CBSuper.h"
+#if TARGET_OS_SIMULATOR
+#import <objc/runtime.h>
+#endif
 
 @implementation CBSuper
 
