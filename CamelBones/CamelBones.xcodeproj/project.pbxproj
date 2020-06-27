@@ -841,6 +841,7 @@
 		829162191D4D561C006DF121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
 				"ARCHS[sdk=iphonesimulator*]" = x86_64;
@@ -855,7 +856,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -927,6 +928,7 @@
 		8291621A1D4D561C006DF121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				CB_DIST_PERL_PATH = "";
 				"CB_DIST_PERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-5.32.0/opt/local/lib/perl5/";
@@ -938,7 +940,7 @@
 				CLANG_LINK_OBJC_RUNTIME = NO;
 				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
 				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
