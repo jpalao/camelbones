@@ -636,6 +636,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0510;
+				TargetAttributes = {
+					82151A381CEFBCAC00FB511B = {
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = AA50E2060C87571F004DA7BD /* Build configuration list for PBXProject "CamelBones" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -744,8 +749,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DEVELOPMENT_TEAM = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -781,7 +788,7 @@
 					"-lffi",
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -797,7 +804,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
@@ -830,7 +839,7 @@
 					"-lffi",
 				);
 				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
@@ -855,9 +864,10 @@
 				"CB_LIB_PERL_PATH[sdk=iphonesimulator*]" = "$(CB_DIST_PERL_PATH)/5.32.0/darwin-thread-multi-2level/CORE";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -941,8 +951,9 @@
 				"CB_LIB_PERL_PATH[sdk=iphonesimulator*]" = "$(CB_DIST_PERL_PATH)/5.32.0/darwin-thread-multi-2level/CORE";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Personas y Tecnicas Multimedia SL (6555P83K4D)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
