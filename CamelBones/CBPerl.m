@@ -154,14 +154,44 @@ static NSMutableDictionary * perlInstanceDict = nil;
                                                  name:NSBundleDidLoadNotification object:nil];
 }
 
+- (NSArray *) getDirsInPerl5Dir {
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString * bundlePath  = [[NSBundle mainBundle] resourcePath];
+    NSURL *directoryURL = [NSURL URLWithString:bundlePath];
+    NSURL *perl5URL = [directoryURL URLByAppendingPathComponent:@"perl5"];
+    // TODO handle error
+    return [fileManager contentsOfDirectoryAtPath:perl5URL.path error: nil];
+}
+
 - (NSArray *) getDefaultPerlIncludes {
     NSString * bundlePath                   = [[NSBundle mainBundle] resourcePath];
+    NSArray * perl5Dirs = [self getDirsInPerl5Dir];
+    NSAssert([perl5Dirs count] == 2, @"perl5Dirs is %d", (unsigned int)[perl5Dirs count]);
+    
+    for (id input in perl5Dirs) {
+        NSString * exp = @"^(5\\.\\d+\\.\\d+)$";
+        NSError * error = nil;
+         NSRegularExpression * regex = [NSRegularExpression regularExpressionWithPattern:exp options:0 error:&error];
+
+         if (error) {
+             // TODO
+//             [self showDialog:@"Error" withMessage:[NSString stringWithFormat:@"Regex failed with input : %@", input]];
+//             return @"";
+         }
+
+         NSUInteger numberOfMatches = [regex numberOfMatchesInString:input options:0 range:NSMakeRange(0, [input length])];
+         if (!numberOfMatches) continue;
+         self.perlVersionString = input;
+    }
+
+    NSAssert(self.perlVersionString != nil, @"perlVersionString is nil");
     NSString * incCaches = [NSString stringWithFormat:@"-I%@/Library/Caches", bundlePath];
-    NSString * inc1 = [NSString stringWithFormat:@"-I%@/perl5/%@", bundlePath, perlVersionString];
-    NSString * inc2 = [NSString stringWithFormat:@"-I%@/perl5/site_perl", bundlePath];
-    NSString * inc3 = [NSString stringWithFormat:@"-I%@/perl5/%@/darwin-thread-multi-2level", bundlePath, perlVersionString];
-    NSString * inc4 = [NSString stringWithFormat:@"-I%@/perl5/site_perl/%@/darwin-thread-multi-2level", bundlePath, perlVersionString];
-    return [NSArray arrayWithObjects:incCaches, inc1, inc2, inc3, inc4, nil];
+    NSString * inc1 = [NSString stringWithFormat:@"-I%@/perl5/%@", bundlePath, self.perlVersionString];
+    NSString * inc2 = [NSString stringWithFormat:@"-I%@/perl5/%@/darwin-thread-multi-2level", bundlePath, self.perlVersionString];
+    NSString * inc3 = [NSString stringWithFormat:@"-I%@/perl5/site_perl/%@", bundlePath, self.perlVersionString];
+    NSString * inc4 = [NSString stringWithFormat:@"-I%@/perl5/site_perl/%@/darwin-thread-multi-2level", bundlePath, self.perlVersionString];
+
+    return [NSArray arrayWithObjects: incCaches, inc1, inc2, inc3, inc4,  nil];
 }
 
 - (void) syntaxCheck:(NSString*)fileName error:(NSError **)error {
@@ -242,6 +272,12 @@ static NSMutableDictionary * perlInstanceDict = nil;
         int embSize = 0;
         char *emb[32];
 
+        NSURL * filePathUrl = [NSURL URLWithString: fileName];
+        NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
+        NSString * pwdEnv = [NSString stringWithFormat:@"PWD=%@", dirPath.path];
+        char * pwdEnvCstring = (char *)[pwdEnv UTF8String];
+        putenv(pwdEnvCstring);
+
         NSArray * perlIncludes = [self getDefaultPerlIncludes];
 
         for (NSString * perlInclude in perlIncludes){
@@ -300,19 +336,25 @@ static NSMutableDictionary * perlInstanceDict = nil;
                 NSLog(@"perl_construct threw Exception %@", [exception description]);
                 return nil;
             }
-            int result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
-            if (result) {
-                if ( SvTRUE(ERRSV ) )
-                {
-                    char * perl_error = SvPVx_nolen(ERRSV);
-                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+            int result;
+            @try {
+                result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
+                if (result) {
+                    if ( SvTRUE(ERRSV ) )
+                    {
+                        char * perl_error = SvPVx_nolen(ERRSV);
+                        * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+                    }
+                    else
+                    {
+                        * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
+                    }
+                    [self cleanUp];
+                    return nil;
                 }
-                else
-                {
-                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
-                }
-                [self cleanUp];
-                return nil;
+            } @catch (NSException * exception ){
+               NSLog(@"perl_parse threw Exception %@", [exception description]);
+               return nil;
             }
         } else {
             // Wonder what happened here?

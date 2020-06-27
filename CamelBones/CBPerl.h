@@ -10,8 +10,6 @@
 #import "PerlImports.h"
 #include "perlxsi.h"
 
-#define perlVersionString @"5.28.0"
-
 #define CBPerlErrorException @"CBPerlErrorException"
 
 @class CBPerlScalar;
@@ -32,6 +30,8 @@ static Boolean perlInitialized = false;
 @property (nonatomic, assign) id sharedPerl;
 // _CBPerlInterpreter: pointer to this CBPerl object's perl interpreter
 @property (nonatomic, assign) PerlInterpreter * CBPerlInterpreter;
+
+@property (nonatomic, assign) NSString * perlVersionString;
 
 // getPerlInterpreter: Class method that returns the current perl Interpreter
 + (PerlInterpreter *) getPerlInterpreter;
