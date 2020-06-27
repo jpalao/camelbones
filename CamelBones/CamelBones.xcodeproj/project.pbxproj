@@ -854,7 +854,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
-				"ARCHS[sdk=iphoneos*]" = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphoneos*]" = arm64;
 				"ARCHS[sdk=iphonesimulator*]" = x86_64;
 				CB_DIST_PERL_PATH = "";
 				"CB_DIST_PERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-5.32.0/opt/local/lib/perl5/";
