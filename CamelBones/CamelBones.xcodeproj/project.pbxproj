@@ -644,13 +644,14 @@
 			};
 			buildConfigurationList = AA50E2060C87571F004DA7BD /* Build configuration list for PBXProject "CamelBones" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
+				en,
+				de,
+				Base,
+				fr,
+				ja,
 			);
 			mainGroup = AA50E2030C87571F004DA7BD;
 			productRefGroup = AA50E2330C87587B004DA7BD /* Products */;
