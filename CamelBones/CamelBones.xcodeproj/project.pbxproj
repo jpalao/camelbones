@@ -741,6 +741,7 @@
 		82151A671CEFBCAC00FB511B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -793,6 +794,7 @@
 		82151A681CEFBCAC00FB511B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = YES;
 				COMBINE_HIDPI_IMAGES = YES;
