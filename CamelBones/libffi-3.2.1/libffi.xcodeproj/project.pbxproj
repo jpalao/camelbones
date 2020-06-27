@@ -808,6 +808,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SYMROOT = Build/Products;
 				VALID_ARCHS = "arm64 armv7";
 			};
@@ -853,6 +854,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SYMROOT = Build/Products;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "arm64 armv7";
