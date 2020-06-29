@@ -166,6 +166,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
 - (NSArray *) getDefaultPerlIncludes {
     NSString * bundlePath                   = [[NSBundle mainBundle] resourcePath];
     NSArray * perl5Dirs = [self getDirsInPerl5Dir];
+
+    if (!perl5Dirs.count) return [NSMutableArray arrayWithCapacity:0].mutableCopy;
     
     for (id input in perl5Dirs) {
         NSString * exp = @"^(5\\.\\d+\\.\\d+)$";
