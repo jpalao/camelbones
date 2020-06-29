@@ -91,7 +91,7 @@ our %opts = (
 
     AUTHOR            => 'Sherm Pendley <sherm.pendley@gmail.com>',
 
-    XSOPT             => "-typemap $abs_path_to_cwd/$down/typemap",
+    XSOPT             => "-typemap $abs_path_to_cwd/typemap",
 
     LIBS              => [ '-lobjc'],
     INC               => "-F$CamelBonesPath ",
