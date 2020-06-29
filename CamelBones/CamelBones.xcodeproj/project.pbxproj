@@ -209,7 +209,7 @@
 		AA50E3D90C875DB8004DA7BD /* Wrappers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Wrappers.m; sourceTree = "<group>"; };
 		AA50E4240C875F90004DA7BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		AA50E4280C875FA2004DA7BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		AA83FE0E0CC9E9CF00E56F20 /* typemap */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = typemap; sourceTree = "<group>"; };
+		AA83FE0E0CC9E9CF00E56F20 /* typemap */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = typemap; path = CPAN/typemap; sourceTree = "<group>"; };
 		AA9143200CC99B2A0055B0E5 /* AppKit.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = AppKit.xs; sourceTree = "<group>"; };
 		AA9143230CC99B2A0055B0E5 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
 		AA9143570CC99B2A0055B0E5 /* CamelBones.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = CamelBones.xs; path = CPAN/CamelBones.xs; sourceTree = "<group>"; };
