@@ -4,7 +4,6 @@ package CBCommon;
 
 use Config;
 use ExtUtils::Embed qw/ldopts/;
-use Cwd qw/abs_path getcwd/;
 
 die "This version of CamelBones only works on macOS and iOS systems"
     if ( $^O !~ m/darwin/ );
@@ -20,8 +19,7 @@ our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 our $ARCHFLAGS = "-v -arch arm64 -miphoneos-version-min=8.0 -isysroot/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include  -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/include  -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L$PERL_INCLUDE_DIR -Wall -O3  ";
 
-
-my $abs_path_to_cwd = getcwd();
+my $abs_path_to_cwd = '/opt/perl-5.32.0/ext/CamelBones-1.2.0/'; # getcwd();
 
 my $down = "..";
 if ($abs_path_to_cwd =~ /AppKit|Foundation|Tests/) {
@@ -63,26 +61,13 @@ $CAMELBONES_FRAMEWORK_INSTALL_PATH = "~/Library/Frameworks"
 $OVERWRITE_CAMELBONES_FRAMEWORK = 0
     if $OVERWRITE_CAMELBONES_FRAMEWORK != 1;
 
-my $CamelBonesPath = "$abs_path_to_cwd/$down/Build/Products/$XCODE_BUILD_CONFIG";
+my $CamelBonesPath = "/opt/camelbones/CamelBones/Build/Products/$XCODE_BUILD_CONFIG";
 
 my $CamelBones = "$CamelBonesPath/$CAMELBONES_FRAMEWORK";
 
 my $user_dir = $ENV{"HOME"};
 
-$CAMELBONES_FRAMEWORK_INSTALL_PATH =~ s/~/$user_dir/;
-
-if (! -e $CAMELBONES_FRAMEWORK_INSTALL_PATH) {
-    my $framework_install_dir_create =
-      system ('mkdir', '-p', $CAMELBONES_FRAMEWORK_INSTALL_PATH );
-    die ("Could not create framework install directory:" .
-        "$CAMELBONES_FRAMEWORK_INSTALL_PATH \nResult: $framework_install_dir_create")
-      if ($framework_install_dir_create);
-}
-
-my $FrameworkInstallPath = abs_path($CAMELBONES_FRAMEWORK_INSTALL_PATH);
-
-die "Error, cannot create framework installation directory: " . $FrameworkInstallPath
-    if (!length $FrameworkInstallPath);
+my $FrameworkInstallPath = '/opt/local/Library/Frameworks';
 
 our %opts = (
     VERSION           => '1.2.0',
@@ -99,7 +84,7 @@ our %opts = (
                         'OTHERLDFLAGS' =>
                             "$ARCHFLAGS -framework Foundation " .
                             "-framework CamelBones -F$CamelBonesPath " . 
-                            "-F$FrameworkInstallPath -Wl,-rpath,$CamelBonesPath"
+                            "-Wl,-rpath,$CamelBonesPath"
                         },
 );
 
