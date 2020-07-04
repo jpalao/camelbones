@@ -268,16 +268,34 @@ static NSMutableDictionary * perlInstanceDict = nil;
     }
 }
 
-- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error{
+- (id) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error{
     @synchronized(perlInstanceDict) {
         int embSize = 0;
+        int dirChanged = -1;
         char *emb[32];
 
         NSURL * filePathUrl = [NSURL URLWithString: fileName];
         NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
-        NSString * pwdEnv = [NSString stringWithFormat:@"PWD=%@", dirPath.path];
-        char * pwdEnvCstring = (char *)[pwdEnv UTF8String];
-        putenv(pwdEnvCstring);
+        NSString * dirToChange = nil;
+        if (pwd && pwd.length > 0) {
+            dirToChange = pwd;
+        } else if (dirPath && ![fileName hasSuffix:@"debug_client.pl"]) {
+            dirToChange = dirPath.absoluteString;
+        }
+        if (dirToChange) {
+            dirChanged = chdir(dirToChange.UTF8String);
+            if (dirChanged < 0) {
+                NSString * errm = [NSString stringWithFormat: @"Cannot chdir: %@", dirToChange];
+                * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": errm}];
+                return nil;
+            }
+        }
+
+        if (dirPath) {
+            NSString * pwdEnv = [NSString stringWithFormat:@"PWD=%@", dirPath.path];
+            char * pwdEnvCstring = (char *)[pwdEnv UTF8String];
+            putenv(pwdEnvCstring);
+        }
 
         NSArray * perlIncludes = [self getDefaultPerlIncludes];
 

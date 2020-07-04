@@ -60,7 +60,7 @@ static Boolean perlInitialized = false;
 - (void) cleanUp;
 
 // init this CBPerl object with a new perl interpreter
-- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError**) error;
+-(id) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error;
 
 - (void) syntaxCheck:(NSString*)fileName error:(NSError **)error;
 
