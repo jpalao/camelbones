@@ -588,7 +588,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
 #if DEBUG
             NSLog(@"%@", message);
 #endif
-            [NSException raise:CBPerlErrorException format:message];
+            [NSException raise:CBPerlErrorException format:@"%@", message];
 
             return nil;
         }
