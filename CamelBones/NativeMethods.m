@@ -209,21 +209,31 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
     return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend;
 }
 
-int
+void*
 CBRunPerl (char * json) {
+
+    // Define a Perl context
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+    dTHX;
+
+    SV *ret = newSV(0);
+
     if (!json) {
-        return 1;
+        sv_setiv(ret, 1);
+        return ret;
     }
     NSError *error = nil;
     NSData * data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
 
     if (error) {
-        return 2;
+        sv_setiv(ret, 2);
+        return ret;
     }
 
     if (!jsonResponse) {
-        return 3;
+        sv_setiv(ret, 3);
+        return ret;
     }
 
     // this is the only mandatory element
@@ -262,7 +272,7 @@ CBRunPerl (char * json) {
         NSLog(@"%@", perlOutput);
     }
 
-    return 0;
+    return ret;
 }
 
 // Call a native class or object method

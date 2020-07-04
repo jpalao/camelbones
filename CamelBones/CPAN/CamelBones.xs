@@ -33,9 +33,9 @@ CBInit()
     NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
     [[CBPerl alloc] initXS];
 
-int
-CBRunPerl(fileName)
-    char* fileName;
+SV*
+CBRunPerl(json)
+    const char* json;
 
 SV*
 CBCallNativeMethod(this, sel, args, isSuper)
