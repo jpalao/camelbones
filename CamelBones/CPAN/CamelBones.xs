@@ -33,6 +33,10 @@ CBInit()
     NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
     [[CBPerl alloc] initXS];
 
+int
+CBRunPerl(fileName)
+    char* fileName;
+
 SV*
 CBCallNativeMethod(this, sel, args, isSuper)
     SV* this;
@@ -70,4 +74,5 @@ CBRegisterClassMethodsForClass(package, methods, class)
     const char *package;
     id methods;
     Class class;
+
 

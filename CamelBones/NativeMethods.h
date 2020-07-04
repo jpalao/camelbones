@@ -9,4 +9,4 @@
 
 // Call a native class or object method
 extern void* CBCallNativeMethod(void* target, SEL sel, void*args, BOOL isSuper);
-
+extern int CBRunPerl(char* json);

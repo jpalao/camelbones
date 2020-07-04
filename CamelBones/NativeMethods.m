@@ -209,6 +209,62 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
     return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend;
 }
 
+int
+CBRunPerl (char * json) {
+    if (!json) {
+        return 1;
+    }
+    NSError *error = nil;
+    NSData * data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+
+    if (error) {
+        return 2;
+    }
+
+    if (!jsonResponse) {
+        return 3;
+    }
+
+    // this is the only mandatory element
+    NSString * filePath = [jsonResponse valueForKey:@"filePath"];
+    if (!filePath) {
+        return 4;
+    }
+
+    NSString * absPwd = nil;
+    @try {
+        absPwd = [jsonResponse valueForKey:@"absPwd"];
+    } @finally {
+        if (!absPwd) absPwd = @"";
+    }
+
+    NSArray * switches = nil;
+    @try {
+        switches = [jsonResponse valueForKey:@"switches"];
+    } @finally {
+        if (!switches) switches = @[];
+    }
+
+    NSArray * args = nil;
+    @try {
+        args = [jsonResponse valueForKey:@"args"];
+    } @finally {
+        if (!args) args = @[];
+    }
+
+    [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&error];
+
+
+    if (error) {
+        NSDictionary * userInfo = [error userInfo];
+        NSString * perlOutput = [userInfo objectForKey:@"reason"];
+        NSLog(@"%@", perlOutput);
+    }
+
+    return 0;
+}
+
 // Call a native class or object method
 void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     // Define a Perl context
