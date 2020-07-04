@@ -75,4 +75,3 @@ CBRegisterClassMethodsForClass(package, methods, class)
     id methods;
     Class class;
 
-
