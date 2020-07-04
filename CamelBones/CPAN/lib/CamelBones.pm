@@ -31,7 +31,7 @@ our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::CoreGraphics::EXPORT_OK,
                     @CamelBones::CoreGraphics::Constants::EXPORT,
                     @CamelBones::CoreGraphics::Globals::EXPORT,                    
-                    'class', 'CBCreateAccessor', 'CBPoke', 'CBRunPerl'
+                    'class', 'CBCreateAccessor', 'CBPoke'
                 );
 our %EXPORT_TAGS = (
     'All'		=> [@EXPORT_OK],
