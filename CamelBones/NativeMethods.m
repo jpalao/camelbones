@@ -216,63 +216,76 @@ CBRunPerl (char * json) {
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
-    SV *ret = newSV(0);
+    int retval = 0;
+    SV *ret = newSV(retval);
+
+    NSData * data = nil;
+    NSDictionary *jsonResponse = nil;
+    NSString * absPwd = nil;
+    NSArray * args = nil;
+    NSString * filePath = nil;
+    NSArray * switches = nil;
+    NSError *error = nil;
 
     if (!json) {
-        sv_setiv(ret, 1);
-        return ret;
+        return nil;
     }
-    NSError *error = nil;
-    NSData * data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-
-    if (error) {
-        sv_setiv(ret, 2);
-        return ret;
-    }
-
-    if (!jsonResponse) {
-        sv_setiv(ret, 3);
-        return ret;
-    }
-
-    // this is the only mandatory element
-    NSString * filePath = [jsonResponse valueForKey:@"filePath"];
-    if (!filePath) {
-        return 4;
-    }
-
-    NSString * absPwd = nil;
     @try {
-        absPwd = [jsonResponse valueForKey:@"absPwd"];
+        data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
+        jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        if (error) {
+            retval = 3;
+        }
+        if (!jsonResponse) {
+            retval = 4;
+        }
+        // this is the only mandatory element
+        filePath = [jsonResponse valueForKey:@"filePath"];
+        if (!filePath) {
+            retval = 5;
+        } else {
+            @try {
+                absPwd = [jsonResponse valueForKey:@"absPwd"];
+            } @finally {
+                if (!absPwd) absPwd = @"";
+            }
+            @try {
+                switches = [jsonResponse valueForKey:@"switches"];
+            } @finally {
+                if (!switches) switches = @[];
+            }
+            @try {
+                args = [jsonResponse valueForKey:@"args"];
+            } @finally {
+                if (!args) args = @[];
+            }
+        }
+
+        if (retval == 0) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+                    @autoreleasepool {
+                        CBPerl* cbPerl = [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&error completion:^(int perlStatus) {
+                                  NSLog(@"User cancelled");
+                        }];
+                        if (error) {
+                            NSDictionary * userInfo = [error userInfo];
+                            NSString * perlOutput = [userInfo objectForKey:@"reason"];
+                            NSLog(@"Error: %@", perlOutput);
+                        }
+                        [cbPerl cleanUp];
+                    }
+                });
+            });
+        }
+    } @catch (NSException * exception) {
+        retval = 2;
     } @finally {
-        if (!absPwd) absPwd = @"";
+        if (retval) {
+            sv_setiv(ret, 2);
+        }
+        return (void *)ret;
     }
-
-    NSArray * switches = nil;
-    @try {
-        switches = [jsonResponse valueForKey:@"switches"];
-    } @finally {
-        if (!switches) switches = @[];
-    }
-
-    NSArray * args = nil;
-    @try {
-        args = [jsonResponse valueForKey:@"args"];
-    } @finally {
-        if (!args) args = @[];
-    }
-
-    [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&error];
-
-
-    if (error) {
-        NSDictionary * userInfo = [error userInfo];
-        NSString * perlOutput = [userInfo objectForKey:@"reason"];
-        NSLog(@"%@", perlOutput);
-    }
-
-    return ret;
 }
 
 // Call a native class or object method
