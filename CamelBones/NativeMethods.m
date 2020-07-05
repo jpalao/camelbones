@@ -261,31 +261,31 @@ CBRunPerl (char * json) {
             }
         }
 
-        if (retval == 0) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+                if (retval == 0) {
                     @autoreleasepool {
-                        CBPerl* cbPerl = [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&error completion:^(int perlStatus) {
-                                  NSLog(@"User cancelled");
+                        NSError *perlError = nil;
+                        [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&perlError completion:^ (int perlStatus) {
+                            NSLog(@"kk");
                         }];
-                        if (error) {
+                        if (perlError) {
                             NSDictionary * userInfo = [error userInfo];
                             NSString * perlOutput = [userInfo objectForKey:@"reason"];
                             NSLog(@"Error: %@", perlOutput);
                         }
-                        [cbPerl cleanUp];
                     }
-                });
+                }
             });
-        }
+        });
+
     } @catch (NSException * exception) {
         retval = 2;
-    } @finally {
-        if (retval) {
-            sv_setiv(ret, 2);
-        }
-        return (void *)ret;
     }
+    if (retval) {
+        sv_setiv(ret, 2);
+    }
+    return (void *)ret;
 }
 
 // Call a native class or object method

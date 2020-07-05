@@ -62,7 +62,7 @@ typedef void (^PerlCompletionBlock)(int perlRunResult);
 - (void) cleanUp;
 
 // init this CBPerl object with a new perl interpreter
--(id) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion;
+-(void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion;
 
 - (void) syntaxCheck:(NSString*)fileName error:(NSError **)error;
 

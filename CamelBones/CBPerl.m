@@ -268,7 +268,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
     }
 }
 
-- (id) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion{
+- (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion{
     @synchronized(perlInstanceDict) {
         int embSize = 0;
         int dirChanged = -1;
@@ -287,7 +287,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
             if (dirChanged < 0) {
                 NSString * errm = [NSString stringWithFormat: @"Cannot chdir: %@", dirToChange];
                 * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": errm}];
-                return nil;
+                return;
             }
         }
 
@@ -337,7 +337,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
             if(_CBPerlInterpreter == NULL) {
                 * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": @"Cannot initialize perl interpreter"}];
                 [self cleanUp];
-                return nil;
+                return;
             } else {
                 PERL_SET_CONTEXT(_CBPerlInterpreter);
             }
@@ -353,7 +353,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
                 perl_construct(_CBPerlInterpreter);
             } @catch (NSException * exception ){
                 NSLog(@"perl_construct threw Exception %@", [exception description]);
-                return nil;
+                return;
             }
             int result;
             @try {
@@ -369,15 +369,16 @@ static NSMutableDictionary * perlInstanceDict = nil;
                         * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
                     }
                     [self cleanUp];
-                    return nil;
+                    return;
                 }
             } @catch (NSException * exception ){
                NSLog(@"perl_parse threw Exception %@", [exception description]);
-               return nil;
+               * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:03 userInfo:@{@"reason":[NSString stringWithFormat:[exception description]]}];
+               return;
             }
         } else {
             // Wonder what happened here?
-            return nil;
+            return;
         }
     }
     int result = perl_run(_CBPerlInterpreter);
@@ -392,10 +393,11 @@ static NSMutableDictionary * perlInstanceDict = nil;
             * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
         }
         [self cleanUp];
-        return nil;
+        return;
+    } else {
+        if (completion) completion(0);
+        [self cleanUp];
     }
-    return [_sharedPerl retain];
-
 }
 
 - (id) init {
