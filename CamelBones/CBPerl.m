@@ -268,7 +268,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
     }
 }
 
-- (id) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error{
+- (id) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion{
     @synchronized(perlInstanceDict) {
         int embSize = 0;
         int dirChanged = -1;
