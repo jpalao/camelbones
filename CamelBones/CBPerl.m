@@ -32,8 +32,9 @@ static NSMutableDictionary * perlInstanceDict = nil;
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {
         // prevent xs call to overwrite the perl instance dict when running from app
-        if (!perlInstanceDict)
+        if (!perlInstanceDict) {
             perlInstanceDict = dictionary;
+        }
     }
 }
 
@@ -48,6 +49,13 @@ static NSMutableDictionary * perlInstanceDict = nil;
     @synchronized(self) {
         return perlInstanceDict;
     }
+}
+
++ (int)sleepMicroSeconds: (NSUInteger)usec {
+    struct timespec request;
+    request.tv_sec  = usec / 1000000L;
+    request.tv_nsec = (usec % 1000000L) * 1000L;
+    return nanosleep(&request, NULL);
 }
 
 + (void) initializePerl {
@@ -373,7 +381,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
                 }
             } @catch (NSException * exception ){
                NSLog(@"perl_parse threw Exception %@", [exception description]);
-               * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:03 userInfo:@{@"reason":[NSString stringWithFormat:[exception description]]}];
+               * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"%@", [exception description]]}];
                return;
             }
         } else {
@@ -395,8 +403,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
         [self cleanUp];
         return;
     } else {
-        if (completion) completion(0);
         [self cleanUp];
+        if (completion) completion(0);
     }
 }
 
