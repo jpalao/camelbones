@@ -211,14 +211,15 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
 
 void*
 CBRunPerl (char * json) {
-
+@autoreleasepool {
     // Define a Perl context
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
-    int retval = 0;
+    __block int retval = 0;
     SV *ret = newSV(retval);
-
+    __block NSNumber * wait_for_perl = [NSNumber numberWithUnsignedInt:1];
+    // __block BOOL wait_for_perl = TRUE;
     NSData * data = nil;
     NSDictionary *jsonResponse = nil;
     NSString * absPwd = nil;
@@ -234,15 +235,15 @@ CBRunPerl (char * json) {
         data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
         jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
         if (error) {
-            retval = 3;
+            retval = 1;
         }
         if (!jsonResponse) {
-            retval = 4;
+            retval = 2;
         }
         // this is the only mandatory element
         filePath = [jsonResponse valueForKey:@"filePath"];
         if (!filePath) {
-            retval = 5;
+            retval = 3;
         } else {
             @try {
                 absPwd = [jsonResponse valueForKey:@"absPwd"];
@@ -262,30 +263,40 @@ CBRunPerl (char * json) {
         }
 
         dispatch_async(dispatch_get_main_queue(), ^{
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
                 if (retval == 0) {
-                    @autoreleasepool {
-                        NSError *perlError = nil;
-                        [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&perlError completion:^ (int perlStatus) {
-                            NSLog(@"kk");
-                        }];
-                        if (perlError) {
-                            NSDictionary * userInfo = [error userInfo];
-                            NSString * perlOutput = [userInfo objectForKey:@"reason"];
-                            NSLog(@"Error: %@", perlOutput);
-                        }
+                    NSError *perlError = nil;
+                    [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&perlError completion:nil];
+                    if (perlError) {
+                        NSDictionary * userInfo = [error userInfo];
+                        NSString * perlOutput = [userInfo objectForKey:@"reason"];
+                        NSLog(@"Error: %@", perlOutput);
+                        retval = 4;
+                    }
+                    @synchronized(wait_for_perl) {
+                        wait_for_perl = [NSNumber numberWithUnsignedInt:0];
+
                     }
                 }
             });
         });
-
     } @catch (NSException * exception) {
-        retval = 2;
+        retval = 5;
     }
-    if (retval) {
-        sv_setiv(ret, 2);
+
+    sv_setiv(ret, retval);
+
+    while (1) {
+        @synchronized(wait_for_perl) {
+            if ([wait_for_perl unsignedIntegerValue] == 0) {
+                break;
+            }
+        }
+        [CBPerl sleepMicroSeconds:50000];
     }
+
     return (void *)ret;
+}
 }
 
 // Call a native class or object method
