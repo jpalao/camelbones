@@ -243,9 +243,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
             _sharedPerl = self;
             [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
 
-#if DEBUG
-            NSLog(@"Inited Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
-#endif
             PL_perl_destruct_level = 1;
             @try {
                 perl_construct(_CBPerlInterpreter);
@@ -353,9 +350,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
             _sharedPerl = self;
             [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
 
-    #if DEBUG
-            NSLog(@"Inited Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
-    #endif
             PL_perl_destruct_level = 1;
             @try {
                 perl_construct(_CBPerlInterpreter);
@@ -445,9 +439,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
             }
 
             _CBPerlInterpreter = perl_alloc();
-#if DEBUG
-            NSLog(@"Inited Perl Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
-#endif
             PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
             perl_construct(_CBPerlInterpreter);
             perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
@@ -472,9 +463,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
 -(void) cleanUp {
     @synchronized(perlInstanceDict) {
         PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
-#if DEBUG
-        NSLog(@"Cleanup Interpreter %llx", (unsigned long long)_CBPerlInterpreter);
-#endif
         [[CBPerl getPerlInstanceDictionary] removeObjectForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) _CBPerlInterpreter]];
         PL_perl_destruct_level = 1;
         perl_destruct(_CBPerlInterpreter);
@@ -595,9 +583,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
         // Check for an error
         if (SvTRUE(ERRSV)) {
             NSString * message = [NSString stringWithFormat:@"Perl exception: %s", SvPV(ERRSV, PL_na)];
-#if DEBUG
-            NSLog(@"%@", message);
-#endif
             [NSException raise:CBPerlErrorException format:@"%@", message];
 
             return nil;
