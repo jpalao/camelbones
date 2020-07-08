@@ -241,12 +241,12 @@ CBRunPerl (char * json) {
             retval = 2;
         }
         // this is the only mandatory element
-        filePath = [jsonResponse valueForKey:@"filePath"];
+        filePath = [jsonResponse valueForKey:@"file"];
         if (!filePath) {
             retval = 3;
         } else {
             @try {
-                absPwd = [jsonResponse valueForKey:@"absPwd"];
+                absPwd = [jsonResponse valueForKey:@"pwd"];
             } @finally {
                 if (!absPwd) absPwd = @"";
             }
