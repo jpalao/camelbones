@@ -292,9 +292,8 @@ CBRunPerl (char * json) {
                 break;
             }
         }
-        [CBPerl sleepMicroSeconds:50000];
+        [CBPerl sleepMicroSeconds:100000];
     }
-
     return (void *)ret;
 }
 }
