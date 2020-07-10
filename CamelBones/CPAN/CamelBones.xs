@@ -34,6 +34,10 @@ CBInit()
     [[CBPerl alloc] initXS];
 
 SV*
+CBRunPerlCaptureStdout(json)
+    const char* json;
+
+SV*
 CBRunPerl(json)
     const char* json;
 
