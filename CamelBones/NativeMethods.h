@@ -11,3 +11,4 @@
 extern void* CBCallNativeMethod(void* target, SEL sel, void*args, BOOL isSuper);
 extern void* CBRunPerl(char * json);
 extern void* CBRunPerlCaptureStdout (char * json);
+int lsof();

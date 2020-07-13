@@ -290,6 +290,8 @@ CBRunPerl (char * json) {
         }
         [CBPerl sleepMicroSeconds:100000];
     }
+//    fflush(stdout);
+    fflush(stderr);
     return (void *)ret;
 }
 }
@@ -297,56 +299,75 @@ CBRunPerl (char * json) {
 void*
 CBRunPerlCaptureStdout (char * json) {
 @autoreleasepool {
-    // Define a Perl context
-    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
-    dTHX;
+    int kaka = lsof();
+
+    NSPipe * pipe = [NSPipe pipe];
+
+    __block BOOL  ended = FALSE;
     __block id notificationObserver;
     __block NSMutableString * output = [NSMutableString stringWithString:@""];
-    __block BOOL  ended = FALSE;
     __block BOOL  listener_ready = FALSE;
-    __block NSPipe * pipe = [NSPipe pipe];
-    __block NSFileHandle * file = [pipe fileHandleForReading];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //[[pipe fileHandleForWriting] initWithFileDescriptor:fileno(stdout) closeOnDealloc:YES];
-        int fd = [[pipe fileHandleForWriting] fileDescriptor];
-        int fd2 = dup2(fd, fileno(stdout));
-        int fd3 = [[pipe fileHandleForWriting] fileDescriptor];
+    __block NSFileHandle * pipeOut = [pipe fileHandleForReading];
 
-        notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:file queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
+
+    int saved_stdout = dup(STDOUT_FILENO);
+
+    NSFileHandle * pipeIn = [pipe fileHandleForWriting];
+    int stdout_fd = STDOUT_FILENO;
+    int close_r = close(STDOUT_FILENO);
+//    int dup_stdout = dup(stdout_fd);
+    int dup_stdout = dup2([pipeIn fileDescriptor], stdout_fd);
+    [pipeIn initWithFileDescriptor:dup_stdout closeOnDealloc:NO];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:pipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
             if (!ended) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
                     NSString * notificationText;
                     @try {
-                        notificationText = [[NSString alloc] initWithData:[file availableData] encoding: NSUTF8StringEncoding];
-                        [output appendString:notificationText];
+                        notificationText = [[NSString alloc] initWithData:[pipeOut availableData] encoding: NSUTF8StringEncoding];
+                        if (pipeOut) {
+                            [output appendString:notificationText];
+                        } else {
+                            sprintf("%s", "%s", [output cStringUsingEncoding:NSUTF8StringEncoding]);
+                        }
                     }
                     @catch (NSException * exception) {
                         [output appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
                     }
                 });
-                [file waitForDataInBackgroundAndNotify];
+                [pipeOut waitForDataInBackgroundAndNotify];
             }
         }];
-        [file waitForDataInBackgroundAndNotify];
+        [pipeOut waitForDataInBackgroundAndNotify];
         listener_ready = TRUE;
     });
     while (!listener_ready) {
         [CBPerl sleepMicroSeconds:100000];
     }
+
+
+    // Define a Perl context
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+    dTHX;
     SV * exec_result = CBRunPerl(json);
 
-    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:file];
+    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:pipeOut];
     notificationObserver = nil;
+    [pipeOut closeFile];
+    pipeOut = nil;
+    int test_close = close(STDOUT_FILENO);
+    [pipeIn closeFile];
+    pipeIn = nil;
+
+    /* Restore stdout */
+    int new_fd = dup2(saved_stdout, 1);
+    int resutl = close(saved_stdout);
+
+
     ended = TRUE;
-
-    // closes output after first line?
-    [file closeFile];
-    // [[pipe fileHandleForWriting] closeFile];
-    // [[pipe fileHandleForReading] closeFile];
-
     int result = sv_2iv(exec_result);
     const char * c_string = (const char *)[output cStringUsingEncoding:NSUTF8StringEncoding];
-    //SV * string_result = newSVpv(c_string, strlen(c_string));
     SV * string_result = newSVpvn_flags(c_string, strlen(c_string), SVf_UTF8);
     return (void *) string_result;
 }
@@ -909,4 +930,28 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     }
     
     return ret;
+}
+
+int lsof()
+{
+    int flags;
+    int fd;
+    char buf[MAXPATHLEN+1] ;
+    int n = 1 ;
+
+    for (fd = 0; fd < (int) FD_SETSIZE; fd++) {
+        errno = 0;
+        flags = fcntl(fd, F_GETFD, 0);
+        if (flags == -1 && errno) {
+            if (errno != EBADF) {
+                return -1;
+            }
+            else
+                continue;
+        }
+        fcntl(fd , F_GETPATH, buf);
+//        NSLog( @"File Descriptor %d number %d in use for: %s",fd,n , buf ) ;
+        ++n ;
+    }
+    return n;
 }
