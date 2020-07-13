@@ -296,46 +296,60 @@ CBRunPerl (char * json) {
 
 void*
 CBRunPerlCaptureStdout (char * json) {
+@autoreleasepool {
     // Define a Perl context
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
+    __block id notificationObserver;
+    __block NSMutableString * output = [NSMutableString stringWithString:@""];
+    __block BOOL  ended = FALSE;
+    __block BOOL  listener_ready = FALSE;
+    __block NSPipe * pipe = [NSPipe pipe];
+    __block NSFileHandle * file = [pipe fileHandleForReading];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //[[pipe fileHandleForWriting] initWithFileDescriptor:fileno(stdout) closeOnDealloc:YES];
+        int fd = [[pipe fileHandleForWriting] fileDescriptor];
+        int fd2 = dup2(fd, fileno(stdout));
+        int fd3 = [[pipe fileHandleForWriting] fileDescriptor];
 
-    NSPipe * pipe = [NSPipe pipe];
-    NSFileHandle * file = [pipe fileHandleForReading];
-    dup2([[pipe fileHandleForWriting] fileDescriptor], fileno(stdout));
-    NSMutableString * output = [NSMutableString stringWithString:@""];
-
-    BOOL __block ended = FALSE;
-
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:file queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            NSString * notificationText;
-            @try {
-                notificationText = [[NSString alloc] initWithData:[file availableData] encoding: NSUTF8StringEncoding];
-                [output appendString:notificationText];
-                if (!ended) {
-                    [file waitForDataInBackgroundAndNotify];
-                }
+        notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:file queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
+            if (!ended) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+                    NSString * notificationText;
+                    @try {
+                        notificationText = [[NSString alloc] initWithData:[file availableData] encoding: NSUTF8StringEncoding];
+                        [output appendString:notificationText];
+                    }
+                    @catch (NSException * exception) {
+                        [output appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
+                    }
+                });
+                [file waitForDataInBackgroundAndNotify];
             }
-            @catch (NSException * exception) {
-                [output appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
-            }
-        });
-    }];
-
-    [file waitForDataInBackgroundAndNotify];
-
+        }];
+        [file waitForDataInBackgroundAndNotify];
+        listener_ready = TRUE;
+    });
+    while (!listener_ready) {
+        [CBPerl sleepMicroSeconds:100000];
+    }
     SV * exec_result = CBRunPerl(json);
+
+    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:file];
+    notificationObserver = nil;
     ended = TRUE;
-    int result = sv_2iv(exec_result);
 
-    [[pipe fileHandleForReading] closeFile];
-    [[pipe fileHandleForWriting] closeFile];
+    // closes output after first line?
     [file closeFile];
+    // [[pipe fileHandleForWriting] closeFile];
+    // [[pipe fileHandleForReading] closeFile];
 
+    int result = sv_2iv(exec_result);
     const char * c_string = (const char *)[output cStringUsingEncoding:NSUTF8StringEncoding];
-    SV * string_result = newSVpv(c_string, strlen(c_string));
+    //SV * string_result = newSVpv(c_string, strlen(c_string));
+    SV * string_result = newSVpvn_flags(c_string, strlen(c_string), SVf_UTF8);
     return (void *) string_result;
+}
 }
 
 // Call a native class or object method
