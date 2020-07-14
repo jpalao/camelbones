@@ -301,74 +301,113 @@ CBRunPerlCaptureStdout (char * json) {
 @autoreleasepool {
     int kaka = lsof();
 
-    NSPipe * pipe = [NSPipe pipe];
-
+    NSPipe * stdoutPipe = [NSPipe pipe];
+    NSPipe * stderrPipe = [NSPipe pipe];
     __block BOOL  ended = FALSE;
-    __block id notificationObserver;
-    __block NSMutableString * output = [NSMutableString stringWithString:@""];
+    __block id notificationObserver, notificationObserver2;
+    __block NSMutableString * stdoutOutput = [NSMutableString stringWithString:@""];
+    __block NSMutableString * stderrOutput = [NSMutableString stringWithString:@""];
     __block BOOL  listener_ready = FALSE;
-    __block NSFileHandle * pipeOut = [pipe fileHandleForReading];
+    __block NSFileHandle * stdoutPipeOut = [stdoutPipe fileHandleForReading];
+    __block NSFileHandle * stderrPipeOut = [stderrPipe fileHandleForReading];
 
+    NSFileHandle * stdoutPipeIn = [stdoutPipe fileHandleForWriting];
+    NSFileHandle * stderrPipeIn = [stderrPipe fileHandleForWriting];
 
-    int saved_stdout = dup(STDOUT_FILENO);
-
-    NSFileHandle * pipeIn = [pipe fileHandleForWriting];
+    int stderr_fd = STDERR_FILENO;
     int stdout_fd = STDOUT_FILENO;
-    int close_r = close(STDOUT_FILENO);
-//    int dup_stdout = dup(stdout_fd);
-    int dup_stdout = dup2([pipeIn fileDescriptor], stdout_fd);
-    [pipeIn initWithFileDescriptor:dup_stdout closeOnDealloc:NO];
+
+    int saved_stdout = dup(stdout_fd);
+    int saved_stderr = dup(stderr_fd);
+
+    int close_r = close(stdout_fd);
+        close_r = close (stderr_fd);
+
+    int dup_stdout = dup2([stdoutPipeIn fileDescriptor], stdout_fd);
+    int dup_stderr = dup2([stderrPipeIn fileDescriptor], stderr_fd);
+
+    [stdoutPipeIn initWithFileDescriptor:dup_stdout];
+    [stderrPipeIn initWithFileDescriptor:dup_stderr];
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:pipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
+        notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stdoutPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
             if (!ended) {
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
                     NSString * notificationText;
                     @try {
-                        notificationText = [[NSString alloc] initWithData:[pipeOut availableData] encoding: NSUTF8StringEncoding];
-                        if (pipeOut) {
-                            [output appendString:notificationText];
+                        notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
+                        if (stdoutPipeOut) {
+                            [stdoutOutput appendString:notificationText];
                         } else {
-                            sprintf("%s", "%s", [output cStringUsingEncoding:NSUTF8StringEncoding]);
+                            sprintf("%s", "%s", [stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding]);
                         }
                     }
                     @catch (NSException * exception) {
-                        [output appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
+                        [stdoutOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
                     }
                 });
-                [pipeOut waitForDataInBackgroundAndNotify];
+                [stdoutPipeOut waitForDataInBackgroundAndNotify];
             }
         }];
-        [pipeOut waitForDataInBackgroundAndNotify];
+        [stdoutPipeOut waitForDataInBackgroundAndNotify];
+        notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
+            if (!ended) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+                    NSString * notificationText;
+                    @try {
+                        notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
+                        if (stderrPipeOut) {
+                            [stderrOutput appendString:notificationText];
+                        } else {
+                            sprintf("%s", "%s", [stderrOutput cStringUsingEncoding:NSUTF8StringEncoding]);
+                        }
+                    }
+                    @catch (NSException * exception) {
+                        [stderrOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
+                    }
+                });
+                [stderrPipeOut waitForDataInBackgroundAndNotify];
+            }
+        }];
+        [stderrPipeOut waitForDataInBackgroundAndNotify];
         listener_ready = TRUE;
     });
     while (!listener_ready) {
         [CBPerl sleepMicroSeconds:100000];
     }
 
-
     // Define a Perl context
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     SV * exec_result = CBRunPerl(json);
-
-    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:pipeOut];
-    notificationObserver = nil;
-    [pipeOut closeFile];
-    pipeOut = nil;
-    int test_close = close(STDOUT_FILENO);
-    [pipeIn closeFile];
-    pipeIn = nil;
-
-    /* Restore stdout */
-    int new_fd = dup2(saved_stdout, 1);
-    int resutl = close(saved_stdout);
-
-
     ended = TRUE;
+
+    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:stdoutPipeOut];
+    [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver2 name:NSFileHandleDataAvailableNotification object:stderrPipeOut];
+    close_r = close(STDOUT_FILENO);
+    close_r = close(STDERR_FILENO);
+    // NSAssert(close_r == 1, @"Cannot restore STDOUT");
+
+    [stdoutPipeOut closeFile];
+    [stdoutPipeIn closeFile];
+    [stderrPipeOut closeFile];
+    [stderrPipeIn closeFile];
+
+    int new_fd = dup2(saved_stdout, STDOUT_FILENO);
+        new_fd = dup2(saved_stderr, STDERR_FILENO);
+
+    close_r = close(saved_stdout);
+    close_r = close(saved_stderr);
+
     int result = sv_2iv(exec_result);
-    const char * c_string = (const char *)[output cStringUsingEncoding:NSUTF8StringEncoding];
-    SV * string_result = newSVpvn_flags(c_string, strlen(c_string), SVf_UTF8);
+    const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
+    SV * string_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
+
+    const char * stderr_string = (const char *)[stderrOutput cStringUsingEncoding:NSUTF8StringEncoding];
+//    if (strlen(stderr_string) > 0 ) {
+//        warn("%s", stderr_string);
+//    }
+
     return (void *) string_result;
 }
 }
@@ -950,7 +989,7 @@ int lsof()
                 continue;
         }
         fcntl(fd , F_GETPATH, buf);
-//        NSLog( @"File Descriptor %d number %d in use for: %s",fd,n , buf ) ;
+//        warn( "File Descriptor %d number %d in use for: %s",fd,n , buf ) ;
         ++n ;
     }
     return n;
