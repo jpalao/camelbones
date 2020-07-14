@@ -17,8 +17,8 @@ our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 our $ARCHS = $ENV{'ARCHS'};
 our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
-our $ARCHFLAGS = "-v -arch arm64 -miphoneos-version-min=8.0 -isysroot/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include  -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/include  -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L$PERL_INCLUDE_DIR -Wall -O3  ";
-
+#our $ARCHFLAGS = "-v -arch arm64 -miphoneos-version-min=8.0 -isysroot/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include  -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/include  -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L$PERL_INCLUDE_DIR -Wall -O3  ";
+our $ARCHFLAGS = $Config{'ccflags'} . " -ObjC -lobjc -L$PERL_INCLUDE_DIR";
 my $abs_path_to_cwd = '/opt/perl-5.32.0/ext/CamelBones-1.2.0/'; # getcwd();
 
 my $down = "..";
