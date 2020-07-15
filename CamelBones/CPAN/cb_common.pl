@@ -8,19 +8,20 @@ use ExtUtils::Embed qw/ldopts/;
 die "This version of CamelBones only works on macOS and iOS systems"
     if ( $^O !~ m/darwin/ );
 
+our $ARCHS = $ENV{'ARCHS'};
 our $CAMELBONES_PREFIX = $ENV{'CAMELBONES_PREFIX'};
 our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
 our $CAMELBONES_FRAMEWORK_INSTALL_PATH = $ENV{'CAMELBONES_FRAMEWORK_INSTALL_PATH'};
 our $OVERWRITE_CAMELBONES_FRAMEWORK = $ENV{'OVERWRITE_CAMELBONES_FRAMEWORK'};
 our $INSTALL_CAMELBONES_FRAMEWORK = $ENV{'INSTALL_CAMELBONES_FRAMEWORK'};
-our $LIBFFIDIR = '../libffi-3.2.1';
-our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
-our $ARCHS = $ENV{'ARCHS'};
 our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
-#our $ARCHFLAGS = "-v -arch arm64 -miphoneos-version-min=8.0 -isysroot/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -fno-common -pipe -Os -fno-strict-aliasing -fstack-protector-strong -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/include  -I/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/include  -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/usr/lib -Wl,-headerpad_max_install_names -fstack-protector-strong -ObjC -lobjc -L$PERL_INCLUDE_DIR -Wall -O3  ";
-our $ARCHFLAGS = $Config{'ccflags'} . " -ObjC -lobjc -L$PERL_INCLUDE_DIR";
-my $abs_path_to_cwd = "$CAMELBONES_PREFIX/perl-5.32.0/ext/CamelBones-1.2.0/"; # getcwd();
+our $ARCHFLAGS = $ENV{'ARCHFLAGS'};
+
+my $abs_path_to_cwd = "$CAMELBONES_PREFIX/perl-5.32.0/ext/CamelBones-1.2.0/";
+
+our $LIBFFIDIR = '../libffi-3.2.1';
+our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 
 my $down = "..";
 if ($abs_path_to_cwd =~ /AppKit|Foundation|Tests/) {
@@ -31,8 +32,11 @@ my $perl_link_flags = ldopts();
 chomp $perl_link_flags;
 
 if (!length $ARCHFLAGS) {
-    $ARCHFLAGS = '-arch i386 -arch x86_64';
+    $ARCHFLAGS = $Config{'ccflags'};
+    chomp $ARCHFLAGS;
 }
+
+$ARCHFLAGS .= " -L$PERL_INCLUDE_DIR  -ObjC -lobjc ";
 
 if (!length $ARCHS) {
     $ARCHS = 'i386 x86_64';
