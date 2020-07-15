@@ -854,7 +854,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				"ARCHS[sdk=iphoneos*]" = arm64;
 				"ARCHS[sdk=iphonesimulator*]" = x86_64;
 				A_PERL_VERSION = 5.32.0;
@@ -932,7 +931,9 @@
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 x86_64";
+				VALID_ARCHS = "";
+				"VALID_ARCHS[sdk=iphoneos*]" = "arm64 armv7";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wno-shorten-64-to-32",
 					"-Wall",
@@ -946,6 +947,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
+				"ARCHS[sdk=iphoneos*]" = (
+					arm64,
+					armv7,
+				);
+				"ARCHS[sdk=iphonesimulator*]" = x86_64;
 				A_PERL_VERSION = 5.32.0;
 				B_CI_BUILD = "perl-$(A_PERL_VERSION)/opt";
 				CB_DIST_PERL_PATH = "";
@@ -1017,7 +1023,9 @@
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "arm64 armv7 x86_64";
+				VALID_ARCHS = "";
+				"VALID_ARCHS[sdk=iphoneos*]" = "arm64 armv7";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wno-shorten-64-to-32",
 					"-Wall",
