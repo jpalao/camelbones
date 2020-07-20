@@ -971,26 +971,35 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
     return ret;
 }
 
-int lsof()
+int lsof(NSMutableString * lsofString)
 {
     int flags;
     int fd;
     char buf[MAXPATHLEN+1] ;
-    int n = 1 ;
+    int n = 0;
+    int err = 0;
 
     for (fd = 0; fd < (int) FD_SETSIZE; fd++) {
         errno = 0;
         flags = fcntl(fd, F_GETFD, 0);
+        err = errno;
         if (flags == -1 && errno) {
             if (errno != EBADF) {
                 return -1;
             }
-            else
+            else {
                 continue;
+            }
         }
         fcntl(fd , F_GETPATH, buf);
-//        warn( "File Descriptor %d number %d in use for: %s",fd,n , buf ) ;
-        ++n ;
+        if (errno) {
+            continue;
+        }
+        if (lsofString)
+            [lsofString appendFormat:@"File Descriptor %d in use for: %s. errno:%s\n",fd, buf, strerror(errno)];
+        n++;
     }
+    if (lsofString)
+        [lsofString appendFormat:@"Used File Descriptors %d \n", n];
     return n;
 }
