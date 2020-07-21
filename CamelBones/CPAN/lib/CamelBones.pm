@@ -69,7 +69,7 @@ our $CacheAutoload = 1;
 
 require XSLoader;
 XSLoader::load('CamelBones', $VERSION);
-CamelBones::CBInit();
+CamelBones::CBInit() if ($^O eq 'darwin' && $Config{archname} !~ /darwin-ios/);
 CamelBones::Foundation::Globals->import;
 CamelBones::AppKit::Globals->import;
 CamelBones::CoreGraphics::Globals->import;
