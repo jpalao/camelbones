@@ -225,7 +225,7 @@ CBRunPerl (char * json) {
     NSString * absPwd = nil;
     NSArray * args = nil;
     NSString * filePath = nil;
-    NSArray * switches = nil;
+    NSMutableArray * switches = nil;
     NSError *error = nil;
 
     if (!json) {
@@ -240,26 +240,28 @@ CBRunPerl (char * json) {
         if (!jsonResponse) {
             retval = 2;
         }
-        // this is the only mandatory element
-        filePath = [jsonResponse valueForKey:@"file"];
-        if (!filePath) {
-            retval = 3;
-        } else {
-            @try {
-                absPwd = [jsonResponse valueForKey:@"pwd"];
-            } @finally {
-                if (!absPwd) absPwd = @"";
+
+        @try {
+            filePath = [jsonResponse valueForKey:@"file"];
+        } @finally {
+            if (!filePath) {
+                filePath = nil;
             }
-            @try {
-                switches = [jsonResponse valueForKey:@"switches"];
-            } @finally {
-                if (!switches) switches = @[];
-            }
-            @try {
-                args = [jsonResponse valueForKey:@"args"];
-            } @finally {
-                if (!args) args = @[];
-            }
+        }
+        @try {
+            absPwd = [jsonResponse valueForKey:@"pwd"];
+        } @finally {
+            if (!absPwd) absPwd = @"";
+        }
+        @try {
+            switches = [[jsonResponse valueForKey:@"switches"] mutableCopy];
+        } @finally {
+            if (!switches) switches = (NSMutableArray *) @[];
+        }
+        @try {
+            args = [jsonResponse valueForKey:@"args"];
+        } @finally {
+            if (!args) args = @[];
         }
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
