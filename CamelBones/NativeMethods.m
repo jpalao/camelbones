@@ -267,6 +267,8 @@ CBRunPerl (char * json) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
             if (retval == 0) {
                 NSError *perlError = nil;
+                [switches insertObject:@"-MCwd" atIndex:0];
+                [switches insertObject:@"-Mcbrunperl" atIndex:0];
                 [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&perlError completion:nil];
                 if (perlError) {
                     retval = 4;
