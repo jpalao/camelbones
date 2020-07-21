@@ -279,29 +279,30 @@ static NSMutableDictionary * perlInstanceDict = nil;
         int dirChanged = -1;
         char *emb[32];
 
-        NSURL * filePathUrl = [NSURL URLWithString: fileName];
-        NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
-        NSString * dirToChange = nil;
-        if (pwd && pwd.length > 0) {
-            dirToChange = pwd;
-        } else if (dirPath && ![fileName hasSuffix:@"debug_client.pl"]) {
-            dirToChange = dirPath.absoluteString;
-        }
-        if (dirToChange) {
-            dirChanged = chdir(dirToChange.UTF8String);
-            if (dirChanged < 0) {
-                NSString * errm = [NSString stringWithFormat: @"Cannot chdir: %@", dirToChange];
-                * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": errm}];
-                return;
+        if (fileName) {
+            NSURL * filePathUrl = [NSURL URLWithString: fileName];
+            NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
+            NSString * dirToChange = nil;
+            if (pwd && pwd.length > 0) {
+                dirToChange = pwd;
+            } else if (dirPath && ![fileName hasSuffix:@"debug_client.pl"]) {
+                dirToChange = dirPath.absoluteString;
+            }
+            if (dirToChange) {
+                dirChanged = chdir(dirToChange.UTF8String);
+                if (dirChanged < 0) {
+                    NSString * errm = [NSString stringWithFormat: @"Cannot chdir: %@", dirToChange];
+                    * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": errm}];
+                    return;
+                }
+            }
+
+            if (dirPath) {
+                NSString * pwdEnv = [NSString stringWithFormat:@"PWD=%@", dirPath.path];
+                char * pwdEnvCstring = (char *)[pwdEnv UTF8String];
+                putenv(pwdEnvCstring);
             }
         }
-
-        if (dirPath) {
-            NSString * pwdEnv = [NSString stringWithFormat:@"PWD=%@", dirPath.path];
-            char * pwdEnvCstring = (char *)[pwdEnv UTF8String];
-            putenv(pwdEnvCstring);
-        }
-
         NSArray * perlIncludes = [self getDefaultPerlIncludes];
 
         for (NSString * perlInclude in perlIncludes){
