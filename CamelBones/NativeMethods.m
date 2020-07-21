@@ -299,7 +299,14 @@ CBRunPerl (char * json) {
 void*
 CBRunPerlCaptureStdout (char * json) {
 @autoreleasepool {
-    int kaka = lsof();
+    // int kaka = lsof(nil);
+
+    // Define a Perl context
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+    dTHX;
+
+    static dispatch_queue_t stdioQueue = nil;
+    stdioQueue = dispatch_queue_create("camelbones.stdio", DISPATCH_QUEUE_SERIAL);
 
     NSPipe * stdoutPipe = [NSPipe pipe];
     NSPipe * stderrPipe = [NSPipe pipe];
@@ -332,14 +339,12 @@ CBRunPerlCaptureStdout (char * json) {
     dispatch_async(dispatch_get_main_queue(), ^{
         notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stdoutPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
             if (!ended) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+                dispatch_async(stdioQueue, ^(void) {
                     NSString * notificationText;
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
                          if (notificationText && notificationText.length > 0 && stderrPipeOut) {
                             [stdoutOutput appendString:notificationText];
-                        } else {
-                            sprintf("%s", "%s", [stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding]);
                         }
                     }
                     @catch (NSException * exception) {
@@ -352,14 +357,12 @@ CBRunPerlCaptureStdout (char * json) {
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
         notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
             if (!ended) {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+                dispatch_async(stdioQueue, ^(void) {
                     NSString * notificationText;
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
                         if (notificationText && notificationText.length > 0  && stderrPipeOut) {
                             [stderrOutput appendString:notificationText];
-                        } else {
-                            sprintf("%s", "%s", [stderrOutput cStringUsingEncoding:NSUTF8StringEncoding]);
                         }
                     }
                     @catch (NSException * exception) {
@@ -376,9 +379,6 @@ CBRunPerlCaptureStdout (char * json) {
         [CBPerl sleepMicroSeconds:100000];
     }
 
-    // Define a Perl context
-    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
-    dTHX;
     SV * exec_result = CBRunPerl(json);
     ended = TRUE;
 
