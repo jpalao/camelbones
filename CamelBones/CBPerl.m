@@ -317,11 +317,13 @@ static NSMutableDictionary * perlInstanceDict = nil;
             }
         }
 
-        if ( debuggerEnabled ) {
-            emb[embSize++] = "-d:ebug::Backend";
-            emb[embSize++] = (char *)[fileName UTF8String];
-        } else {
-            emb[embSize++] = (char *)[fileName UTF8String];
+        if (fileName) {
+            if ( debuggerEnabled ) {
+                emb[embSize++] = "-d:ebug::Backend";
+                emb[embSize++] = (char *)[fileName UTF8String];
+            } else {
+                emb[embSize++] = (char *)[fileName UTF8String];
+            }
         }
 
         if (arguments != nil){
