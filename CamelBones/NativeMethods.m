@@ -336,7 +336,7 @@ CBRunPerlCaptureStdout (char * json) {
                     NSString * notificationText;
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
-                        if (stdoutPipeOut) {
+                         if (notificationText && notificationText.length > 0 && stderrPipeOut) {
                             [stdoutOutput appendString:notificationText];
                         } else {
                             sprintf("%s", "%s", [stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding]);
@@ -356,7 +356,7 @@ CBRunPerlCaptureStdout (char * json) {
                     NSString * notificationText;
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
-                        if (stderrPipeOut) {
+                        if (notificationText && notificationText.length > 0  && stderrPipeOut) {
                             [stderrOutput appendString:notificationText];
                         } else {
                             sprintf("%s", "%s", [stderrOutput cStringUsingEncoding:NSUTF8StringEncoding]);
