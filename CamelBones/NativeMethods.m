@@ -225,7 +225,7 @@ CBRunPerl (char * json) {
     NSString * absPwd = nil;
     NSArray * args = nil;
     NSString * filePath = nil;
-    NSMutableArray * switches = nil;
+    __block NSMutableArray * switches = nil;
     NSError *error = nil;
 
     if (!json) {
@@ -256,7 +256,7 @@ CBRunPerl (char * json) {
         @try {
             switches = [[jsonResponse valueForKey:@"switches"] mutableCopy];
         } @finally {
-            if (!switches) switches = (NSMutableArray *) @[];
+            if (!switches) switches = [ @[] mutableCopy ];
         }
         @try {
             args = [jsonResponse valueForKey:@"args"];
