@@ -274,12 +274,13 @@ static NSMutableDictionary * perlInstanceDict = nil;
 }
 
 - (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion{
-    @synchronized(perlInstanceDict) {
-        int embSize = 0;
-        int dirChanged = -1;
-        char *emb[32];
 @autoreleasepool {
+    int embSize = 0;
+    int dirChanged = -1;
+    char *emb[32];
+    int result;
 
+    @synchronized(perlInstanceDict) {
         if (fileName) {
             NSURL * filePathUrl = [NSURL URLWithString: fileName];
             NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
@@ -361,33 +362,34 @@ static NSMutableDictionary * perlInstanceDict = nil;
                 NSLog(@"perl_construct threw Exception %@", [exception description]);
                 return;
             }
-            int result;
-            @try {
-                result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
-                if (result) {
-                    if ( SvTRUE(ERRSV ) )
-                    {
-                        char * perl_error = SvPVx_nolen(ERRSV);
-                        * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
-                    }
-                    else
-                    {
-                        * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
-                    }
-                    [self cleanUp];
-                    return;
-                }
-            } @catch (NSException * exception ){
-               NSLog(@"perl_parse threw Exception %@", [exception description]);
-               * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"%@", [exception description]]}];
-               return;
-            }
         } else {
             // Wonder what happened here?
             return;
         }
+        result;
+        @try {
+            result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
+            if (result) {
+                if ( SvTRUE(ERRSV ) )
+                {
+                    char * perl_error = SvPVx_nolen(ERRSV);
+                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+                }
+                else
+                {
+                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
+                }
+                [self cleanUp];
+                return;
+            }
+        } @catch (NSException * exception ){
+           NSLog(@"perl_parse threw Exception %@", [exception description]);
+           * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"%@", [exception description]]}];
+           return;
+        }
     }
-    int result = perl_run(_CBPerlInterpreter);
+
+    result = perl_run(_CBPerlInterpreter);
     if (result) {
         if ( SvTRUE(ERRSV ) )
         {
@@ -429,55 +431,53 @@ static NSMutableDictionary * perlInstanceDict = nil;
     emb[embSize++] = "0";
 #endif
 
-    // Is there a shared perl object already?
-    if (_sharedPerl) {
-        // Yes, retain and return it
-        return [_sharedPerl retain];
+    if ((self = [super init])) {
+
+        if (!perlInitialized) {
+            [CBPerl initializePerl];
+        }
+
+        _CBPerlInterpreter = perl_alloc();
+        PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+        perl_construct(_CBPerlInterpreter);
+        perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
+        perl_run(_CBPerlInterpreter);
+
+        NSAssert([CBPerl getCBPerlFromPerlInterpreter:_CBPerlInterpreter] == NULL, @"Interpreter already in DB");
+
+        [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
+
+        [self camelBonesInitialization];
+
+        return [self retain];
 
     } else {
-        // No, create one and retain it
-        if ((self = [super init])) {
-
-            if (!perlInitialized) {
-                [CBPerl initializePerl];
-            }
-
-            _CBPerlInterpreter = perl_alloc();
-            PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
-            perl_construct(_CBPerlInterpreter);
-            perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
-            perl_run(_CBPerlInterpreter);
-            _sharedPerl = self;
-
-            NSAssert([CBPerl getCBPerlFromPerlInterpreter:_CBPerlInterpreter] == NULL, @"Interpreter already in DB");
-
-            [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
-
-            [self camelBonesInitialization];
-
-            return [_sharedPerl retain];
-
-        } else {
-            // Wonder what happened here?
-            return nil;
-        }
+        // Wonder what happened here?
+        return nil;
     }
 }
 
 -(void) cleanUp {
     @synchronized(perlInstanceDict) {
         PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
-        [[CBPerl getPerlInstanceDictionary] removeObjectForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) _CBPerlInterpreter]];
         PL_perl_destruct_level = 1;
+        [[CBPerl getPerlInstanceDictionary] removeObjectForKey:[NSString stringWithFormat:@"%llx", (unsigned long long) _CBPerlInterpreter]];
         perl_destruct(_CBPerlInterpreter);
         perl_free(_CBPerlInterpreter);
+        // NSInteger rc = [self retainCount];
+        NSArray *syms = [NSThread callStackSymbols];
+        BOOL checkCBRunPerl = NO;
+        for (NSString * sym in syms) {
+             if ([sym rangeOfString:@"CBRunPerl"].location != NSNotFound) {
+                 checkCBRunPerl = YES;
+                 break;
+             }
+        }
+        if (checkCBRunPerl) {
+            [self dealloc];
+        }
 
-//      TODO: PERL_SYS_TERM will kill the app, cannot be called at least on iOS
-
-//        if (![perl2CBPerlDict count]) {
-//            [CBPerl destroyPerl];
-//            perlInitialized = false;
-//        }
+        //      TODO: PERL_SYS_TERM will kill the app, cannot be called at least on iOS
     }
 }
 
