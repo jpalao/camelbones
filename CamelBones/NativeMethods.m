@@ -217,14 +217,17 @@ CBRunPerl (char * json) {
     dTHX;
 
     __block int retval = 0;
+    __block BOOL  wait_for_perl = TRUE;
+
     SV *ret = newSV(retval);
-     __block BOOL  wait_for_perl = TRUE;
+
     NSData * data = nil;
     NSDictionary *jsonResponse = nil;
     NSString * absPwd = nil;
     NSArray * args = nil;
+    NSArray * switches = nil;
     NSString * filePath = nil;
-    __block NSMutableArray * switches = nil;
+
     NSError *error = nil;
 
     if (!json) {
@@ -255,7 +258,7 @@ CBRunPerl (char * json) {
         @try {
             switches = [[jsonResponse valueForKey:@"switches"] mutableCopy];
         } @finally {
-            if (!switches) switches = [ @[] mutableCopy ];
+            if (!switches) switches = @[];
         }
         @try {
             args = [jsonResponse valueForKey:@"args"];
