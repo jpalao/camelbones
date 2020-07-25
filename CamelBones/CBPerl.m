@@ -25,7 +25,6 @@
 @implementation CBPerl
 
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
-@synthesize sharedPerl = _sharedPerl;
 
 static NSMutableDictionary * perlInstanceDict = nil;
 
@@ -101,10 +100,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
         return PERL_GET_CONTEXT;
 #endif
     }
-}
-
-- (CBPerl *) sharedPerl {
-    return _sharedPerl;
 }
 
 - (void) dealloc
@@ -240,8 +235,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
                 PERL_SET_CONTEXT(_CBPerlInterpreter);
             }
 
-            _sharedPerl = self;
-            [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
+            [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
             PL_perl_destruct_level = 1;
             @try {
@@ -352,8 +346,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
                 PERL_SET_CONTEXT(_CBPerlInterpreter);
             }
 
-            _sharedPerl = self;
-            [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
+            [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
             PL_perl_destruct_level = 1;
             @try {
@@ -496,9 +489,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
         
         // Set up housekeeping
         p = [[NSAutoreleasePool alloc] init];
-        _sharedPerl = self;
         _CBPerlInterpreter = PERL_GET_CONTEXT;
-        [CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
+        [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
         // Get Perl's archname and version
         [self useModule: @"Config"];
@@ -547,7 +539,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
 
         //_CBPerlInterpreter = checkCBPerl;
         //[CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
-        return [_sharedPerl retain];
+        return [self retain];
 
     } else {
         // Wonder what happened here?
@@ -692,20 +684,20 @@ static NSMutableDictionary * perlInstanceDict = nil;
 
 	manager = [NSFileManager defaultManager];
 	if ([manager fileExistsAtPath:libPath isDirectory:&isDir] && isDir) {
-	    [_sharedPerl eval: [NSString stringWithFormat: @"use lib '%@';", libPath]];
+	    [self eval: [NSString stringWithFormat: @"use lib '%@';", libPath]];
 	}
 }
 
 - (void) useModule: (NSString *)moduleName {
-    [_sharedPerl eval: [NSString stringWithFormat: @"use %@;", moduleName]];
+    [self eval: [NSString stringWithFormat: @"use %@;", moduleName]];
 }
 
 - (void) useWarnings {
-    [_sharedPerl eval: @"use warnings;"];
+    [self eval: @"use warnings;"];
 }
 
 - (void) noWarnings {
-    [_sharedPerl eval: @"no warnings;"];
+    [self eval: @"no warnings;"];
 }
 
 - (void) useStrict {
@@ -714,9 +706,9 @@ static NSMutableDictionary * perlInstanceDict = nil;
 
 - (void) useStrict: (NSString *)options {
     if (options) {
-        [_sharedPerl eval: [NSString stringWithFormat: @"use strict '%@';", options]];
+        [self eval: [NSString stringWithFormat: @"use strict '%@';", options]];
     } else {
-        [_sharedPerl eval: @"use strict;"];
+        [self eval: @"use strict;"];
     }
 }
 
@@ -726,9 +718,9 @@ static NSMutableDictionary * perlInstanceDict = nil;
 
 - (void) noStrict: (NSString *)options {
     if (options) {
-        [_sharedPerl eval: [NSString stringWithFormat: @"no strict '%@';", options]];
+        [self eval: [NSString stringWithFormat: @"no strict '%@';", options]];
     } else {
-        [_sharedPerl eval: @"no strict;"];
+        [self eval: @"no strict;"];
     }
 }
 

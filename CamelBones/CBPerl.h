@@ -22,14 +22,9 @@ static Boolean perlInitialized = false;
 typedef void (^PerlCompletionBlock)(int perlRunResult);
 
 @interface CBPerl : NSObject {
-    id _sharedPerl;
     PerlInterpreter * _CBPerlInterpreter;
 }
 
-// CBPerl ivars:
-
-// _sharedPerl: pointer to this CBPerl object
-@property (nonatomic, assign) id sharedPerl;
 // _CBPerlInterpreter: pointer to this CBPerl object's perl interpreter
 @property (nonatomic, assign) PerlInterpreter * CBPerlInterpreter;
 
