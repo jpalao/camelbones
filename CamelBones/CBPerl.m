@@ -398,11 +398,11 @@ static NSMutableDictionary * perlInstanceDict = nil;
             * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error"]}];
         }
         [self cleanUp];
-        return;
     } else {
-        [self cleanUp];
         if (completion) completion(0);
+        [self cleanUp];
     }
+}
 }
 
 - (id) init {
