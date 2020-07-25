@@ -278,6 +278,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
         int embSize = 0;
         int dirChanged = -1;
         char *emb[32];
+@autoreleasepool {
 
         if (fileName) {
             NSURL * filePathUrl = [NSURL URLWithString: fileName];
