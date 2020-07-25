@@ -218,8 +218,7 @@ CBRunPerl (char * json) {
 
     __block int retval = 0;
     SV *ret = newSV(retval);
-    __block NSNumber * wait_for_perl = [NSNumber numberWithUnsignedInt:1];
-    // __block BOOL wait_for_perl = TRUE;
+     __block BOOL  wait_for_perl = TRUE;
     NSData * data = nil;
     NSDictionary *jsonResponse = nil;
     NSString * absPwd = nil;
@@ -265,17 +264,16 @@ CBRunPerl (char * json) {
         }
 
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            if (retval == 0) {
-                NSError *perlError = nil;
-                [switches insertObject:@"-MCwd" atIndex:0];
-                [switches insertObject:@"-Mcbrunperl" atIndex:0];
-                [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&perlError completion:nil];
-                if (perlError) {
-                    retval = 4;
-                }
-                @synchronized(wait_for_perl) {
-                    wait_for_perl = [NSNumber numberWithUnsignedInt:0];
-
+            @autoreleasepool {
+                if (retval == 0) {
+                    NSError *perlError = nil;
+                    [switches insertObject:@"-MCwd" atIndex:0];
+                    [switches insertObject:@"-Mcbrunperl" atIndex:0];
+                    [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&perlError completion:nil];
+                    if (perlError) {
+                        retval = 4;
+                    }
+                    wait_for_perl = NO;
                 }
             }
         });
@@ -287,10 +285,8 @@ CBRunPerl (char * json) {
     sv_setiv(ret, retval);
 
     while (1) {
-        @synchronized(wait_for_perl) {
-            if ([wait_for_perl unsignedIntegerValue] == 0) {
-                break;
-            }
+        if (!wait_for_perl) {
+            break;
         }
         [CBPerl sleepMicroSeconds:100000];
     }
