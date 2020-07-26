@@ -313,11 +313,11 @@ CBRunPerlCaptureStdout (char * json) {
     NSPipe * stderrPipe = [NSPipe pipe];
     __block BOOL  ended = FALSE;
     __block id notificationObserver, notificationObserver2;
-    __block NSMutableString * stdoutOutput = [NSMutableString stringWithString:@""];
-    __block NSMutableString * stderrOutput = [NSMutableString stringWithString:@""];
+    NSMutableString * stdoutOutput = [NSMutableString stringWithString:@""];
+    NSMutableString * stderrOutput = [NSMutableString stringWithString:@""];
     __block BOOL  listener_ready = FALSE;
-    __block NSFileHandle * stdoutPipeOut = [stdoutPipe fileHandleForReading];
-    __block NSFileHandle * stderrPipeOut = [stderrPipe fileHandleForReading];
+    NSFileHandle * stdoutPipeOut = [stdoutPipe fileHandleForReading];
+    NSFileHandle * stderrPipeOut = [stderrPipe fileHandleForReading];
 
     NSFileHandle * stdoutPipeIn = [stdoutPipe fileHandleForWriting];
     NSFileHandle * stderrPipeIn = [stderrPipe fileHandleForWriting];
