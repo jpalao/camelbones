@@ -339,8 +339,8 @@ CBRunPerlCaptureStdout (char * json) {
 
     dispatch_async(dispatch_get_main_queue(), ^{
         notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stdoutPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
-            if (!ended) {
-                dispatch_async(stdioQueue, ^(void) {
+            dispatch_async(stdioQueue, ^(void) {
+                if (!ended) {
                     NSString * notificationText;
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
@@ -351,14 +351,14 @@ CBRunPerlCaptureStdout (char * json) {
                     @catch (NSException * exception) {
                         [stdoutOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
                     }
-                });
-                [stdoutPipeOut waitForDataInBackgroundAndNotify];
-            }
+                }
+            });
+            [stdoutPipeOut waitForDataInBackgroundAndNotify];
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
         notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
-            if (!ended) {
-                dispatch_async(stdioQueue, ^(void) {
+            dispatch_async(stdioQueue, ^(void) {
+                if (!ended) {
                     NSString * notificationText;
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
@@ -369,9 +369,9 @@ CBRunPerlCaptureStdout (char * json) {
                     @catch (NSException * exception) {
                         [stderrOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
                     }
-                });
-                [stderrPipeOut waitForDataInBackgroundAndNotify];
-            }
+                }
+            });
+            [stderrPipeOut waitForDataInBackgroundAndNotify];
         }];
         [stderrPipeOut waitForDataInBackgroundAndNotify];
         listener_ready = TRUE;
