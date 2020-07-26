@@ -349,7 +349,8 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        [stdoutOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
+                        NSString * ed = [exception description];
+//                        [stdoutOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
                     }
                 }
             });
@@ -367,7 +368,7 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        [stderrOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
+                        NSString * ed = [exception description];
                     }
                 }
             });
