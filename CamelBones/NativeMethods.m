@@ -256,7 +256,7 @@ CBRunPerl (char * json) {
             if (!absPwd) absPwd = @"";
         }
         @try {
-            switches = [[jsonResponse valueForKey:@"switches"] mutableCopy];
+            switches = [jsonResponse valueForKey:@"switches"];
         } @finally {
             if (!switches) switches = @[];
         }
