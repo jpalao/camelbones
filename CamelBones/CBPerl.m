@@ -359,7 +359,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
             // Wonder what happened here?
             return;
         }
-        result;
         @try {
             result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
             if (result) {
