@@ -270,7 +270,7 @@ CBRunPerl (char * json) {
             @autoreleasepool {
                 if (retval == 0) {
                     NSError *perlError = nil;
-                    [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:switches withArguments:args error:&perlError completion:nil];
+                    [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:switches] withArguments:args error:&perlError completion:nil];
                     if (perlError) {
                         retval = 4;
                     }
