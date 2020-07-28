@@ -247,7 +247,13 @@ CBRunPerl (char * json) {
             filePath = [jsonResponse valueForKey:@"file"];
         } @finally {
             if (!filePath) {
-                filePath = nil;
+                @try {
+                    filePath = [jsonResponse valueForKey:@"progfile"];
+                } @finally {
+                    if (!filePath) {
+                        filePath = nil;
+                    }
+                }
             }
         }
         @try {
