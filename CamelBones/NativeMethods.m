@@ -271,23 +271,22 @@ CBRunPerl (char * json) {
         } @finally {
             if (!args) args = @[];
         }
-
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-            @autoreleasepool {
-                if (retval == 0) {
-                    NSError *perlError = nil;
-                    [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:switches] withArguments:args error:&perlError completion:nil];
-                    if (perlError) {
-                        retval = 4;
-                    }
-                    wait_for_perl = NO;
-                }
-            }
-        });
-
     } @catch (NSException * exception) {
         retval = 5;
     }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+        @autoreleasepool {
+            if (retval == 0) {
+                NSError *perlError = nil;
+                [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:switches] withArguments:args error:&perlError completion:nil];
+                if (perlError) {
+                    retval = 4;
+                }
+                wait_for_perl = NO;
+            }
+        }
+    });
 
     sv_setiv(ret, retval);
 
