@@ -312,6 +312,82 @@ CBRunPerlCaptureStdout (char * json) {
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
+    Boolean hasMinusE = NO;
+    char * mjson = nil;
+    NSData * data = nil;
+    NSMutableDictionary *jsonResponse = nil;
+    NSString * prog = nil;
+    NSArray * switches = nil;
+    NSArray * progs = nil;
+
+    int captureStdErr = -1;
+
+    NSError *error = nil;
+
+    if (!json) {
+        return nil;
+    }
+    @try {
+        data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
+        jsonResponse = [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error] mutableCopy];
+        if (error) {
+            return nil;
+        }
+        if (!jsonResponse) {
+            return nil;
+        }
+
+        @try {
+            captureStdErr = [jsonResponse valueForKey:@"stderr"];
+        } @finally {
+            if (captureStdErr == -1) {
+                captureStdErr = NO;
+            }
+        }
+        @try {
+            switches = [jsonResponse valueForKey:@"switches"];
+        } @finally {
+            if (!switches) switches = @[];
+        }
+        @try {
+            prog = [jsonResponse valueForKey:@"prog"];
+        } @finally {
+            if (prog) {
+                hasMinusE = YES;
+                [jsonResponse setObject:[switches arrayByAddingObjectsFromArray:@[@"-e", [NSString stringWithFormat:@"'%@'", prog]]] forKey:@"switches"];
+                NSError *error = nil;
+                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonResponse options:NSJSONWritingPrettyPrinted error:&error];
+                if (error) {
+                    NSLog(@"Got an error: %@", error);
+                } else {
+                    mjson = ((char *)[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] cStringUsingEncoding:NSUTF8StringEncoding]);
+                }
+            } else {
+                @try {
+                    progs = [jsonResponse valueForKey:@"progs"];
+                } @finally {
+                    if (progs) {
+                        NSMutableArray * multipleMinusE = [[NSMutableArray alloc] initWithCapacity:256];
+                        for ( NSString * p in progs ) {
+                            multipleMinusE = (NSMutableArray *)[multipleMinusE arrayByAddingObjectsFromArray:@[@"-e", [NSString stringWithFormat:@"'%@'", p]]];
+                        }
+                        [jsonResponse setObject:[switches arrayByAddingObjectsFromArray: multipleMinusE] forKey:@"switches"];
+                        NSError *error = nil;
+                        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonResponse options:NSJSONWritingPrettyPrinted error:&error];
+                        if (error) {
+                            NSLog(@"Got an error: %@", error);
+                        } else {
+                            mjson = ((char *)[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] cStringUsingEncoding:NSUTF8StringEncoding]);
+                        }
+                    }
+                }
+            }
+        }
+    } @catch (NSException * exception) {
+        return nil;
+    }
+
+
     static dispatch_queue_t stdioQueue = nil;
     stdioQueue = dispatch_queue_create("camelbones.stdio", DISPATCH_QUEUE_SERIAL);
 
@@ -387,7 +463,7 @@ CBRunPerlCaptureStdout (char * json) {
         [CBPerl sleepMicroSeconds:100000];
     }
 
-    SV * exec_result = CBRunPerl(json);
+    SV * exec_result = CBRunPerl(mjson ? mjson : json);
     ended = TRUE;
 
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:stdoutPipeOut];
