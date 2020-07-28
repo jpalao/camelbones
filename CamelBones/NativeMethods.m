@@ -483,16 +483,19 @@ CBRunPerlCaptureStdout (char * json) {
     close_r = close(saved_stdout);
     close_r = close(saved_stderr);
 
-    int result = sv_2iv(exec_result);
+    AV * array_result = newAV();
+
     const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
-    SV * string_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
+    SV * stdout_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
+    av_push(array_result, stdout_result);
 
     const char * stderr_string = (const char *)[stderrOutput cStringUsingEncoding:NSUTF8StringEncoding];
-//    if (strlen(stderr_string) > 0 ) {
-//        warn("%s", stderr_string);
-//    }
+    SV * stderr_result = newSVpvn_flags(stderr_string, strlen(stderr_string), SVf_UTF8);
+    av_push(array_result, stderr_result);
 
-    return (void *) string_result;
+    av_push(array_result, exec_result);
+
+    return (void *) newRV_noinc((SV*) array_result);
 }
 }
 
