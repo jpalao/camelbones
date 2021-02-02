@@ -256,7 +256,7 @@ void CBRegisterObjectMethodsForClass(const char *package, NSArray *methods, Clas
 		selName = [[[methods objectAtIndex: i] objectForKey:@"name"] UTF8String];
         perlSig = [[[methods objectAtIndex:i] objectForKey:@"signature"] UTF8String];
 
-        class_addMethod(class, sel_registerName(selName), CBPerlIMP, perlSig);
+        class_addMethod(class, sel_registerName(selName), (void(*)(void))CBPerlIMP, perlSig);
     }
 #endif
 #endif
@@ -290,7 +290,7 @@ void CBRegisterClassMethodsForClass(const char *package, NSArray *methods, Class
 		selName = [[[methods objectAtIndex: i] objectForKey:@"name"] UTF8String];
         perlSig = [[[methods objectAtIndex:i] objectForKey:@"signature"] UTF8String];
 
-        class_addMethod(class, sel_registerName(selName), CBPerlIMP, perlSig);
+        class_addMethod(class, sel_registerName(selName), (void(*)(void))CBPerlIMP, perlSig);
     }
 #else
 
