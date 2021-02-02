@@ -77,8 +77,9 @@ NSString * CBGetArchitecture(void) {
     }
     else
     {
-        //arch not supported
-        NSCAssert(FALSE, sprintf("(%d, %d) is not a supported architecture (type, subtype)", type, subtype));
+        char str[256];
+        sprintf(str, "(%d, %d) is not a supported architecture (type, subtype)", type, subtype);
+        NSCAssert(FALSE, [NSString stringWithCString:str  encoding:NSUTF8StringEncoding]);
     }
     return [cpu autorelease];
 }
