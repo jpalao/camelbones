@@ -64,13 +64,6 @@ typedef void (^PerlCompletionBlock)(int perlRunResult);
 
 - (void) syntaxCheck:(NSString*)fileName error:(NSError **)error;
 
-// sharedPerl: will return the shared CBPerl object (without retaining
-// it) if it exists. Otherwise it calls init: to create one, autoreleases
-// it, and then returns it. It will return nil if a CBPerl object does not
-// exist, and for some reason could not be created.
-
-- (CBPerl *) sharedPerl;
-
 // init: creates the shared CBPerl object if necessary, retains and returns it.
 - (id) init;
 
