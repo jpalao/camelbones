@@ -337,7 +337,7 @@ CBRunPerlCaptureStdout (char * json) {
         }
 
         @try {
-            captureStdErr = [jsonResponse valueForKey:@"stderr"];
+            captureStdErr = (int)[jsonResponse valueForKey:@"stderr"];
         } @finally {
             if (captureStdErr == -1) {
                 captureStdErr = NO;
