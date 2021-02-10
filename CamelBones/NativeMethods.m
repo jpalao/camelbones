@@ -209,17 +209,12 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
     return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend;
 }
 
-void*
-CBRunPerl (char * json) {
-@autoreleasepool {
-    // Define a Perl context
-    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
-    dTHX;
 
-    __block int retval = 0;
-    __block BOOL  wait_for_perl = TRUE;
+NSMutableDictionary * parseCBRunPerlJson (char * json)
+{
+    NSMutableDictionary * result = [[NSMutableDictionary alloc] initWithCapacity:256];
 
-    SV *ret = newSV(retval);
+    int retval = 0;
 
     NSData * data = nil;
     NSDictionary *jsonResponse = nil;
@@ -227,66 +222,138 @@ CBRunPerl (char * json) {
     NSArray * args = nil;
     NSArray * switches = nil;
     NSString * filePath = nil;
-
     NSError *error = nil;
+    NSString * prog  = nil;
 
     if (!json) {
         return nil;
     }
-    @try {
+
+    @try
+    {
         data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    @catch (NSException * e)
+    {
+        retval = 1;
+    }
+    if (!retval && data != nil)
+    {
         jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        if (error) {
-            retval = 1;
-        }
-        if (!jsonResponse) {
+        if (error || !jsonResponse) {
             retval = 2;
         }
-
-        @try {
-            filePath = [jsonResponse valueForKey:@"file"];
-        } @finally {
+    }
+    if (!retval)
+    {
+        @try
+        {
+            filePath = [jsonResponse valueForKey:@"progfile"];
+        }
+        @finally {
             if (!filePath) {
-                @try {
-                    filePath = [jsonResponse valueForKey:@"progfile"];
-                } @finally {
-                    if (!filePath) {
-                        filePath = nil;
+                @try
+                {
+                    prog = [jsonResponse valueForKey:@"prog"];
+                }
+                @finally
+                {
+                    if (prog == nil)
+                    {
+                        @try {
+                            prog = [jsonResponse valueForKey:@"progs"];
+                        } @finally {
+                            if (!prog)
+                            {
+                                retval = 2;
+                            }
+                            else
+                            {
+                                [result setObject:prog forKey:@"prog"];
+                            }
+                        }
+                    }
+                    else
+                    {
+                        [result setObject:prog forKey:@"prog"];
                     }
                 }
             }
+            else {
+                [result setObject:filePath forKey:@"filePath"];
+            }
         }
-        @try {
+
+        @try
+        {
             absPwd = [jsonResponse valueForKey:@"pwd"];
         } @finally {
             if (!absPwd) absPwd = @"";
+            [result setObject:absPwd forKey:@"absPwd"];
         }
-        @try {
+
+        @try
+        {
             switches = [jsonResponse valueForKey:@"switches"];
         } @finally {
             if (!switches) switches = @[];
+            [result setObject:switches forKey:@"switches"];
         }
+
         @try {
             args = [jsonResponse valueForKey:@"args"];
         } @finally {
             if (!args) args = @[];
+            [result setObject:args forKey:@"args"];
         }
-    } @catch (NSException * exception) {
-        retval = 5;
     }
+    return result;
+}
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
-        @autoreleasepool {
-            if (retval == 0) {
-                NSError *perlError = nil;
-                [[CBPerl alloc] initWithFileName:filePath withAbsolutePwd:absPwd withDebugger:FALSE withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:switches] withArguments:args error:&perlError completion:nil];
-                if (perlError) {
-                    retval = 4;
+
+void*
+CBRunPerl (char * json) {
+@autoreleasepool {
+    // Define a Perl context
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+    dTHX;
+
+    NSMutableDictionary * cbRunPerlDict = parseCBRunPerlJson(json);
+
+    __block int retval = 0;
+    __block BOOL  wait_for_perl = TRUE;
+
+    SV *ret = newSV(retval);
+
+    if (cbRunPerlDict == nil)
+    {
+        retval = 1;
+        wait_for_perl = NO;
+    }
+    else
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+            @autoreleasepool {
+                if (retval == 0) {
+                    NSError *perlError = nil;
+                    [
+                        [CBPerl alloc]
+                        initWithFileName:[cbRunPerlDict objectForKey:@"filePath"]
+                        withAbsolutePwd:[cbRunPerlDict objectForKey:@"absPwd"]
+                        withDebugger:FALSE
+                        withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:[cbRunPerlDict objectForKey:@"switches"]]
+                        withArguments:[cbRunPerlDict objectForKey:@"args"]
+                        error:&perlError
+                        completion:nil
+                    ];
+                    if (perlError) {
+                        retval = 4;
+                    }
                 }
                 wait_for_perl = NO;
             }
-        }
-    });
+        });
+    }
 
     sv_setiv(ret, retval);
 
