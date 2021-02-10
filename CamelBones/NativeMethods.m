@@ -251,19 +251,19 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
             filePath = [jsonResponse valueForKey:@"progfile"];
         }
         @finally {
-            if (!filePath) {
+            if (filePath == nil || [filePath isEqual:[NSNull null]]) {
                 @try
                 {
                     prog = [jsonResponse valueForKey:@"prog"];
                 }
                 @finally
                 {
-                    if (prog == nil)
+                    if (prog == nil || [prog isEqual:[NSNull null]])
                     {
                         @try {
                             prog = [jsonResponse valueForKey:@"progs"];
                         } @finally {
-                            if (!prog)
+                            if (prog == nil || [prog isEqual:[NSNull null]])
                             {
                                 retval = 2;
                             }
@@ -288,7 +288,7 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
         {
             absPwd = [jsonResponse valueForKey:@"pwd"];
         } @finally {
-            if (!absPwd) absPwd = @"";
+            if (absPwd == nil || [absPwd isEqual:[NSNull null]]) absPwd = @"";
             [result setObject:absPwd forKey:@"absPwd"];
         }
 
@@ -296,14 +296,14 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
         {
             switches = [jsonResponse valueForKey:@"switches"];
         } @finally {
-            if (!switches) switches = @[];
+            if (switches == nil || [switches isEqual:[NSNull null]]) switches = @[];
             [result setObject:switches forKey:@"switches"];
         }
 
         @try {
             args = [jsonResponse valueForKey:@"args"];
         } @finally {
-            if (!args) args = @[];
+            if (args == nil || [args isEqual:[NSNull null]]) args = @[];
             [result setObject:args forKey:@"args"];
         }
     }
@@ -335,19 +335,26 @@ CBRunPerl (char * json) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
             @autoreleasepool {
                 if (retval == 0) {
-                    NSError *perlError = nil;
-                    [
-                        [CBPerl alloc]
-                        initWithFileName:[cbRunPerlDict objectForKey:@"filePath"]
-                        withAbsolutePwd:[cbRunPerlDict objectForKey:@"absPwd"]
-                        withDebugger:FALSE
-                        withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:[cbRunPerlDict objectForKey:@"switches"]]
-                        withArguments:[cbRunPerlDict objectForKey:@"args"]
-                        error:&perlError
-                        completion:nil
-                    ];
-                    if (perlError) {
-                        retval = 4;
+                    @try
+                    {
+                        NSError *perlError = nil;
+                        [
+                            [CBPerl alloc]
+                            initWithFileName:[cbRunPerlDict objectForKey:@"filePath"]
+                            withAbsolutePwd:[cbRunPerlDict objectForKey:@"absPwd"]
+                            withDebugger:FALSE
+                            withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:[cbRunPerlDict objectForKey:@"switches"]]
+                            withArguments:[cbRunPerlDict objectForKey:@"args"]
+                            error:&perlError
+                            completion:nil
+                        ];
+                        if (perlError) {
+                            retval = 4;
+                        }
+                    }
+                    @catch (NSException *)
+                    {
+                        retval = 5;
                     }
                 }
                 wait_for_perl = NO;
