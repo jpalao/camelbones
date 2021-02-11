@@ -42,6 +42,9 @@ CBRunPerl(json)
     const char* json;
 
 SV*
+CBYield()
+
+SV*
 CBCallNativeMethod(this, sel, args, isSuper)
     SV* this;
     SEL sel;

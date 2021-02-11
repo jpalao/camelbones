@@ -310,6 +310,11 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     return result;
 }
 
+void * CBYield() {
+    pthread_yield_np();
+    SV *ret = newSV(0);
+    return (void *)ret;
+}
 
 void*
 CBRunPerl (char * json) {
