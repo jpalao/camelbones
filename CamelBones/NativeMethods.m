@@ -334,7 +334,13 @@ CBRunPerl (char * json) {
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
             @autoreleasepool {
-                if (retval == 0) {
+                NSString * filePath = [cbRunPerlDict objectForKey:@"filePath"];
+                if (filePath == nil || filePath.length == 0)
+                {
+                    retval = 2;
+                }
+                if (retval == 0)
+                {
                     @try
                     {
                         NSError *perlError = nil;
