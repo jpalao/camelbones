@@ -9,7 +9,7 @@
 
 // Call a native class or object method
 extern void* CBCallNativeMethod(void* target, SEL sel, void*args, BOOL isSuper);
-extern void* CBYield();
+extern void* CBYield(void);
 extern void* CBRunPerl(char * json);
 extern void* CBRunPerlCaptureStdout (char * json);
 int lsof(NSMutableString * lsofString);
