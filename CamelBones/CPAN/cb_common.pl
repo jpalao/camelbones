@@ -8,6 +8,7 @@ use ExtUtils::Embed qw/ldopts/;
 die "This version of CamelBones only works on macOS and iOS systems"
     if ( $^O !~ m/darwin/ );
 
+our $PERL_VERSION = '5.33.7';
 our $ARCHS = $ENV{'ARCHS'};
 our $CAMELBONES_PREFIX = $ENV{'CAMELBONES_PREFIX'};
 our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
@@ -18,7 +19,7 @@ our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 our $ARCHFLAGS = $ENV{'ARCHFLAGS'};
 
-my $abs_path_to_cwd = "$CAMELBONES_PREFIX/perl-5.32.0/ext/CamelBones-1.2.0/";
+my $abs_path_to_cwd = "$CAMELBONES_PREFIX/perl-$PERL_VERSION/ext/CamelBones-1.2.0/";
 
 our $LIBFFIDIR = '../libffi-3.2.1';
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
