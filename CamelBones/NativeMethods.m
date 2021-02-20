@@ -80,8 +80,18 @@ static ffi_type *cgsize_elements[3];
 static ffi_type cgrect_type;
 static ffi_type *cgrect_elements[3];
 
-void init_ffi_types() {
+static dispatch_once_t onceToken = 0;
+static dispatch_queue_t stdioQueue = nil;
 
+void init_dispatch_queue()
+{
+   dispatch_once(&onceToken, ^{
+       stdioQueue = dispatch_queue_create("camelbones.stdio", DISPATCH_QUEUE_SERIAL);
+   });
+ }
+
+void init_ffi_types()
+{
     nsrange_type.size = nsrange_type.alignment = 0;
     nsrange_type.elements = (ffi_type**)&nsrange_elements;
     nsrange_type.type = FFI_TYPE_STRUCT;
@@ -224,6 +234,7 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     NSString * filePath = nil;
     NSError *error = nil;
     NSString * prog  = nil;
+    NSNumber * stderrBool = nil;
 
     if (!json) {
         return nil;
@@ -288,8 +299,16 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
         {
             absPwd = [jsonResponse valueForKey:@"pwd"];
         } @finally {
-            if (absPwd == nil || [absPwd isEqual:[NSNull null]]) absPwd = @"";
+            if (absPwd == nil || [absPwd isEqual:[NSNull null]]) absPwd = @".";
             [result setObject:absPwd forKey:@"absPwd"];
+        }
+
+        @try
+        {
+            stderrBool = [jsonResponse valueForKey:@"stderr"];
+        } @finally {
+            if (stderrBool == nil || [stderrBool isEqual:[NSNull null]]) stderrBool = [NSNumber numberWithUnsignedInt:0];
+            [result setObject:stderrBool forKey:@"stderr"];
         }
 
         @try
@@ -310,14 +329,15 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     return result;
 }
 
-void * CBYield() {
-    pthread_yield_np();
+void * CBYield()
+{
+    [NSThread sleepForTimeInterval:.0275];
     SV *ret = newSV(0);
     return (void *)ret;
 }
 
-void*
-CBRunPerl (char * json) {
+void* CBRunPerl (char * json)
+{
 @autoreleasepool {
     // Define a Perl context
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
@@ -390,90 +410,22 @@ CBRunPerl (char * json) {
 void*
 CBRunPerlCaptureStdout (char * json) {
 @autoreleasepool {
-    // int kaka = lsof(nil);
 
     // Define a Perl context
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
-    Boolean hasMinusE = NO;
-    char * mjson = nil;
-    NSData * data = nil;
-    NSMutableDictionary *jsonResponse = nil;
-    NSString * prog = nil;
-    NSArray * switches = nil;
-    NSArray * progs = nil;
+    SV * stdout_result = nil;
 
-    int captureStdErr = -1;
+    init_dispatch_queue();
 
-    NSError *error = nil;
-
-    if (!json) {
-        return nil;
+    NSMutableDictionary * cbRunPerlDict = parseCBRunPerlJson(json);
+    NSNumber * stderrRedirection = [cbRunPerlDict objectForKey:@"stderr"];
+    __block BOOL redirectStderr = false;
+    if (stderrRedirection != nil && [stderrRedirection unsignedIntValue] == 1 )
+    {
+        redirectStderr = true;
     }
-    @try {
-        data = [[NSString stringWithCString: json encoding:NSUTF8StringEncoding] dataUsingEncoding:NSUTF8StringEncoding];
-        jsonResponse = [[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error] mutableCopy];
-        if (error) {
-            return nil;
-        }
-        if (!jsonResponse) {
-            return nil;
-        }
-
-        @try {
-            captureStdErr = (int)[jsonResponse valueForKey:@"stderr"];
-        } @finally {
-            if (captureStdErr == -1) {
-                captureStdErr = NO;
-            }
-        }
-        @try {
-            switches = [jsonResponse valueForKey:@"switches"];
-        } @finally {
-            if (!switches) switches = @[];
-        }
-        @try {
-            prog = [jsonResponse valueForKey:@"prog"];
-        } @finally {
-            if (prog) {
-                hasMinusE = YES;
-                [jsonResponse setObject:[switches arrayByAddingObjectsFromArray:@[@"-e", [NSString stringWithFormat:@"'%@'", prog]]] forKey:@"switches"];
-                NSError *error = nil;
-                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonResponse options:NSJSONWritingPrettyPrinted error:&error];
-                if (error) {
-                    NSLog(@"Got an error: %@", error);
-                } else {
-                    mjson = ((char *)[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] cStringUsingEncoding:NSUTF8StringEncoding]);
-                }
-            } else {
-                @try {
-                    progs = [jsonResponse valueForKey:@"progs"];
-                } @finally {
-                    if (progs) {
-                        NSMutableArray * multipleMinusE = [[NSMutableArray alloc] initWithCapacity:256];
-                        for ( NSString * p in progs ) {
-                            multipleMinusE = (NSMutableArray *)[multipleMinusE arrayByAddingObjectsFromArray:@[@"-e", [NSString stringWithFormat:@"'%@'", p]]];
-                        }
-                        [jsonResponse setObject:[switches arrayByAddingObjectsFromArray: multipleMinusE] forKey:@"switches"];
-                        NSError *error = nil;
-                        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonResponse options:NSJSONWritingPrettyPrinted error:&error];
-                        if (error) {
-                            NSLog(@"Got an error: %@", error);
-                        } else {
-                            mjson = ((char *)[[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] cStringUsingEncoding:NSUTF8StringEncoding]);
-                        }
-                    }
-                }
-            }
-        }
-    } @catch (NSException * exception) {
-        return nil;
-    }
-
-
-    static dispatch_queue_t stdioQueue = nil;
-    stdioQueue = dispatch_queue_create("camelbones.stdio", DISPATCH_QUEUE_SERIAL);
 
     NSPipe * stdoutPipe = [NSPipe pipe];
     NSPipe * stderrPipe = [NSPipe pipe];
@@ -530,11 +482,25 @@ CBRunPerlCaptureStdout (char * json) {
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
                         if (notificationText && notificationText.length > 0  && stderrPipeOut) {
-                            [stderrOutput appendString:notificationText];
+                            if (redirectStderr)
+                            {
+                                [stdoutOutput appendString:notificationText];
+                            }
+                            else
+                            {
+                                [stderrOutput appendString:notificationText];
+                            }
                         }
                     }
                     @catch (NSException * exception) {
-                        NSString * ed = [exception description];
+                        if (redirectStderr)
+                        {
+                            [stdoutOutput appendString:[exception description]];
+                        }
+                        else
+                        {
+                            [stderrOutput appendString:[exception description]];
+                        }
                     }
                 }
             });
@@ -547,7 +513,7 @@ CBRunPerlCaptureStdout (char * json) {
         [CBPerl sleepMicroSeconds:100000];
     }
 
-    SV * exec_result = CBRunPerl(mjson ? mjson : json);
+    SV * exec_result = CBRunPerl(json);
     ended = TRUE;
 
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:stdoutPipeOut];
@@ -567,19 +533,16 @@ CBRunPerlCaptureStdout (char * json) {
     close_r = close(saved_stdout);
     close_r = close(saved_stderr);
 
-    AV * array_result = newAV();
-
     const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
-    SV * stdout_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
-    av_push(array_result, stdout_result);
+    stdout_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
 
-    const char * stderr_string = (const char *)[stderrOutput cStringUsingEncoding:NSUTF8StringEncoding];
-    SV * stderr_result = newSVpvn_flags(stderr_string, strlen(stderr_string), SVf_UTF8);
-    av_push(array_result, stderr_result);
+//    const char * stderr_string = (const char *)[stderrOutput cStringUsingEncoding:NSUTF8StringEncoding];
+//    SV * stderr_result = newSVpvn_flags(stderr_string, strlen(stderr_string), SVf_UTF8);
+//    av_push(array_result, stderr_result);
+//
+//    av_push(array_result, exec_result);
 
-    av_push(array_result, exec_result);
-
-    return (void *) newRV_noinc((SV*) array_result);
+    return (void *) stdout_result;
 }
 }
 
