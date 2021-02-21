@@ -230,10 +230,11 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     NSDictionary *jsonResponse = nil;
     NSString * absPwd = nil;
     NSArray * args = nil;
-    NSArray * switches = nil;
+    NSMutableArray * switches = nil;
     NSString * filePath = nil;
     NSError *error = nil;
     NSString * prog  = nil;
+    NSArray * progs = nil;
     NSNumber * stderrBool = nil;
 
     if (!json) {
@@ -257,6 +258,22 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     }
     if (!retval)
     {
+
+        @try
+        {
+            switches = [[jsonResponse valueForKey:@"switches"] mutableCopy];
+        } @finally {
+            if (switches == nil || [switches isEqual:[NSNull null]])
+            {
+                switches = [@[] mutableCopy];
+            }
+            else
+            {
+                [switches removeObject:@""];
+            }
+            [result setObject:switches forKey:@"switches"];
+        }
+
         @try
         {
             filePath = [jsonResponse valueForKey:@"progfile"];
@@ -272,22 +289,47 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                     if (prog == nil || [prog isEqual:[NSNull null]])
                     {
                         @try {
-                            prog = [jsonResponse valueForKey:@"progs"];
+                            progs = [jsonResponse valueForKey:@"progs"];
                         } @finally {
-                            if (prog == nil || [prog isEqual:[NSNull null]])
+                            if (progs == nil || [progs isEqual:[NSNull null]])
                             {
                                 retval = 2;
                             }
                             else
                             {
-                                [result setObject:prog forKey:@"prog"];
+                                char pathToCwd[MAXPATHLEN];
+                                NSURL *temporaryDirectoryURL = [NSURL fileURLWithPath: [NSString stringWithUTF8String: getcwd(pathToCwd, MAXPATHLEN -1)]];
+                                NSString *temporaryFilename =
+                                    [[NSProcessInfo processInfo] globallyUniqueString];
+                                NSURL *temporaryFileURL =
+                                    [temporaryDirectoryURL
+                                        URLByAppendingPathComponent:temporaryFilename];
+
+                                NSMutableString * prog = [[NSMutableString alloc] initWithCapacity: 4*1024];
+                                for (NSString * p in progs)
+                                {
+                                    [prog appendString:p];
+                                    [prog appendString: @"\n"];
+
+                                }
+
+                                NSData *data = [prog dataUsingEncoding: NSUTF8StringEncoding];
+                                NSError *error = nil;
+                                [data writeToURL:temporaryFileURL
+                                         options:NSDataWritingAtomic
+                                           error:&error];
+                                [result setObject:[temporaryFileURL absoluteString] forKey:@"filePath"];
                             }
                         }
                     }
                     else
                     {
-                        [result setObject:prog forKey:@"prog"];
+                        // [result setObject:prog forKey:@"prog"];
+                        [switches addObject: @"-e"];
+                        [switches addObject: [jsonResponse valueForKey:@"prog"]];
+                        [result setObject:switches forKey:@"switches"];
                     }
+
                 }
             }
             else {
@@ -311,13 +353,7 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
             [result setObject:stderrBool forKey:@"stderr"];
         }
 
-        @try
-        {
-            switches = [jsonResponse valueForKey:@"switches"];
-        } @finally {
-            if (switches == nil || [switches isEqual:[NSNull null]]) switches = @[];
-            [result setObject:switches forKey:@"switches"];
-        }
+
 
         @try {
             args = [jsonResponse valueForKey:@"args"];
@@ -407,6 +443,21 @@ void* CBRunPerl (char * json)
 }
 }
 
+static void handleStdioException(NSException *exception, BOOL redirectStderr, NSMutableString *stderrOutput, NSMutableString *stdoutOutput) {
+    if (redirectStderr)
+    {
+        @synchronized (stdioQueue) {
+            [stdoutOutput appendString:[exception description]];
+        }
+    }
+    else
+    {
+        @synchronized (stdioQueue) {
+            [stderrOutput appendString:[exception description]];
+        }
+    }
+}
+
 void*
 CBRunPerlCaptureStdout (char * json) {
 @autoreleasepool {
@@ -463,16 +514,24 @@ CBRunPerlCaptureStdout (char * json) {
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
                          if (notificationText && notificationText.length > 0 && stderrPipeOut) {
-                            [stdoutOutput appendString:notificationText];
+                             @synchronized (stdioQueue) {
+                                 [stdoutOutput appendString:notificationText];
+                             }
                         }
                     }
                     @catch (NSException * exception) {
-                        NSString * ed = [exception description];
-//                        [stdoutOutput appendString:[NSString stringWithFormat:@"CBRunPerlCaptureStdout() threw wxception: %@", [exception description]]];
+                        handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
                     }
                 }
             });
-            [stdoutPipeOut waitForDataInBackgroundAndNotify];
+            @try
+            {
+                [stdoutPipeOut waitForDataInBackgroundAndNotify];
+            }
+            @catch (NSException *exception)
+            {
+                handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+            }
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
         notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
@@ -484,7 +543,9 @@ CBRunPerlCaptureStdout (char * json) {
                         if (notificationText && notificationText.length > 0  && stderrPipeOut) {
                             if (redirectStderr)
                             {
-                                [stdoutOutput appendString:notificationText];
+                                @synchronized (stdioQueue) {
+                                    [stdoutOutput appendString:notificationText];
+                                }
                             }
                             else
                             {
@@ -493,18 +554,17 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        if (redirectStderr)
-                        {
-                            [stdoutOutput appendString:[exception description]];
-                        }
-                        else
-                        {
-                            [stderrOutput appendString:[exception description]];
-                        }
+                        handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
                     }
                 }
             });
-            [stderrPipeOut waitForDataInBackgroundAndNotify];
+            @try
+            {
+                [stderrPipeOut waitForDataInBackgroundAndNotify];
+            }
+            @catch (NSException * exception) {
+                handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+            }
         }];
         [stderrPipeOut waitForDataInBackgroundAndNotify];
         listener_ready = TRUE;
