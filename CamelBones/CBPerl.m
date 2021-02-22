@@ -469,7 +469,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
         if (checkCBRunPerl) {
             [self dealloc];
         }
-
         //      TODO: PERL_SYS_TERM will kill the app, cannot be called at least on iOS
     }
 }
