@@ -1,5 +1,6 @@
 use strict;
 use warnings;
+use Config;
 
 package CamelBones;
 require Exporter;
@@ -9,6 +10,15 @@ use CamelBones::Foundation::Constants;
 use CamelBones::CoreGraphics qw(:All);
 
 use CamelBones::NSRange;
+
+if ($Config{archname} =~ /darwin-ios/)
+{
+    use CamelBones::AppKit qw(:All);
+    use CamelBones::AppKit::Constants;
+    use CamelBones::NSRect;
+    use CamelBones::NSSize;
+    use CamelBones::NSPoint;
+}
 
 use CamelBones::CGPoint;
 use CamelBones::CGRect;
@@ -69,7 +79,7 @@ our $CacheAutoload = 1;
 
 require XSLoader;
 XSLoader::load('CamelBones', $VERSION);
-CamelBones::CBInit() if ($^O eq 'darwin' && $Config{archname} !~ /darwin-ios/);
+CamelBones::CBInit() if $Config{archname} !~ /darwin-ios/;
 CamelBones::Foundation::Globals->import;
 CamelBones::AppKit::Globals->import;
 CamelBones::CoreGraphics::Globals->import;

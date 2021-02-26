@@ -11,6 +11,9 @@ our @EXPORT = qw(
 our @EXPORT_OK = qw(
 		CGPointMake CGAffineTransformMake CGPathGetBoundingBox
 				   );
+unshift @EXPORT_OK, qw(	CGMainDisplayID	CGDisplayGetDrawingContext CGDisplayCapture)				   
+    if $Config{archname} !~ /darwin-ios/;
+
 our %EXPORT_TAGS = (
     'All'		=> [@EXPORT_OK],
 );
