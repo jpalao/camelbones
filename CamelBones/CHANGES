@@ -1,14 +1,32 @@
 CamelBones CHANGES
 
+v.1.3.0 Jose Palao
+=======
+
+Removed sharedPerl altogether
+
+Better threading support
+
+Added XS helper methods runperl and make test harness on iOS   
+
+Simplified build configuration variable names
+
 v.1.2.0 Jose Palao
 =======
-* Added x86_64 support. By default the project will build Universal binaries
-* Better Objective-C 2.0 support. Remove deprecated calls
-* Updated to libffi-3.2.1
-* Remove dependencies of OS X system Perl. Removed Plug-in Bundle from CamelBones.Framework
-* Removed ExtLibs, PerlSDK directories, legacy Iceberg projects, PAR kit targets
-* Add CGPoint, CGRect, CGSize type support
-* Edited some tests
+
+Added x86_64 support. By default the project will build Universal binaries
+
+Better Objective-C 2.0 support. Remove deprecated calls
+
+Updated to libffi-3.2.1
+
+Remove dependencies of OS X system Perl. Removed Plug-in Bundle from CamelBones.Framework
+
+Removed ExtLibs, PerlSDK directories, legacy Iceberg projects, PAR kit targets
+
+Add CGPoint, CGRect, CGSize type support
+
+Edited some tests
 
 v.1.1.2 Sherm Pendley
 =======

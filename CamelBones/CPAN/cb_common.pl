@@ -9,6 +9,11 @@ die "This version of CamelBones only works on macOS and iOS systems"
     if ( $^O !~ m/darwin/ );
 
 our $PERL_VERSION = '5.33.7';
+our $CAMELBONES_VERSION = '1.3.0';
+
+# TODO detach embedded libffi?
+our $LIBFFIDIR = '../libffi-3.2.1';
+
 our $ARCHS = $ENV{'ARCHS'};
 our $CAMELBONES_PREFIX = $ENV{'CAMELBONES_PREFIX'};
 our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
@@ -19,9 +24,8 @@ our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 our $ARCHFLAGS = $ENV{'ARCHFLAGS'};
 
-my $abs_path_to_cwd = "$CAMELBONES_PREFIX/perl-$PERL_VERSION/ext/CamelBones-1.2.0/";
+my $abs_path_to_cwd = "$CAMELBONES_PREFIX/perl-$PERL_VERSION/ext/CamelBones-$CAMELBONES_VERSION/";
 
-our $LIBFFIDIR = '../libffi-3.2.1';
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 
 my $down = "..";
@@ -76,7 +80,7 @@ my $user_dir = $ENV{"HOME"};
 my $FrameworkInstallPath = "$CAMELBONES_PREFIX/local/Library/Frameworks";
 
 our %opts = (
-    VERSION           => '1.2.0',
+    VERSION           => $CAMELBONES_VERSION,
     CCFLAGS           => "$ARCHFLAGS -Wall",
     PREREQ_PM         => {},
 

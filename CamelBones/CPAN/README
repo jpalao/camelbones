@@ -1,4 +1,4 @@
-CamelBones version 1.2.0
+CamelBones version 1.3.0
 ========================
 
 INSTALLATION
@@ -8,5 +8,4 @@ INSTALLATION
 
 DEPENDENCIES
 
-This module requires the CamelBones framework, and is installed as part
-of its installation.
+This module requires the CamelBones framework, which is included in this distribution.
