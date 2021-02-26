@@ -365,9 +365,9 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     return result;
 }
 
-void * CBYield()
+void * CBYield(double ti)
 {
-    [NSThread sleepForTimeInterval:.0275];
+    [NSThread sleepForTimeInterval:ti];
     SV *ret = newSV(0);
     return (void *)ret;
 }
