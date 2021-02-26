@@ -987,8 +987,8 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBPERL_PATH = "";
-				"LIBPERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)/opt/local/lib/perl5/";
-				"LIBPERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)/opt/local2/lib/perl5/";
+				"LIBPERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				"LIBPERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				LIBRARY_SEARCH_PATHS = "";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos",
