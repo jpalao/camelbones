@@ -748,6 +748,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
@@ -771,31 +772,34 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_osx/include",
+					"$(LIBPERL_PATH)",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBPERL_PATH = "$(HOME)/perl5/perlbrew/perls/perl-blead/lib/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
-					"$(CB_LIB_PERL_PATH)",
+					"$(LIBPERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Debug",
-					"-L$(CB_LIB_PERL_PATH)",
+					"-L$(LIBPERL_PATH)",
 					"-Wl,-no_compact_unwind",
 					"-lperl",
 					"-lffi",
 				);
+				PERL_VERSION = 5.33.7;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = NO;
 				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
@@ -804,6 +808,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
@@ -823,31 +828,34 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_osx/include",
+					"$(LIBPERL_PATH)",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBPERL_PATH = "$(HOME)/perl5/perlbrew/perls/perl-blead/lib/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release",
-					"$(CB_LIB_PERL_PATH)",
+					"$(LIBPERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Release",
-					"-L$(CB_LIB_PERL_PATH)",
+					"-L$(LIBPERL_PATH)",
 					"-Wl,-no_compact_unwind",
 					"-lperl",
 					"-lffi",
 				);
+				PERL_VERSION = 5.33.7;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "";
+				USER_HEADER_SEARCH_PATHS = NO;
 				VALID_ARCHS = x86_64;
 			};
 			name = Release;
@@ -929,7 +937,6 @@
 				PERL_VERSION = 5.33.7;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
 				SYMROOT = Build/Products;
@@ -1022,7 +1029,6 @@
 				PERL_VERSION = 5.33.7;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = NO;
 				SYMROOT = Build/Products;
