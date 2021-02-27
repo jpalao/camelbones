@@ -519,7 +519,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
         }
         
         // Create Perl wrappers for all registered Objective-C classes
-        // CBWrapRegisteredClasses();
+        CBWrapRegisteredClasses();
         
         // Export globals into Perl's name space
         CBWrapAllGlobals();

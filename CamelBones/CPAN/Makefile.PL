@@ -1,11 +1,23 @@
 use 5.006;
 
 my %local_opts;
+my $ios_build;
+my @frameworks;
+
 BEGIN {
     require "./cb_common.pl";
+    if (defined $ENV{'CAMELBONES_TARGET'})
+    {
+        $ios_build = $ENV{'CAMELBONES_TARGET'} =~ /ios/;
+    }
+    if ($ios_build) {
+        @frameworks = ( 'Foundation', 'CoreGraphics', 'Tests' );
+    } else {
+        @frameworks = ( 'Foundation', 'CoreGraphics', 'Tests', 'AppKit' );
+    }
     %local_opts = (
         'NAME' => 'CamelBones',
-        'DIR' => [ 'Foundation', 'CoreGraphics', 'Tests' ], #'AppKit',
+        'DIR' => \@frameworks,
         'XS' => { 'CamelBones.xs' => 'CamelBones.m' },
     );
     for (keys %CBCommon::opts) {

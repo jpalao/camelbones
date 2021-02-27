@@ -54,3 +54,4 @@ Tests/CBSuper.m
 Tests/CBThreadTests.m
 Tests/Makefile.PL
 Tests/Tests.xs
+typemap

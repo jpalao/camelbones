@@ -1,6 +1,5 @@
 use strict;
 use warnings;
-use Config;
 
 package CamelBones;
 require Exporter;
@@ -11,15 +10,6 @@ use CamelBones::CoreGraphics qw(:All);
 
 use CamelBones::NSRange;
 
-if ($Config{archname} =~ /darwin-ios/)
-{
-    use CamelBones::AppKit qw(:All);
-    use CamelBones::AppKit::Constants;
-    use CamelBones::NSRect;
-    use CamelBones::NSSize;
-    use CamelBones::NSPoint;
-}
-
 use CamelBones::CGPoint;
 use CamelBones::CGRect;
 use CamelBones::CGSize;
@@ -28,6 +18,15 @@ use CamelBones::TiedArray;
 use CamelBones::TiedDictionary;
 
 use Config;
+
+if ($Config{archname} !~ /darwin-ios/)
+{
+    use CamelBones::AppKit qw(:All);
+    use CamelBones::AppKit::Constants;
+    use CamelBones::NSRect;
+    use CamelBones::NSSize;
+    use CamelBones::NSPoint;
+}
 
 our @ISA = qw(Exporter);
 our $VERSION = '1.3.0';
