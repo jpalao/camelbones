@@ -781,7 +781,7 @@
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
 					"$(CB_LIB_PERL_PATH)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Debug",
@@ -833,7 +833,7 @@
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release",
 					"$(CB_LIB_PERL_PATH)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Release",
