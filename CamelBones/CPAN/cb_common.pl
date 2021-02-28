@@ -162,6 +162,8 @@ $XCODE_BUILD_CONFIG .= "-$CAMELBONES_TARGET" if $CAMELBONES_TARGET !~ /macosx/;
 # TODO detach embedded libffi?
 our $LIBFFIDIR = '../libffi-3.2.1';
 
+print "\$CAMELBONES_CPAN_DIR: $CAMELBONES_CPAN_DIR\n";
+
 my $abs_path_to_cpan_dir = $CAMELBONES_CPAN_DIR;
 
 if (! defined $abs_path_to_cpan_dir) {
@@ -216,8 +218,6 @@ if ($ENV{CAMELBONES_CI}) {
 }
 
 $CamelBonesPath .= "/Build/Products/$XCODE_BUILD_CONFIG";
-
-print "\$CAMELBONES_CPAN_DIR: $CAMELBONES_CPAN_DIR\n";
     
 our %opts = (
     VERSION           => $CAMELBONES_VERSION,
