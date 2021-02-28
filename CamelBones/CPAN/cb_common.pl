@@ -8,19 +8,25 @@ use ExtUtils::Embed qw/ldopts/;
 die "This version of CamelBones only works on macOS and iOS systems"
     if ( $^O !~ m/darwin/ );
 
-our $PERL_VERSION = '5.33.7';
-our $CAMELBONES_VERSION = '1.3.0';
 
 # TODO detach embedded libffi?
 our $LIBFFIDIR = '../libffi-3.2.1';
+=pod
+ 
+=head2 CAMELBONES_CPAN_DIR
+ 
+Absolute path to CamelBones/CPAN
+ 
+=cut
+
+our $CAMELBONES_CPAN_DIR = $ENV{'CAMELBONES_CPAN_DIR'};
 
 our $ARCHS = $ENV{'ARCHS'};
-our $CAMELBONES_PREFIX = $ENV{'CAMELBONES_PREFIX'};
 our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
 our $CAMELBONES_FRAMEWORK_INSTALL_PATH = $ENV{'CAMELBONES_FRAMEWORK_INSTALL_PATH'};
 our $OVERWRITE_CAMELBONES_FRAMEWORK = $ENV{'OVERWRITE_CAMELBONES_FRAMEWORK'};
 our $INSTALL_CAMELBONES_FRAMEWORK = $ENV{'INSTALL_CAMELBONES_FRAMEWORK'};
-our $PERL_INCLUDE_DIR = $ENV{'PERL_INCLUDE_DIR'};
+our $PERL_INCLUDE_DIR = $ENV{'LIBPERL_PATH'};
 our $PERL_LINK_FLAGS = $ENV{'PERL_LINK_FLAGS'};  
 our $ARCHFLAGS = $ENV{'ARCHFLAGS'};
 
@@ -86,7 +92,7 @@ our %opts = (
 
     AUTHOR            => 'Sherm Pendley <sherm.pendley@gmail.com>',
 
-    XSOPT             => "-typemap $abs_path_to_cwd/typemap",
+    XSOPT             => "-typemap $CAMELBONES_CPAN_DIR/typemap",
 
     LIBS              => [ '-lobjc'],
     INC               => "-F$CamelBonesPath ",
