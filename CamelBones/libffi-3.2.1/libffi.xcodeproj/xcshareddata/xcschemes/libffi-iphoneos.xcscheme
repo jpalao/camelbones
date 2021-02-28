@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "0710"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8252E3D3244E2D4600C27EA2"
+               BlueprintIdentifier = "DB13B1651849DF1E0010F42D"
                BuildableName = "libffi.a"
-               BlueprintName = "libffi-iOS  simulator"
+               BlueprintName = "libffi-iphoneos"
                ReferencedContainer = "container:libffi.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,6 +40,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "DB13B1651849DF1E0010F42D"
+            BuildableName = "libffi.a"
+            BlueprintName = "libffi-iphoneos"
+            ReferencedContainer = "container:libffi.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -50,9 +59,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8252E3D3244E2D4600C27EA2"
+            BlueprintIdentifier = "DB13B1651849DF1E0010F42D"
             BuildableName = "libffi.a"
-            BlueprintName = "libffi-iOS  simulator"
+            BlueprintName = "libffi-iphoneos"
             ReferencedContainer = "container:libffi.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
