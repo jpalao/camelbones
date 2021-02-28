@@ -473,7 +473,7 @@ static NSMutableDictionary * perlInstanceDict = nil;
     }
 }
 
-- (id) initXS {
+- (id) initXS: (BOOL) importCocoa {
 
     [CBPerl initPerlInstanceDictionary: [NSMutableDictionary dictionaryWithCapacity:128]];
 
@@ -517,13 +517,16 @@ static NSMutableDictionary * perlInstanceDict = nil;
         while ((obj = [e nextObject])) {
             [self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
         }
-        
-        // Create Perl wrappers for all registered Objective-C classes
-        CBWrapRegisteredClasses();
-        
-        // Export globals into Perl's name space
-        CBWrapAllGlobals();
 
+        if (importCocoa)
+        {
+            // Create Perl wrappers for all registered Objective-C classes
+            CBWrapRegisteredClasses();
+
+            // Export globals into Perl's name space
+            CBWrapAllGlobals();
+        }
+        
         // When bundles are loaded, we want to hear about it
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bundleDidLoad:)
                                               name:NSBundleDidLoadNotification object:nil];

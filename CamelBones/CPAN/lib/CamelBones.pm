@@ -4,28 +4,41 @@ use warnings;
 package CamelBones;
 require Exporter;
 
-use CamelBones::Foundation qw(:All);
-use CamelBones::Foundation::Constants;
-use CamelBones::CoreGraphics qw(:All);
-
-use CamelBones::NSRange;
-
-use CamelBones::CGPoint;
-use CamelBones::CGRect;
-use CamelBones::CGSize;
-
-use CamelBones::TiedArray;
-use CamelBones::TiedDictionary;
-
 use Config;
 
-if ($Config{archname} !~ /darwin-ios/)
+our $load_cocoa_symbols = 1;
+
+for my $arg (@ARGV)
 {
-    use CamelBones::AppKit qw(:All);
-    use CamelBones::AppKit::Constants;
-    use CamelBones::NSRect;
-    use CamelBones::NSSize;
-    use CamelBones::NSPoint;
+    if ($arg =~ /None/)
+    {
+        $load_cocoa_symbols = 0;
+    }
+}
+
+if ($load_cocoa_symbols)
+{
+    use CamelBones::Foundation qw(:All);
+    use CamelBones::Foundation::Constants;
+    use CamelBones::CoreGraphics qw(:All);
+
+    use CamelBones::NSRange;
+
+    use CamelBones::CGPoint;
+    use CamelBones::CGRect;
+    use CamelBones::CGSize;
+
+    use CamelBones::TiedArray;
+    use CamelBones::TiedDictionary;
+
+    if ($Config{archname} !~ /darwin-ios/)
+    {
+        use CamelBones::AppKit qw(:All);
+        use CamelBones::AppKit::Constants;
+        use CamelBones::NSRect;
+        use CamelBones::NSSize;
+        use CamelBones::NSPoint;
+    }
 }
 
 our @ISA = qw(Exporter);
@@ -43,6 +56,7 @@ our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     'class', 'CBCreateAccessor', 'CBPoke',
                 );
 our %EXPORT_TAGS = (
+    'None'      => ['class', 'CBCreateAccessor', 'CBPoke'],
     'All'		=> [@EXPORT_OK],
     'Foundation' => [
             @CamelBones::Foundation::EXPORT,
@@ -56,8 +70,8 @@ our %EXPORT_TAGS = (
         ],
     'CoreGraphics' => [
             @CamelBones::CoreGraphics::EXPORT,
-            #@CamelBones::CoreGraphics::Constants::EXPORT,
-            #@CamelBones::CoreGraphics::Globals::EXPORT,
+            @CamelBones::CoreGraphics::Constants::EXPORT,
+            @CamelBones::CoreGraphics::Globals::EXPORT,
         ],
 );
 
@@ -78,7 +92,7 @@ our $CacheAutoload = 1;
 
 require XSLoader;
 XSLoader::load('CamelBones', $VERSION);
-CamelBones::CBInit() if $Config{archname} !~ /darwin-ios/;
+CamelBones::CBInit($load_cocoa_symbols) if $Config{archname} !~ /darwin-ios/;
 CamelBones::Foundation::Globals->import;
 CamelBones::AppKit::Globals->import;
 CamelBones::CoreGraphics::Globals->import;

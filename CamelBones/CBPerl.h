@@ -70,7 +70,7 @@ typedef void (^PerlCompletionBlock)(int perlRunResult);
 - (void) dealloc;
 
 // initXS: A version of init suitable for use within XS modules
-- (id) initXS;
+- (id) initXS: (BOOL) importCocoa;
 
 - (void) useBundleLib: (NSBundle *)aBundle
 		withArch: (NSString *)perlArchName
