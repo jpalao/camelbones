@@ -111,6 +111,7 @@ if ($INSTALL_CAMELBONES_FRAMEWORK && $OVERWRITE_CAMELBONES_FRAMEWORK) {
 
 if ($INSTALL_CAMELBONES_FRAMEWORK) {
     print "Installing CamelBones.framework ...\n";
-    `cp -R "Build/Products/$XCODE_BUILD_CONFIG/CamelBones.framework" "$CAMELBONES_FRAMEWORK_INSTALL_PATH"`
+    my $framework_location = "Build/Products/$XCODE_BUILD_CONFIG/CamelBones.framework";
+    print `cp -vR "$framework_location" "$CAMELBONES_FRAMEWORK_INSTALL_PATH"`
 }
 
