@@ -209,7 +209,6 @@
 		82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
 		82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerlMethods.m; sourceTree = "<group>"; };
 		82EAABFE25EC12D1000FE2FC /* iphoneos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = iphoneos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		82EAABFF25EC12D1000FE2FC /* iphone copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "iphone copy-Info.plist"; path = "/Users/jose/Desktop/ios-perl/camelbones/CamelBones/iphone copy-Info.plist"; sourceTree = "<absolute>"; };
 		82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppKitGlobalStrings.plist; sourceTree = "<group>"; };
 		82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FoundationGlobalStrings.plist; sourceTree = "<group>"; };
 		84AC1B9F0D73805000C751F7 /* Tests.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Tests.pm; sourceTree = "<group>"; };
@@ -396,7 +395,6 @@
 				AA50E3A70C875D23004DA7BD /* CamelBones */,
 				AA50E4130C875E1D004DA7BD /* Libraries */,
 				AA50E2330C87587B004DA7BD /* Products */,
-				82EAABFF25EC12D1000FE2FC /* iphone copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
