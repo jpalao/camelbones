@@ -1,16 +1,18 @@
 #!/usr/bin/env sh
 
+source $HOME/perl5/perlbrew/etc/bashrc
+perlbrew use "perl-$PERL_VERSION"
+
 # BUILD #
 export MACOSX_DEPLOYMENT_TARGET='10.9'
 export ARCHS='x86_64'
 
 # PERL #
-export PERL_VERSION='5.33.7'
+export PERL_VERSION='5.33.8'
 export LIBPERL_PATH=`perl -MConfig -e'print $Config{archlib}. "/CORE"'`
 
 # CAMELBONES #
 export CAMELBONES_VERSION='1.3.0'
-export CAMELBONES_CI=
 export CAMELBONES_PREFIX=`pwd`
 export CAMELBONES_CPAN_DIR=`pwd`/CPAN
 export CAMELBONES_BUILD_CONFIGURATION='Debug'
