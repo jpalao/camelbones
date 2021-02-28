@@ -8,7 +8,7 @@ BEGIN {
     require "./cb_common.pl";
     if (defined $ENV{'CAMELBONES_TARGET'})
     {
-        $ios_build = $ENV{'CAMELBONES_TARGET'} =~ /ios/;
+        $ios_build = $ENV{'CAMELBONES_TARGET'} !~ /macosx/;
     }
     if ($ios_build) {
         @frameworks = ( 'Foundation', 'CoreGraphics', 'Tests' );
