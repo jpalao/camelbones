@@ -591,9 +591,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		82151A381CEFBCAC00FB511B /* CamelBones.framework */ = {
+		82151A381CEFBCAC00FB511B /* macosx */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "CamelBones.framework" */;
+			buildConfigurationList = 82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "macosx" */;
 			buildPhases = (
 				82151A3C1CEFBCAC00FB511B /* Headers */,
 				82151A591CEFBCAC00FB511B /* Sources */,
@@ -605,14 +605,14 @@
 			);
 			dependencies = (
 			);
-			name = CamelBones.framework;
+			name = macosx;
 			productName = CamelBones.framework;
 			productReference = 82151A6B1CEFBCAC00FB511B /* CamelBones.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		829161DF1D4D561C006DF121 /* CamelBonesiOS.framework */ = {
+		829161DF1D4D561C006DF121 /* iphone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "CamelBonesiOS.framework" */;
+			buildConfigurationList = 829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "iphone" */;
 			buildPhases = (
 				829161E01D4D561C006DF121 /* Headers */,
 				829161FC1D4D561C006DF121 /* Sources */,
@@ -624,7 +624,7 @@
 			);
 			dependencies = (
 			);
-			name = CamelBonesiOS.framework;
+			name = iphone;
 			productName = CamelBones.framework;
 			productReference = 8291621D1D4D561C006DF121 /* CamelBones.framework */;
 			productType = "com.apple.product-type.framework";
@@ -658,8 +658,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				82151A381CEFBCAC00FB511B /* CamelBones.framework */,
-				829161DF1D4D561C006DF121 /* CamelBonesiOS.framework */,
+				82151A381CEFBCAC00FB511B /* macosx */,
+				829161DF1D4D561C006DF121 /* iphone */,
 				AA7F61620DCCFBA900D20E5E /* All */,
 			);
 		};
@@ -1176,7 +1176,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "CamelBones.framework" */ = {
+		82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "macosx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82151A671CEFBCAC00FB511B /* Debug */,
@@ -1185,7 +1185,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "CamelBonesiOS.framework" */ = {
+		829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "iphone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				829162191D4D561C006DF121 /* Debug */,
