@@ -179,9 +179,7 @@ print "\$abs_path_to_cpan_dir: $abs_path_to_cpan_dir\n";
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 
 my $perl_link_flags = ldopts();
-
 print "\$perl_link_flags: $perl_link_flags\n";
-
 chomp $perl_link_flags;
 
 if (!defined $ARCHFLAGS || !length $ARCHFLAGS) {
@@ -189,7 +187,11 @@ if (!defined $ARCHFLAGS || !length $ARCHFLAGS) {
     chomp $ARCHFLAGS;
 }
 
-$ARCHFLAGS .= " -L$PERL_INCLUDE_DIR -I$PERL_INCLUDE_DIR -ObjC -lobjc ";
+if ($ENV{'CAMELBONES_CI'}) {
+    $ARCHFLAGS .= "$perl_link_flags -ObjC -lobjc "
+} else {
+    $ARCHFLAGS .= " -L$PERL_INCLUDE_DIR -I$PERL_INCLUDE_DIR -ObjC -lobjc " 
+}
 
 # remove the arch switches to be passed to the linker
 # $perl_link_flags =~ s/\-arch[ ]*\w*//g;
@@ -214,6 +216,8 @@ if ($ENV{CAMELBONES_CI}) {
 }
 
 $CamelBonesPath .= "/Build/Products/$XCODE_BUILD_CONFIG";
+
+print "\$CAMELBONES_CPAN_DIR: $CAMELBONES_CPAN_DIR\n";
     
 our %opts = (
     VERSION           => $CAMELBONES_VERSION,
