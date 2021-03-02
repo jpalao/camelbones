@@ -226,7 +226,8 @@ our %opts = (
 
     AUTHOR            => 'Sherm Pendley <sherm.pendley@gmail.com>',
 
-    XSOPT             => "-typemap $CAMELBONES_CPAN_DIR/typemap",
+    #XSOPT             => "-typemap $CAMELBONES_CPAN_DIR/typemap",
+    XSOPT             => "-typemap $CAMELBONES_PREFIX/perl-$PERL_VERSION/ext/CamelBones-$CAMELBONES_VERSION/typemap",
 
     LIBS              => [ '-lobjc'],
     INC               => "-F$CamelBonesPath ",

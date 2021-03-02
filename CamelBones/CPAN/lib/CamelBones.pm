@@ -31,14 +31,16 @@ if ($load_cocoa_symbols)
     use CamelBones::TiedArray;
     use CamelBones::TiedDictionary;
 
-    if ($Config{archname} !~ /darwin-ios/)
-    {
-        use CamelBones::AppKit qw(:All);
-        use CamelBones::AppKit::Constants;
-        use CamelBones::NSRect;
-        use CamelBones::NSSize;
-        use CamelBones::NSPoint;
-    }
+#     warn "\$Config{archname}: $Config{archname}";
+# 
+#     if ($Config{archname} !~ /darwin-ios/)
+#     {
+#         use CamelBones::AppKit qw(:All);
+#         use CamelBones::AppKit::Constants;
+#         use CamelBones::NSRect;
+#         use CamelBones::NSSize;
+#         use CamelBones::NSPoint;
+#     }
 }
 
 our @ISA = qw(Exporter);
