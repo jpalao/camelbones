@@ -1269,7 +1269,7 @@
 					"-lffi",
 				);
 				PERL_DIST_PATH = "";
-				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				PERL_INSTALL_PREFIX = "";
 				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
