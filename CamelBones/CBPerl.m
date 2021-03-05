@@ -395,15 +395,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
            return;
         }
     }
-    @try
-    {
-        result = perl_run(_CBPerlInterpreter);
-    }
-    @catch (NSException * exception ){
-        * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:04 userInfo:@{@"reason":[NSString stringWithFormat:@"%@", [exception description]]}];
-        return;
-    }
 
+    result = perl_run(_CBPerlInterpreter);
     if (result)
     {
         if ( SvTRUE(ERRSV ) )
