@@ -19,8 +19,8 @@ int CBApplicationMain2(const char *scriptName, int argc, const char *argv[]) {
     NSString *wrapperFolder = [[NSBundle mainBundle] resourcePath];
     NSString *mainPL = [NSString stringWithFormat: @"%@/%s", wrapperFolder, scriptName];
     NSError *error = nil;
-    char cpwd[1024];
-    getcwd(cpwd, 1024);
+    char cpwd[MAXPATHLEN];
+    getcwd(cpwd, MAXPATHLEN -1);
     NSURL * pwd = [NSURL URLWithString: [NSString stringWithCString:cpwd encoding:NSUTF8StringEncoding]];
     // Run Perl code
     [[CBPerl alloc] initWithFileName:mainPL withAbsolutePwd: pwd.absoluteURL.absoluteString withDebugger:0 withOptions:nil withArguments:nil error:&error completion:nil];
