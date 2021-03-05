@@ -233,7 +233,7 @@ static void setFileNameString(NSString * prog, NSMutableDictionary *result) {
     [data writeToURL:temporaryFileURL
              options:NSDataWritingAtomic
                error:&error];
-    [result setObject:[temporaryFileURL absoluteString] forKey:@"filePath"];
+    [result setObject:temporaryFileURL.absoluteURL.path forKey:@"filePath"];
 }
 
 static void setFileName(NSArray *progs, NSMutableDictionary *result) {
