@@ -401,10 +401,27 @@ void* CBRunPerl (char * json)
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
             @autoreleasepool {
                 NSString * filePath = [cbRunPerlDict objectForKey:@"filePath"];
+                NSString * absPwd = [cbRunPerlDict objectForKey:@"absPwd"];
                 if (filePath == nil || filePath.length == 0)
                 {
                     retval = 2;
                 }
+                BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+
+                if (!fileExists && ![filePath isAbsolutePath] && absPwd != nil )
+                {
+                    NSString * pathWithCwd = [NSString stringWithFormat:@"%@/%@", absPwd, filePath];
+                    fileExists =  [[NSFileManager defaultManager] fileExistsAtPath:pathWithCwd];
+                    if (fileExists)
+                    {
+                        filePath = [NSString stringWithString: pathWithCwd];
+                    }
+                    else
+                    {
+                        retval = 7;
+                    }
+                }
+
                 if (retval == 0)
                 {
                     @try
@@ -412,8 +429,8 @@ void* CBRunPerl (char * json)
                         NSError *perlError = nil;
                         [
                             [CBPerl alloc]
-                            initWithFileName:[cbRunPerlDict objectForKey:@"filePath"]
-                            withAbsolutePwd:[cbRunPerlDict objectForKey:@"absPwd"]
+                            initWithFileName:filePath
+                            withAbsolutePwd:absPwd
                             withDebugger:FALSE
                             withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:[cbRunPerlDict objectForKey:@"switches"]]
                             withArguments:[cbRunPerlDict objectForKey:@"args"]
