@@ -219,6 +219,33 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
     return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend;
 }
 
+static void setFileNameString(NSString * prog, NSMutableDictionary *result) {
+    char pathToCwd[MAXPATHLEN];
+    NSURL *temporaryDirectoryURL = [NSURL fileURLWithPath: [NSString stringWithUTF8String: getcwd(pathToCwd, MAXPATHLEN -1)]];
+    NSString *temporaryFilename =
+    [[NSProcessInfo processInfo] globallyUniqueString];
+    NSURL *temporaryFileURL =
+    [temporaryDirectoryURL
+     URLByAppendingPathComponent:temporaryFilename];
+
+    NSData *data = [prog dataUsingEncoding: NSUTF8StringEncoding];
+    NSError *error = nil;
+    [data writeToURL:temporaryFileURL
+             options:NSDataWritingAtomic
+               error:&error];
+    [result setObject:[temporaryFileURL absoluteString] forKey:@"filePath"];
+}
+
+static void setFileName(NSArray *progs, NSMutableDictionary *result) {
+    NSMutableString * prog = [[NSMutableString alloc] initWithCapacity: 4*1024];
+    for (NSString * p in progs)
+    {
+        [prog appendString:p];
+        [prog appendString: @"\n"];
+
+    }
+    return setFileNameString(prog, result);
+}
 
 NSMutableDictionary * parseCBRunPerlJson (char * json)
 {
@@ -230,7 +257,7 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     NSDictionary *jsonResponse = nil;
     NSString * absPwd = nil;
     NSArray * args = nil;
-    NSMutableArray * switches = nil;
+    NSArray * switches = nil;
     NSString * filePath = nil;
     NSError *error = nil;
     NSString * prog  = nil;
@@ -261,17 +288,19 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
 
         @try
         {
-            switches = [[jsonResponse valueForKey:@"switches"] mutableCopy];
+            switches = [jsonResponse valueForKey:@"switches"];
         } @finally {
             if (switches == nil || [switches isEqual:[NSNull null]])
             {
-                switches = [@[] mutableCopy];
+                switches = @[];
             }
             else
             {
-                [switches removeObject:@""];
+                NSMutableArray * mutable = [switches mutableCopy];
+                [mutable removeObject:@""];
+                switches = [mutable copy];
             }
-            [result setObject:switches forKey:@"switches"];
+            [result setObject:[switches copy] forKey:@"switches"];
         }
 
         @try
@@ -297,37 +326,13 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                             }
                             else
                             {
-                                char pathToCwd[MAXPATHLEN];
-                                NSURL *temporaryDirectoryURL = [NSURL fileURLWithPath: [NSString stringWithUTF8String: getcwd(pathToCwd, MAXPATHLEN -1)]];
-                                NSString *temporaryFilename =
-                                    [[NSProcessInfo processInfo] globallyUniqueString];
-                                NSURL *temporaryFileURL =
-                                    [temporaryDirectoryURL
-                                        URLByAppendingPathComponent:temporaryFilename];
-
-                                NSMutableString * prog = [[NSMutableString alloc] initWithCapacity: 4*1024];
-                                for (NSString * p in progs)
-                                {
-                                    [prog appendString:p];
-                                    [prog appendString: @"\n"];
-
-                                }
-
-                                NSData *data = [prog dataUsingEncoding: NSUTF8StringEncoding];
-                                NSError *error = nil;
-                                [data writeToURL:temporaryFileURL
-                                         options:NSDataWritingAtomic
-                                           error:&error];
-                                [result setObject:[temporaryFileURL absoluteString] forKey:@"filePath"];
+                                setFileName(progs, result);
                             }
                         }
                     }
                     else
                     {
-                        // [result setObject:prog forKey:@"prog"];
-                        [switches addObject: @"-e"];
-                        [switches addObject: [jsonResponse valueForKey:@"prog"]];
-                        [result setObject:switches forKey:@"switches"];
+                        setFileNameString(prog, result);
                     }
 
                 }
