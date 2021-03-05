@@ -239,9 +239,11 @@ static NSMutableDictionary * perlInstanceDict = nil;
             [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
             PL_perl_destruct_level = 1;
-            @try {
+            @try
+            {
                 perl_construct(_CBPerlInterpreter);
-            } @catch (NSException * exception ){
+            }
+            @catch (NSException * exception ){
                 NSLog(@"perl_construct threw Exception %@", [exception description]);
                 return;
             }
@@ -268,14 +270,17 @@ static NSMutableDictionary * perlInstanceDict = nil;
     }
 }
 
-- (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion{
-@autoreleasepool {
+- (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion
+{
+@autoreleasepool
+{
     int embSize = 0;
     int dirChanged = -1;
     char *emb[32];
     int result;
 
-    @synchronized(perlInstanceDict) {
+    @synchronized(perlInstanceDict)
+    {
         if (fileName) {
             NSURL * filePathUrl = [NSURL URLWithString: fileName];
             NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
@@ -332,27 +337,35 @@ static NSMutableDictionary * perlInstanceDict = nil;
 
         // No, create one and retain it
 
-        if ((self = [super init])) {
-            if (!perlInitialized) {
+        if ((self = [super init]))
+        {
+            if (!perlInitialized)
+            {
                 [CBPerl initializePerl];
             }
 
             _CBPerlInterpreter = perl_alloc();
 
-            if(_CBPerlInterpreter == NULL) {
+            if(_CBPerlInterpreter == NULL)
+            {
                 * error = [[NSError alloc] initWithDomain:@"dev.perla.init" code:01 userInfo:@{@"reason": @"Cannot initialize perl interpreter"}];
                 [self cleanUp];
                 return;
-            } else {
+            }
+            else
+            {
                 PERL_SET_CONTEXT(_CBPerlInterpreter);
             }
 
             [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
             PL_perl_destruct_level = 1;
-            @try {
+            @try
+            {
                 perl_construct(_CBPerlInterpreter);
-            } @catch (NSException * exception ){
+            }
+            @catch (NSException * exception )
+            {
                 NSLog(@"perl_construct threw Exception %@", [exception description]);
                 return;
             }
@@ -375,7 +388,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
                 [self cleanUp];
                 return;
             }
-        } @catch (NSException * exception ){
+        }
+        @catch (NSException * exception ){
            NSLog(@"perl_parse threw Exception %@", [exception description]);
            * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"%@", [exception description]]}];
            return;
@@ -383,7 +397,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
     }
 
     result = perl_run(_CBPerlInterpreter);
-    if (result) {
+    if (result)
+    {
         if ( SvTRUE(ERRSV ) )
         {
             char * perl_error = SvPVx_nolen(ERRSV);
@@ -394,7 +409,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
             * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
         }
         [self cleanUp];
-    } else {
+    }
+    else {
         if (completion) completion(0);
         [self cleanUp];
     }
