@@ -375,19 +375,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
         }
         @try {
             result = perl_parse(_CBPerlInterpreter, xs_init, embSize, emb, (char **)NULL);
-//            if (result) {
-//                if ( SvTRUE(ERRSV ) )
-//                {
-//                    char * perl_error = SvPVx_nolen(ERRSV);
-//                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
-//                }
-//                else
-//                {
-//                    * error = [[NSError alloc] initWithDomain:@"dev.perla.parse" code:02 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
-//                }
-//                [self cleanUp];
-//                return;
-//            }
         }
         @catch (NSException * exception ){
            NSLog(@"perl_parse threw Exception %@", [exception description]);
