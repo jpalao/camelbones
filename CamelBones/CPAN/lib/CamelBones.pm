@@ -390,8 +390,6 @@ sub UNIVERSAL::MODIFY_CODE_ATTRIBUTES {
 		${$class.'::OBJC_EXPORT'}{$selector}{'method'} = $method;
 		*{$class.'::'.$method} = $sub;
 
-	} else {
-		warn("Warning - Method not exported, attributes used without Selector");
 	}
 
 	return @unknown;
