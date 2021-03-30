@@ -435,7 +435,11 @@ void* CBRunPerl (char * json)
                             withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:[cbRunPerlDict objectForKey:@"switches"]]
                             withArguments:[cbRunPerlDict objectForKey:@"args"]
                             error:&perlError
-                            completion:nil
+                            completion: (PerlCompletionBlock) ^ (int perlResult) {
+                                fflush(stdout);
+                                fflush(stderr);
+                                [CBPerl sleepMicroSeconds:50000];
+                            }
                         ];
                         if (perlError) {
                             retval = 4;
@@ -459,8 +463,6 @@ void* CBRunPerl (char * json)
         }
         [CBPerl sleepMicroSeconds:100000];
     }
-//    fflush(stdout);
-    fflush(stderr);
     return (void *)ret;
 }
 }
