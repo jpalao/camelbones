@@ -438,7 +438,7 @@ void* CBRunPerl (char * json)
                             completion: (PerlCompletionBlock) ^ (int perlResult) {
                                 fflush(stdout);
                                 fflush(stderr);
-                                [CBPerl sleepMicroSeconds:50000];
+                                [NSThread sleepForTimeInterval: 0.05];
                             }
                         ];
                         if (perlError) {
@@ -461,7 +461,7 @@ void* CBRunPerl (char * json)
         if (!wait_for_perl) {
             break;
         }
-        [CBPerl sleepMicroSeconds:100000];
+        [NSThread sleepForTimeInterval: 0.1];
     }
     return (void *)ret;
 }
@@ -594,7 +594,7 @@ CBRunPerlCaptureStdout (char * json) {
         listener_ready = TRUE;
     });
     while (!listener_ready) {
-        [CBPerl sleepMicroSeconds:100000];
+        [NSThread sleepForTimeInterval: 0.1];
     }
 
     SV * exec_result = CBRunPerl(json);

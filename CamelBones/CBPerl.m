@@ -51,11 +51,8 @@ static NSMutableDictionary * perlInstanceDict = nil;
 }
 
 + (int)sleepMicroSeconds: (NSUInteger)usec {
-    // TODO: NSThread?
-    struct timespec request;
-    request.tv_sec  = usec / 1000000L;
-    request.tv_nsec = (usec % 1000000L) * 1000L;
-    return nanosleep(&request, NULL);
+    [NSThread sleepForTimeInterval:(double)usec/1000000];
+    return 0;
 }
 
 + (void) initializePerl {
