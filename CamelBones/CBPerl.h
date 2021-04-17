@@ -10,8 +10,6 @@
 #import "PerlImports.h"
 #include "perlxsi.h"
 
-#define perlVersionString @"5.24.0"
-
 #define CBPerlErrorException @"CBPerlErrorException"
 
 @class CBPerlScalar;
@@ -19,20 +17,18 @@
 @class CBPerlHash;
 @class CBPerlObject;
 
-static NSMutableDictionary * perlInstanceDict = nil;
 static Boolean perlInitialized = false;
 
+typedef void (^PerlCompletionBlock)(int perlRunResult);
+
 @interface CBPerl : NSObject {
-    id _sharedPerl;
     PerlInterpreter * _CBPerlInterpreter;
 }
 
-// CBPerl ivars:
-
-// _sharedPerl: pointer to this CBPerl object
-@property (nonatomic, assign) id sharedPerl;
 // _CBPerlInterpreter: pointer to this CBPerl object's perl interpreter
 @property (nonatomic, assign) PerlInterpreter * CBPerlInterpreter;
+
+@property (nonatomic, assign) NSString * perlVersionString;
 
 // getPerlInterpreter: Class method that returns the current perl Interpreter
 + (PerlInterpreter *) getPerlInterpreter;
@@ -42,7 +38,14 @@ static Boolean perlInitialized = false;
 
 // getPerlInterpreter: Class method that returns the global perl Interpreter dictionary
 // It will initialize the dictionary if not already initialized
-+ (NSDictionary *) getPerlInstanceDictionary;
++ (NSMutableDictionary *) getPerlInstanceDictionary;
+
+// init the perl instance Dictionary
++ (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary;
+
+// if passed the correct pointer will delete the dictionary
+// make sure the dictionary is empty before using this!!!
++ (void) clearPerlInstanceDictionary: (NSMutableDictionary *) dictionary;
 
 // getCBPerlFromPerlInterpreter: Class method that returns the CBPerl object corresponding to an embedded perl interpreter object
 + (CBPerl *) getCBPerlFromPerlInterpreter: (PerlInterpreter *) perlInterpreter;
@@ -50,18 +53,16 @@ static Boolean perlInitialized = false;
 // setCBPerl: Class method that sets the CBPerl object corresponding to an embedded perl interpreter object
 + (void) setCBPerl:(CBPerl *) cbperl forPerlInterpreter:(PerlInterpreter *) perlInterpreter;
 
+// wait microseconds
++ (int)sleepMicroSeconds: (NSUInteger)usec;
+
 // clean up this CBPerl object's perl interpreter
 - (void) cleanUp;
 
 // init this CBPerl object with a new perl interpreter
-- (id) initWithFileName:(NSString*)fileName withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments;
+-(void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion;
 
-// sharedPerl: will return the shared CBPerl object (without retaining
-// it) if it exists. Otherwise it calls init: to create one, autoreleases
-// it, and then returns it. It will return nil if a CBPerl object does not
-// exist, and for some reason could not be created.
-
-- (CBPerl *) sharedPerl;
+- (void) syntaxCheck:(NSString*)fileName error:(NSError **)error;
 
 // init: creates the shared CBPerl object if necessary, retains and returns it.
 - (id) init;
@@ -69,7 +70,7 @@ static Boolean perlInitialized = false;
 - (void) dealloc;
 
 // initXS: A version of init suitable for use within XS modules
-- (id) initXS;
+- (id) initXS: (BOOL) importCocoa;
 
 - (void) useBundleLib: (NSBundle *)aBundle
 		withArch: (NSString *)perlArchName

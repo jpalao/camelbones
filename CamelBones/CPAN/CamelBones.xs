@@ -28,10 +28,23 @@ CBPoke(address, object, size=0)
 	unsigned size;
 
 void
-CBInit()
+CBInit(importCocoa)
+    BOOL importCocoa;
     CODE:
     NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
-    [[CBPerl alloc] initXS];
+    [[CBPerl alloc] initXS: importCocoa];
+
+SV*
+CBRunPerlCaptureStdout(json)
+    const char* json;
+
+SV*
+CBRunPerl(json)
+    const char* json;
+
+SV*
+CBYield(ti)
+    double ti;
 
 SV*
 CBCallNativeMethod(this, sel, args, isSuper)

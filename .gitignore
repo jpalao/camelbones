@@ -12,6 +12,7 @@ CamelBones/libffi-3.2.1/build_iphonesimulator-x86_64/
 
 # perl
 CamelBones/Perl5.24/
+blib
 
 ### Xcode ###
 build

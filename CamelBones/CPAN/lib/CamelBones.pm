@@ -4,29 +4,47 @@ use warnings;
 package CamelBones;
 require Exporter;
 
-use CamelBones::Foundation qw(:All);
-use CamelBones::Foundation::Constants;
-use CamelBones::AppKit qw(:All);
-use CamelBones::AppKit::Constants;
-
-use CamelBones::CoreGraphics qw(:All);
-
-use CamelBones::NSPoint;
-use CamelBones::NSRange;
-use CamelBones::NSRect;
-use CamelBones::NSSize;
-
-use CamelBones::CGPoint;
-use CamelBones::CGRect;
-use CamelBones::CGSize;
-
-use CamelBones::TiedArray;
-use CamelBones::TiedDictionary;
-
 use Config;
 
+our $load_cocoa_symbols = 1;
+
+for my $arg (@ARGV)
+{
+    if ($arg =~ /None/)
+    {
+        $load_cocoa_symbols = 0;
+    }
+}
+
+if ($load_cocoa_symbols)
+{
+    use CamelBones::Foundation qw(:All);
+    use CamelBones::Foundation::Constants;
+    use CamelBones::CoreGraphics qw(:All);
+
+    use CamelBones::NSRange;
+
+    use CamelBones::CGPoint;
+    use CamelBones::CGRect;
+    use CamelBones::CGSize;
+
+    use CamelBones::TiedArray;
+    use CamelBones::TiedDictionary;
+
+#     warn "\$Config{archname}: $Config{archname}";
+# 
+#     if ($Config{archname} !~ /darwin-ios/)
+#     {
+#         use CamelBones::AppKit qw(:All);
+#         use CamelBones::AppKit::Constants;
+#         use CamelBones::NSRect;
+#         use CamelBones::NSSize;
+#         use CamelBones::NSPoint;
+#     }
+}
+
 our @ISA = qw(Exporter);
-our $VERSION = '1.2.0';
+our $VERSION = '1.3.0';
 our @EXPORT = qw(class);
 our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::Foundation::Constants::EXPORT,
@@ -35,9 +53,12 @@ our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::AppKit::Constants::EXPORT,
                     @CamelBones::AppKit::Globals::EXPORT,
                     @CamelBones::CoreGraphics::EXPORT_OK,
+                    @CamelBones::CoreGraphics::Constants::EXPORT,
+                    @CamelBones::CoreGraphics::Globals::EXPORT,                    
                     'class', 'CBCreateAccessor', 'CBPoke',
                 );
 our %EXPORT_TAGS = (
+    'None'      => ['class', 'CBCreateAccessor', 'CBPoke'],
     'All'		=> [@EXPORT_OK],
     'Foundation' => [
             @CamelBones::Foundation::EXPORT,
@@ -51,8 +72,8 @@ our %EXPORT_TAGS = (
         ],
     'CoreGraphics' => [
             @CamelBones::CoreGraphics::EXPORT,
-            #@CamelBones::CoreGraphics::Constants::EXPORT,
-            #@CamelBones::CoreGraphics::Globals::EXPORT,
+            @CamelBones::CoreGraphics::Constants::EXPORT,
+            @CamelBones::CoreGraphics::Globals::EXPORT,
         ],
 );
 
@@ -73,9 +94,10 @@ our $CacheAutoload = 1;
 
 require XSLoader;
 XSLoader::load('CamelBones', $VERSION);
-CamelBones::CBInit();
+CamelBones::CBInit($load_cocoa_symbols) if $Config{archname} !~ /darwin-ios/;
 CamelBones::Foundation::Globals->import;
 CamelBones::AppKit::Globals->import;
+CamelBones::CoreGraphics::Globals->import;
 
 # Add a bundle loader to @INC
 push @INC, sub {
@@ -317,7 +339,7 @@ sub NSObject::AUTOLOAD {
         } else {
             return $returnObject;
         }
-	DESTROY { 1 };
+        DESTROY { 1 };
     };
    
     if (!$isSuperMethod && $CamelBones::CacheAutoload) {
@@ -368,8 +390,6 @@ sub UNIVERSAL::MODIFY_CODE_ATTRIBUTES {
 		${$class.'::OBJC_EXPORT'}{$selector}{'method'} = $method;
 		*{$class.'::'.$method} = $sub;
 
-	} else {
-		warn("Warning - Method not exported, attributes used without Selector");
 	}
 
 	return @unknown;

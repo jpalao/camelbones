@@ -5,7 +5,7 @@ package CamelBones::Foundation;
 
 require Exporter;
 our @ISA = qw(Exporter);
-our $VERSION = '1.2.0';
+our $VERSION = '1.3.0';
 our @EXPORT = ();
 our @EXPORT_OK = qw(
     NSLog

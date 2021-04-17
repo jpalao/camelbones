@@ -101,15 +101,17 @@
 // Destructor
 - (void) dealloc {
     // Define a Perl context
-    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
-    dTHX;
+    @synchronized(self) {
+        PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+        dTHX;
 
-    if (NULL != _myHash) {
-        if (SvREFCNT((SV *)_myHash) > 0) {
-            SvREFCNT_dec((SV *)_myHash);
+        if (NULL != _myHash) {
+            if (SvREFCNT((SV *)_myHash) > 0) {
+                SvREFCNT_dec((SV *)_myHash);
+            }
         }
+        [super dealloc];
     }
-    [super dealloc];
 }
 
 // Extended methods

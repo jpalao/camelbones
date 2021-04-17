@@ -105,6 +105,51 @@
 		82B5E4A41E0AF86900012BF7 /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */; };
 		82B5E4A51E0AFE4A00012BF7 /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D20C875DB7004DA7BD /* Structs.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		82B5E4A61E0BC8BF00012BF7 /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */; };
+		82EAABCA25EC12D1000FE2FC /* Structs.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D20C875DB7004DA7BD /* Structs.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABCB25EC12D1000FE2FC /* Wrappers.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3D80C875DB7004DA7BD /* Wrappers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABCC25EC12D1000FE2FC /* Runtime.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CF0C875DB7004DA7BD /* Runtime.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABCD25EC12D1000FE2FC /* NativeMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C60C875DB7004DA7BD /* NativeMethods.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABCE25EC12D1000FE2FC /* Globals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C30C875DB7004DA7BD /* Globals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABCF25EC12D1000FE2FC /* Conversions.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3BE0C875DB7004DA7BD /* Conversions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD025EC12D1000FE2FC /* AppMain.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3A80C875DB7004DA7BD /* AppMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD125EC12D1000FE2FC /* CamelBones.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AA0C875DB7004DA7BD /* CamelBones.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD225EC12D1000FE2FC /* CBPerl.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AB0C875DB7004DA7BD /* CBPerl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD325EC12D1000FE2FC /* CBPerlArray.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AD0C875DB7004DA7BD /* CBPerlArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD425EC12D1000FE2FC /* PerlMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */; };
+		82EAABD525EC12D1000FE2FC /* CBPerlHash.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B00C875DB7004DA7BD /* CBPerlHash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD625EC12D1000FE2FC /* CBPerlArrayInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3AF0C875DB7004DA7BD /* CBPerlArrayInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD725EC12D1000FE2FC /* CBPerlHashInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B20C875DB7004DA7BD /* CBPerlHashInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD825EC12D1000FE2FC /* CBPerlObjectInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B50C875DB7004DA7BD /* CBPerlObjectInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABD925EC12D1000FE2FC /* CBPerlScalarInternals.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B90C875DB7004DA7BD /* CBPerlScalarInternals.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABDA25EC12D1000FE2FC /* PerlImports.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3C80C875DB7004DA7BD /* PerlImports.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABDB25EC12D1000FE2FC /* perlxsi.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3CD0C875DB7004DA7BD /* perlxsi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABDC25EC12D1000FE2FC /* CBPerlObject.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B30C875DB7004DA7BD /* CBPerlObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABDD25EC12D1000FE2FC /* CBPerlScalar.h in Headers */ = {isa = PBXBuildFile; fileRef = AA50E3B70C875DB7004DA7BD /* CBPerlScalar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EAABDF25EC12D1000FE2FC /* CBPerl.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AC0C875DB7004DA7BD /* CBPerl.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
+		82EAABE025EC12D1000FE2FC /* CBPerlArray.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3AE0C875DB7004DA7BD /* CBPerlArray.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
+		82EAABE125EC12D1000FE2FC /* CBPerlHash.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B10C875DB7004DA7BD /* CBPerlHash.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
+		82EAABE225EC12D1000FE2FC /* CBPerlObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B40C875DB7004DA7BD /* CBPerlObject.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
+		82EAABE325EC12D1000FE2FC /* CBPerlScalar.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B80C875DB7004DA7BD /* CBPerlScalar.m */; settings = {COMPILER_FLAGS = "-Wno-objc-protocol-method-implementation"; }; };
+		82EAABE425EC12D1000FE2FC /* AppMain.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3A90C875DB7004DA7BD /* AppMain.m */; };
+		82EAABE525EC12D1000FE2FC /* CBPerlObjectInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3B60C875DB7004DA7BD /* CBPerlObjectInternals.m */; };
+		82EAABE625EC12D1000FE2FC /* NativeMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C70C875DB7004DA7BD /* NativeMethods.m */; };
+		82EAABE725EC12D1000FE2FC /* perlxsi.c in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3CC0C875DB7004DA7BD /* perlxsi.c */; };
+		82EAABE825EC12D1000FE2FC /* Structs.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D30C875DB7004DA7BD /* Structs.m */; };
+		82EAABE925EC12D1000FE2FC /* CBPerlScalarInternals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BA0C875DB7004DA7BD /* CBPerlScalarInternals.m */; };
+		82EAABEA25EC12D1000FE2FC /* Conversions.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3BF0C875DB7004DA7BD /* Conversions.m */; };
+		82EAABEB25EC12D1000FE2FC /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3C40C875DB7004DA7BD /* Globals.m */; };
+		82EAABEC25EC12D1000FE2FC /* Runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D00C875DB7004DA7BD /* Runtime.m */; };
+		82EAABED25EC12D1000FE2FC /* Wrappers.m in Sources */ = {isa = PBXBuildFile; fileRef = AA50E3D90C875DB8004DA7BD /* Wrappers.m */; };
+		82EAABEE25EC12D1000FE2FC /* PerlMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */; };
+		82EAABF025EC12D1000FE2FC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829162601D4D6831006DF121 /* CoreData.framework */; };
+		82EAABF125EC12D1000FE2FC /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829162611D4D6831006DF121 /* CoreFoundation.framework */; };
+		82EAABF225EC12D1000FE2FC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829162621D4D6831006DF121 /* CoreGraphics.framework */; };
+		82EAABF325EC12D1000FE2FC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 829162631D4D6831006DF121 /* UIKit.framework */; };
+		82EAABF425EC12D1000FE2FC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA50E4280C875FA2004DA7BD /* Foundation.framework */; };
+		82EAABF625EC12D1000FE2FC /* AppKitGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */; };
+		82EAABF725EC12D1000FE2FC /* FoundationGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */; };
+		82EAABF825EC12D1000FE2FC /* CBDummyModule.pm in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84B5406F0DA17D3800C351C3 /* CBDummyModule.pm */; };
+		82EAABF925EC12D1000FE2FC /* typemap in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA83FE0E0CC9E9CF00E56F20 /* typemap */; };
 		82F870171CF630C100D0F3EA /* AppKitGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */; };
 		82F870181CF630C200D0F3EA /* FoundationGlobalStrings.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */; };
 /* End PBXBuildFile section */
@@ -136,6 +181,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82EAABF525EC12D1000FE2FC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				82EAABF625EC12D1000FE2FC /* AppKitGlobalStrings.plist in CopyFiles */,
+				82EAABF725EC12D1000FE2FC /* FoundationGlobalStrings.plist in CopyFiles */,
+				82EAABF825EC12D1000FE2FC /* CBDummyModule.pm in CopyFiles */,
+				82EAABF925EC12D1000FE2FC /* typemap in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -150,6 +208,7 @@
 		829162631D4D6831006DF121 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		82B5E4A01E0AF7CE00012BF7 /* PerlMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PerlMethods.h; sourceTree = "<group>"; };
 		82B5E4A11E0AF7CE00012BF7 /* PerlMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PerlMethods.m; sourceTree = "<group>"; };
+		82EAABFE25EC12D1000FE2FC /* CamelBones.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CamelBones.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82F870151CF630C100D0F3EA /* AppKitGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppKitGlobalStrings.plist; sourceTree = "<group>"; };
 		82F870161CF630C100D0F3EA /* FoundationGlobalStrings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FoundationGlobalStrings.plist; sourceTree = "<group>"; };
 		84AC1B9F0D73805000C751F7 /* Tests.pm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = Tests.pm; sourceTree = "<group>"; };
@@ -209,7 +268,7 @@
 		AA50E3D90C875DB8004DA7BD /* Wrappers.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Wrappers.m; sourceTree = "<group>"; };
 		AA50E4240C875F90004DA7BD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		AA50E4280C875FA2004DA7BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		AA83FE0E0CC9E9CF00E56F20 /* typemap */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = typemap; sourceTree = "<group>"; };
+		AA83FE0E0CC9E9CF00E56F20 /* typemap */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = typemap; path = CPAN/typemap; sourceTree = "<group>"; };
 		AA9143200CC99B2A0055B0E5 /* AppKit.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = AppKit.xs; sourceTree = "<group>"; };
 		AA9143230CC99B2A0055B0E5 /* Makefile.PL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = Makefile.PL; sourceTree = "<group>"; };
 		AA9143570CC99B2A0055B0E5 /* CamelBones.xs */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = CamelBones.xs; path = CPAN/CamelBones.xs; sourceTree = "<group>"; };
@@ -269,6 +328,18 @@
 				829162661D4D6831006DF121 /* CoreGraphics.framework in Frameworks */,
 				829162671D4D6831006DF121 /* UIKit.framework in Frameworks */,
 				829162111D4D561C006DF121 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		82EAABEF25EC12D1000FE2FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82EAABF025EC12D1000FE2FC /* CoreData.framework in Frameworks */,
+				82EAABF125EC12D1000FE2FC /* CoreFoundation.framework in Frameworks */,
+				82EAABF225EC12D1000FE2FC /* CoreGraphics.framework in Frameworks */,
+				82EAABF325EC12D1000FE2FC /* UIKit.framework in Frameworks */,
+				82EAABF425EC12D1000FE2FC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +403,7 @@
 			children = (
 				82151A6B1CEFBCAC00FB511B /* CamelBones.framework */,
 				8291621D1D4D561C006DF121 /* CamelBones.framework */,
+				82EAABFE25EC12D1000FE2FC /* CamelBones.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -588,12 +660,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82EAABC925EC12D1000FE2FC /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82EAABCA25EC12D1000FE2FC /* Structs.h in Headers */,
+				82EAABCB25EC12D1000FE2FC /* Wrappers.h in Headers */,
+				82EAABCC25EC12D1000FE2FC /* Runtime.h in Headers */,
+				82EAABCD25EC12D1000FE2FC /* NativeMethods.h in Headers */,
+				82EAABCE25EC12D1000FE2FC /* Globals.h in Headers */,
+				82EAABCF25EC12D1000FE2FC /* Conversions.h in Headers */,
+				82EAABD025EC12D1000FE2FC /* AppMain.h in Headers */,
+				82EAABD125EC12D1000FE2FC /* CamelBones.h in Headers */,
+				82EAABD225EC12D1000FE2FC /* CBPerl.h in Headers */,
+				82EAABD325EC12D1000FE2FC /* CBPerlArray.h in Headers */,
+				82EAABD425EC12D1000FE2FC /* PerlMethods.h in Headers */,
+				82EAABD525EC12D1000FE2FC /* CBPerlHash.h in Headers */,
+				82EAABD625EC12D1000FE2FC /* CBPerlArrayInternals.h in Headers */,
+				82EAABD725EC12D1000FE2FC /* CBPerlHashInternals.h in Headers */,
+				82EAABD825EC12D1000FE2FC /* CBPerlObjectInternals.h in Headers */,
+				82EAABD925EC12D1000FE2FC /* CBPerlScalarInternals.h in Headers */,
+				82EAABDA25EC12D1000FE2FC /* PerlImports.h in Headers */,
+				82EAABDB25EC12D1000FE2FC /* perlxsi.h in Headers */,
+				82EAABDC25EC12D1000FE2FC /* CBPerlObject.h in Headers */,
+				82EAABDD25EC12D1000FE2FC /* CBPerlScalar.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		82151A381CEFBCAC00FB511B /* CamelBones.framework */ = {
+		82151A381CEFBCAC00FB511B /* macosx */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "CamelBones.framework" */;
+			buildConfigurationList = 82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "macosx" */;
 			buildPhases = (
 				82151A3C1CEFBCAC00FB511B /* Headers */,
 				82151A591CEFBCAC00FB511B /* Sources */,
@@ -605,14 +704,14 @@
 			);
 			dependencies = (
 			);
-			name = CamelBones.framework;
+			name = macosx;
 			productName = CamelBones.framework;
 			productReference = 82151A6B1CEFBCAC00FB511B /* CamelBones.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		829161DF1D4D561C006DF121 /* CamelBonesiOS.framework */ = {
+		829161DF1D4D561C006DF121 /* iphonesimulator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "CamelBonesiOS.framework" */;
+			buildConfigurationList = 829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "iphonesimulator" */;
 			buildPhases = (
 				829161E01D4D561C006DF121 /* Headers */,
 				829161FC1D4D561C006DF121 /* Sources */,
@@ -624,9 +723,28 @@
 			);
 			dependencies = (
 			);
-			name = CamelBonesiOS.framework;
+			name = iphonesimulator;
 			productName = CamelBones.framework;
 			productReference = 8291621D1D4D561C006DF121 /* CamelBones.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		82EAABC825EC12D1000FE2FC /* iphoneos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 82EAABFB25EC12D1000FE2FC /* Build configuration list for PBXNativeTarget "iphoneos" */;
+			buildPhases = (
+				82EAABC925EC12D1000FE2FC /* Headers */,
+				82EAABDE25EC12D1000FE2FC /* Sources */,
+				82EAABEF25EC12D1000FE2FC /* Frameworks */,
+				82EAABF525EC12D1000FE2FC /* CopyFiles */,
+				82EAABFA25EC12D1000FE2FC /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iphoneos;
+			productName = CamelBones.framework;
+			productReference = 82EAABFE25EC12D1000FE2FC /* CamelBones.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -635,25 +753,32 @@
 		AA50E2050C87571F004DA7BD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					82151A381CEFBCAC00FB511B = {
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = AA50E2060C87571F004DA7BD /* Build configuration list for PBXProject "CamelBones" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
+				en,
+				de,
+				Base,
+				fr,
+				ja,
 			);
 			mainGroup = AA50E2030C87571F004DA7BD;
 			productRefGroup = AA50E2330C87587B004DA7BD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				82151A381CEFBCAC00FB511B /* CamelBones.framework */,
-				829161DF1D4D561C006DF121 /* CamelBonesiOS.framework */,
+				829161DF1D4D561C006DF121 /* iphonesimulator */,
+				82EAABC825EC12D1000FE2FC /* iphoneos */,
+				82151A381CEFBCAC00FB511B /* macosx */,
 				AA7F61620DCCFBA900D20E5E /* All */,
 			);
 		};
@@ -671,9 +796,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"\n#if [! -e \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"]\n#    then\n        mkdir -p \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#fi\n\n#if [-h \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"]\n#then\n#nothing\n#else\nln -fs \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\" \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework\"\n#fi\n\n\n";
+			shellScript = "#!/bin/bash\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"\n#if [! -e \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"]\n#    then\n        mkdir -p \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#fi\n\n#if [-h \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"]\n#then\n#nothing\n#else\ncd \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework\"\nln -fs \"Versions/A/Libraries\"\n#fi\n\n\n";
 		};
 		829162171D4D561C006DF121 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "#!/bin/bash\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#rm -rf \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"\n#if [! -e \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"]\n#    then\n        mkdir -p \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\"\n#fi\n\n#if [-h \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Libraries\"]\n#then\n#nothing\n#else\nln -fs \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework/Versions/A/Libraries\" \"$BUILD_DIR/$CONFIGURATION/CamelBones.framework\"\n#fi\n\n\n";
+		};
+		82EAABFA25EC12D1000FE2FC /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -735,16 +873,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		82EAABDE25EC12D1000FE2FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				82EAABDF25EC12D1000FE2FC /* CBPerl.m in Sources */,
+				82EAABE025EC12D1000FE2FC /* CBPerlArray.m in Sources */,
+				82EAABE125EC12D1000FE2FC /* CBPerlHash.m in Sources */,
+				82EAABE225EC12D1000FE2FC /* CBPerlObject.m in Sources */,
+				82EAABE325EC12D1000FE2FC /* CBPerlScalar.m in Sources */,
+				82EAABE425EC12D1000FE2FC /* AppMain.m in Sources */,
+				82EAABE525EC12D1000FE2FC /* CBPerlObjectInternals.m in Sources */,
+				82EAABE625EC12D1000FE2FC /* NativeMethods.m in Sources */,
+				82EAABE725EC12D1000FE2FC /* perlxsi.c in Sources */,
+				82EAABE825EC12D1000FE2FC /* Structs.m in Sources */,
+				82EAABE925EC12D1000FE2FC /* CBPerlScalarInternals.m in Sources */,
+				82EAABEA25EC12D1000FE2FC /* Conversions.m in Sources */,
+				82EAABEB25EC12D1000FE2FC /* Globals.m in Sources */,
+				82EAABEC25EC12D1000FE2FC /* Runtime.m in Sources */,
+				82EAABED25EC12D1000FE2FC /* Wrappers.m in Sources */,
+				82EAABEE25EC12D1000FE2FC /* PerlMethods.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		82151A671CEFBCAC00FB511B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DEVELOPMENT_TEAM = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -758,43 +924,52 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_osx/include",
+					"$(LIBPERL_PATH)",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBPERL_PATH = "$(HOME)/perl5/perlbrew/perls/perl-blead/lib/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug",
-					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
+					"$(LIBPERL_PATH)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Debug",
-					"-L/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
+					"-L$(LIBPERL_PATH)",
 					"-Wl,-no_compact_unwind",
 					"-lperl",
 					"-lffi",
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
+				PERL_VERSION = 5.33.8;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
 		82151A681CEFBCAC00FB511B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = YES;
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
@@ -805,58 +980,55 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_osx/include",
+					"$(LIBPERL_PATH)",
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBPERL_PATH = "$(HOME)/perl5/perlbrew/perls/perl-blead/lib/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release",
-					"/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
+					"$(LIBPERL_PATH)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-L./libffi-3.2.1/Build/Products/Release",
-					"-L/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE",
+					"-L$(LIBPERL_PATH)",
 					"-Wl,-no_compact_unwind",
 					"-lperl",
 					"-lffi",
 				);
-				PREBINDING = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones.framework;
+				PERL_VERSION = 5.33.8;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SYMROOT = Build/Products;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.24.0/lib/5.24.0/darwin-thread-multi-2level/CORE";
+				USER_HEADER_SEARCH_PATHS = NO;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
 		829162191D4D561C006DF121 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
-				"ARCHS[sdk=iphoneos*]" = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
-				"ARCHS[sdk=iphonesimulator*]" = (
-					x86_64,
-					i386,
-				);
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				"ARCHS[sdk=iphonesimulator*]" = x86_64;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -865,130 +1037,351 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DEBUG=1";
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
+				);
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBPERL_PATH = "";
+				"LIBPERL_PATH[sdk=iphoneos*]" = "$(PERL_DIST_PATH)/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
+				"LIBPERL_PATH[sdk=iphonesimulator*]" = "$(PERL_DIST_PATH)/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
+				LIBRARY_SEARCH_PATHS = "";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Debug-iphoneos",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos",
+					"$(LIBPERL_PATH)",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Debug-iphonesimulator",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator",
+					"$(LIBPERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
-					"-L./libffi-3.2.1/Build/Products/Debug-iphoneos",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos\"",
+					"-L$(LIBPERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-L./libffi-3.2.1/Build/Products/Debug-iphonesimulator",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator\"",
+					"-L$(LIBPERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
-				PREBINDING = NO;
+				PERL_DIST_PATH = "";
+				"PERL_DIST_PATH[sdk=iphoneos*]" = $PERL_INSTALL_PREFIX/lib/perl5;
+				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				PERL_INSTALL_PREFIX = "";
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				PERL_VERSION = 5.33.9;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				PROVISIONING_PROFILE = "a3f23c77-f03f-4c78-b762-9aa231edd86b";
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
-				"USER_HEADER_SEARCH_PATHS[arch=*]" = "";
-				"USER_HEADER_SEARCH_PATHS[arch=arm64]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=armv7s]" = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=i386]" = "\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				"USER_HEADER_SEARCH_PATHS[arch=x86_64]" = "\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				VALID_ARCHS = "";
+				"VALID_ARCHS[sdk=iphoneos*]" = "arm64 armv7";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64";
+				WARNING_CFLAGS = (
+					"-Wno-shorten-64-to-32",
+					"-Wall",
+					"-Wno-shift-count-overflow",
+				);
 			};
 			name = Debug;
 		};
 		8291621A1D4D561C006DF121 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ARCHS[sdk=iphoneos*]" = (
+					arm64,
+					armv7,
 				);
+				"ARCHS[sdk=iphonesimulator*]" = x86_64;
 				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				COMBINE_HIDPI_IMAGES = YES;
-				ENABLE_BITCODE = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				GCC_INPUT_FILETYPE = sourcecode.c.objc;
 				GCC_MODEL_TUNING = "";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_PREFIX_HEADER = "";
 				GCC_VERSION = "";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"./libffi-3.2.1/darwin_common/include",
 					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
+				);
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
 				);
 				INFOPLIST_FILE = CamelBonesInfo.plist;
 				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBPERL_PATH = "";
+				"LIBPERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				"LIBPERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				LIBRARY_SEARCH_PATHS = "";
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Release-iphoneos",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos",
+					"$(LIBPERL_PATH)",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libffi-3.2.1/build/Products/Release-iphonesimulator",
 					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator",
+					"$(LIBPERL_PATH)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
-					"-L./libffi-3.2.1/Build/Products/Release-iphoneos",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos\"",
+					"-L$(LIBPERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
 				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
-					"-L./libffi-3.2.1/Build/Products/Release-iphonesimulator",
-					"-L\"$(PROJECT_DIR)/../Perl5.24/opt2/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"",
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator\"",
+					"-L$(LIBPERL_PATH)",
 					"-lperl",
 					"-lffi",
 				);
-				PREBINDING = NO;
+				PERL_DIST_PATH = "";
+				"PERL_DIST_PATH[sdk=iphoneos*]" = $PERL_INSTALL_PREFIX/lib/perl5;
+				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/perl5/";
+				PERL_INSTALL_PREFIX = "";
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				PERL_VERSION = 5.33.9;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
-				PROVISIONING_PROFILE = "a3f23c77-f03f-4c78-b762-9aa231edd86b";
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
 				SYMROOT = Build/Products;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "\"$(PROJECT_DIR)/../Perl5.24/opt/local/lib/perl5/5.24.0/darwin-thread-multi-2level/CORE\"";
-				VALID_ARCHS = "arm64 armv7 armv7s i386 x86_64";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "";
+				"VALID_ARCHS[sdk=iphoneos*]" = "arm64 armv7";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64";
+				WARNING_CFLAGS = (
+					"-Wno-shorten-64-to-32",
+					"-Wall",
+					"-Wno-shift-count-overflow",
+				);
+			};
+			name = Release;
+		};
+		82EAABFC25EC12D1000FE2FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ARCHS[sdk=iphoneos*]" = arm64;
+				"ARCHS[sdk=iphonesimulator*]" = x86_64;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DEBUG=1";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
+				);
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
+				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBPERL_PATH = "";
+				"LIBPERL_PATH[sdk=iphoneos*]" = "$(PERL_DIST_PATH)/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
+				"LIBPERL_PATH[sdk=iphonesimulator*]" = "$(PERL_DIST_PATH)/$(PERL_VERSION)/darwin-thread-multi-2level/CORE";
+				LIBRARY_SEARCH_PATHS = "";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos",
+					"$(LIBPERL_PATH)",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator",
+					"$(LIBPERL_PATH)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphoneos\"",
+					"-L$(LIBPERL_PATH)",
+					"-lperl",
+					"-lffi",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Debug-iphonesimulator\"",
+					"-L$(LIBPERL_PATH)",
+					"-lperl",
+					"-lffi",
+				);
+				PERL_DIST_PATH = "";
+				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				PERL_INSTALL_PREFIX = "";
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				PERL_VERSION = 5.33.9;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
+				PRODUCT_NAME = CamelBones;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SYMROOT = Build/Products;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "";
+				"VALID_ARCHS[sdk=iphoneos*]" = "arm64 armv7";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64";
+				WARNING_CFLAGS = (
+					"-Wno-shorten-64-to-32",
+					"-Wall",
+					"-Wno-shift-count-overflow",
+				);
+			};
+			name = Debug;
+		};
+		82EAABFD25EC12D1000FE2FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"ARCHS[sdk=iphoneos*]" = (
+					arm64,
+					armv7,
+				);
+				"ARCHS[sdk=iphonesimulator*]" = x86_64;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_LINK_OBJC_RUNTIME = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_BITCODE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_INPUT_FILETYPE = sourcecode.c.objc;
+				GCC_MODEL_TUNING = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				GCC_VERSION = "";
+				HEADER_SEARCH_PATHS = "";
+				"HEADER_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
+				);
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"./libffi-3.2.1/darwin_common/include",
+					"./libffi-3.2.1/darwin_ios/include",
+					"$(LIBPERL_PATH)",
+				);
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(BUILD_DIR)/$(CONFIGURATION)";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				LIBPERL_PATH = "";
+				"LIBPERL_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				"LIBPERL_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				LIBRARY_SEARCH_PATHS = "";
+				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos",
+					"$(LIBPERL_PATH)",
+				);
+				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator",
+					"$(LIBPERL_PATH)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "";
+				"OTHER_LDFLAGS[sdk=iphoneos*]" = (
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphoneos\"",
+					"-L$(LIBPERL_PATH)",
+					"-lperl",
+					"-lffi",
+				);
+				"OTHER_LDFLAGS[sdk=iphonesimulator*]" = (
+					"-L\"$(PROJECT_DIR)/libffi-3.2.1/Build/Products/Release-iphonesimulator\"",
+					"-L$(LIBPERL_PATH)",
+					"-lperl",
+					"-lffi",
+				);
+				PERL_DIST_PATH = "";
+				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/perl5/";
+				PERL_INSTALL_PREFIX = "";
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				PERL_VERSION = 5.33.9;
+				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
+				PRODUCT_NAME = CamelBones;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SYMROOT = Build/Products;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALID_ARCHS = "";
+				"VALID_ARCHS[sdk=iphoneos*]" = "arm64 armv7";
+				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64";
+				WARNING_CFLAGS = (
+					"-Wno-shorten-64-to-32",
+					"-Wall",
+					"-Wno-shift-count-overflow",
+				);
 			};
 			name = Release;
 		};
@@ -996,24 +1389,51 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					/System/Library/Frameworks,
 					/Library/Frameworks,
 				);
-				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_MODEL_TUNING = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE/**";
+				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Debug;
@@ -1022,24 +1442,50 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					/System/Library/Frameworks,
 					/Library/Frameworks,
 				);
-				GCC_FAST_OBJC_DISPATCH = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					/Applications/Xcode511.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "/Users/jose/perl5/perlbrew/perls/perl-5.22.2/lib/5.22.2/darwin-thread-multi-2level/CORE/**";
+				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = "-Wall";
 			};
 			name = Release;
@@ -1047,6 +1493,7 @@
 		AA7F61720DCCFBA900D20E5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1058,8 +1505,8 @@
 		AA7F61730DCCFBA900D20E5E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COPY_PHASE_STRIP = YES;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				PRODUCT_NAME = All;
 				ZERO_LINK = NO;
@@ -1069,7 +1516,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "CamelBones.framework" */ = {
+		82151A661CEFBCAC00FB511B /* Build configuration list for PBXNativeTarget "macosx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82151A671CEFBCAC00FB511B /* Debug */,
@@ -1078,11 +1525,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "CamelBonesiOS.framework" */ = {
+		829162181D4D561C006DF121 /* Build configuration list for PBXNativeTarget "iphonesimulator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				829162191D4D561C006DF121 /* Debug */,
 				8291621A1D4D561C006DF121 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		82EAABFB25EC12D1000FE2FC /* Build configuration list for PBXNativeTarget "iphoneos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				82EAABFC25EC12D1000FE2FC /* Debug */,
+				82EAABFD25EC12D1000FE2FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
