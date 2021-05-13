@@ -326,7 +326,12 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                             }
                             else
                             {
-                                setFileName(progs, result);
+                                NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
+                                [mutable addObject:@"-e"];
+                                [mutable addObject:progs];
+                                switches = [mutable copy];
+                                [result setObject:[switches copy] forKey:@"switches"];
+                                // setFileName(progs, result);
                             }
                         }
                     }
