@@ -263,6 +263,7 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     NSString * prog  = nil;
     NSArray * progs = nil;
     NSNumber * stderrBool = nil;
+    NSNumber * nolibBool = nil;
 
     if (!json) {
         return nil;
@@ -330,7 +331,7 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                                 [mutable addObject:@"-e"];
                                 [mutable addObject:progs];
                                 switches = [mutable copy];
-                                [result setObject:[switches copy] forKey:@"switches"];
+                                [result setObject:switches forKey:@"switches"];
                                 // setFileName(progs, result);
                             }
                         }
@@ -339,7 +340,6 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                     {
                         setFileNameString(prog, result);
                     }
-
                 }
             }
             else {
@@ -363,13 +363,24 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
             [result setObject:stderrBool forKey:@"stderr"];
         }
 
-
-
         @try {
             args = [jsonResponse valueForKey:@"args"];
         } @finally {
             if (args == nil || [args isEqual:[NSNull null]]) args = @[];
             [result setObject:args forKey:@"args"];
+        }
+
+        @try
+        {
+            nolibBool = [jsonResponse valueForKey:@"nolib"];
+        } @finally {
+            if (!(nolibBool != nil && ![nolibBool isEqual:[NSNull null]] && [nolibBool isEqualToNumber: [NSNumber numberWithUnsignedInt:1]]))
+            {
+                NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
+                [mutable addObject:@"-I../lib"];
+                switches = [mutable copy];
+                [result setObject:switches forKey:@"switches"];
+            }
         }
     }
     return result;
