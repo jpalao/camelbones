@@ -1089,7 +1089,7 @@
 				PERL_INSTALL_PREFIX = "";
 				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
 				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
-				PERL_VERSION = 5.33.9;
+				PERL_VERSION = 5.35.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos;
@@ -1181,7 +1181,7 @@
 				PERL_INSTALL_PREFIX = "";
 				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
 				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
-				PERL_VERSION = 5.33.9;
+				PERL_VERSION = 5.35.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos;

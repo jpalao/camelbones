@@ -236,17 +236,6 @@ static void setFileNameString(NSString * prog, NSMutableDictionary *result) {
     [result setObject:temporaryFileURL.absoluteURL.path forKey:@"filePath"];
 }
 
-static void setFileName(NSArray *progs, NSMutableDictionary *result) {
-    NSMutableString * prog = [[NSMutableString alloc] initWithCapacity: 4*1024];
-    for (NSString * p in progs)
-    {
-        [prog appendString:p];
-        [prog appendString: @"\n"];
-
-    }
-    return setFileNameString(prog, result);
-}
-
 NSMutableDictionary * parseCBRunPerlJson (char * json)
 {
     NSMutableDictionary * result = [[NSMutableDictionary alloc] initWithCapacity:256];
@@ -286,7 +275,6 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     }
     if (!retval)
     {
-
         @try
         {
             switches = [jsonResponse valueForKey:@"switches"];
@@ -321,24 +309,25 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                         @try {
                             progs = [jsonResponse valueForKey:@"progs"];
                         } @finally {
-                            if (progs == nil || [progs isEqual:[NSNull null]])
-                            {
-                                retval = 2;
-                            }
-                            else
+                            if (progs != nil && ![progs isEqual:[NSNull null]])
                             {
                                 NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
-                                [mutable addObject:@"-e"];
-                                [mutable addObject:progs];
+                                for (NSString* prog in progs) {
+                                    [mutable addObject:@"-e"];
+                                    [mutable addObject:prog];
+                                }
                                 switches = [mutable copy];
                                 [result setObject:switches forKey:@"switches"];
-                                // setFileName(progs, result);
                             }
                         }
                     }
                     else
                     {
-                        setFileNameString(prog, result);
+                        NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
+                        [mutable addObject:@"-e"];
+                        [mutable addObject:prog];
+                        switches = [mutable copy];
+                        [result setObject:switches forKey:@"switches"];
                     }
                 }
             }
@@ -418,10 +407,6 @@ void* CBRunPerl (char * json)
             @autoreleasepool {
                 NSString * filePath = [cbRunPerlDict objectForKey:@"filePath"];
                 NSString * absPwd = [cbRunPerlDict objectForKey:@"absPwd"];
-                if (filePath == nil || filePath.length == 0)
-                {
-                    retval = 2;
-                }
                 BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
 
                 if (!fileExists && ![filePath isAbsolutePath] && absPwd != nil )
@@ -431,10 +416,6 @@ void* CBRunPerl (char * json)
                     if (fileExists)
                     {
                         filePath = [NSString stringWithString: pathWithCwd];
-                    }
-                    else
-                    {
-                        retval = 7;
                     }
                 }
 
@@ -448,7 +429,7 @@ void* CBRunPerl (char * json)
                             initWithFileName:filePath
                             withAbsolutePwd:absPwd
                             withDebugger:FALSE
-                            withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:[cbRunPerlDict objectForKey:@"switches"]]
+                            withOptions:[cbRunPerlDict objectForKey:@"switches"]
                             withArguments:[cbRunPerlDict objectForKey:@"args"]
                             error:&perlError
                             completion: (PerlCompletionBlock) ^ (int perlResult) {
