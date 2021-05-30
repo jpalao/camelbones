@@ -483,18 +483,9 @@ void* CBRunPerl (char * json)
 }
 }
 
-static void handleStdioException(NSException *exception, BOOL redirectStderr, NSMutableString *stderrOutput, NSMutableString *stdoutOutput) {
-    if (redirectStderr)
-    {
-        @synchronized (stdioQueue) {
-            [stdoutOutput appendString:[exception description]];
-        }
-    }
-    else
-    {
-        @synchronized (stdioQueue) {
-            [stderrOutput appendString:[exception description]];
-        }
+static void handleStdioException(NSException *exception, NSMutableString *stderrOutput, NSMutableString *stdoutOutput) {
+    @synchronized (stdioQueue) {
+        [stderrOutput appendString:[exception description]];
     }
 }
 
@@ -512,7 +503,7 @@ CBRunPerlCaptureStdout (char * json) {
 
     NSMutableDictionary * cbRunPerlDict = parseCBRunPerlJson(json);
     NSNumber * stderrRedirection = [cbRunPerlDict objectForKey:@"stderr"];
-    __block BOOL redirectStderr = false;
+    BOOL redirectStderr = false;
     if (stderrRedirection != nil && [stderrRedirection unsignedIntValue] == 1 )
     {
         redirectStderr = true;
@@ -560,7 +551,7 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+                        handleStdioException(exception, stderrOutput, stdoutOutput);
                     }
                 }
             });
@@ -570,7 +561,7 @@ CBRunPerlCaptureStdout (char * json) {
             }
             @catch (NSException *exception)
             {
-                handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+                handleStdioException(exception, stderrOutput, stdoutOutput);
             }
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
@@ -581,20 +572,11 @@ CBRunPerlCaptureStdout (char * json) {
                     @try {
                         notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
                         if (notificationText && notificationText.length > 0  && stderrPipeOut) {
-                            if (redirectStderr)
-                            {
-                                @synchronized (stdioQueue) {
-                                    [stdoutOutput appendString:notificationText];
-                                }
-                            }
-                            else
-                            {
-                                [stderrOutput appendString:notificationText];
-                            }
+                            [stderrOutput appendString:notificationText];
                         }
                     }
                     @catch (NSException * exception) {
-                        handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+                        handleStdioException(exception, stderrOutput, stdoutOutput);
                     }
                 }
             });
@@ -603,7 +585,7 @@ CBRunPerlCaptureStdout (char * json) {
                 [stderrPipeOut waitForDataInBackgroundAndNotify];
             }
             @catch (NSException * exception) {
-                handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+                handleStdioException(exception, stderrOutput, stdoutOutput);
             }
         }];
         [stderrPipeOut waitForDataInBackgroundAndNotify];
@@ -632,6 +614,11 @@ CBRunPerlCaptureStdout (char * json) {
 
     close_r = close(saved_stdout);
     close_r = close(saved_stderr);
+
+    if (redirectStderr)
+    {
+        [stdoutOutput appendString:stderrOutput];
+    }
 
     const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
     stdout_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
@@ -807,7 +794,7 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             NSLog(@"Unknown return type %s", return_type_string);
             return nil;
     }
-    
+
     // The foreign call interface
     ffi_cif cif;
     
