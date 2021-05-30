@@ -480,10 +480,10 @@ void* CBRunPerl (char * json)
         [NSThread sleepForTimeInterval: 0.1];
     }
     return (void *)ret;
-}
+} // autoreleasepool
 }
 
-static void handleStdioException(NSException *exception, NSMutableString *stderrOutput, NSMutableString *stdoutOutput) {
+static void handleStdioException(NSException *exception, NSMutableString *stderrOutput) {
     @synchronized (stdioQueue) {
         [stderrOutput appendString:[exception description]];
     }
@@ -551,7 +551,7 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        handleStdioException(exception, stderrOutput, stdoutOutput);
+                        handleStdioException(exception, stderrOutput);
                     }
                 }
             });
@@ -561,7 +561,7 @@ CBRunPerlCaptureStdout (char * json) {
             }
             @catch (NSException *exception)
             {
-                handleStdioException(exception, stderrOutput, stdoutOutput);
+                handleStdioException(exception, stderrOutput);
             }
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
@@ -576,7 +576,7 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        handleStdioException(exception, stderrOutput, stdoutOutput);
+                        handleStdioException(exception, stderrOutput);
                     }
                 }
             });
@@ -585,7 +585,7 @@ CBRunPerlCaptureStdout (char * json) {
                 [stderrPipeOut waitForDataInBackgroundAndNotify];
             }
             @catch (NSException * exception) {
-                handleStdioException(exception, stderrOutput, stdoutOutput);
+                handleStdioException(exception, stderrOutput);
             }
         }];
         [stderrPipeOut waitForDataInBackgroundAndNotify];
@@ -617,7 +617,7 @@ CBRunPerlCaptureStdout (char * json) {
 
     if (redirectStderr)
     {
-        [stdoutOutput appendString:stderrOutput];
+        stdoutOutput =[NSMutableString stringWithFormat:@"%@%@", stderrOutput, stdoutOutput];
     }
 
     const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
