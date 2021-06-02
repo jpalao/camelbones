@@ -294,6 +294,19 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
 
         @try
         {
+            nolibBool = [jsonResponse valueForKey:@"nolib"];
+        } @finally {
+            if (!(nolibBool != nil && ![nolibBool isEqual:[NSNull null]] && [nolibBool isEqualToNumber: [NSNumber numberWithUnsignedInt:1]]))
+            {
+                NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
+                [mutable addObject:@"-I../lib"];
+                switches = [mutable copy];
+                [result setObject:switches forKey:@"switches"];
+            }
+        }
+
+        @try
+        {
             filePath = [jsonResponse valueForKey:@"progfile"];
         }
         @finally {
@@ -357,19 +370,6 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
         } @finally {
             if (args == nil || [args isEqual:[NSNull null]]) args = @[];
             [result setObject:args forKey:@"args"];
-        }
-
-        @try
-        {
-            nolibBool = [jsonResponse valueForKey:@"nolib"];
-        } @finally {
-            if (!(nolibBool != nil && ![nolibBool isEqual:[NSNull null]] && [nolibBool isEqualToNumber: [NSNumber numberWithUnsignedInt:1]]))
-            {
-                NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
-                [mutable addObject:@"-I../lib"];
-                switches = [mutable copy];
-                [result setObject:switches forKey:@"switches"];
-            }
         }
     }
     return result;
@@ -464,9 +464,9 @@ void* CBRunPerl (char * json)
 } // autoreleasepool
 }
 
-static void handleStdioException(NSException *exception, NSMutableString *stderrOutput) {
+static void handleStdioException(NSException *exception, NSMutableString *string) {
     @synchronized (stdioQueue) {
-        [stderrOutput appendString:[exception description]];
+        [string appendString:[exception description]];
     }
 }
 
@@ -495,7 +495,6 @@ CBRunPerlCaptureStdout (char * json) {
     __block BOOL  ended = FALSE;
     __block id notificationObserver, notificationObserver2;
     NSMutableString * stdoutOutput = [NSMutableString stringWithString:@""];
-    NSMutableString * stderrOutput = [NSMutableString stringWithString:@""];
     __block BOOL  listener_ready = FALSE;
     NSFileHandle * stdoutPipeOut = [stdoutPipe fileHandleForReading];
     NSFileHandle * stderrPipeOut = [stderrPipe fileHandleForReading];
@@ -532,7 +531,7 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        handleStdioException(exception, stderrOutput);
+                        handleStdioException(exception, stdoutOutput);
                     }
                 }
             });
@@ -542,34 +541,37 @@ CBRunPerlCaptureStdout (char * json) {
             }
             @catch (NSException *exception)
             {
-                handleStdioException(exception, stderrOutput);
+                handleStdioException(exception, stdoutOutput);
             }
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
-        notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
-            dispatch_async(stdioQueue, ^(void) {
-                if (!ended) {
-                    NSString * notificationText;
-                    @try {
-                        notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
-                        if (notificationText && notificationText.length > 0  && stderrPipeOut) {
-                            [stderrOutput appendString:notificationText];
+        if (redirectStderr)
+        {
+            notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
+                dispatch_async(stdioQueue, ^(void) {
+                    if (!ended) {
+                        NSString * notificationText;
+                        @try {
+                            notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
+                            if (notificationText && notificationText.length > 0  && stderrPipeOut) {
+                                [stdoutOutput appendString:notificationText];
+                            }
+                        }
+                        @catch (NSException * exception) {
+                            handleStdioException(exception, stdoutOutput);
                         }
                     }
-                    @catch (NSException * exception) {
-                        handleStdioException(exception, stderrOutput);
-                    }
+                });
+                @try
+                {
+                    [stderrPipeOut waitForDataInBackgroundAndNotify];
                 }
-            });
-            @try
-            {
-                [stderrPipeOut waitForDataInBackgroundAndNotify];
-            }
-            @catch (NSException * exception) {
-                handleStdioException(exception, stderrOutput);
-            }
-        }];
-        [stderrPipeOut waitForDataInBackgroundAndNotify];
+                @catch (NSException * exception) {
+                    handleStdioException(exception, stdoutOutput);
+                }
+            }];
+            [stderrPipeOut waitForDataInBackgroundAndNotify];
+        }
         listener_ready = TRUE;
     });
     while (!listener_ready) {
@@ -595,11 +597,6 @@ CBRunPerlCaptureStdout (char * json) {
 
     close_r = close(saved_stdout);
     close_r = close(saved_stderr);
-
-    if (redirectStderr)
-    {
-        stdoutOutput =[NSMutableString stringWithFormat:@"%@%@", stderrOutput, stdoutOutput];
-    }
 
     const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
     stdout_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
