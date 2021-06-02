@@ -210,8 +210,13 @@ static NSMutableDictionary * perlInstanceDict = nil;
         NSArray * options = @[@"-W", @"-c"];
 
         for (NSString * option in options) {
-            if (option != nil)
-                emb[embSize++] = (char *)[option UTF8String];
+            if (option != nil) {
+                if (![option isKindOfClass: [NSString class]])
+                {
+                    NSArray *opt_arr = [NSArray arrayWithArray:(NSArray *)option];
+                    option = [opt_arr objectAtIndex:0];
+                }
+            }
         }
 
         emb[embSize++] = (char *)[fileName UTF8String];
@@ -310,9 +315,18 @@ static NSMutableDictionary * perlInstanceDict = nil;
         }
 
         if (options != nil){
-            for (NSString * option in options) {
+            for (NSString * option in options)
+            {
                 if (option != nil)
-                    emb[embSize++] = (char *)[option UTF8String];
+                {
+                    if (![option isKindOfClass: [NSString class]])
+                    {
+                        NSArray *opt_arr = [NSArray arrayWithArray:(NSArray *)option];
+                        option = [opt_arr objectAtIndex:0];
+                    }
+                }
+
+                emb[embSize++] = (char *)[option UTF8String];
             }
         }
 

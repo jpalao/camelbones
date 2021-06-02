@@ -236,17 +236,6 @@ static void setFileNameString(NSString * prog, NSMutableDictionary *result) {
     [result setObject:temporaryFileURL.absoluteURL.path forKey:@"filePath"];
 }
 
-static void setFileName(NSArray *progs, NSMutableDictionary *result) {
-    NSMutableString * prog = [[NSMutableString alloc] initWithCapacity: 4*1024];
-    for (NSString * p in progs)
-    {
-        [prog appendString:p];
-        [prog appendString: @"\n"];
-
-    }
-    return setFileNameString(prog, result);
-}
-
 NSMutableDictionary * parseCBRunPerlJson (char * json)
 {
     NSMutableDictionary * result = [[NSMutableDictionary alloc] initWithCapacity:256];
@@ -263,6 +252,7 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     NSString * prog  = nil;
     NSArray * progs = nil;
     NSNumber * stderrBool = nil;
+    NSNumber * nolibBool = nil;
 
     if (!json) {
         return nil;
@@ -285,7 +275,6 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
     }
     if (!retval)
     {
-
         @try
         {
             switches = [jsonResponse valueForKey:@"switches"];
@@ -305,6 +294,19 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
 
         @try
         {
+            nolibBool = [jsonResponse valueForKey:@"nolib"];
+        } @finally {
+            if (!(nolibBool != nil && ![nolibBool isEqual:[NSNull null]] && [nolibBool isEqualToNumber: [NSNumber numberWithUnsignedInt:1]]))
+            {
+                NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
+                [mutable addObject:@"-I../lib"];
+                switches = [mutable copy];
+                [result setObject:switches forKey:@"switches"];
+            }
+        }
+
+        @try
+        {
             filePath = [jsonResponse valueForKey:@"progfile"];
         }
         @finally {
@@ -320,21 +322,26 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                         @try {
                             progs = [jsonResponse valueForKey:@"progs"];
                         } @finally {
-                            if (progs == nil || [progs isEqual:[NSNull null]])
+                            if (progs != nil && ![progs isEqual:[NSNull null]])
                             {
-                                retval = 2;
-                            }
-                            else
-                            {
-                                setFileName(progs, result);
+                                NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
+                                for (NSString* prog in progs) {
+                                    [mutable addObject:@"-e"];
+                                    [mutable addObject:prog];
+                                }
+                                switches = [mutable copy];
+                                [result setObject:switches forKey:@"switches"];
                             }
                         }
                     }
                     else
                     {
-                        setFileNameString(prog, result);
+                        NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
+                        [mutable addObject:@"-e"];
+                        [mutable addObject:prog];
+                        switches = [mutable copy];
+                        [result setObject:switches forKey:@"switches"];
                     }
-
                 }
             }
             else {
@@ -357,8 +364,6 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
             if (stderrBool == nil || [stderrBool isEqual:[NSNull null]]) stderrBool = [NSNumber numberWithUnsignedInt:0];
             [result setObject:stderrBool forKey:@"stderr"];
         }
-
-
 
         @try {
             args = [jsonResponse valueForKey:@"args"];
@@ -402,10 +407,6 @@ void* CBRunPerl (char * json)
             @autoreleasepool {
                 NSString * filePath = [cbRunPerlDict objectForKey:@"filePath"];
                 NSString * absPwd = [cbRunPerlDict objectForKey:@"absPwd"];
-                if (filePath == nil || filePath.length == 0)
-                {
-                    retval = 2;
-                }
                 BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
 
                 if (!fileExists && ![filePath isAbsolutePath] && absPwd != nil )
@@ -415,10 +416,6 @@ void* CBRunPerl (char * json)
                     if (fileExists)
                     {
                         filePath = [NSString stringWithString: pathWithCwd];
-                    }
-                    else
-                    {
-                        retval = 7;
                     }
                 }
 
@@ -432,7 +429,7 @@ void* CBRunPerl (char * json)
                             initWithFileName:filePath
                             withAbsolutePwd:absPwd
                             withDebugger:FALSE
-                            withOptions:[@[@"-MCwd", @"-Mcbrunperl"] arrayByAddingObjectsFromArray:[cbRunPerlDict objectForKey:@"switches"]]
+                            withOptions:[cbRunPerlDict objectForKey:@"switches"]
                             withArguments:[cbRunPerlDict objectForKey:@"args"]
                             error:&perlError
                             completion: (PerlCompletionBlock) ^ (int perlResult) {
@@ -464,21 +461,12 @@ void* CBRunPerl (char * json)
         [NSThread sleepForTimeInterval: 0.1];
     }
     return (void *)ret;
-}
+} // autoreleasepool
 }
 
-static void handleStdioException(NSException *exception, BOOL redirectStderr, NSMutableString *stderrOutput, NSMutableString *stdoutOutput) {
-    if (redirectStderr)
-    {
-        @synchronized (stdioQueue) {
-            [stdoutOutput appendString:[exception description]];
-        }
-    }
-    else
-    {
-        @synchronized (stdioQueue) {
-            [stderrOutput appendString:[exception description]];
-        }
+static void handleStdioException(NSException *exception, NSMutableString *string) {
+    @synchronized (stdioQueue) {
+        [string appendString:[exception description]];
     }
 }
 
@@ -496,7 +484,7 @@ CBRunPerlCaptureStdout (char * json) {
 
     NSMutableDictionary * cbRunPerlDict = parseCBRunPerlJson(json);
     NSNumber * stderrRedirection = [cbRunPerlDict objectForKey:@"stderr"];
-    __block BOOL redirectStderr = false;
+    BOOL redirectStderr = false;
     if (stderrRedirection != nil && [stderrRedirection unsignedIntValue] == 1 )
     {
         redirectStderr = true;
@@ -507,7 +495,6 @@ CBRunPerlCaptureStdout (char * json) {
     __block BOOL  ended = FALSE;
     __block id notificationObserver, notificationObserver2;
     NSMutableString * stdoutOutput = [NSMutableString stringWithString:@""];
-    NSMutableString * stderrOutput = [NSMutableString stringWithString:@""];
     __block BOOL  listener_ready = FALSE;
     NSFileHandle * stdoutPipeOut = [stdoutPipe fileHandleForReading];
     NSFileHandle * stderrPipeOut = [stderrPipe fileHandleForReading];
@@ -544,7 +531,7 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+                        handleStdioException(exception, stdoutOutput);
                     }
                 }
             });
@@ -554,43 +541,37 @@ CBRunPerlCaptureStdout (char * json) {
             }
             @catch (NSException *exception)
             {
-                handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
+                handleStdioException(exception, stdoutOutput);
             }
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
-        notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
-            dispatch_async(stdioQueue, ^(void) {
-                if (!ended) {
-                    NSString * notificationText;
-                    @try {
-                        notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
-                        if (notificationText && notificationText.length > 0  && stderrPipeOut) {
-                            if (redirectStderr)
-                            {
-                                @synchronized (stdioQueue) {
-                                    [stdoutOutput appendString:notificationText];
-                                }
-                            }
-                            else
-                            {
-                                [stderrOutput appendString:notificationText];
+        if (redirectStderr)
+        {
+            notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
+                dispatch_async(stdioQueue, ^(void) {
+                    if (!ended) {
+                        NSString * notificationText;
+                        @try {
+                            notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
+                            if (notificationText && notificationText.length > 0  && stderrPipeOut) {
+                                [stdoutOutput appendString:notificationText];
                             }
                         }
+                        @catch (NSException * exception) {
+                            handleStdioException(exception, stdoutOutput);
+                        }
                     }
-                    @catch (NSException * exception) {
-                        handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
-                    }
+                });
+                @try
+                {
+                    [stderrPipeOut waitForDataInBackgroundAndNotify];
                 }
-            });
-            @try
-            {
-                [stderrPipeOut waitForDataInBackgroundAndNotify];
-            }
-            @catch (NSException * exception) {
-                handleStdioException(exception, redirectStderr, stderrOutput, stdoutOutput);
-            }
-        }];
-        [stderrPipeOut waitForDataInBackgroundAndNotify];
+                @catch (NSException * exception) {
+                    handleStdioException(exception, stdoutOutput);
+                }
+            }];
+            [stderrPipeOut waitForDataInBackgroundAndNotify];
+        }
         listener_ready = TRUE;
     });
     while (!listener_ready) {
@@ -791,7 +772,7 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
             NSLog(@"Unknown return type %s", return_type_string);
             return nil;
     }
-    
+
     // The foreign call interface
     ffi_cif cif;
     
