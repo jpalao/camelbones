@@ -336,6 +336,9 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                     }
                     else
                     {
+                        if ([prog isKindOfClass: [NSNumber class]]) {
+                            prog = [(NSNumber *)prog stringValue];
+                        }
                         NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
                         [mutable addObject:@"-e"];
                         [mutable addObject:prog];

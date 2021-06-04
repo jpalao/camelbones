@@ -319,10 +319,9 @@ static NSMutableDictionary * perlInstanceDict = nil;
             {
                 if (option != nil)
                 {
-                    if (![option isKindOfClass: [NSString class]])
+                    if ([option isKindOfClass: [NSNumber class]])
                     {
-                        NSArray *opt_arr = [NSArray arrayWithArray:(NSArray *)option];
-                        option = [opt_arr objectAtIndex:0];
+                        option = [(NSNumber *)option stringValue];
                     }
                 }
 
