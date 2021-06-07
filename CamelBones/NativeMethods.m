@@ -514,8 +514,18 @@ CBRunPerlCaptureStdout (char * json) {
     int close_r = close(stdout_fd);
         close_r = close (stderr_fd);
 
+    int dup_stderr = -1;
+
+    if (redirectStderr)
+    {
+        dup_stderr = dup2([stdoutPipeIn fileDescriptor], stderr_fd);
+    }
+    else
+    {
+        dup_stderr = dup2([stderrPipeIn fileDescriptor], stderr_fd);
+    }
+
     int dup_stdout = dup2([stdoutPipeIn fileDescriptor], stdout_fd);
-    int dup_stderr = dup2([stderrPipeIn fileDescriptor], stderr_fd);
 
     [stdoutPipeIn initWithFileDescriptor:dup_stdout];
     [stderrPipeIn initWithFileDescriptor:dup_stderr];
