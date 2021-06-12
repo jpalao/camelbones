@@ -402,7 +402,9 @@ void* CBRunPerl (char * json)
     if (cbRunPerlDict == nil)
     {
         retval = 1;
-        wait_for_perl = NO;
+        @synchronized (stdioQueue) {
+            wait_for_perl = NO;
+        }
     }
     else
     {
@@ -450,7 +452,9 @@ void* CBRunPerl (char * json)
                         retval = 5;
                     }
                 }
-                wait_for_perl = NO;
+                @synchronized (stdioQueue) {
+                    wait_for_perl = NO;
+                }
             }
         });
     }
@@ -458,8 +462,10 @@ void* CBRunPerl (char * json)
     sv_setiv(ret, retval);
 
     while (1) {
-        if (!wait_for_perl) {
-            break;
+        @synchronized (stdioQueue) {
+            if (!wait_for_perl) {
+                break;
+            }
         }
         [NSThread sleepForTimeInterval: 0.1];
     }
