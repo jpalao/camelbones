@@ -322,10 +322,20 @@ static NSMutableDictionary * perlInstanceDict = nil;
                     if ([option isKindOfClass: [NSNumber class]])
                     {
                         option = [(NSNumber *)option stringValue];
+                        emb[embSize++] = (char *)[option UTF8String];
+                    }
+                    else if ([option isKindOfClass: [NSString class]])
+                    {
+                        emb[embSize++] = (char *)[option UTF8String];
+                    }
+                    else if ([option isKindOfClass: [NSArray class]])
+                    {
+                        for (NSString * opt in option)
+                        {
+                            emb[embSize++] = (char *)[opt UTF8String];
+                        }
                     }
                 }
-
-                emb[embSize++] = (char *)[option UTF8String];
             }
         }
 
