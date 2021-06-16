@@ -1087,8 +1087,8 @@
 				"PERL_DIST_PATH[sdk=iphoneos*]" = $PERL_INSTALL_PREFIX/lib/perl5;
 				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				PERL_INSTALL_PREFIX = "";
-				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
-				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../local";
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../local";
 				PERL_VERSION = 5.35.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
@@ -1179,8 +1179,8 @@
 				"PERL_DIST_PATH[sdk=iphoneos*]" = $PERL_INSTALL_PREFIX/lib/perl5;
 				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/perl5/";
 				PERL_INSTALL_PREFIX = "";
-				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
-				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../local";
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../local";
 				PERL_VERSION = 5.35.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
@@ -1272,8 +1272,8 @@
 				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				PERL_INSTALL_PREFIX = "";
-				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
-				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../local";
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../local";
 				PERL_VERSION = 5.35.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
@@ -1364,8 +1364,8 @@
 				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/perl5/";
 				PERL_INSTALL_PREFIX = "";
-				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /opt/local;
-				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = /opt2/local;
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../local";
+				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../local";
 				PERL_VERSION = 5.35.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
