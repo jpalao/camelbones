@@ -540,18 +540,28 @@ CBRunPerlCaptureStdout (char * json) {
                         }
                     }
                     @catch (NSException * exception) {
-                        handleStdioException(exception, stdoutOutput);
+                        if (!ended) {
+                            handleStdioException(exception, stdoutOutput);
+                        }
                     }
                 }
             });
-            @try
-            {
-                [stdoutPipeOut waitForDataInBackgroundAndNotify];
+
+            if (!ended) {
+                @try
+                {
+                    if (!ended) {
+                        [stdoutPipeOut waitForDataInBackgroundAndNotify];
+                    }
+                }
+                @catch (NSException *exception)
+                {
+                    if (!ended) {
+                        handleStdioException(exception, stdoutOutput);
+                    }
+                }
             }
-            @catch (NSException *exception)
-            {
-                handleStdioException(exception, stdoutOutput);
-            }
+
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
         if (redirectStderr)
@@ -567,16 +577,24 @@ CBRunPerlCaptureStdout (char * json) {
                             }
                         }
                         @catch (NSException * exception) {
-                            handleStdioException(exception, stdoutOutput);
+                            if (!ended) {
+                                handleStdioException(exception, stdoutOutput);
+                            }
                         }
                     }
                 });
-                @try
-                {
-                    [stderrPipeOut waitForDataInBackgroundAndNotify];
-                }
-                @catch (NSException * exception) {
-                    handleStdioException(exception, stdoutOutput);
+                if (!ended) {
+                    @try
+                    {
+                        if (!ended) {
+                            [stderrPipeOut waitForDataInBackgroundAndNotify];
+                        }
+                    }
+                    @catch (NSException * exception) {
+                        if (!ended) {
+                            handleStdioException(exception, stdoutOutput);
+                        }
+                    }
                 }
             }];
             [stderrPipeOut waitForDataInBackgroundAndNotify];
@@ -588,7 +606,10 @@ CBRunPerlCaptureStdout (char * json) {
     }
 
     SV * exec_result = CBRunPerl(json);
-    ended = TRUE;
+    @synchronized (stdioQueue) {
+        ended = TRUE;
+    }
+
 
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:stdoutPipeOut];
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver2 name:NSFileHandleDataAvailableNotification object:stderrPipeOut];
