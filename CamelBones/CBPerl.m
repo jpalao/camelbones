@@ -27,6 +27,7 @@
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
 
 static NSMutableDictionary * perlInstanceDict = nil;
+static dispatch_once_t onceToken = 0;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {
@@ -272,6 +273,21 @@ static NSMutableDictionary * perlInstanceDict = nil;
     }
 }
 
+void init_dispatch_queue()
+{
+   dispatch_once(&onceToken, ^{
+       stdioQueue = dispatch_queue_create("camelbones.stdio", DISPATCH_QUEUE_SERIAL);
+   });
+}
+
+- (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error queue:(dispatch_queue_t) queue completion:(PerlCompletionBlock)completion
+{
+    if (stdioQueue == nil) {
+        stdioQueue = queue;
+    }
+    [self initWithFileName:fileName withAbsolutePwd:pwd withDebugger:debuggerEnabled withOptions:options withArguments:arguments error:error completion:completion];
+}
+
 - (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion
 {
 @autoreleasepool
@@ -283,6 +299,9 @@ static NSMutableDictionary * perlInstanceDict = nil;
 
     @synchronized(perlInstanceDict)
     {
+        if (stdioQueue == nil) {
+            init_dispatch_queue();
+        }
         if (fileName) {
             NSURL * filePathUrl = [NSURL URLWithString: fileName];
             NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
@@ -401,9 +420,13 @@ static NSMutableDictionary * perlInstanceDict = nil;
         }
     }
 
-    result = perl_run(_CBPerlInterpreter);
+    @try {
+        result = perl_run(_CBPerlInterpreter);
+    } @catch (NSException *exception) {
+        * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:05 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
+    }
 
-    if (result)
+    if (result && error == nil)
     {
         if ( SvTRUE(ERRSV ) )
         {

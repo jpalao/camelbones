@@ -80,16 +80,6 @@ static ffi_type *cgsize_elements[3];
 static ffi_type cgrect_type;
 static ffi_type *cgrect_elements[3];
 
-static dispatch_once_t onceToken = 0;
-static dispatch_queue_t stdioQueue = nil;
-
-void init_dispatch_queue()
-{
-   dispatch_once(&onceToken, ^{
-       stdioQueue = dispatch_queue_create("camelbones.stdio", DISPATCH_QUEUE_SERIAL);
-   });
- }
-
 void init_ffi_types()
 {
     nsrange_type.size = nsrange_type.alignment = 0;
@@ -453,7 +443,7 @@ void* CBRunPerl (char * json)
                     }
                 }
                 @synchronized (stdioQueue) {
-                    wait_for_perl = NO;
+                    wait_for_perl = FALSE;
                 }
             }
         });
