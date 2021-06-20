@@ -27,7 +27,6 @@
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
 
 static NSMutableDictionary * perlInstanceDict = nil;
-static dispatch_once_t onceToken = 0;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {
@@ -273,13 +272,6 @@ static dispatch_once_t onceToken = 0;
     }
 }
 
-void init_dispatch_queue()
-{
-   dispatch_once(&onceToken, ^{
-       stdioQueue = dispatch_queue_create("camelbones.stdio", DISPATCH_QUEUE_SERIAL);
-   });
-}
-
 - (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error queue:(dispatch_queue_t) queue completion:(PerlCompletionBlock)completion
 {
     if (stdioQueue == nil) {
@@ -299,9 +291,6 @@ void init_dispatch_queue()
 
     @synchronized(perlInstanceDict)
     {
-        if (stdioQueue == nil) {
-            init_dispatch_queue();
-        }
         if (fileName) {
             NSURL * filePathUrl = [NSURL URLWithString: fileName];
             NSURL * dirPath = [filePathUrl URLByDeletingLastPathComponent];
@@ -426,7 +415,7 @@ void init_dispatch_queue()
         * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:05 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
     }
 
-    if (result && error == nil)
+    if (result || *error != nil)
     {
         if ( SvTRUE(ERRSV ) )
         {
