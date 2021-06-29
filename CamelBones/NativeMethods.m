@@ -500,7 +500,7 @@ CBRunPerlCaptureStdout (char * json) {
     int saved_stderr = dup(stderr_fd);
 
     int close_r = close(stdout_fd);
-        close_r = close (stderr_fd);
+        close_r = close(stderr_fd);
 
     int dup_stderr = -1;
 
