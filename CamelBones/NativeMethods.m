@@ -218,23 +218,6 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
     return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend;
 }
 
-static void setFileNameString(NSString * prog, NSMutableDictionary *result) {
-    char pathToCwd[MAXPATHLEN];
-    NSURL *temporaryDirectoryURL = [NSURL fileURLWithPath: [NSString stringWithUTF8String: getcwd(pathToCwd, MAXPATHLEN -1)]];
-    NSString *temporaryFilename =
-    [[NSProcessInfo processInfo] globallyUniqueString];
-    NSURL *temporaryFileURL =
-    [temporaryDirectoryURL
-     URLByAppendingPathComponent:temporaryFilename];
-
-    NSData *data = [prog dataUsingEncoding: NSUTF8StringEncoding];
-    NSError *error = nil;
-    [data writeToURL:temporaryFileURL
-             options:NSDataWritingAtomic
-               error:&error];
-    [result setObject:temporaryFileURL.absoluteURL.path forKey:@"filePath"];
-}
-
 NSMutableDictionary * parseCBRunPerlJson (char * json)
 {
     NSMutableDictionary * result = [[NSMutableDictionary alloc] initWithCapacity:256];
