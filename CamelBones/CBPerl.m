@@ -27,6 +27,8 @@
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
 
 static NSMutableDictionary * perlInstanceDict = nil;
+static Boolean perlInitialized = false;
+static dispatch_queue_t stdioQueue = nil;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {

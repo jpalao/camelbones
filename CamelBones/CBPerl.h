@@ -17,9 +17,6 @@
 @class CBPerlHash;
 @class CBPerlObject;
 
-static Boolean perlInitialized = false;
-static dispatch_queue_t stdioQueue = nil;
-
 typedef void (^PerlCompletionBlock)(int perlRunResult);
 
 @interface CBPerl : NSObject {
