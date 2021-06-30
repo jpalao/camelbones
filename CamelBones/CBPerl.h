@@ -19,6 +19,8 @@
 
 typedef void (^PerlCompletionBlock)(int perlRunResult);
 
+static dispatch_queue_t stdioQueue = nil;
+
 @interface CBPerl : NSObject {
     PerlInterpreter * _CBPerlInterpreter;
 }

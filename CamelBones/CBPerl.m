@@ -28,7 +28,6 @@
 
 static NSMutableDictionary * perlInstanceDict = nil;
 static Boolean perlInitialized = false;
-static dispatch_queue_t stdioQueue = nil;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {
@@ -277,7 +276,7 @@ static dispatch_queue_t stdioQueue = nil;
 - (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error queue:(dispatch_queue_t) queue completion:(PerlCompletionBlock)completion
 {
     if (stdioQueue == nil && queue != nil) {
-        [self setStdioQueue: queue];
+        stdioQueue = queue;
     }
     [self initWithFileName:fileName withAbsolutePwd:pwd withDebugger:debuggerEnabled withOptions:options withArguments:arguments error:error completion:completion];
 }
