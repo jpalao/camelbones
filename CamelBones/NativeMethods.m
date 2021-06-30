@@ -441,8 +441,6 @@ void* CBRunPerl (char * json)
         });
     }
 
-    sv_setiv(ret, retval);
-
     while (1) {
         @synchronized (stdioQueue) {
             if (!wait_for_perl) {
@@ -451,6 +449,8 @@ void* CBRunPerl (char * json)
         }
         [NSThread sleepForTimeInterval: 0.1];
     }
+
+    sv_setiv(ret, retval);
     return (void *)ret;
 } // autoreleasepool
 }
