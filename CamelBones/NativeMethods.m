@@ -475,10 +475,10 @@ CBRunPerlCaptureStdout (char * json) {
 
     NSMutableDictionary * cbRunPerlDict = parseCBRunPerlJson(json);
     NSNumber * stderrRedirection = [cbRunPerlDict objectForKey:@"stderr"];
-    BOOL redirectStderr = false;
+    BOOL redirectStderr = NO;
     if (stderrRedirection != nil && [stderrRedirection unsignedIntValue] == 1 )
     {
-        redirectStderr = true;
+        redirectStderr = YES;
     }
 
     NSPipe * stdoutPipe = [NSPipe pipe];
