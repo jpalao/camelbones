@@ -471,7 +471,9 @@ CBRunPerlCaptureStdout (char * json) {
 
     SV * stdout_result = nil;
 
-    init_dispatch_queue();
+    if (stdioQueue == nil) {
+        init_dispatch_queue();
+    }
 
     NSMutableDictionary * cbRunPerlDict = parseCBRunPerlJson(json);
     NSNumber * stderrRedirection = [cbRunPerlDict objectForKey:@"stderr"];
