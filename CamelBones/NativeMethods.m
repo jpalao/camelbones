@@ -488,7 +488,6 @@ CBRunPerlCaptureStdout (char * json) {
     __block BOOL  ended = FALSE;
     __block id notificationObserver, notificationObserver2;
     NSMutableString * stdoutOutput = [NSMutableString stringWithString:@""];
-    __block BOOL  listener_ready = FALSE;
     NSFileHandle * stdoutPipeOut = [stdoutPipe fileHandleForReading];
     NSFileHandle * stderrPipeOut = [stderrPipe fileHandleForReading];
 
@@ -593,11 +592,7 @@ CBRunPerlCaptureStdout (char * json) {
             }];
             [stderrPipeOut waitForDataInBackgroundAndNotify];
         }
-        listener_ready = TRUE;
     });
-    while (!listener_ready) {
-        [NSThread sleepForTimeInterval: 0.1];
-    }
 
     SV * exec_result = CBRunPerl(json);
     @synchronized (stdioQueue) {
