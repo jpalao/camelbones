@@ -500,8 +500,9 @@ CBRunPerlCaptureStdout (char * json) {
     int saved_stdout = dup(stdout_fd);
     int saved_stderr = dup(stderr_fd);
 
-    int close_r = close(stdout_fd);
-        close_r = close(stderr_fd);
+    int close_r = -1;
+//    close_r = close(stdout_fd);
+//    close_r = close(stderr_fd);
 
     int dup_stderr = -1;
 
@@ -601,8 +602,8 @@ CBRunPerlCaptureStdout (char * json) {
 
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver name:NSFileHandleDataAvailableNotification object:stdoutPipeOut];
     [[NSNotificationCenter defaultCenter] removeObserver:notificationObserver2 name:NSFileHandleDataAvailableNotification object:stderrPipeOut];
-    close_r = close(STDOUT_FILENO);
-    close_r = close(STDERR_FILENO);
+//    close_r = close(STDOUT_FILENO);
+    //close_r = close(STDERR_FILENO);
     // NSAssert(close_r == 1, @"Cannot restore STDOUT");
 
     [stdoutPipeOut closeFile];
@@ -613,8 +614,8 @@ CBRunPerlCaptureStdout (char * json) {
     int new_fd = dup2(saved_stdout, STDOUT_FILENO);
         new_fd = dup2(saved_stderr, STDERR_FILENO);
 
-    close_r = close(saved_stdout);
-    close_r = close(saved_stderr);
+//    close_r = close(saved_stdout);
+//    close_r = close(saved_stderr);
 
     const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
     stdout_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
