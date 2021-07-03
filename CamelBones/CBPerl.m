@@ -51,11 +51,6 @@ static Boolean perlInitialized = false;
     }
 }
 
-+ (int)sleepMicroSeconds: (NSUInteger)usec {
-    [NSThread sleepForTimeInterval:(double)usec/1000000];
-    return 0;
-}
-
 + (void) initializePerl {
     @synchronized(self) {
         char *dummy_perl_env[1] = { NULL };

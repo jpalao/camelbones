@@ -53,9 +53,6 @@ static dispatch_queue_t stdioQueue = nil;
 // setCBPerl: Class method that sets the CBPerl object corresponding to an embedded perl interpreter object
 + (void) setCBPerl:(CBPerl *) cbperl forPerlInterpreter:(PerlInterpreter *) perlInterpreter;
 
-// wait microseconds
-+ (int)sleepMicroSeconds: (NSUInteger)usec;
-
 // clean up this CBPerl object's perl interpreter
 - (void) cleanUp;
 
