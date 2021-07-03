@@ -390,7 +390,7 @@ void* CBRunPerl (char * json)
     }
     else
     {
-        dispatch_async(stdioQueue, ^(void) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
             @autoreleasepool {
                 NSString * filePath = [cbRunPerlDict objectForKey:@"filePath"];
                 NSString * absPwd = [cbRunPerlDict objectForKey:@"absPwd"];
