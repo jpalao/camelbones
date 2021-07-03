@@ -390,7 +390,7 @@ void* CBRunPerl (char * json)
     }
     else
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, (unsigned long)NULL), ^(void) {
+        dispatch_async(stdioQueue, ^(void) {
             @autoreleasepool {
                 NSString * filePath = [cbRunPerlDict objectForKey:@"filePath"];
                 NSString * absPwd = [cbRunPerlDict objectForKey:@"absPwd"];
@@ -557,14 +557,13 @@ CBRunPerlCaptureStdout (char * json) {
 
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
-        if (redirectStderr)
+        if (!redirectStderr)
         {
             notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
                 dispatch_async(stdioQueue, ^(void) {
                     if (!ended) {
-                        NSString * notificationText;
                         @try {
-                            notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
+                            NSString * notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
                             if (notificationText && notificationText.length > 0  && stderrPipeOut) {
                                 [stdoutOutput appendString:notificationText];
                             }
