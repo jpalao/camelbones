@@ -519,7 +519,7 @@ CBRunPerlCaptureStdout (char * json) {
     [stdoutPipeIn initWithFileDescriptor:dup_stdout];
     [stderrPipeIn initWithFileDescriptor:dup_stderr];
 
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
         notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stdoutPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
             dispatch_async(stdioQueue, ^(void) {
                 if (!ended) {
