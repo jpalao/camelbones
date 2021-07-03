@@ -524,9 +524,8 @@ CBRunPerlCaptureStdout (char * json) {
         notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stdoutPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
             dispatch_async(stdioQueue, ^(void) {
                 if (!ended) {
-                    NSString * notificationText;
                     @try {
-                        notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
+                        NSString * notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
                          if (notificationText && notificationText.length > 0 && stderrPipeOut) {
                              @synchronized (stdioQueue) {
                                  [stdoutOutput appendString:notificationText];
