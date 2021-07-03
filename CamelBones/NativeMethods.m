@@ -613,8 +613,8 @@ CBRunPerlCaptureStdout (char * json) {
     int new_fd = dup2(saved_stdout, STDOUT_FILENO);
         new_fd = dup2(saved_stderr, STDERR_FILENO);
 
-//    close_r = close(saved_stdout);
-//    close_r = close(saved_stderr);
+    close_r = close(saved_stdout);
+    close_r = close(saved_stderr);
 
     const char * stdout_string = (const char *)[stdoutOutput cStringUsingEncoding:NSUTF8StringEncoding];
     stdout_result = newSVpvn_flags(stdout_string, strlen(stdout_string), SVf_UTF8);
