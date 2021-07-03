@@ -565,7 +565,9 @@ CBRunPerlCaptureStdout (char * json) {
                         @try {
                             NSString * notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
                             if (notificationText && notificationText.length > 0) {
-                                [stdoutOutput appendString:notificationText];
+                                @synchronized (stdioQueue) {
+                                    [stdoutOutput appendString:notificationText];
+                                }
                             }
                         }
                         @catch (NSException * exception) {
