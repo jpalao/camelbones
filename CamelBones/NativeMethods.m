@@ -81,6 +81,7 @@ static ffi_type cgrect_type;
 static ffi_type *cgrect_elements[3];
 
 static dispatch_once_t onceToken = 0;
+static dispatch_queue_t stdioQueue = nil;
 
 void init_dispatch_queue()
 {

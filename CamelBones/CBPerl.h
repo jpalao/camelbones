@@ -19,8 +19,6 @@
 
 typedef void (^PerlCompletionBlock)(int perlRunResult);
 
-static dispatch_queue_t stdioQueue = nil;
-
 @interface CBPerl : NSObject {
     PerlInterpreter * _CBPerlInterpreter;
 }
@@ -55,9 +53,6 @@ static dispatch_queue_t stdioQueue = nil;
 
 // clean up this CBPerl object's perl interpreter
 - (void) cleanUp;
-
-// init this CBPerl object with a new perl interpreter and a queue
-- (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error queue:(dispatch_queue_t) queue completion:(PerlCompletionBlock)completion;
 
 // init this CBPerl object with a new perl interpreter
 -(void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion;

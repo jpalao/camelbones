@@ -268,14 +268,6 @@ static Boolean perlInitialized = false;
     }
 }
 
-- (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error queue:(dispatch_queue_t) queue completion:(PerlCompletionBlock)completion
-{
-    if (stdioQueue == nil && queue != nil) {
-        stdioQueue = queue;
-    }
-    [self initWithFileName:fileName withAbsolutePwd:pwd withDebugger:debuggerEnabled withOptions:options withArguments:arguments error:error completion:completion];
-}
-
 - (void) initWithFileName:(NSString*)fileName withAbsolutePwd:(NSString*)pwd withDebugger:(Boolean)debuggerEnabled withOptions:(NSArray *) options withArguments:(NSArray *) arguments error:(NSError **)error completion:(PerlCompletionBlock)completion
 {
 @autoreleasepool
