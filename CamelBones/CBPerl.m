@@ -285,10 +285,6 @@ static Boolean perlInitialized = false;
     char *emb[32];
     int result;
 
-    if (stdioQueue == nil) {
-        [self init_dispatch_queue];
-    }
-
     @synchronized(perlInstanceDict)
     {
         if (fileName) {
