@@ -27,6 +27,7 @@
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
 
 static NSMutableDictionary * perlInstanceDict = nil;
+static Boolean perlInitialized = false;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {
@@ -48,11 +49,6 @@ static NSMutableDictionary * perlInstanceDict = nil;
     @synchronized(self) {
         return perlInstanceDict;
     }
-}
-
-+ (int)sleepMicroSeconds: (NSUInteger)usec {
-    [NSThread sleepForTimeInterval:(double)usec/1000000];
-    return 0;
 }
 
 + (void) initializePerl {
@@ -322,10 +318,20 @@ static NSMutableDictionary * perlInstanceDict = nil;
                     if ([option isKindOfClass: [NSNumber class]])
                     {
                         option = [(NSNumber *)option stringValue];
+                        emb[embSize++] = (char *)[option UTF8String];
+                    }
+                    else if ([option isKindOfClass: [NSString class]])
+                    {
+                        emb[embSize++] = (char *)[option UTF8String];
+                    }
+                    else if ([option isKindOfClass: [NSArray class]])
+                    {
+                        for (NSString * opt in option)
+                        {
+                            emb[embSize++] = (char *)[opt UTF8String];
+                        }
                     }
                 }
-
-                emb[embSize++] = (char *)[option UTF8String];
             }
         }
 
@@ -391,9 +397,13 @@ static NSMutableDictionary * perlInstanceDict = nil;
         }
     }
 
-    result = perl_run(_CBPerlInterpreter);
+    @try {
+        result = perl_run(_CBPerlInterpreter);
+    } @catch (NSException *exception) {
+        * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:05 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
+    }
 
-    if (result)
+    if (result || *error != nil)
     {
         if ( SvTRUE(ERRSV ) )
         {

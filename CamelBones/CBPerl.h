@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PerlImports.h"
-#include "perlxsi.h"
+#import <PerlImports.h>
+#include <perlxsi.h>
 
 #define CBPerlErrorException @"CBPerlErrorException"
 
@@ -16,8 +16,6 @@
 @class CBPerlArray;
 @class CBPerlHash;
 @class CBPerlObject;
-
-static Boolean perlInitialized = false;
 
 typedef void (^PerlCompletionBlock)(int perlRunResult);
 
@@ -52,9 +50,6 @@ typedef void (^PerlCompletionBlock)(int perlRunResult);
 
 // setCBPerl: Class method that sets the CBPerl object corresponding to an embedded perl interpreter object
 + (void) setCBPerl:(CBPerl *) cbperl forPerlInterpreter:(PerlInterpreter *) perlInterpreter;
-
-// wait microseconds
-+ (int)sleepMicroSeconds: (NSUInteger)usec;
 
 // clean up this CBPerl object's perl interpreter
 - (void) cleanUp;
