@@ -520,66 +520,39 @@ CBRunPerlCaptureStdout (char * json) {
     [stdoutPipeIn initWithFileDescriptor:[stdoutPipeIn fileDescriptor]];
     [stderrPipeIn initWithFileDescriptor:[stderrPipeIn fileDescriptor]];
 
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    dispatch_sync(stdioQueue, ^{
         notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stdoutPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
-            dispatch_async(stdioQueue, ^(void) {
-                if (!ended) {
-                    @try {
-                        NSString * notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
-                        if (notificationText && notificationText.length > 0) {
-                             @synchronized (stdioQueue) {
-                                 [stdoutOutput appendString:notificationText];
-                             }
-                        }
-                    }
-                    @catch (NSException * exception) {
-                        if (!ended) {
-                            handleStdioException(exception, stdoutOutput);
-                        }
-                    }
-                }
-            });
-
             if (!ended) {
-                @try
-                {
+                @try {
+                    NSString * notificationText = [[NSString alloc] initWithData:[stdoutPipeOut availableData] encoding: NSUTF8StringEncoding];
+                    if (notificationText && notificationText.length > 0) {
+                         @synchronized (stdioQueue) {
+                             [stdoutOutput appendString:notificationText];
+                         }
+                    }
                     if (!ended) {
                         [stdoutPipeOut waitForDataInBackgroundAndNotify];
                     }
                 }
-                @catch (NSException *exception)
-                {
+                @catch (NSException * exception) {
                     if (!ended) {
                         handleStdioException(exception, stdoutOutput);
                     }
                 }
             }
-
         }];
         [stdoutPipeOut waitForDataInBackgroundAndNotify];
         if (!redirectStderr)
         {
             notificationObserver2 = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stderrPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
-                dispatch_async(stdioQueue, ^(void) {
-                    if (!ended) {
-                        @try {
-                            NSString * notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
-                            if (notificationText && notificationText.length > 0) {
-                                @synchronized (stdioQueue) {
-                                    [stdoutOutput appendString:notificationText];
-                                }
-                            }
-                        }
-                        @catch (NSException * exception) {
-                            if (!ended) {
-                                handleStdioException(exception, stdoutOutput);
-                            }
-                        }
-                    }
-                });
                 if (!ended) {
-                    @try
-                    {
+                    @try {
+                        NSString * notificationText = [[NSString alloc] initWithData:[stderrPipeOut availableData] encoding: NSUTF8StringEncoding];
+                        if (notificationText && notificationText.length > 0) {
+                            @synchronized (stdioQueue) {
+                                [stdoutOutput appendString:notificationText];
+                            }
+                        }
                         if (!ended) {
                             [stderrPipeOut waitForDataInBackgroundAndNotify];
                         }
