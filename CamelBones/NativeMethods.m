@@ -476,12 +476,12 @@ CBRunPerlCaptureStdout (char * json) {
     }
 
     NSMutableDictionary * cbRunPerlDict = parseCBRunPerlJson(json);
-    NSNumber * stderrRedirection = [cbRunPerlDict objectForKey:@"stderr"];
+//    NSNumber * stderrRedirection = [cbRunPerlDict objectForKey:@"stderr"];
     BOOL redirectStderr = NO;
-    if (stderrRedirection != nil && [stderrRedirection unsignedIntValue] == 1 )
-    {
-        redirectStderr = YES;
-    }
+//    if (stderrRedirection != nil && [stderrRedirection unsignedIntValue] == 1 )
+//    {
+//        redirectStderr = YES;
+//    }
 
     NSPipe * stdoutPipe = [NSPipe pipe];
     NSPipe * stderrPipe = [NSPipe pipe];
@@ -520,7 +520,7 @@ CBRunPerlCaptureStdout (char * json) {
     [stdoutPipeIn initWithFileDescriptor:[stdoutPipeIn fileDescriptor]];
     [stderrPipeIn initWithFileDescriptor:[stderrPipeIn fileDescriptor]];
 
-    dispatch_sync(stdioQueue, ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
         notificationObserver = [[NSNotificationCenter defaultCenter] addObserverForName:NSFileHandleDataAvailableNotification object:stdoutPipeOut queue:[NSOperationQueue mainQueue] usingBlock: (void (^)(NSNotification *)) ^{
             if (!ended) {
                 @try {
