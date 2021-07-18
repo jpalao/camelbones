@@ -34,7 +34,7 @@ CBInit(importCocoa)
     NSAutoreleasePool *p = [[NSAutoreleasePool alloc] init];
     [[CBPerl alloc] initXS: importCocoa];
 
-SV*
+AV*
 CBRunPerlCaptureStdout(json)
     const char* json;
 

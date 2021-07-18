@@ -615,7 +615,11 @@ CBRunPerlCaptureStdout (char * json) {
 //
 //    av_push(array_result, exec_result);
 
-    return (void *) stdout_result;
+    AV * result = newAV();
+    av_push(result, exec_result);
+    av_push(result, stdout_result);
+
+    return (void *) result;
 }
 }
 
