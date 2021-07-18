@@ -219,6 +219,14 @@ void* CBMessengerFunctionForFFIType(ffi_type *theType, BOOL isSuper) {
     return isSuper ? (void*)&objc_msgSendSuper : (void*)&objc_msgSend;
 }
 
+NSString * unquoteString(NSString *prog) {
+    if ([prog hasPrefix: @"\""] && [prog hasSuffix: @"\""])
+    {
+        prog = [prog substringWithRange:NSMakeRange(1, [prog length]-2)];
+    }
+    return prog;
+}
+
 NSMutableDictionary * parseCBRunPerlJson (char * json)
 {
     NSMutableDictionary * result = [[NSMutableDictionary alloc] initWithCapacity:256];
@@ -268,9 +276,13 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
             }
             else
             {
-                NSMutableArray * mutable = [switches mutableCopy];
-                [mutable removeObject:@""];
-                switches = [mutable copy];
+                NSMutableArray * mutableSwitches = [[NSMutableArray alloc] initWithCapacity: switches.count];
+                for (NSString * s in switches) {
+                    NSString * unquoted = unquoteString(s);
+                    [mutableSwitches addObject:unquoted];
+                }
+                [mutableSwitches removeObject:@""];
+                switches = [mutableSwitches copy];
             }
             [result setObject:[switches copy] forKey:@"switches"];
         }
@@ -310,7 +322,8 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                                 NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
                                 for (NSString* prog in progs) {
                                     [mutable addObject:@"-e"];
-                                    [mutable addObject:prog];
+                                    NSString * unquoted = unquoteString(prog);
+                                    [mutable addObject:unquoted];
                                 }
                                 switches = [mutable copy];
                                 [result setObject:switches forKey:@"switches"];
@@ -324,7 +337,8 @@ NSMutableDictionary * parseCBRunPerlJson (char * json)
                         }
                         NSMutableArray * mutable = [[result objectForKey:@"switches"] mutableCopy];
                         [mutable addObject:@"-e"];
-                        [mutable addObject:prog];
+                        NSString * unquoted = unquoteString(prog);
+                        [mutable addObject:unquoted];
                         switches = [mutable copy];
                         [result setObject:switches forKey:@"switches"];
                     }
