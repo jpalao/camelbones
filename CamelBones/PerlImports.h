@@ -13,9 +13,9 @@
 #undef _
 #endif
 
-#include <EXTERN.h>
+#include "EXTERN.h"
 #ifdef PERL_TIGER
 #define HAS_BOOL
 #endif
-#include <perl.h>
-#include <XSUB.h>
+#include "perl.h"
+#include "XSUB.h"

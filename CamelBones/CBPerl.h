@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <PerlImports.h>
-#include <perlxsi.h>
+#import "PerlImports.h"
+#include "perlxsi.h"
 
 #define CBPerlErrorException @"CBPerlErrorException"
 
