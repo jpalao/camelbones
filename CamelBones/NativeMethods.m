@@ -484,7 +484,9 @@ CBRunPerlCaptureStdout (char * json) {
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
+    AV * results = newAV();
     SV * stdout_result = nil;
+    SV * exit_code = nil;
 
     if (stdioQueue == nil) {
         init_dispatch_queue();
@@ -583,7 +585,7 @@ CBRunPerlCaptureStdout (char * json) {
         }
     });
 
-    SV * exec_result = CBRunPerl(json);
+    exit_code = CBRunPerl(json);
     @synchronized (stdioQueue) {
         ended = TRUE;
     }
@@ -612,14 +614,15 @@ CBRunPerlCaptureStdout (char * json) {
 //    const char * stderr_string = (const char *)[stderrOutput cStringUsingEncoding:NSUTF8StringEncoding];
 //    SV * stderr_result = newSVpvn_flags(stderr_string, strlen(stderr_string), SVf_UTF8);
 //    av_push(array_result, stderr_result);
-//
 //    av_push(array_result, exec_result);
 
-    AV * result = newAV();
-    av_push(result, exec_result);
-    av_push(result, stdout_result);
+//    hv_store(results, "exit_code", 9, exit_code, 0);
+//    hv_store(results, "stdoutput", 9, stdout_result, 0);
 
-    return (void *) result;
+    av_push(results, exit_code);
+    av_push(results, stdout_result);
+
+    return (void *) results;
 }
 }
 
