@@ -441,7 +441,7 @@ void* CBRunPerl (char * json)
                             }
                         ];
                         if (perlError) {
-                            retval = 4;
+                            retval = perlError.code;
                         }
                     }
                     @catch (NSException *)

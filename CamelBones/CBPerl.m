@@ -398,7 +398,8 @@ static Boolean perlInitialized = false;
     }
 
     @try {
-        result = perl_run(_CBPerlInterpreter);
+        int perl_run_result = perl_run(_CBPerlInterpreter);
+        result = result ? result : perl_run_result;
     } @catch (NSException *exception) {
         * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:05 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
     }
@@ -408,11 +409,11 @@ static Boolean perlInitialized = false;
         if ( SvTRUE(ERRSV ) )
         {
             char * perl_error = SvPVx_nolen(ERRSV);
-            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
+            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:result userInfo:@{@"reason":[NSString stringWithFormat:@"%s", perl_error]}];
         }
         else
         {
-            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:03 userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
+            * error = [[NSError alloc] initWithDomain:@"dev.perla.run" code:result userInfo:@{@"reason":[NSString stringWithFormat:@"Unspecified error\n"]}];
         }
     }
 
