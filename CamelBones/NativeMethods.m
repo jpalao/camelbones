@@ -465,7 +465,7 @@ void* CBRunPerl (char * json)
         [NSThread sleepForTimeInterval: 0.1];
     }
 
-    sv_setiv(ret, retval);
+    sv_setiv(ret, (int)((retval & 0xff) << 8));
     return (void *)ret;
 } // autoreleasepool
 }
