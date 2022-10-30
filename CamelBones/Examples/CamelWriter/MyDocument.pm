@@ -14,15 +14,14 @@ class MyDocument {
                     ],
 };
 
-sub init : Selector(init) ReturnType(@) {
-    my ($self) = @_;
-    $self = $self->SUPER::init();
-    
-    # Add code here to perform any custom initialization for this object
-    
-    return $self;
-}
-
+# sub init : Selector(init) ReturnType(@) {
+#     my ($self) = @_;
+#     $self = $self->SUPER::init();
+#     
+#     # Add code here to perform any custom initialization for this object
+#     
+#     return $self;
+# }
 
 # Respond to changes in the text by copying it
 sub textDidChange : Selector(textDidChange:) ArgTypes(@) {
@@ -43,13 +42,13 @@ sub windowNibName : Selector(windowNibName) ReturnType(@) {
 sub windowControllerDidLoadNib : Selector(windowControllerDidLoadNib:)
         ArgTypes(@) {
 	my ($self, $controller) = @_;
-	
+
     # This is where you add any code you want to run *after* the document's .nib
     # has been loaded and its connections established.
 
-	$self->textView()->textStorage()->setAttributedString($self->aString());
+    $self->textView()->textStorage()->setAttributedString($self->aString())
+        if (length $self->aString());
 }
-
 
 sub dataRepresentationOfType : Selector(dataRepresentationOfType:)
         ArgTypes(@) ReturnType(@) {
@@ -75,7 +74,7 @@ sub dataRepresentationOfType : Selector(dataRepresentationOfType:)
 sub loadDataRepresentation_ofType : Selector(loadDataRepresentation:ofType:)
         ArgTypes(@@) ReturnType(c) {
  	my ($self, $data, $type) = @_;
- 	
+
  	# Data-based primitive method for loading document data. Load your document data
  	# from the provided NSData object.
  	#

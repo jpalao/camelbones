@@ -3,12 +3,7 @@
 use strict;
 use warnings;
 
-BEGIN {
-    use CamelBones qw(:All);
-    my $resDir = NSBundle->mainBundle()->resourcePath();
-    eval "use lib '$resDir/PAR/$]/lib/perl5'";
-    eval "use PAR '$resDir/GLKit.par'";
-}
+use CamelBones qw(:All);
 
 use OpenGLDemo;
 use OpenGLDemoView;

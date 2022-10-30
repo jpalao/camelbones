@@ -3,35 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825A550C1D05C91D0061736F /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825A550B1D05C91D0061736F /* CamelBones.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		AA254AF505B66F05003DBAE8 /* main.pl in Resources */ = {isa = PBXBuildFile; fileRef = AA254AF405B66F05003DBAE8 /* main.pl */; };
 		AA254AFB05B66F24003DBAE8 /* SimpleDBIController.pm in Resources */ = {isa = PBXBuildFile; fileRef = AA254AF905B66F24003DBAE8 /* SimpleDBIController.pm */; };
-		AA254AFF05B66F45003DBAE8 /* CamelBones.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA254AFE05B66F45003DBAE8 /* CamelBones.framework */; };
 		AAB03E9C0BEAC50800243F8D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB03E9B0BEAC50800243F8D /* WebKit.framework */; };
-		AAC07F140BA63256007D997E /* DBIKit.par in Resources */ = {isa = PBXBuildFile; fileRef = AAC07F120BA63256007D997E /* DBIKit.par */; };
-		AAC07F150BA63256007D997E /* DevKit.par in Resources */ = {isa = PBXBuildFile; fileRef = AAC07F130BA63256007D997E /* DevKit.par */; };
-		AAE6CE93084467C9002E67C8 /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA254AFE05B66F45003DBAE8 /* CamelBones.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		AAE6CE2008446281002E67C8 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				AA254AFF05B66F45003DBAE8 /* CamelBones.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -40,14 +24,12 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		825A550B1D05C91D0061736F /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = ../../Build/Products/Debug/CamelBones.framework; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* SimpleDBI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDBI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA254AF405B66F05003DBAE8 /* main.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = main.pl; sourceTree = "<group>"; };
 		AA254AF905B66F24003DBAE8 /* SimpleDBIController.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = SimpleDBIController.pm; sourceTree = "<group>"; };
-		AA254AFE05B66F45003DBAE8 /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = /Developer/CamelBones/Frameworks/CamelBones.framework; sourceTree = "<absolute>"; };
 		AAB03E9B0BEAC50800243F8D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
-		AAC07F120BA63256007D997E /* DBIKit.par */ = {isa = PBXFileReference; lastKnownFileType = file; name = DBIKit.par; path = /Developer/CamelBones/Modules/DBIKit.par; sourceTree = "<absolute>"; };
-		AAC07F130BA63256007D997E /* DevKit.par */ = {isa = PBXFileReference; lastKnownFileType = file; name = DevKit.par; path = /Developer/CamelBones/Modules/DevKit.par; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,8 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				825A550C1D05C91D0061736F /* CamelBones.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				AAE6CE93084467C9002E67C8 /* CamelBones.framework in Frameworks */,
 				AAB03E9C0BEAC50800243F8D /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,8 +57,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				825A550B1D05C91D0061736F /* CamelBones.framework */,
 				AAB03E9B0BEAC50800243F8D /* WebKit.framework */,
-				AA254AFE05B66F45003DBAE8 /* CamelBones.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -123,8 +105,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				AAC07F120BA63256007D997E /* DBIKit.par */,
-				AAC07F130BA63256007D997E /* DevKit.par */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
@@ -162,7 +142,6 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				AAE6CE2008446281002E67C8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -179,9 +158,15 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = AAC07F0C0BA6324F007D997E /* Build configuration list for PBXProject "SimpleDBI" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* SimpleDBI */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,8 +185,6 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				AA254AF505B66F05003DBAE8 /* main.pl in Resources */,
 				AA254AFB05B66F24003DBAE8 /* SimpleDBIController.pm in Resources */,
-				AAC07F140BA63256007D997E /* DBIKit.par in Resources */,
-				AAC07F150BA63256007D997E /* DevKit.par in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,8 +224,13 @@
 		AAC07F090BA6324F007D997E /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -252,11 +240,14 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = SimpleDBI;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -271,9 +262,14 @@
 		AAC07F0A0BA6324F007D997E /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -285,10 +281,13 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = SimpleDBI;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -303,7 +302,12 @@
 		AAC07F0B0BA6324F007D997E /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -312,10 +316,13 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = SimpleDBI;
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -333,7 +340,7 @@
 					ppc,
 					i386,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 			};
 			name = Deployment;
 		};
@@ -344,7 +351,7 @@
 					ppc,
 					i386,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 			};
 			name = Development;
 		};
@@ -355,7 +362,7 @@
 					ppc,
 					i386,
 				);
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 			};
 			name = Default;
 		};

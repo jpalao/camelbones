@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825A54E31D04A0A70061736F /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825A54E21D04A0A70061736F /* CamelBones.framework */; };
 		84CB14D510B81F3C0078B1AF /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		84CB14D610B81F3C0078B1AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		84CB14D710B81F3C0078B1AF /* main.pl in Resources */ = {isa = PBXBuildFile; fileRef = F5D5A3B4026B2DF601A80164 /* main.pl */; };
@@ -15,22 +16,7 @@
 		84CB14DA10B81F3C0078B1AF /* MyWindowController.pm in Resources */ = {isa = PBXBuildFile; fileRef = F55030FC026B870901A80164 /* MyWindowController.pm */; };
 		84CB14DC10B81F3C0078B1AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		84CB14DE10B81F3C0078B1AF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		84CB14E810B81FB40078B1AF /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84CB14E710B81FB40078B1AF /* CamelBones.framework */; };
-		84CB14EB10B81FEB0078B1AF /* CamelBones.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 84CB14E710B81FB40078B1AF /* CamelBones.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		84CB14F110B8200B0078B1AF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				84CB14EB10B81FEB0078B1AF /* CamelBones.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -39,9 +25,9 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		825A54E21D04A0A70061736F /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = ../../Build/Products/Debug/CamelBones.framework; sourceTree = SOURCE_ROOT; };
 		84CB14E410B81F3C0078B1AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84CB14E510B81F3C0078B1AF /* BrowserSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		84CB14E710B81FB40078B1AF /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = "/Users/jose/Library/Developer/Xcode/DerivedData/CamelBones-dxyslixbogtlqrcphqdizcasedjh/Build/Products/Debug/CamelBones.framework"; sourceTree = "<absolute>"; };
 		F55030FA026B86CD01A80164 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainWindow.nib; sourceTree = "<group>"; };
 		F55030FC026B870901A80164 /* MyWindowController.pm */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = MyWindowController.pm; sourceTree = "<group>"; };
 		F5D5A3B4026B2DF601A80164 /* main.pl */ = {isa = PBXFileReference; lastKnownFileType = text.script.perl; path = main.pl; sourceTree = "<group>"; };
@@ -54,7 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84CB14DE10B81F3C0078B1AF /* Cocoa.framework in Frameworks */,
-				84CB14E810B81FB40078B1AF /* CamelBones.framework in Frameworks */,
+				825A54E31D04A0A70061736F /* CamelBones.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +59,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84CB14E710B81FB40078B1AF /* CamelBones.framework */,
+				825A54E21D04A0A70061736F /* CamelBones.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -158,7 +144,6 @@
 				84CB14D410B81F3C0078B1AF /* Resources */,
 				84CB14DB10B81F3C0078B1AF /* Sources */,
 				84CB14DD10B81F3C0078B1AF /* Frameworks */,
-				84CB14F110B8200B0078B1AF /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -178,7 +163,7 @@
 			attributes = {
 			};
 			buildConfigurationList = 84CB14CC10B81F310078B1AF /* Build configuration list for PBXProject "BrowserSample" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -273,9 +258,9 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/CamelBones/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -284,11 +269,13 @@
 				HEADER_SEARCH_PATHS = ..;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = BrowserSample;
+				SDKROOT = macosx10.9;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -307,19 +294,21 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/CamelBones/Frameworks\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = BrowserSample;
+				SDKROOT = macosx10.9;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -337,18 +326,20 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
 				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(DEVELOPER_DIR)/CamelBones/Frameworks\"";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = ..;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = BrowserSample;
+				SDKROOT = macosx10.9;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",

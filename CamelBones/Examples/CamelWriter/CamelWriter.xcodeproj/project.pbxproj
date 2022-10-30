@@ -3,33 +3,19 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825A54EF1D0597BB0061736F /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825A54EE1D0597BB0061736F /* CamelBones.framework */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		AA1566A808327A1200E4B860 /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1566A708327A1200E4B860 /* CamelBones.framework */; };
 		AA254AF505B66F05003DBAE8 /* main.pl in Resources */ = {isa = PBXBuildFile; fileRef = AA254AF405B66F05003DBAE8 /* main.pl */; };
 		AA6328E207DE0D3E0066164F /* MyDocument.pm in Resources */ = {isa = PBXBuildFile; fileRef = AA6328E107DE0D3E0066164F /* MyDocument.pm */; };
 		AA63291807DE0EC20066164F /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = AA63291607DE0EC20066164F /* MyDocument.nib */; };
-		AAF8D7BC08327CA60025A0FA /* CamelBones.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = AA1566A708327A1200E4B860 /* CamelBones.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		AA15668E0832793C00E4B860 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				AAF8D7BC08327CA60025A0FA /* CamelBones.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -38,9 +24,9 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		825A54EE1D0597BB0061736F /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = ../../Build/Products/Debug/CamelBones.framework; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* CamelWriter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CamelWriter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA1566A708327A1200E4B860 /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = /Developer/CamelBones/Frameworks/CamelBones.framework; sourceTree = "<absolute>"; };
 		AA254AF405B66F05003DBAE8 /* main.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = main.pl; sourceTree = "<group>"; };
 		AA6328E107DE0D3E0066164F /* MyDocument.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = MyDocument.pm; sourceTree = "<group>"; };
 		AA63291707DE0EC20066164F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MyDocument.nib; sourceTree = "<group>"; };
@@ -52,7 +38,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				AA1566A808327A1200E4B860 /* CamelBones.framework in Frameworks */,
+				825A54EF1D0597BB0061736F /* CamelBones.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +56,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA1566A708327A1200E4B860 /* CamelBones.framework */,
+				825A54EE1D0597BB0061736F /* CamelBones.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -155,7 +141,6 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				AA15668E0832793C00E4B860 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -172,9 +157,15 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = 84CB150C10B8303D0078B1AF /* Build configuration list for PBXProject "CamelWriter" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CamelWriter */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,8 +250,13 @@
 		84CB150910B8303D0078B1AF /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug/,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -271,7 +267,9 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
@@ -290,9 +288,14 @@
 		84CB150A10B8303D0078B1AF /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEBUGGING_SYMBOLS = YES;
-				FRAMEWORK_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug/,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_TRIGRAPHS = NO;
@@ -305,7 +308,9 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = CamelWriter;
@@ -323,7 +328,12 @@
 		84CB150B10B8303D0078B1AF /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "\"$(SYSTEM_DEVELOPER_DIR)/CamelBones/Frameworks\"";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug/,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_ENABLE_TRIGRAPHS = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
@@ -333,7 +343,9 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = CamelWriter;

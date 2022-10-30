@@ -3,17 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		825A55011D05A90F0061736F /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 825A55001D05A90F0061736F /* CamelBones.framework */; };
 		AAC07DA30BA5E00F007D997E /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		AAC07DA40BA5E00F007D997E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		AAC07DA50BA5E00F007D997E /* main.pl in Resources */ = {isa = PBXBuildFile; fileRef = F5D5A3B4026B2DF601A80164 /* main.pl */; };
 		AAC07DA80BA5E00F007D997E /* NetServiceBrowserController.pm in Resources */ = {isa = PBXBuildFile; fileRef = F55030FC026B870901A80164 /* NetServiceBrowserController.pm */; };
 		AAC07DAA0BA5E00F007D997E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		AAC07DAC0BA5E00F007D997E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		AAC07DAD0BA5E00F007D997E /* CamelBones.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D5A3B2026B2D4801A80164 /* CamelBones.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +23,10 @@
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		AAC07DB20BA5E010007D997E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+		825A55001D05A90F0061736F /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = ../../Build/Products/Debug/CamelBones.framework; sourceTree = SOURCE_ROOT; };
+		AAC07DB20BA5E010007D997E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAC07E910BA6006D007D997E /* NetService Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NetService Browser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F55030FC026B870901A80164 /* NetServiceBrowserController.pm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = NetServiceBrowserController.pm; sourceTree = "<group>"; };
-		F5D5A3B2026B2D4801A80164 /* CamelBones.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CamelBones.framework; path = /Library/Frameworks/CamelBones.framework; sourceTree = "<absolute>"; };
 		F5D5A3B4026B2DF601A80164 /* main.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; path = main.pl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,7 +36,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAC07DAC0BA5E00F007D997E /* Cocoa.framework in Frameworks */,
-				AAC07DAD0BA5E00F007D997E /* CamelBones.framework in Frameworks */,
+				825A55011D05A90F0061736F /* CamelBones.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +54,8 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				825A55001D05A90F0061736F /* CamelBones.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				F5D5A3B2026B2D4801A80164 /* CamelBones.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";
@@ -154,11 +154,19 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = AAC07D970BA5DFB2007D997E /* Build configuration list for PBXProject "NetService Browser" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* RendezvousBrowser */;
 			productRefGroup = AAC07E920BA6006D007D997E /* Products */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				AAC07DA00BA5E00F007D997E /* NetService Browser */,
 			);
@@ -213,9 +221,9 @@
 		AAC07D980BA5DFB2007D997E /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 				ZERO_LINK = NO;
 			};
 			name = Development;
@@ -227,9 +235,9 @@
 					ppc,
 					i386,
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 				ZERO_LINK = NO;
 			};
 			name = Deployment;
@@ -237,9 +245,9 @@
 		AAC07D9A0BA5DFB2007D997E /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.3;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
 				ZERO_LINK = NO;
 			};
 			name = Default;
@@ -247,8 +255,13 @@
 		AAC07DAF0BA5E00F007D997E /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -257,10 +270,13 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "NetService Browser";
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -275,17 +291,25 @@
 		AAC07DB00BA5E00F007D997E /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "NetService Browser";
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -300,15 +324,23 @@
 		AAC07DB10BA5E00F007D997E /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../Build/Products/Debug,
+					/opt/local/Library/Frameworks,
+				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks /opt/local/Library/Frameworks";
 				LIBRARY_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "NetService Browser";
+				SDKROOT = macosx;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",

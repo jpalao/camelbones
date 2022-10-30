@@ -5,6 +5,8 @@ use warnings;
 
 use CamelBones qw(:All);
 
+use ControllerInNib;
+
 # Get a reference to the shared NSApplication object
 our $nsApp = NSApplication->sharedApplication;
 
