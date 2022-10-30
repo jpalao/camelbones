@@ -2,8 +2,8 @@
 #import <AppKit/AppKit.h>
 
 #import <CamelBones/PerlImports.h>
-#import <CamelBones/Conversions_real.h>
-#import <CamelBones/Structs_real.h>
+#import <CamelBones/Conversions.h>
+#import <CamelBones/Structs.h>
 
 MODULE = CamelBones::AppKit		PACKAGE = CamelBones::AppKit
 

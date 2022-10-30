@@ -6,8 +6,8 @@ package CamelBones::NSRect;
 our @ISA = qw(Exporter);
 
 #test for 64/32 bit intel perl
-our $unpack_template  = (pack 'P', -1 == 8) ? 'dddddddd': 'ffffffff'; 
-our $pack_template  = (pack 'P', -1 == 8) ? 'dddd': 'ffff'; 
+our $unpack_template  = (length (pack 'P', -1) == 8) ? 'dddddddd': 'ffffffff'; 
+our $pack_template  = (length (pack 'P', -1) == 8) ? 'dddd': 'ffff'; 
 
 sub getX {
 	my ($self) = @_;
