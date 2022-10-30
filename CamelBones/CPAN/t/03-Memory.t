@@ -11,7 +11,7 @@ my $data = NSMutableData->alloc()->initWithLength(16);
 my $addr = $data->bytes();
 
 #test for 64/32 bit intel perl
-our $pack_template  = (pack 'P', -1 == 8) ? 'Q': 'I'; 
+our $pack_template  = (length (pack 'P', -1) == 8) ? 'Q': 'I'; 
 
 if ($pack_template eq 'Q') {
 	CBPoke($addr, pack('Q', 0xdeadbeefdeadbeef), 8);
@@ -20,7 +20,7 @@ if ($pack_template eq 'Q') {
 	
 	ok(($val == 0xdeadbeefdeadbeef) ? 3 : 0);
 	
-	my $point = NSMakePoint(5.0, 5.0);
+	my $point = CGPointMake(5.0, 5.0);
 	CBPoke($addr, $point);
 	ok(4);
 	
@@ -34,7 +34,7 @@ else {
 	
 	ok(($val == 0xdeadbeef) ? 3 : 0);
 	
-	my $point = NSMakePoint(5.0, 5.0);
+	my $point = CGPointMake(5.0, 5.0);
 	CBPoke($addr, $point);
 	ok(4);
 	
