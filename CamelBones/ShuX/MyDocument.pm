@@ -70,7 +70,7 @@ sub readFile : Selector(readFromFile:ofType:)
 
 sub displayName : Selector(displayName) ReturnType(@) {
 	my ($self) = @_;
-	my $displayName = $self->SUPER::displayName();
+	my $displayName = NSDocument->displayName();
 	if ($self->docSetName()) {
 		$displayName .= ' ('.$self->docSetName().')';
 	}
