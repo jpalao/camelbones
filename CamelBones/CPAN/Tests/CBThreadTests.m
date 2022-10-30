@@ -5,7 +5,15 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#elif TARGET_OS_MAC
 #import <Cocoa/Cocoa.h>
+#endif
+
+#import <CamelBones/CBPerl.h>
 
 @interface CBThreadTests : NSObject {
     NSMutableDictionary *d;
@@ -38,6 +46,7 @@
 
 - (void) runFoo: (id)foo {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    CBPerl * cbPerl = [[CBPerl alloc] init];
     int i;
     for(i=0; i<1000; i++) {
         [theLock lock];
@@ -45,11 +54,13 @@
             exit(1);
         [theLock unlock];
     }
+    [cbPerl cleanUp];
     [pool release];
 }
 
 - (void) runBar: (id)bar {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    CBPerl * cbPerl = [[CBPerl alloc] init];
     int i;
     for(i=0; i<1000; i++) {
         [theLock lock];
@@ -57,6 +68,7 @@
             exit(1);
         [theLock unlock];
     }
+    [cbPerl cleanUp];
     [pool release];
 }
 

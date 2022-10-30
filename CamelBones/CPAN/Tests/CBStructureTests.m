@@ -6,12 +6,18 @@
 //  Copyright 2010 Sherm Pendley.
 //
 
+#import <Foundation/Foundation.h>
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#elif TARGET_OS_MAC
 #import <Cocoa/Cocoa.h>
+#endif
 #import "CBStructureTests.h"
 
 @implementation CBStructureTests
 
-- (NSPoint)point {
+- (CGPoint)point {
     return point;
 }
 
@@ -23,7 +29,7 @@
     return point.y;
 }
 
-- (void)setPoint:(NSPoint)value {
+- (void)setPoint:(CGPoint)value {
     point = value;
 }
 
@@ -31,11 +37,11 @@
     return range;
 }
 
-- (unsigned int) rangeLocation {
+- (NSInteger) rangeLocation {
     return range.location;
 }
 
-- (unsigned int) rangeLength {
+- (NSInteger) rangeLength {
     return range.length;
 }
 
@@ -43,7 +49,7 @@
     range = value;
 }
 
-- (NSRect)rect {
+- (CGRect)rect {
     return rect;
 }
 
@@ -63,11 +69,11 @@
     return rect.size.height;
 }
 
-- (void)setRect:(NSRect)value {
+- (void)setRect:(CGRect)value {
     rect = value;
 }
 
-- (NSSize)size {
+- (CGSize)size {
     return size;
 }
 
@@ -79,7 +85,7 @@
     return size.height;
 }
 
-- (void)setSize:(NSSize)value {
+- (void)setSize:(CGSize)value {
     size = value;
 }
 
