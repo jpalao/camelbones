@@ -9,17 +9,17 @@
 #import "CBPerl.h"
 #import "CBPerlObject.h"
 #import "CBPerlObjectInternals.h"
-#import "PerlMethods_real.h"
-#import "Conversions_real.h"
-#import "Structs_real.h"
+#import "PerlMethods.h"
+#import "Conversions.h"
+#import "Structs.h"
 #import "PerlImports.h"
 
 #include <stdarg.h>
 
 // Get information about a Perl object
-NSString* REAL_CBGetMethodNameForSelector(void* sv, SEL selector) {
+NSString* CBGetMethodNameForSelector(void* sv, SEL selector) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     HV* hash = (HV*)SvRV((SV*)sv);
@@ -28,8 +28,7 @@ NSString* REAL_CBGetMethodNameForSelector(void* sv, SEL selector) {
     NSMutableString *ms = [NSMutableString stringWithString: NSStringFromSelector(selector)];
 
     NSString *methodEntryName = [NSString stringWithFormat: @"$%s::OBJC_EXPORT{'%@'}->{'method'}", package, ms];
-    id methodEntry = [[CBPerl sharedPerl] eval: methodEntryName];
-
+    id methodEntry = [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:methodEntryName];
     NSRange all;
 
     if (methodEntry != nil) {
@@ -54,9 +53,9 @@ NSString* REAL_CBGetMethodNameForSelector(void* sv, SEL selector) {
     return nil;
 }
 
-NSString* REAL_CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
+NSString* CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     HV* hash = (HV*)SvRV((SV*)sv);
@@ -66,7 +65,7 @@ NSString* REAL_CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
     NSMutableString *params = [NSMutableString stringWithString: @""];
 
     NSString *methodEntryName = [NSString stringWithFormat: @"$%s::OBJC_EXPORT{'%@'}->{'args'}", package, ms];
-    id methodEntry = [[CBPerl sharedPerl] eval: methodEntryName];
+    id methodEntry = [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:methodEntryName];
 
     NSRange all;
 
@@ -94,9 +93,9 @@ NSString* REAL_CBGetMethodArgumentSignatureForSelector(void* sv, SEL selector) {
     return @"";
 }
 
-NSString* REAL_CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
+NSString* CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     HV* hash = (HV*)SvRV((SV*)sv);
@@ -105,7 +104,7 @@ NSString* REAL_CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
     NSMutableString *ms = [NSMutableString stringWithString: NSStringFromSelector(selector)];
 
     NSString *methodEntryName = [NSString stringWithFormat: @"$%s::OBJC_EXPORT{'%@'}->{'return'}", package, ms];
-    id methodEntry = [[CBPerl sharedPerl] eval: methodEntryName];
+    id methodEntry = [[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] eval:methodEntryName];
 
     NSRange all;
 
@@ -136,9 +135,9 @@ NSString* REAL_CBGetMethodReturnSignatureForSelector(void* sv, SEL selector) {
     return @"@";
 }
 
-id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
+id CBPerlIMP(id self, SEL _cmd, ...) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     dSP;
@@ -155,10 +154,10 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     const char *returnType;
     CB_ObjCType returnValue;
     
-    int success;
+    long success;
 
     // Get the method name
-    methodName = [REAL_CBGetMethodNameForSelector(REAL_CBDerefIDtoSV(self), _cmd) UTF8String];
+    methodName = [CBGetMethodNameForSelector(CBDerefIDtoSV(self), _cmd) UTF8String];
 
     // Save the Perl stack
     ENTER;
@@ -173,7 +172,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
         sv = [self getSV];
     } else {
 
-		// See if it has an instance variable
+    // See if it has an instance variable
 
 #ifdef GNUSTEP
         const char *ivarType;
@@ -188,26 +187,26 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
         Class c = object_getClass(self);
         if (class_getInstanceVariable(c, "_sv")) {
 #else
-		if (class_getInstanceVariable(self->isa, "_sv")) {
+            if (class_getInstanceVariable(self->isa, "_sv")) {
 #endif
-			// It does - get the value
-			object_getInstanceVariable(self, "_sv", (void*)&sv);
+            // It does - get the value
+            object_getInstanceVariable(self, "_sv", (void*)&sv);
 
 #ifdef OBJC2_UNAVAILABLE
-		} else if (class_isMetaClass(c)) {
+        } else if (class_isMetaClass(c)) {
             const char * class_name = class_getName(c);
             // Class method, self is the class name as a string
             sv = sv_2mortal(newSVpv(class_name, strlen(class_name)));
 #else
-		} else if (self->isa->info & CLS_META) {
+        } else if (self->isa->info & CLS_META) {
             // Class method, self is the class name as a string
             sv = sv_2mortal(newSVpv(((struct objc_class*)self)->name, strlen(((struct objc_class*)self)->name)));
 #endif
 #endif
         } else {
-			NSLog(@"Error: CBPerlIMP called with invalid self");
-			sv = &PL_sv_undef;
-		}
+            NSLog(@"Error: CBPerlIMP called with invalid self");
+            sv = &PL_sv_undef;
+        }
     }
 
     // Push "self" onto the stack first
@@ -275,25 +274,25 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                 case '@':
                     // id
                     typeBuf.id_p = va_arg(argptr, id);
-                    XPUSHs(sv_2mortal(REAL_CBDerefIDtoSV(typeBuf.id_p)));
+                    XPUSHs(sv_2mortal(CBDerefIDtoSV(typeBuf.id_p)));
                     break;
                     
                 case '^':
                     // Pointer
                     typeBuf.void_p = va_arg(argptr, void*);
                     XPUSHs(sv_2mortal(newSViv(PTR2IV(typeBuf.void_p))));
-                	break;
+                    break;
 
                 case '#':
                     // Class
                     typeBuf.class_p = va_arg(argptr, Class);
-                    XPUSHs(sv_2mortal(REAL_CBSVFromClass(typeBuf.class_p)));
+                    XPUSHs(sv_2mortal(CBSVFromClass(typeBuf.class_p)));
                     break;
 
                 case ':':
                     // SEL
                     typeBuf.sel_p = va_arg(argptr, SEL);
-                    XPUSHs(sv_2mortal(REAL_CBSVFromSelector(typeBuf.sel_p)));
+                    XPUSHs(sv_2mortal(CBSVFromSelector(typeBuf.sel_p)));
                     break;
 
                 case '[':
@@ -304,28 +303,37 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
 
                 case '{':
                     // struct
-                    if (0 == strncmp(argType, "{NSPoint", strlen("{NSPoint"))) {
-                        typeBuf.point_s = va_arg(argptr, NSPoint);
-                        XPUSHs(sv_2mortal(REAL_CBPointToSV(typeBuf.point_s)));
-                    } else if (0 == strncmp(argType, "{NSRange", strlen("{NSRange"))) {
+                    if (0 == strncmp(argType, "{NSRange", strlen("{NSRange"))) {
                         typeBuf.range_s = va_arg(argptr, NSRange);
-                        XPUSHs(sv_2mortal(REAL_CBRangeToSV(typeBuf.range_s)));
-                    } else if (0 == strncmp(argType, "{NSRect", strlen("{NSRect"))) {
+                        XPUSHs(sv_2mortal(CBRangeToSV(typeBuf.range_s)));
+                    }
+#if !TARGET_OS_IPHONE
+                    else if (0 == strncmp(argType, "{NSPoint", strlen("{NSPoint"))) {
+                        typeBuf.point_s = va_arg(argptr, NSPoint);
+                        XPUSHs(sv_2mortal(CBPointToSV(typeBuf.point_s)));
+                    }
+                    else if (0 == strncmp(argType, "{NSRect", strlen("{NSRect"))) {
                         typeBuf.rect_s = va_arg(argptr, NSRect);
-                        XPUSHs(sv_2mortal(REAL_CBRectToSV(typeBuf.rect_s)));
-                    } else if (0 == strncmp(argType, "{NSSize", strlen("{NSSize"))) {
+                        XPUSHs(sv_2mortal(CBRectToSV(typeBuf.rect_s)));
+                    }
+                    else if (0 == strncmp(argType, "{NSSize", strlen("{NSSize"))) {
                         typeBuf.size_s = va_arg(argptr, NSSize);
-                        XPUSHs(sv_2mortal(REAL_CBSizeToSV(typeBuf.size_s)));
-                    } else if (0 == strncmp(argType, "{CGPoint", strlen("{CGPoint"))) {
+                        XPUSHs(sv_2mortal(CBSizeToSV(typeBuf.size_s)));
+                    }
+#endif
+                    else if (0 == strncmp(argType, "{CGPoint", strlen("{CGPoint"))) {
                         typeBuf.cgpoint_s = va_arg(argptr, CGPoint);
-                        XPUSHs(sv_2mortal(REAL_CBCGPointToSV(typeBuf.cgpoint_s)));
-                    } else if (0 == strncmp(argType, "{CGRect", strlen("{CGRect"))) {
+                        XPUSHs(sv_2mortal(CBCGPointToSV(typeBuf.cgpoint_s)));
+                    }
+                    else if (0 == strncmp(argType, "{CGRect", strlen("{CGRect"))) {
                         typeBuf.cgrect_s = va_arg(argptr,CGRect);
-                        XPUSHs(sv_2mortal(REAL_CBCGRectToSV(typeBuf.cgrect_s)));
-                    } else if (0 == strncmp(argType, "{CGSize", strlen("{CGSize"))) {
+                        XPUSHs(sv_2mortal(CBCGRectToSV(typeBuf.cgrect_s)));
+                    }
+                    else if (0 == strncmp(argType, "{CGSize", strlen("{CGSize"))) {
                         typeBuf.cgsize_s = va_arg(argptr, CGSize);
-                        XPUSHs(sv_2mortal(REAL_CBCGSizeToSV(typeBuf.cgsize_s)));
-                    } else {
+                        XPUSHs(sv_2mortal(CBCGSizeToSV(typeBuf.cgsize_s)));
+                    }
+                    else {
                         NSLog(@"Unknown struct type %s in position %d", argType, i);
                         XPUSHs(&PL_sv_undef);
                     }
@@ -334,13 +342,13 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
                 case 'q':
                     // signed quad
                     typeBuf.slong = va_arg(argptr, int);
-                    XPUSHs(sv_2mortal(newSVnv(typeBuf.slong)));
+                    XPUSHs(sv_2mortal(newSViv(typeBuf.slong)));
                     break;
 
                 case 'Q':
                     // unsigned quad
                     typeBuf.ulong = va_arg(argptr, unsigned int);
-                    XPUSHs(sv_2mortal(newSVnv(typeBuf.ulong)));
+                    XPUSHs(sv_2mortal(newSVuv(typeBuf.ulong)));
                     break;
 
                 case '(':
@@ -378,6 +386,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     if (success) {
         switch (*returnType) {
             case 'c':
+            case 'B':
                 // char
                 returnValue.sint = POPi;
                 break;
@@ -449,7 +458,7 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     
             case '@':
                 // id
-                returnValue.id_p = REAL_CBDerefSVtoID(POPs);
+                returnValue.id_p = CBDerefSVtoID(POPs);
                 break;
 
             case '^':
@@ -459,12 +468,12 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     
             case '#':
                 // Class
-                returnValue.class_p = REAL_CBClassFromSV(POPs);
+                returnValue.class_p = CBClassFromSV(POPs);
                 break;
     
             case ':':
                 // SEL
-                returnValue.sel_p = REAL_CBSelectorFromSV(POPs);
+                returnValue.sel_p = CBSelectorFromSV(POPs);
                 break;
     
             case '[':
@@ -474,21 +483,30 @@ id REAL_CBPerlIMP(id self, SEL _cmd, ...) {
     
             case '{':
                 // struct
-                if (0 == strncmp(returnType, "{NSPoint", strlen("{NSPoint"))) {
-                    returnValue.point_s = REAL_CBPointFromSV(POPs);
-                } else if (0 == strncmp(returnType, "{CGPoint", strlen("{CGPoint"))) {
-                    returnValue.cgpoint_s = REAL_CBCGPointFromSV(POPs);
-                } else if (0 == strncmp(returnType, "{NSRange", strlen("{NSRange"))) {
-                    returnValue.range_s = REAL_CBRangeFromSV(POPs);
-                } else if (0 == strncmp(returnType, "{NSRect", strlen("{NSRect"))) {
-                    returnValue.rect_s = REAL_CBRectFromSV(POPs);
-                } else if (0 == strncmp(returnType, "{CGRect", strlen("{CGRect"))) {
-                    returnValue.cgrect_s = REAL_CBCGRectFromSV(POPs);
-                } else if (0 == strncmp(returnType, "{NSSize", strlen("{NSSize"))) {
-                    returnValue.size_s = REAL_CBSizeFromSV(POPs);
-                } else if (0 == strncmp(returnType, "{CGSize", strlen("{CGSize"))) {
-                    returnValue.cgsize_s = REAL_CBCGSizeFromSV(POPs);
-                } else {
+                if (0 == strncmp(returnType, "{NSRange", strlen("{NSRange"))) {
+                    returnValue.range_s = CBRangeFromSV(POPs);
+                }
+#if !TARGET_OS_IPHONE
+                else if (0 == strncmp(returnType, "{NSPoint", strlen("{NSPoint"))) {
+                    returnValue.point_s = CBPointFromSV(POPs);
+                }
+                else if (0 == strncmp(returnType, "{NSRect", strlen("{NSRect"))) {
+                    returnValue.rect_s = CBRectFromSV(POPs);
+                }
+                else if (0 == strncmp(returnType, "{NSSize", strlen("{NSSize"))) {
+                    returnValue.size_s = CBSizeFromSV(POPs);
+                }
+#endif
+                else if (0 == strncmp(returnType, "{CGPoint", strlen("{CGPoint"))) {
+                    returnValue.cgpoint_s = CBCGPointFromSV(POPs);
+                }
+                else if (0 == strncmp(returnType, "{CGSize", strlen("{CGSize"))) {
+                    returnValue.cgsize_s = CBCGSizeFromSV(POPs);
+                }
+                else if (0 == strncmp(returnType, "{CGRect", strlen("{CGRect"))) {
+                    returnValue.cgrect_s = CBCGRectFromSV(POPs);
+                }
+                else {
                     NSLog(@"Unknown struct type %s in return", returnType);
                     returnValue.ulong = 0;
                 }

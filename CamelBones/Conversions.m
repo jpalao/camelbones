@@ -6,9 +6,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Conversions_real.h"
+#import "Conversions.h"
 #import "PerlImports.h"
-#import "Wrappers_real.h"
+#import "Wrappers.h"
 
 #import "CBPerlObject.h"
 #import "CBPerlObjectInternals.h"
@@ -24,14 +24,19 @@
 
 #else
 
+#if TARGET_OS_IPHONE
+#import <objc/runtime.h>
+#elif TARGET_OS_MAC
 #import <objc/objc-runtime.h>
 #import <objc/objc-class.h>
+#endif
+
 
 #endif /* GNUSTEP */
 
-id REAL_CBDerefSVtoID(void* sv) {
+id CBDerefSVtoID(void* sv) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 #ifdef GNUSTEP
@@ -94,7 +99,7 @@ id REAL_CBDerefSVtoID(void* sv) {
 
         // Get the value referred to, and dereference it
         target = SvRV((SV*)sv);
-        return REAL_CBDerefSVtoID(target);
+        return CBDerefSVtoID(target);
 
 	// It's not a reference - check for floats
     } else if (SvNOK((SV*)sv)) {
@@ -129,9 +134,9 @@ id REAL_CBDerefSVtoID(void* sv) {
     return nil;
 }
 
-void* REAL_CBDerefIDtoSV(id target) {
+void* CBDerefIDtoSV(id target) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 #ifdef GNUSTEP
@@ -153,13 +158,13 @@ void* REAL_CBDerefIDtoSV(id target) {
     if (i) {
         SV *thisNewSV;
 
-        // It's a Perl class - check to see if the Perl object has been created yet
+    // It's a Perl class - check to see if the Perl object has been created yet
 	GSObjCGetVariable(target, svOffset, svSize, (void*)&thisNewSV);
 
     if (!thisNewSV) {
 	    // No Perl object yet, so create one
 	    NSString *stringObj = [NSString stringWithUTF8String: target->class_pointer->name];
-	    thisNewSV = REAL_CBCreateWrapperObjectWithClassName(target, stringObj);
+	    thisNewSV = CBCreateWrapperObjectWithClassName(target, stringObj);
 	    GSObjCSetVariable(target, svOffset, svSize, (const void*)&thisNewSV);
     }
 
@@ -188,7 +193,7 @@ void* REAL_CBDerefIDtoSV(id target) {
 #else
         NSString *stringObj = [NSString stringWithUTF8String: target->isa->name];
 #endif
-        thisNewSV = REAL_CBCreateWrapperObjectWithClassName(target, stringObj);
+        thisNewSV = CBCreateWrapperObjectWithClassName(target, stringObj);
 	    object_setInstanceVariable(target, "_sv", thisNewSV);
         }
 
@@ -198,7 +203,7 @@ void* REAL_CBDerefIDtoSV(id target) {
 
 	// Some types of objects may get special handling
     } else if ([target isKindOfClass: [NSString class]]
-	       && [[[CBPerl sharedPerl] valueForKey: @"CamelBones::ReturnStringsAsObjects"]
+	       && [[[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] valueForKey: @"CamelBones::ReturnStringsAsObjects"]
 	               intValue] == 0) {
     	const char *u = [(NSString *)target UTF8String];
     	unsigned long len = strlen(u);
@@ -209,7 +214,7 @@ void* REAL_CBDerefIDtoSV(id target) {
 
     // If it's a descendant of NSObject, create and return a wrapper
     else if ([target isKindOfClass: [NSObject class]]) {
-        return REAL_CBCreateWrapperObject(target);
+        return CBCreateWrapperObject(target);
     }
 
     // WTF?
@@ -220,25 +225,25 @@ void* REAL_CBDerefIDtoSV(id target) {
     return (void*)&PL_sv_undef;
 }
 
-Class REAL_CBClassFromSV(void* sv) {
-    return(NSClassFromString(REAL_CBDerefSVtoID(sv)));
+Class CBClassFromSV(void* sv) {
+    return(NSClassFromString(CBDerefSVtoID(sv)));
 }
 
-void* REAL_CBSVFromClass(Class c) {
-    return(REAL_CBDerefIDtoSV(NSStringFromClass(c)));
+void* CBSVFromClass(Class c) {
+    return(CBDerefIDtoSV(NSStringFromClass(c)));
 }
 
-SEL REAL_CBSelectorFromSV(void* sv) {
-    return(NSSelectorFromString(REAL_CBDerefSVtoID(sv)));
+SEL CBSelectorFromSV(void* sv) {
+    return(NSSelectorFromString(CBDerefSVtoID(sv)));
 }
 
-void* REAL_CBSVFromSelector(SEL aSel) {
-    return(REAL_CBDerefIDtoSV(NSStringFromSelector(aSel)));
+void* CBSVFromSelector(SEL aSel) {
+    return(CBDerefIDtoSV(NSStringFromSelector(aSel)));
 }
 
-void REAL_CBPoke(void *address, void *object, unsigned length) {
+void CBPoke(void *address, void *object, unsigned length) {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
 	// Check if object is blessed
@@ -256,27 +261,53 @@ void REAL_CBPoke(void *address, void *object, unsigned length) {
 				memcpy(address, &src, sizeof(void*));
 			}
 			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSPoint")) {
+		}
+
+        else if (sv_derived_from((SV*)object, "CamelBones::NSRange")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(NSRange));
+            return;
+        }
+#if !TARGET_OS_IPHONE
+        else if (sv_derived_from((SV*)object, "CamelBones::NSPoint")) {
 			SV *target = SvRV((SV*)object);
 			src = (void*)SvPV_nolen(target);
 			memcpy(address, src, sizeof(NSPoint));
 			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSRange")) {
-			SV *target = SvRV((SV*)object);
-			src = (void*)SvPV_nolen(target);
-			memcpy(address, src, sizeof(NSRange));
-			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSRect")) {
+		}
+        else if (sv_derived_from((SV*)object, "CamelBones::NSRect")) {
 			SV *target = SvRV((SV*)object);
 			src = (void*)SvPV_nolen(target);
 			memcpy(address, src, sizeof(NSRect));
 			return;
-		} else if (sv_derived_from((SV*)object, "CamelBones::NSSize")) {
+		}
+        else if (sv_derived_from((SV*)object, "CamelBones::NSSize")) {
 			SV *target = SvRV((SV*)object);
 			src = (void*)SvPV_nolen(target);
 			memcpy(address, src, sizeof(NSSize));
 			return;
 		}
+#endif
+        else if (sv_derived_from((SV*)object, "CamelBones::CGPoint")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(CGPoint));
+            return;
+        }
+        else if (sv_derived_from((SV*)object, "CamelBones::CGRect")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(CGRect));
+            return;
+        }
+        else if (sv_derived_from((SV*)object, "CamelBones::CGSize")) {
+            SV *target = SvRV((SV*)object);
+            src = (void*)SvPV_nolen(target);
+            memcpy(address, src, sizeof(CGSize));
+            return;
+        }
+
 
 		NSLog(@"Unknown object type passed to CBPoke");
 		return;

@@ -10,8 +10,17 @@
 #ifdef GNUSTEP
 #import <objc/objc-api.h>
 #else
+#if TARGET_OS_IPHONE
+#import <objc/runtime.h>
+#elif TARGET_OS_MAC
 #import <objc/objc-class.h>
 #import <objc/objc.h>
+#endif
+
+#endif
+
+#if TARGET_OS_IPHONE
+#import <CoreGraphics/CoreGraphics.h>
 #endif
 
 union _CB_OBJC_T {
@@ -27,12 +36,14 @@ union _CB_OBJC_T {
     void *void_p;
     Class class_p;
     SEL sel_p;
-    NSPoint point_s;
-    CGPoint cgpoint_s;
     NSRange range_s;
+#if !(TARGET_OS_IPHONE)
+    NSPoint point_s;
     NSRect rect_s;
-    CGRect cgrect_s;
     NSSize size_s;
+#endif
+    CGPoint cgpoint_s;
+    CGRect cgrect_s;
     CGSize cgsize_s;
 };
 typedef union _CB_OBJC_T CB_ObjCType;

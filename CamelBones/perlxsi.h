@@ -11,7 +11,6 @@ extern "C" {
 #ifdef PERL_OBJECT
 #define NO_XSLOCKS
 #include <XSUB.h>
-#include "win32iop.h"
 #include <fcntl.h>
 #include <perlhost.h>
 #endif
@@ -32,3 +31,4 @@ EXTERN_C void boot_DynaLoader (pTHXo_ CV* cv);
 EXTERN_C void boot_CamelBones (pTHXo_ CV* cv);
 EXTERN_C void boot_CamelBones__Foundation (pTHXo_ CV* cv);
 EXTERN_C void boot_CamelBones__AppKit (pTHXo_ CV* cv);
+EXTERN_C void boot_CamelBones__CoreGraphics (pTHXo_ CV* cv);

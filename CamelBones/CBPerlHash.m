@@ -6,16 +6,17 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
+#import "CBPerl.h"
 #import "CBPerlHash.h"
 #import "CBPerlHashInternals.h"
-#import "Conversions_real.h"
+#import "Conversions.h"
 
 @implementation CBPerlHash
 
 // Required primitive methods
-- (unsigned long)count {
+- (NSUInteger)count {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     
     return HvKEYS((HV *)_myHash);
@@ -25,7 +26,7 @@
 }
 - (id)objectForKey:(id)aKey {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -43,7 +44,7 @@
         theValue = HeVAL(theEntry);
 
         if (NULL != theValue) {
-            return REAL_CBDerefSVtoID(theValue);
+            return CBDerefSVtoID(theValue);
         }
     }
     
@@ -52,7 +53,7 @@
 
 - (void)removeObjectForKey:(id)aKey {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -75,7 +76,7 @@
 
 - (void)setObject:(id)anObject forKey:(id)aKey {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -86,7 +87,7 @@
 
     // Create the key and object SVs
     theKey = [self keyWithId:aKey];
-    theObject = REAL_CBDerefIDtoSV(anObject);
+    theObject = CBDerefIDtoSV(anObject);
 
     // If it gets wrapped as a Cocoa object, retain it
     if (sv_isobject(theObject) && sv_derived_from(theObject, "NSObject")) {
@@ -100,15 +101,17 @@
 // Destructor
 - (void) dealloc {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
-    dTHX;
+    @synchronized(self) {
+        PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+        dTHX;
 
-    if (NULL != _myHash) {
-        if (SvREFCNT((SV *)_myHash) > 0) {
-            SvREFCNT_dec((SV *)_myHash);
+        if (NULL != _myHash) {
+            if (SvREFCNT((SV *)_myHash) > 0) {
+                SvREFCNT_dec((SV *)_myHash);
+            }
         }
+        [super dealloc];
     }
-    [super dealloc];
 }
 
 // Extended methods
@@ -136,7 +139,7 @@
 // Designated initializer
 - (id) initDictionaryNamed: (NSString *)varName isReference: (BOOL)isRef create: (BOOL)shouldCreate {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     self = [super init];
@@ -183,7 +186,7 @@
 }
 - (id) initWithHV: (HV*)theHV {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     self = [super init];
@@ -196,7 +199,7 @@
 
 - (SV *) keyWithId: (id)theId {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *theKey;
@@ -246,7 +249,7 @@
 }
 - (id) initEnumeratorWithHV:(HV*)theHV {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
     
     if (self = [super init]) {

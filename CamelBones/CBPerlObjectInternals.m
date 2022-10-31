@@ -5,9 +5,10 @@
 //
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 
+#import "CBPerl.h"
 #import "CBPerlObjectInternals.h"
 #import "PerlImports.h"
-#import "Conversions_real.h"
+#import "Conversions.h"
 
 @implementation CBPerlObject (Internals)
 
@@ -17,7 +18,7 @@
 
 - (CBPerlObject *) initObjectWithSV: (void *)newSV {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     self = [super init];

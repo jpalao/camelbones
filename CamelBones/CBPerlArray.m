@@ -6,17 +6,18 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
+#import "CBPerl.h"
 #import "CBPerlArray.h"
 #import "CBPerlArrayInternals.h"
 #import "PerlImports.h"
-#import "Conversions_real.h"
+#import "Conversions.h"
 
 @implementation CBPerlArray
 
 #ifdef GNUSTEP
 - (id) initWithCapacity: (unsigned int) anInt
 {
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     _myArray = newAV();
@@ -37,29 +38,29 @@
 
 
 // Required primitive methods
-- (unsigned long)count {
+- (NSUInteger)count {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     return av_len((AV*)_myArray)+1;
 }
 - (id)objectAtIndex:(unsigned)index {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV **svp;
     svp = av_fetch((AV*)_myArray, index, 0);
-    return svp ? REAL_CBDerefSVtoID(*svp) : nil;
+    return svp ? CBDerefSVtoID(*svp) : nil;
 }
 
 - (void)addObject:(id)anObject {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
-    SV *obj = REAL_CBDerefIDtoSV(anObject);
+    SV *obj = CBDerefIDtoSV(anObject);
     av_push((AV*)_myArray, obj);
 
     // Retain the original if a wrapper was stored
@@ -67,9 +68,9 @@
 		[anObject retain];
 	}
 }
-- (void)insertObject:(id)anObject atIndex:(unsigned long)index {
+- (void)insertObject:(id)anObject atIndex:(unsigned int)index {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     unsigned long i;
@@ -84,7 +85,7 @@
             av_store((AV*)_myArray, i+1, *svp);
         }
     }
-    svp = av_store((AV*)_myArray, index, REAL_CBDerefIDtoSV(anObject));
+    svp = av_store((AV*)_myArray, index, CBDerefIDtoSV(anObject));
 
     if (svp && sv_isobject(*svp) && sv_derived_from(*svp, "NSObject")) {
         [anObject retain];
@@ -92,18 +93,18 @@
 }
 - (void)removeLastObject {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV *obj = av_pop((AV*)_myArray);
     if (sv_isobject(obj) && sv_derived_from(obj, "NSObject")) {
-        id anObject = REAL_CBDerefSVtoID(obj);
+        id anObject = CBDerefSVtoID(obj);
         [anObject autorelease];
     }
 }
-- (void)removeObjectAtIndex:(unsigned long)index {
+- (void)removeObjectAtIndex:(unsigned int)index {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV **svp;
@@ -112,7 +113,7 @@
     
     svp = av_fetch((AV*)_myArray, index, 0);
     if (svp && sv_isobject(*svp) && sv_derived_from(*svp, "NSObject")) {
-        id anObject = REAL_CBDerefSVtoID(*svp);
+        id anObject = CBDerefSVtoID(*svp);
         [anObject autorelease];
     }
 
@@ -127,7 +128,7 @@
 
 - (void)replaceObjectAtIndex:(unsigned)index withObject:(id)anObject {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     SV **svp;
@@ -135,13 +136,13 @@
     
     svp = av_fetch((AV*)_myArray, index, 0);
     if (svp && sv_isobject(*svp) && sv_derived_from(*svp, "NSObject")) {
-        id oldObject = REAL_CBDerefSVtoID(*svp);
+        id oldObject = CBDerefSVtoID(*svp);
         if ([oldObject respondsToSelector:@selector(autorelease)]) {
             [oldObject autorelease];
         }
     }
 
-    obj = REAL_CBDerefIDtoSV(anObject);
+    obj = CBDerefIDtoSV(anObject);
     av_store((AV*)_myArray, index, obj);
 
     if (sv_isobject(obj) && sv_derived_from(obj, "NSObject")) {
@@ -152,7 +153,7 @@
 // Destructor
 - (void) dealloc {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     if (NULL != _myArray) {
@@ -189,7 +190,7 @@
 // Designated initializer
 - (id) initArrayNamed: (NSString *)varName isReference: (BOOL)isRef create: (BOOL)shouldCreate {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     self = [super init];
@@ -238,7 +239,7 @@
 
 - (id) initWithAV: (AV*)theAV {
     // Define a Perl context
-    PERL_SET_CONTEXT(_CBPerlInterpreter);
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
 
     self = [super init];
