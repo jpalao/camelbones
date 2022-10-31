@@ -1266,12 +1266,12 @@
 					"-lffi",
 				);
 				PERL_DIST_PATH = "";
-				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PERL_INSTALL_PREFIX)/lib/perl5/";
+				"PERL_DIST_PATH[sdk=iphoneos*]" = "$(PERL_INSTALL_PREFIX)/lib/perl5";
 				"PERL_DIST_PATH[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../perl-$(PERL_VERSION)$(PERL_INSTALL_PREFIX)/lib/perl5/";
 				PERL_INSTALL_PREFIX = "";
-				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../local";
+				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = /Users/jose/Desktop/arm64ad1/local;
 				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../local";
-				PERL_VERSION = 5.35.0;
+				PERL_VERSION = 5.37.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos;
@@ -1280,7 +1280,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "";
-				"VALID_ARCHS[sdk=iphoneos*]" = "arm64 armv7";
+				"VALID_ARCHS[sdk=iphoneos*]" = arm64;
 				"VALID_ARCHS[sdk=iphonesimulator*]" = "i386 x86_64";
 				WARNING_CFLAGS = (
 					"-Wno-shorten-64-to-32",
@@ -1360,7 +1360,7 @@
 				PERL_INSTALL_PREFIX = "";
 				"PERL_INSTALL_PREFIX[sdk=iphoneos*]" = "$(PROJECT_DIR)/../../local";
 				"PERL_INSTALL_PREFIX[sdk=iphonesimulator*]" = "$(PROJECT_DIR)/../../local";
-				PERL_VERSION = 5.35.0;
+				PERL_VERSION = 5.37.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.pytm.camelbones;
 				PRODUCT_NAME = CamelBones;
 				SDKROOT = iphoneos;
