@@ -12,7 +12,7 @@ die "This version of CamelBones only works on macOS and iOS systems"
 
 =head1 cb_common.pl
 
-This script builds the CamelBones Framework and associated perl XS extensions. 
+This script builds CamelBones.framework and associated perl XS extensions.
 
 The following ENV variables can be set to control its behavior.
 
@@ -64,7 +64,7 @@ our $PERL_VERSION = $ENV{'PERL_VERSION'};
 
 =pod
 
-=head2 IOS_TARGET
+=head2 CAMELBONES_TARGET
 
 The target of this build. One of:
 
@@ -118,8 +118,18 @@ our $CAMELBONES_PREFIX = $ENV{'CAMELBONES_PREFIX'};
 
 =pod
 
+=head2 CAMELBONES_PROJECT_PATH
+
+Path to the ios.framework project files
+
+=cut
+
+our $CAMELBONES_PROJECT_PATH = $ENV{'CAMELBONES_PROJECT_PATH'};
+
+=pod
+
 =head2 CAMELBONES_VERSION
- 
+
 The verion of CamelBones to build
 
 =cut
@@ -150,22 +160,25 @@ if (!length $ARCHS) {
 }
 
 =pod
- 
+
 =head2 CAMELBONES_BUILD_CONFIGURATION
- 
+
 Either 'Debug' or 'Release'
- 
+
 =cut
 
 our $XCODE_BUILD_CONFIG = $ENV{'CAMELBONES_BUILD_CONFIGURATION'};
 
+print "\$CAMELBONES_BUILD_CONFIGURATION: $CAMELBONES_BUILD_CONFIGURATION\n";
+print "\$CAMELBONES_TARGET: $CAMELBONES_TARGET\n";
+
 $XCODE_BUILD_CONFIG .= "-$CAMELBONES_TARGET" if $CAMELBONES_TARGET !~ /macosx/;
 
+print "\$XCODE_BUILD_CONFIG: $XCODE_BUILD_CONFIG\n";
+print "\$CAMELBONES_CPAN_DIR: $CAMELBONES_CPAN_DIR\n";
 ###################################################################################
 
 our $LIBFFIDIR = '../libffi-3.2.1';
-
-print "\$CAMELBONES_CPAN_DIR: $CAMELBONES_CPAN_DIR\n";
 
 our $CAMELBONES_FRAMEWORK = 'CamelBones.framework';
 
@@ -178,20 +191,18 @@ if (!defined $ARCHFLAGS || !length $ARCHFLAGS) {
     chomp $ARCHFLAGS;
 }
 
-if ($ENV{'CAMELBONES_CI'}) {
-    $ARCHFLAGS .= "$perl_link_flags -ObjC -lobjc "
-} else {
-    $ARCHFLAGS .= " -L$PERL_INCLUDE_DIR -I$PERL_INCLUDE_DIR -ObjC -lobjc " 
-}
+$ARCHFLAGS .= " $perl_link_flags -framework CamelBones ";
 
-$PERL_INCLUDE_DIR = $Config{archlib}. "/CORE"
+$PERL_INCLUDE_DIR = $Config{archlib} . "/CORE"
     if (!defined $PERL_INCLUDE_DIR || !length $PERL_INCLUDE_DIR);
 
-$XCODE_BUILD_CONFIG = "Release"
+$ARCHFLAGS .= " -L$PERL_INCLUDE_DIR -I$PERL_INCLUDE_DIR -ObjC -lobjc ";
+
+$XCODE_BUILD_CONFIG = "Release-macosx"
     if (!defined $XCODE_BUILD_CONFIG || !length $XCODE_BUILD_CONFIG);
 
-my $camelbonesFrameworkPath = "$PERL_IOS_PREFIX/camelbones/CamelBones/Build/Products/$XCODE_BUILD_CONFIG
-    
+my $camelbonesFrameworkPath = "$CAMELBONES_PREFIX/camelbones/CamelBones/Build/Products/$XCODE_BUILD_CONFIG";
+
 our %opts = (
     VERSION           => $CAMELBONES_VERSION,
     CCFLAGS           => "$ARCHFLAGS -Wall",
