@@ -6,7 +6,6 @@
 //  Copyright (c) 2002 Sherm Pendley. All rights reserved.
 //
 
-
 #import "AppMain.h"
 #import "Conversions.h"
 #import "Globals.h"
@@ -563,7 +562,6 @@ static Boolean perlInitialized = false;
         //_CBPerlInterpreter = checkCBPerl;
         //[CBPerl setCBPerl:_sharedPerl forPerlInterpreter:_CBPerlInterpreter];
         return [self retain];
-
     } else {
         // Wonder what happened here?
         return nil;
