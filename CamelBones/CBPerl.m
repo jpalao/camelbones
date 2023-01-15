@@ -371,7 +371,7 @@ static Boolean cocoaImported = FALSE;
                 PERL_SET_CONTEXT(_CBPerlInterpreter);
             }
 
-            [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
+            // [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
             PL_perl_destruct_level = 1;
             @try
@@ -459,7 +459,7 @@ static Boolean cocoaImported = FALSE;
 
         NSAssert([CBPerl getCBPerlFromPerlInterpreter:_CBPerlInterpreter] == NULL, @"Interpreter already in DB");
 
-        [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
+        //[CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
         [self camelBonesInitialization];
 
@@ -510,7 +510,7 @@ static Boolean cocoaImported = FALSE;
         // Set up housekeeping
         p = [[NSAutoreleasePool alloc] init];
         _CBPerlInterpreter = PERL_GET_CONTEXT;
-        [CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
+        //[CBPerl setCBPerl:self forPerlInterpreter:_CBPerlInterpreter];
 
         // Get Perl's archname and version
         [self useModule: @"Config"];
