@@ -26,8 +26,7 @@
 @synthesize CBPerlInterpreter = _CBPerlInterpreter;
 
 static NSMutableDictionary * perlInstanceDict = nil;
-static Boolean perlInitialized = FALSE;
-static Boolean cocoaImported = FALSE;
+static Boolean perlInitialized = false;
 
 + (void) initPerlInstanceDictionary: (NSMutableDictionary *) dictionary {
     @synchronized(self) {
@@ -539,18 +538,13 @@ static Boolean cocoaImported = FALSE;
             [self useBundleLib:obj withArch: perlArchname forVersion: perlVersion];
         }
 
-        @synchronized(self)
+        if (importCocoa)
         {
-            if (importCocoa && !cocoaImported)
-            {
-                // Create Perl wrappers for all registered Objective-C classes
-                CBWrapRegisteredClasses();
+            // Create Perl wrappers for all registered Objective-C classes
+            CBWrapRegisteredClasses();
 
-                // Export globals into Perl's name space
-                CBWrapAllGlobals();
-
-                cocoaImported = TRUE;
-            }
+            // Export globals into Perl's name space
+            CBWrapAllGlobals();
         }
         
         // When bundles are loaded, we want to hear about it
