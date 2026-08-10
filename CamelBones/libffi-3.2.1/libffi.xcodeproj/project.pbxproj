@@ -365,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/python generate-darwin-source-and-headers.py --only-ios\n";
+			shellScript = "/usr/bin/env python3 generate-darwin-source-and-headers.py --only-ios\n";
 		};
 		82610ADD1CDF8A8000E94E11 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -378,7 +378,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/usr/bin/python generate-darwin-source-and-headers.py --only-osx";
+			shellScript = "#/usr/bin/env python3 generate-darwin-source-and-headers.py --only-osx";
 		};
 		DB13B3051849E01C0010F42D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -391,7 +391,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/python generate-darwin-source-and-headers.py --only-ios";
+			shellScript = "/usr/bin/env python3 generate-darwin-source-and-headers.py --only-ios";
 		};
 /* End PBXShellScriptBuildPhase section */
 
