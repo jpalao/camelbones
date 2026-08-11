@@ -173,11 +173,8 @@ void* CBDerefIDtoSV(id target) {
 
 #else
     // Check first for a wrapped Perl object or variable
-#ifdef OBJC2_UNAVAILABLE
-    Ivar i = class_getInstanceVariable(object_getClass(target), "_sv");
-#else
-    struct objc_ivar *i = class_getInstanceVariable(target->isa, "_sv");
-#endif
+    Class c = object_getClass(target);
+    Ivar i = class_getInstanceVariable(c, "_sv");
     // Check first for a bridged Perl class
     if (i) {
         SV *thisNewSV;
@@ -187,12 +184,7 @@ void* CBDerefIDtoSV(id target) {
 
         if (!thisNewSV) {
 	    // No Perl object yet, so create one
-#ifdef OBJC2_UNAVAILABLE
-        Class c = object_getClass(target);
 	    NSString *stringObj = [NSString stringWithUTF8String: class_getName(c)];
-#else
-        NSString *stringObj = [NSString stringWithUTF8String: target->isa->name];
-#endif
         thisNewSV = CBCreateWrapperObjectWithClassName(target, stringObj);
 	    object_setInstanceVariable(target, "_sv", thisNewSV);
         }

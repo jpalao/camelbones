@@ -217,6 +217,9 @@ __CB_classHandler(const char* className) {
 void CBRegisterClassHandler(void) {
 #ifdef GNUSTEP
     _objc_lookup_class = __CB_classHandler;
+#elif defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
+    /* objc_setClassHandler is not available in the current iOS SDKs. */
+    (void)__CB_classHandler;
 #else
 	objc_setClassHandler(__CB_classHandler);
 #endif

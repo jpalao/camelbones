@@ -407,8 +407,9 @@ void* CBCallNativeMethod(void* target, SEL sel, void *args, BOOL isSuper) {
         Class parentClass = object_getClass(targetID);
         object_setClass(targetID, parentClass);
 #else
+        Class receiverClass = object_getClass(targetID);
         context.receiver = targetID;
-        context.class = targetID->isa->super_class;
+        context.super_class = class_getSuperclass(receiverClass);
 #endif
         arg_ffi_types[0] = &ffi_type_pointer;
 #ifdef OBJC2_UNAVAILABLE        

@@ -183,30 +183,19 @@ id CBPerlIMP(id self, SEL _cmd, ...) {
             // It does - get the value
             GSObjCGetVariable(self, ivarOffset, ivarSize, (void*)&sv);
 #else
-#ifdef OBJC2_UNAVAILABLE
         Class c = object_getClass(self);
         if (class_getInstanceVariable(c, "_sv")) {
-#else
-            if (class_getInstanceVariable(self->isa, "_sv")) {
-#endif
             // It does - get the value
             object_getInstanceVariable(self, "_sv", (void*)&sv);
-
-#ifdef OBJC2_UNAVAILABLE
         } else if (class_isMetaClass(c)) {
-            const char * class_name = class_getName(c);
+            const char *class_name = class_getName(c);
             // Class method, self is the class name as a string
             sv = sv_2mortal(newSVpv(class_name, strlen(class_name)));
-#else
-        } else if (self->isa->info & CLS_META) {
-            // Class method, self is the class name as a string
-            sv = sv_2mortal(newSVpv(((struct objc_class*)self)->name, strlen(((struct objc_class*)self)->name)));
-#endif
-#endif
         } else {
             NSLog(@"Error: CBPerlIMP called with invalid self");
             sv = &PL_sv_undef;
         }
+#endif
     }
 
     // Push "self" onto the stack first

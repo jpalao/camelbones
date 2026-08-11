@@ -252,11 +252,8 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
 #ifdef GNUSTEP
     m = class_get_instance_method(self->isa, aSelector);
 #else
-#ifdef OBJC2_UNAVAILABLE
-    m = class_getInstanceMethod(object_getClass(self), aSelector);
-#else
-    m = class_getInstanceMethod(self->isa, aSelector);
-#endif
+    Class c = object_getClass(self);
+    m = class_getInstanceMethod(c, aSelector);
 #endif
     if (m) {
 #ifdef OBJC2_UNAVAILABLE
@@ -264,7 +261,7 @@ struct objc_method_description methodDescriptionForSelector(Class cls, SEL sel) 
         cEncoding = methodDesc.types;
         encoding = [NSMutableString stringWithUTF8String: cEncoding];
 #else
-        cEncoding = m->method_types;
+        cEncoding = (char *)method_getTypeEncoding(m);
         encoding = [NSString stringWithUTF8String: cEncoding];
 #endif
     } else {
