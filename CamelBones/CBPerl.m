@@ -700,12 +700,23 @@ static Boolean perlInitialized = FALSE;
 }
 
 - (void) useLib: (NSString *)libPath {
-	NSFileManager *manager;
 	BOOL isDir;
+	if ([[NSFileManager defaultManager] fileExistsAtPath:libPath isDirectory:&isDir] && isDir) {
+        PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+        dTHX;
 
-	manager = [NSFileManager defaultManager];
-	if ([manager fileExistsAtPath:libPath isDirectory:&isDir] && isDir) {
-	    [self eval: [NSString stringWithFormat: @"use lib '%@';", libPath]];
+        const char *path = [libPath fileSystemRepresentation];
+        AV *inc = get_av("INC", TRUE);
+        SSize_t lastIndex = av_len(inc);
+        for (SSize_t index = 0; index <= lastIndex; index++) {
+            SV **entry = av_fetch(inc, index, 0);
+            if (entry && SvPOK(*entry) && strcmp(SvPV_nolen(*entry), path) == 0) {
+                return;
+            }
+        }
+
+        av_unshift(inc, 1);
+        av_store(inc, 0, newSVpv(path, 0));
 	}
 }
 
