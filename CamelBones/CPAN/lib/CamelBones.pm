@@ -46,7 +46,8 @@ if ($load_cocoa_symbols)
 our @ISA = qw(Exporter);
 our $VERSION = '1.3.0';
 our @EXPORT = qw(class);
-our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
+our @EXPORT_OK = (
+                    @CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::Foundation::Constants::EXPORT,
                     @CamelBones::Foundation::Globals::EXPORT,
                     @CamelBones::AppKit::EXPORT_OK,
@@ -54,12 +55,12 @@ our @EXPORT_OK = (	@CamelBones::Foundation::EXPORT_OK,
                     @CamelBones::AppKit::Globals::EXPORT,
                     @CamelBones::CoreGraphics::EXPORT_OK,
                     @CamelBones::CoreGraphics::Constants::EXPORT,
-                    @CamelBones::CoreGraphics::Globals::EXPORT,                    
+                    @CamelBones::CoreGraphics::Globals::EXPORT,
                     'class', 'CBCreateAccessor', 'CBPoke',
                 );
 our %EXPORT_TAGS = (
     'None'      => ['class', 'CBCreateAccessor', 'CBPoke'],
-    'All'		=> [@EXPORT_OK],
+    'All'       => [@EXPORT_OK],
     'Foundation' => [
             @CamelBones::Foundation::EXPORT,
             @CamelBones::Foundation::Constants::EXPORT,
@@ -101,43 +102,43 @@ CamelBones::CoreGraphics::Globals->import;
 
 # Add a bundle loader to @INC
 push @INC, sub {
-	my ($self, $filename) = @_;
-	(my $shortname = $filename) =~ s/.pm$//;
-	my @framework_path;
-	if ($ENV{'DYLD_FRAMEWORK_PATH'}) {
-		push @framework_path, split(/:/, $ENV{'DYLD_FRAMEWORK_PATH'});
-	}
-	push @framework_path, qw(/System/Library/Frameworks /Library/Frameworks /Network/Frameworks);
-	push @framework_path, $ENV{'HOME'} . '/Library/Frameworks';
-	if ($ENV{'DYLD_FALLBACK_FRAMEWORK_PATH'}) {
-	    push @framework_path, split(/:/, $ENV{'DYLD_FALLBACK_FRAMEWORK_PATH'});
-	}
-	foreach my $path (@framework_path) {
-		my $framework = "$path/$shortname.framework";
-		if (-d $framework) {
-			my $bundle = NSBundle->bundleWithPath($framework);
-			if ($bundle) {
-				$bundle->load();
-				my $module_path = $bundle->pathForResource_ofType($shortname, 'pm');
-				if ($module_path && open(my $fh, '<', $module_path)) {
-					return $fh;
-				} else {
-					my $cb_bundle = NSBundle->bundleForClass('CBPerl');
-					$module_path = $cb_bundle->pathForResource_ofType('CBDummyModule', 'pm');
-					if ($module_path) {
-						open($fh, '<', $module_path) && return $fh;
-						warn "Could not open $module_path: $!";
-						return undef;
-					} else {
-						warn "CBDummyModule.pm not found";
-						return undef;
-					}
-				}
-			}
-			last;
-		}
-	}
-	return undef;
+    my ($self, $filename) = @_;
+    (my $shortname = $filename) =~ s/.pm$//;
+    my @framework_path;
+    if ($ENV{'DYLD_FRAMEWORK_PATH'}) {
+        push @framework_path, split(/:/, $ENV{'DYLD_FRAMEWORK_PATH'});
+    }
+    push @framework_path, qw(/System/Library/Frameworks /Library/Frameworks /Network/Frameworks);
+    push @framework_path, $ENV{'HOME'} . '/Library/Frameworks';
+    if ($ENV{'DYLD_FALLBACK_FRAMEWORK_PATH'}) {
+        push @framework_path, split(/:/, $ENV{'DYLD_FALLBACK_FRAMEWORK_PATH'});
+    }
+    foreach my $path (@framework_path) {
+        my $framework = "$path/$shortname.framework";
+        if (-d $framework) {
+            my $bundle = NSBundle->bundleWithPath($framework);
+            if ($bundle) {
+                $bundle->load();
+                my $module_path = $bundle->pathForResource_ofType($shortname, 'pm');
+                if ($module_path && open(my $fh, '<', $module_path)) {
+                    return $fh;
+                } else {
+                    my $cb_bundle = NSBundle->bundleForClass('CBPerl');
+                    $module_path = $cb_bundle->pathForResource_ofType('CBDummyModule', 'pm');
+                    if ($module_path) {
+                        open($fh, '<', $module_path) && return $fh;
+                        warn "Could not open $module_path: $!";
+                        return undef;
+                    } else {
+                        warn "CBDummyModule.pm not found";
+                        return undef;
+                    }
+                }
+            }
+            last;
+        }
+    }
+    return undef;
 };
 
 sub CBCreateAccessor {
@@ -214,7 +215,7 @@ sub class {
     # If it wasn't set above, look for first registered class in @ISA
     unless ($super_class) {
         my @isas = @{$objc_class .'::ISA'};
-        
+
         my %checked = ();
         while ($_ = shift @isas) {
             next if (exists $checked{$_});
@@ -228,19 +229,19 @@ sub class {
 
             push @isas, @{$_ . '::ISA'};
         }
-        
+
         # Default to NSObject
         $super_class ||= 'NSObject';
     }
-    
+
     # Create @ISA if needed
     unless ( grep /$super_class/, @{$objc_class.'::ISA'} ) {
         push @{$objc_class.'::ISA'}, $super_class;
     }
-    
+
     # Register the caller class with the runtime if needed
     unless (CBIsClassRegistered($objc_class)) {
-    
+
         if (defined $super_class) {
             CBRegisterClassWithSuperClass($objc_class, $super_class);
         }
@@ -249,24 +250,24 @@ sub class {
     # Look again for class registration - it might have failed the checks above
     if (CBIsClassRegistered($objc_class)) {
 
-        # Look for unregistered methods        
+        # Look for unregistered methods
         my @class_method_reg_list;
         my @object_method_reg_list;
 
         my $exports = \%{$package.'::OBJC_EXPORT'};
         foreach my $sel (keys %{$package.'::OBJC_EXPORT'}) {
-			my $method = $exports->{$sel};
-			my $signature = $method->{'return'} . '@:' . $method->{'args'};
-			if ($method->{'static'}) {
-				push @class_method_reg_list, { 'name' => $sel, 'signature' => $signature };
-			} else {
-				push @object_method_reg_list, { 'name' => $sel, 'signature' => $signature };
-			}
+            my $method = $exports->{$sel};
+            my $signature = $method->{'return'} . '@:' . $method->{'args'};
+            if ($method->{'static'}) {
+                push @class_method_reg_list, { 'name' => $sel, 'signature' => $signature };
+            } else {
+                push @object_method_reg_list, { 'name' => $sel, 'signature' => $signature };
+            }
         }
 
         # Register any unregistered methods
         if (@object_method_reg_list) {
-			my $list_count = @object_method_reg_list;
+            my $list_count = @object_method_reg_list;
             CBRegisterObjectMethodsForClass($package, \@object_method_reg_list, $objc_class);
         }
         if (@class_method_reg_list) {
@@ -282,19 +283,19 @@ package NSObject;
 $NSObject::VERSION = $CamelBones::VERSION;
 
 use overload
-	'==' => \&CB_EQUALITY,
-	'eq' => \&CB_EQUALITY,
-	'bool' => \&CB_BOOL;
+    '==' => \&CB_EQUALITY,
+    'eq' => \&CB_EQUALITY,
+    'bool' => \&CB_BOOL;
 
 sub CB_EQUALITY {
-	my ($a, $b) = @_;
-	return 0 unless (defined $a && defined $b);
-	
-	return ($a->{'NATIVE_OBJ'} == $b->{'NATIVE_OBJ'});
+    my ($a, $b) = @_;
+    return 0 unless (defined $a && defined $b);
+
+    return ($a->{'NATIVE_OBJ'} == $b->{'NATIVE_OBJ'});
 }
 
 sub CB_BOOL {
-	return (defined($_[0]) && defined($_[0]->{'NATIVE_OBJ'}));
+    return (defined($_[0]) && defined($_[0]->{'NATIVE_OBJ'}));
 }
 
 sub NSObject::AUTOLOAD {
@@ -352,47 +353,47 @@ sub NSObject::AUTOLOAD {
 }
 
 sub UNIVERSAL::MODIFY_CODE_ATTRIBUTES {
-	my ($class, $sub, @attrs) = @_;
-	my $selector = '';
-	my $props = {};
-	my @unknown = ();
+    my ($class, $sub, @attrs) = @_;
+    my $selector = '';
+    my $props = {};
+    my @unknown = ();
 
-	# Iterate over each attribute, handling the known ones
-	foreach (@attrs) {
-		if (/Selector\((.*)\)/) {
-			$selector = $1;
-		} elsif ($_ eq 'IBAction') {
-			$props->{'args'} = '@';
-			$props->{'return'} = 'v';
-		} elsif (/ArgTypes\((.*)\)/) {
-			$props->{'args'} = $1;
-		} elsif (/ReturnType\((.*)\)/) {
-			$props->{'return'} = $1;
-		} elsif ($_ eq 'Class') {
-			$props->{'static'} = 1;
-		} else {
-			push(@unknown, $_);
-		}
-	}
-	
-	# If a selector was found, export it
-	if ($selector ne '') {
-		no strict 'refs';
+    # Iterate over each attribute, handling the known ones
+    foreach (@attrs) {
+        if (/Selector\((.*)\)/) {
+            $selector = $1;
+        } elsif ($_ eq 'IBAction') {
+            $props->{'args'} = '@';
+            $props->{'return'} = 'v';
+        } elsif (/ArgTypes\((.*)\)/) {
+            $props->{'args'} = $1;
+        } elsif (/ReturnType\((.*)\)/) {
+            $props->{'return'} = $1;
+        } elsif ($_ eq 'Class') {
+            $props->{'static'} = 1;
+        } else {
+            push(@unknown, $_);
+        }
+    }
+
+    # If a selector was found, export it
+    if ($selector ne '') {
+        no strict 'refs';
 
         # Default to no args, void return
-		unless (exists $props->{'args'}) { $props->{'args'} = ''; }
-		unless (exists $props->{'return'}) { $props->{'return'} = 'v'; }
-		
-		${$class.'::OBJC_EXPORT'}{$selector} = $props;
+        unless (exists $props->{'args'}) { $props->{'args'} = ''; }
+        unless (exists $props->{'return'}) { $props->{'return'} = 'v'; }
 
-		my $method = $selector;
-		$method =~ s/:/__/g;
-		${$class.'::OBJC_EXPORT'}{$selector}{'method'} = $method;
-		*{$class.'::'.$method} = $sub;
+        ${$class.'::OBJC_EXPORT'}{$selector} = $props;
 
-	}
+        my $method = $selector;
+        $method =~ s/:/__/g;
+        ${$class.'::OBJC_EXPORT'}{$selector}{'method'} = $method;
+        *{$class.'::'.$method} = $sub;
 
-	return @unknown;
+    }
+
+    return @unknown;
 }
 
 # Happy Perl

@@ -569,24 +569,24 @@ static Boolean perlInitialized = FALSE;
 }
 
 - (void) useBundleLib: (NSBundle *)aBundle
-		withArch: (NSString *)perlArchName
-		forVersion: (NSString *)perlVersion {
+        withArch: (NSString *)perlArchName
+        forVersion: (NSString *)perlVersion {
 
-	NSString *bundleFolder;
-	
-	bundleFolder = [aBundle resourcePath];
+    NSString *bundleFolder;
 
-	[self useLib: bundleFolder];
-	[self useLib: [NSString stringWithFormat: @"%@/Resources", bundleFolder]];
+    bundleFolder = [aBundle resourcePath];
 
-	if (perlArchName != nil) {
-		[self useLib: [NSString stringWithFormat: @"%@/Resources/%@", bundleFolder, perlArchName]];
-	}
-	
-	if (perlArchName != nil && perlVersion != nil) {
-		[self useLib: [NSString stringWithFormat: @"%@/Resources/%@", bundleFolder, perlVersion]];
-		[self useLib: [NSString stringWithFormat: @"%@/Resources/%@/%@", bundleFolder, perlVersion, perlArchName]];
-	}
+    [self useLib: bundleFolder];
+    [self useLib: [NSString stringWithFormat: @"%@/Resources", bundleFolder]];
+
+    if (perlArchName != nil) {
+        [self useLib: [NSString stringWithFormat: @"%@/Resources/%@", bundleFolder, perlArchName]];
+    }
+
+    if (perlArchName != nil && perlVersion != nil) {
+        [self useLib: [NSString stringWithFormat: @"%@/Resources/%@", bundleFolder, perlVersion]];
+        [self useLib: [NSString stringWithFormat: @"%@/Resources/%@/%@", bundleFolder, perlVersion, perlArchName]];
+    }
 }
 
 - (id) eval: (NSString *)perlCode {
@@ -609,7 +609,7 @@ static Boolean perlInitialized = FALSE;
             return nil;
         }
 
-    	return CBDerefSVtoID(result);
+        return CBDerefSVtoID(result);
     }
 }
 
@@ -700,8 +700,8 @@ static Boolean perlInitialized = FALSE;
 }
 
 - (void) useLib: (NSString *)libPath {
-	BOOL isDir;
-	if ([[NSFileManager defaultManager] fileExistsAtPath:libPath isDirectory:&isDir] && isDir) {
+    BOOL isDir;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:libPath isDirectory:&isDir] && isDir) {
         PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
         dTHX;
 
@@ -717,7 +717,7 @@ static Boolean perlInitialized = FALSE;
 
         av_unshift(inc, 1);
         av_store(inc, 0, newSVpv(path, 0));
-	}
+    }
 }
 
 - (void) useModule: (NSString *)moduleName {
@@ -793,17 +793,22 @@ static Boolean perlInitialized = FALSE;
 
 // A bundle was loaded - wrap its classes
 - (void) bundleDidLoad: (NSNotification *)notification {
-	NSArray *classes = [[notification userInfo] valueForKey:@"NSLoadedClasses"];
+    NSArray *classes = [[notification userInfo] valueForKey:@"NSLoadedClasses"];
 
-	// Add the bundle's Resource dir to @INC
-	NSString *perlArchname = [self eval: @"$Config{'archname'}"];
-	NSString *perlVersion = [self eval: @"$Config{'version'}"];
+    // Add the bundle's Resource dir to @INC
+    PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
+    dTHX;
+    HV *config = get_hv("Config::Config", FALSE);
+    SV **archnameSV = config ? hv_fetch(config, "archname", 8, 0) : NULL;
+    SV **versionSV = config ? hv_fetch(config, "version", 7, 0) : NULL;
+    NSString *perlArchname = archnameSV ? [NSString stringWithUTF8String:SvPV_nolen(*archnameSV)] : nil;
+    NSString *perlVersion = versionSV ? [NSString stringWithUTF8String:SvPV_nolen(*versionSV)] : nil;
 
-	// Add bundle's resource folder to @INC
-	NSBundle *bundle = [notification object];
-	[self useBundleLib:bundle  withArch: perlArchname forVersion: perlVersion];
-            
-	CBWrapNamedClasses(classes);
+    // Add bundle's resource folder to @INC
+    NSBundle *bundle = [notification object];
+    [self useBundleLib:bundle  withArch: perlArchname forVersion: perlVersion];
+
+    CBWrapNamedClasses(classes);
 }
 
 - (void) dummyThread: (id)dummy {
