@@ -138,6 +138,7 @@ void* CBDerefIDtoSV(id target) {
     // Define a Perl context
     PERL_SET_CONTEXT([CBPerl getPerlInterpreter]);
     dTHX;
+    SV *returnStringsAsObjects = get_sv("CamelBones::ReturnStringsAsObjects", FALSE);
 
 #ifdef GNUSTEP
     const char *svType;
@@ -195,8 +196,7 @@ void* CBDerefIDtoSV(id target) {
 
 	// Some types of objects may get special handling
     } else if ([target isKindOfClass: [NSString class]]
-	       && [[[CBPerl getCBPerlFromPerlInterpreter:[CBPerl getPerlInterpreter]] valueForKey: @"CamelBones::ReturnStringsAsObjects"]
-	               intValue] == 0) {
+           && (!returnStringsAsObjects || !SvTRUE(returnStringsAsObjects))) {
     	const char *u = [(NSString *)target UTF8String];
     	unsigned long len = strlen(u);
         SV *newSV = newSVpv(u, len);
